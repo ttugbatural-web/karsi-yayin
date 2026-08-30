@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>KARŞI — Bağımsız Yayın</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f2f2f0;
+      color: #111;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 18px 20px 22px;
+      border-bottom: 4px solid #c40000;
+    }
+
+    .top {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      position: relative;
+      display: inline-block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+
+    .logo::after {
+      content: "";
+      position: absolute;
+      height: 5px;
+      width: 115%;
+      background: #c40000;
+      left: -7%;
+      top: 52%;
+      transform: rotate(-4deg);
+    }
+
+    .top-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .languages {
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .languages a {
+      color: #aaa;
+      text-decoration: none;
+    }
+
+    .languages a:hover,
+    .languages .active {
+      color: white;
+    }
+
+    .languages span {
+      color: #555;
+      margin: 0 4px;
+    }
+
+    .tagline {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      color: #cfcfcf;
+      max-width: 260px;
+      text-align: right;
+      line-height: 1.4;
+    }
+
+    nav {
+      background: white;
+      border-bottom: 1px solid #d4d4d4;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      overflow-x: auto;
+    }
+
+    nav a {
+      color: #111;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 15px 18px;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      background: #111;
+      color: white;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 18px;
+    }
+
+    .headline {
+      background: #111;
+      color: white;
+      padding: 35px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .headline::before {
+      content: "KARŞI";
+      position: absolute;
+      right: -20px;
+      bottom: -45px;
+      font-family: Georgia, serif;
+      font-size: 150px;
+      font-weight: bold;
+      color: #1d1d1d;
+      transform: rotate(-8deg);
+    }
+
+    .headline-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+
+    .label {
+      display: inline-block;
+      background: #c40000;
+      color: white;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .headline h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 38px;
+      line-height: 1.08;
+      margin-bottom: 15px;
+    }
+
+    .headline p {
+      color: #d0d0d0;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 30px 0 16px;
+      font-family: Georgia, serif;
+      font-size: 25px;
+    }
+
+    .section-title::after {
+      content: "";
+      height: 2px;
+      background: #111;
+      flex: 1;
+    }
+
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    article {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 22px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    article:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 18px rgba(0,0,0,0.08);
+    }
+
+    article .category {
+      color: #c40000;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    article h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    article p {
+      color: #555;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .read {
+      margin-top: 18px;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #111;
+    }
+
+    .read::after {
+      content: " →";
+      color: #c40000;
+    }
+
+    footer {
+      background: #111;
+      color: #999;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 50px;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: white;
+      font-family: Georgia, serif;
+      font-size: 18px;
+    }
+
+    @media (max-width: 700px) {
+
+      header {
+        padding: 16px;
+      }
+
+      .logo {
+        font-size: 38px;
+      }
+
+      .top-right {
+        gap: 5px;
+      }
+
+      .tagline {
+        display: none;
+      }
+
+      .languages {
+        margin-top: 4px;
+      }
+
+      .headline {
+        padding: 25px 20px;
+      }
+
+      .headline h1 {
+        font-size: 29px;
+      }
+
+      .headline p {
+        font-size: 14px;
+      }
+
+      .articles {
+        grid-template-columns: 1fr;
+      }
+
+      article h2 {
+        font-size: 21px;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="top">
+
+```
+<div class="logo">
+  KARŞI
+</div>
+
+<div class="top-right">
+
+  <div class="languages">
+    <a href="index.html" class="active">TR</a>
+    <span>|</span>
+    <a href="#">EN</a>
+    <span>|</span>
+    <a href="#">FR</a>
+  </div>
+
+  <div class="tagline">
+    Gücün karşısında,<br>
+    gerçeğin yanında.
+  </div>
+
+</div>
+```
+
+  </div>
+
+</header>
+
+<nav>
+
+  <div class="nav-inner">
+
+```
+<a href="index.html">ANA SAYFA</a>
+
+<a href="kose-yazilari.html">KÖŞE YAZILARI</a>
+
+<a href="#">GÜNDEM</a>
+
+<a href="#">DÜNYA</a>
+
+<a href="#">DOSYALAR</a>
+
+<a href="#">HAKKIMIZDA</a>
+```
+
+  </div>
+
+</nav>
+
+<main>
+
+  <section class="headline">
+
+```
+<div class="headline-content">
+
+  <div class="label">
+    KARŞI'DAN
+  </div>
+
+  <h1>
+    Söylenmeyeni söylemek,
+    sorulmayanı sormak için.
+  </h1>
+
+  <p>
+    Bağımsız düşünce, özgür söz ve güç karşısında
+    susmayan bir yayın.
+  </p>
+
+</div>
+```
+
+  </section>
+
+  <h2 class="section-title">
+    Köşe Yazıları
+  </h2>
+
+  <section class="articles">
+
+```
+<article
+  
+onclick="window.location.href='diktator-olmadan-once-herkes-halkcidir.html'"
+  style="cursor: pointer;"
+>
+
+  <div class="category">
+    KARŞI / YORUM
+  </div>
+
+  <h2>
+    Diktatör Olmadan Önce Herkes Halkçıdır
+  </h2>
+
+  <p>
+    İktidara giden yolun ilk taşları genellikle halkın
+    sofrasından döşenir. Sonra bir gün sofranın sahibi değişir.
+  </p>
+
+  <div class="read">
+    YAZIYI OKU
+  </div>
+
+</article>
+
+
+<article>
+
+  <div class="category">
+    GÜNDEM
+  </div>
+
+  <h2>
+    Burada gündemi konuşacağız
+  </h2>
+
+  <p>
+    Türkiye'den ve dünyadan önemli gelişmeleri
+    sade ve anlaşılır şekilde aktaracağız.
+  </p>
+
+</article>
+
+
+<article>
+
+  <div class="category">
+    DOSYA
+  </div>
+
+  <h2>
+    Görünmeyenin peşinde
+  </h2>
+
+  <p>
+    Üzerine fazla konuşulmayan konular,
+    araştırmalar ve özel dosyalar.
+  </p>
+
+</article>
+```
+
+  </section>
+
+</main>
+
+<footer>
+
+<strong>KARŞI</strong>
+
+<br><br>
+
+Bağımsız düşüncenin tarafı.
+
+<br><br>
+
+© 2026 KARŞI
+
+</footer>
+
+</body>
+</html>
+

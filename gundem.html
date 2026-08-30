@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Gündem — KARŞI</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f2f2f0;
+      color: #111;
+    }
+
+    /* ÜST BAR */
+
+    header {
+      background: #111;
+      color: white;
+      padding: 18px 20px 22px;
+      border-bottom: 4px solid #c40000;
+    }
+
+    .top {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      position: relative;
+      display: inline-block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+
+    .logo::after {
+      content: "";
+      position: absolute;
+      height: 5px;
+      width: 115%;
+      background: #c40000;
+      left: -7%;
+      top: 52%;
+      transform: rotate(-4deg);
+    }
+
+    .top-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .languages {
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .languages a {
+      color: #aaa;
+      text-decoration: none;
+    }
+
+    .languages a:hover,
+    .languages .active {
+      color: white;
+    }
+
+    .languages span {
+      color: #555;
+      margin: 0 4px;
+    }
+
+    .tagline {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      color: #cfcfcf;
+      text-align: right;
+      line-height: 1.4;
+    }
+
+    /* MENÜ */
+
+    nav {
+      background: white;
+      border-bottom: 1px solid #d4d4d4;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      overflow-x: auto;
+    }
+
+    nav a {
+      color: #111;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 15px 18px;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      background: #111;
+      color: white;
+    }
+
+    /* ANA ALAN */
+
+    main {
+      max-width: 1100px;
+      margin: 35px auto;
+      padding: 0 18px;
+    }
+
+    .page-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      margin-bottom: 8px;
+    }
+
+    .title-line {
+      width: 70px;
+      height: 4px;
+      background: #c40000;
+      margin-bottom: 18px;
+    }
+
+    .page-intro {
+      color: #555;
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 700px;
+      margin-bottom: 32px;
+    }
+
+    /* HABER ALANI */
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 22px;
+    }
+
+    .news-main {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 28px;
+    }
+
+    .news-main .category {
+      color: #c40000;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+
+    .news-main h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 31px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .news-main p {
+      color: #555;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 16px;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .source {
+      font-size: 11px;
+      color: #888;
+      letter-spacing: .5px;
+    }
+
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .news-card {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .news-card .category {
+      color: #c40000;
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .news-card h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .news-card p {
+      color: #666;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    /* SON HABERLER */
+
+    .latest-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 38px 0 18px;
+      font-family: Georgia, serif;
+      font-size: 25px;
+    }
+
+    .latest-title::after {
+      content: "";
+      height: 2px;
+      background: #111;
+      flex: 1;
+    }
+
+    .latest {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .latest article {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .latest article h3 {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      line-height: 1.25;
+      margin: 8px 0;
+    }
+
+    .latest article p {
+      color: #666;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .date {
+      color: #999;
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #111;
+      color: #999;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 60px;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: white;
+      font-family: Georgia, serif;
+      font-size: 20px;
+    }
+
+    /* MOBİL */
+
+    @media (max-width: 750px) {
+
+      header {
+        padding: 16px;
+      }
+
+      .logo {
+        font-size: 38px;
+      }
+
+      .tagline {
+        display: none;
+      }
+
+      .languages {
+        margin-top: 4px;
+      }
+
+      main {
+        margin-top: 25px;
+      }
+
+      .page-title {
+        font-size: 34px;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .news-main h2 {
+        font-size: 27px;
+      }
+
+      .latest {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="top">
+
+```
+<div class="logo">
+  KARŞI
+</div>
+
+<div class="top-right">
+
+  <div class="languages">
+    <a href="index.html" class="active">TR</a>
+    <span>|</span>
+    <a href="#">EN</a>
+    <span>|</span>
+    <a href="#">FR</a>
+  </div>
+
+  <div class="tagline">
+    Gücün karşısında,<br>
+    gerçeğin yanında.
+  </div>
+
+</div>
+```
+
+  </div>
+
+</header>
+
+<nav>
+
+  <div class="nav-inner">
+
+```
+<a href="index.html">ANA SAYFA</a>
+
+<a href="kose-yazilari.html">KÖŞE YAZILARI</a>
+
+<a href="gundem.html">GÜNDEM</a>
+
+<a href="#">DÜNYA</a>
+
+<a href="#">DOSYALAR</a>
+
+<a href="#">HAKKIMIZDA</a>
+```
+
+  </div>
+
+</nav>
+
+<main>
+
+  <h1 class="page-title">
+    Gündem
+  </h1>
+
+  <div class="title-line"></div>
+
+  <p class="page-intro">
+    Türkiye ve dünyadan gelişmeler. Haberleri olduğu gibi
+    aktarmakla yetinmeyen, arka planına ve sonuçlarına da
+    bakan bağımsız bir yayın.
+  </p>
+
+  <section class="news-grid">
+
+```
+<article class="news-main">
+
+  <div class="category">
+    GÜNDEM / ÖNE ÇIKAN
+  </div>
+
+  <h2>
+    KARŞI Gündem'e hoş geldiniz
+  </h2>
+
+  <p>
+    Bu alan günün en önemli gelişmelerinin yer alacağı
+    ana haber bölümü olacak. İlerleyen aşamada haber
+    akışımız otomatik olarak burada güncellenecek.
+  </p>
+
+  <div class="source">
+    KARŞI — Editör Masası
+  </div>
+
+</article>
+
+
+<div class="news-list">
+
+
+  <article class="news-card">
+
+    <div class="category">
+      TÜRKİYE
+    </div>
+
+    <h3>
+      Günün önemli gelişmeleri burada yer alacak
+    </h3>
+
+    <p>
+      Haber akışı otomatik sisteme bağlandığında
+      güncel içerikler burada görünecek.
+    </p>
+
+    <div class="source">
+      Kaynak: KARŞI
+    </div>
+
+  </article>
+
+
+  <article class="news-card">
+
+    <div class="category">
+      EKONOMİ
+    </div>
+
+    <h3>
+      Ekonomi gündeminden gelişmeler
+    </h3>
+
+    <p>
+      Piyasalar, ekonomi ve gündem haberleri
+      bu bölümde listelenecek.
+    </p>
+
+    <div class="source">
+      Kaynak: KARŞI
+    </div>
+
+  </article>
+
+
+  <article class="news-card">
+
+    <div class="category">
+      SİYASET
+    </div>
+
+    <h3>
+      Siyasi gündem
+    </h3>
+
+    <p>
+      Güncel siyasi gelişmeler ve önemli açıklamalar
+      burada yer alacak.
+    </p>
+
+    <div class="source">
+      Kaynak: KARŞI
+    </div>
+
+  </article>
+
+
+</div>
+```
+
+  </section>
+
+  <h2 class="latest-title">
+    Son Haberler
+  </h2>
+
+  <section class="latest">
+
+```
+<article>
+
+  <div class="date">
+    YAKINDA
+  </div>
+
+  <h3>
+    Otomatik haber akışı
+  </h3>
+
+  <p>
+    Belirlediğimiz güvenilir kaynaklardan gelen
+    haberler burada listelenecek.
+  </p>
+
+</article>
+
+
+<article>
+
+  <div class="date">
+    YAKINDA
+  </div>
+
+  <h3>
+    Kaynak seçimi
+  </h3>
+
+  <p>
+    Hangi kaynaklardan haber alınacağını
+    birlikte belirleyeceğiz.
+  </p>
+
+</article>
+
+
+<article>
+
+  <div class="date">
+    YAKINDA
+  </div>
+
+  <h3>
+    KARŞI filtresi
+  </h3>
+
+  <p>
+    Haberleri sadece toplamak değil,
+    doğru başlık ve kaynak bilgisiyle sunmak istiyoruz.
+  </p>
+
+</article>
+```
+
+  </section>
+
+</main>
+
+<footer>
+
+<strong>KARŞI</strong>
+
+<br><br>
+
+Bağımsız düşüncenin tarafı.
+
+<br><br>
+
+© 2026 KARŞI
+
+</footer>
+
+</body>
+</html>
+

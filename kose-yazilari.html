@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Köşe Yazıları — KARŞI</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f2f2f0;
+      color: #111;
+    }
+
+    /* ÜST BAR */
+
+    header {
+      background: #111;
+      color: white;
+      padding: 18px 20px 22px;
+      border-bottom: 4px solid #c40000;
+    }
+
+    .top {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      position: relative;
+      display: inline-block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+
+    .logo::after {
+      content: "";
+      position: absolute;
+      height: 5px;
+      width: 115%;
+      background: #c40000;
+      left: -7%;
+      top: 52%;
+      transform: rotate(-4deg);
+    }
+
+    .top-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .languages {
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .languages a {
+      color: #aaa;
+      text-decoration: none;
+    }
+
+    .languages a:hover {
+      color: white;
+    }
+
+    .languages .active {
+      color: white;
+    }
+
+    .languages span {
+      color: #555;
+      margin: 0 4px;
+    }
+
+    .tagline {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      color: #cfcfcf;
+      text-align: right;
+      line-height: 1.4;
+    }
+
+    /* MENÜ */
+
+    nav {
+      background: white;
+      border-bottom: 1px solid #d4d4d4;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      overflow-x: auto;
+    }
+
+    nav a {
+      color: #111;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 15px 18px;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      background: #111;
+      color: white;
+    }
+
+    /* ANA ALAN */
+
+    main {
+      max-width: 1100px;
+      margin: 35px auto;
+      padding: 0 18px;
+    }
+
+    .page-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      margin-bottom: 8px;
+    }
+
+    .page-intro {
+      color: #555;
+      font-size: 15px;
+      margin-bottom: 30px;
+      max-width: 650px;
+      line-height: 1.6;
+    }
+
+    .title-line {
+      width: 70px;
+      height: 4px;
+      background: #c40000;
+      margin-bottom: 30px;
+    }
+
+    /* YAZI KARTLARI */
+
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .article-card {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 24px;
+      text-decoration: none;
+      color: #111;
+      display: block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .category {
+      color: #c40000;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+
+    .article-card h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .article-card p {
+      color: #555;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .read {
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #111;
+    }
+
+    .read::after {
+      content: " →";
+      color: #c40000;
+    }
+
+    /* ALT */
+
+    footer {
+      background: #111;
+      color: #999;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 60px;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: white;
+      font-family: Georgia, serif;
+      font-size: 20px;
+    }
+
+    /* MOBİL */
+
+    @media (max-width: 800px) {
+
+      .articles {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 16px;
+      }
+
+      .logo {
+        font-size: 38px;
+      }
+
+      .tagline {
+        display: none;
+      }
+
+      .top-right {
+        gap: 0;
+      }
+
+      .languages {
+        margin-top: 4px;
+      }
+
+      main {
+        margin-top: 25px;
+      }
+
+      .page-title {
+        font-size: 34px;
+      }
+
+      .articles {
+        grid-template-columns: 1fr;
+      }
+
+      .article-card h2 {
+        font-size: 23px;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="top">
+
+```
+<div class="logo">
+  KARŞI
+</div>
+
+<div class="top-right">
+
+  <div class="languages">
+    <a href="index.html" class="active">TR</a>
+    <span>|</span>
+    <a href="#">EN</a>
+    <span>|</span>
+    <a href="#">FR</a>
+  </div>
+
+  <div class="tagline">
+    Gücün karşısında,<br>
+    gerçeğin yanında.
+  </div>
+
+</div>
+```
+
+  </div>
+
+</header>
+
+<nav>
+
+  <div class="nav-inner">
+
+```
+<a href="index.html">ANA SAYFA</a>
+
+<a href="kose-yazilari.html">KÖŞE YAZILARI</a>
+
+<a href="#">GÜNDEM</a>
+
+<a href="#">DÜNYA</a>
+
+<a href="#">DOSYALAR</a>
+
+<a href="#">HAKKIMIZDA</a>
+```
+
+  </div>
+
+</nav>
+
+<main>
+
+  <h1 class="page-title">
+    Köşe Yazıları
+  </h1>
+
+  <div class="title-line"></div>
+
+  <p class="page-intro">
+    Gündeme, siyasete, topluma ve dünyaya dair
+    bağımsız düşünceler. Rahatsız edici sorular,
+    farklı bakış açıları ve söylenmeyenler.
+  </p>
+
+  <section class="articles">
+
+```
+<a
+  class="article-card"
+  href="diktator-olmadan-once-herkes-halkcidir.html"
+>
+
+  <div class="category">
+    KARŞI / YORUM
+  </div>
+
+  <h2>
+    Diktatör Olmadan Önce Herkes Halkçıdır
+  </h2>
+
+  <p>
+    İktidara giden yolun ilk taşları genellikle
+    halkın sofrasından döşenir. Sonra bir gün
+    sofranın sahibi değişir.
+  </p>
+
+  <div class="read">
+    YAZIYI OKU
+  </div>
+
+</a>
+
+
+<div class="article-card">
+
+  <div class="category">
+    YAKINDA
+  </div>
+
+  <h2>
+    Yeni bir yazı burada olacak
+  </h2>
+
+  <p>
+    KARŞI'nın yeni yazıları burada yer alacak.
+    Gündemin farklı yönlerini birlikte sorgulayacağız.
+  </p>
+
+  <div class="read">
+    YAKINDA
+  </div>
+
+</div>
+
+
+<div class="article-card">
+
+  <div class="category">
+    YAKINDA
+  </div>
+
+  <h2>
+    Söylenmeyeni söylemek
+  </h2>
+
+  <p>
+    Yeni yazılarımız ve özel yorumlarımız
+    çok yakında burada.
+  </p>
+
+  <div class="read">
+    YAKINDA
+  </div>
+
+</div>
+```
+
+  </section>
+
+</main>
+
+<footer>
+
+<strong>KARŞI</strong>
+
+<br><br>
+
+Bağımsız düşüncenin tarafı.
+
+<br><br>
+
+© 2026 KARŞI
+
+</footer>
+
+</body>
+</html>
+
