@@ -1,592 +1,351 @@
 <!DOCTYPE html>
-
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Gündem — KARŞI</title>
+<title>KARŞI — Gündem</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f2f2f0;
-      color: #111;
-    }
+body {
+    margin: 0;
+    background: #f5f5f5;
+    color: #111;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-    /* ÜST BAR */
+header {
+    background: #111;
+    color: white;
+    padding: 22px 20px;
+    text-align: center;
+}
 
-    header {
-      background: #111;
-      color: white;
-      padding: 18px 20px 22px;
-      border-bottom: 4px solid #c40000;
-    }
+.logo {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: 8px;
+    margin: 0;
+}
 
-    .top {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
+.slogan {
+    margin-top: 8px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+nav {
+    background: white;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    padding: 14px 10px;
+}
+
+nav a {
+    color: #111;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 18px 50px;
+}
+
+.page-title {
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+
+.page-description {
+    color: #666;
+    margin-bottom: 28px;
+}
+
+.status {
+    background: white;
+    border-left: 5px solid #111;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.haber {
+    background: white;
+    border: 1px solid #ddd;
+    margin-bottom: 18px;
+    padding: 22px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.haber:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+}
+
+.kaynak {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #777;
+    margin-bottom: 9px;
+}
+
+.haber h2 {
+    margin: 0 0 10px;
+    font-size: 21px;
+    line-height: 1.3;
+}
+
+.haber h2 a {
+    color: #111;
+    text-decoration: none;
+}
+
+.haber h2 a:hover {
+    text-decoration: underline;
+}
+
+.aciklama {
+    color: #555;
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 14px;
+}
+
+.tarih {
+    color: #888;
+    font-size: 12px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 15px;
+    background: #111;
+    color: #aaa;
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
 
     .logo {
-      position: relative;
-      display: inline-block;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 48px;
-      font-weight: 900;
-      letter-spacing: -3px;
-      line-height: 1;
+        font-size: 34px;
+        letter-spacing: 6px;
     }
-
-    .logo::after {
-      content: "";
-      position: absolute;
-      height: 5px;
-      width: 115%;
-      background: #c40000;
-      left: -7%;
-      top: 52%;
-      transform: rotate(-4deg);
-    }
-
-    .top-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 8px;
-    }
-
-    .languages {
-      font-size: 11px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-    .languages a {
-      color: #aaa;
-      text-decoration: none;
-    }
-
-    .languages a:hover,
-    .languages .active {
-      color: white;
-    }
-
-    .languages span {
-      color: #555;
-      margin: 0 4px;
-    }
-
-    .tagline {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 14px;
-      color: #cfcfcf;
-      text-align: right;
-      line-height: 1.4;
-    }
-
-    /* MENÜ */
 
     nav {
-      background: white;
-      border-bottom: 1px solid #d4d4d4;
-    }
-
-    .nav-inner {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      overflow-x: auto;
+        gap: 18px;
     }
 
     nav a {
-      color: #111;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: bold;
-      padding: 15px 18px;
-      white-space: nowrap;
-    }
-
-    nav a:hover {
-      background: #111;
-      color: white;
-    }
-
-    /* ANA ALAN */
-
-    main {
-      max-width: 1100px;
-      margin: 35px auto;
-      padding: 0 18px;
+        font-size: 13px;
     }
 
     .page-title {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 42px;
-      margin-bottom: 8px;
+        font-size: 26px;
     }
 
-    .title-line {
-      width: 70px;
-      height: 4px;
-      background: #c40000;
-      margin-bottom: 18px;
+    .haber {
+        padding: 18px;
     }
 
-    .page-intro {
-      color: #555;
-      font-size: 15px;
-      line-height: 1.6;
-      max-width: 700px;
-      margin-bottom: 32px;
+    .haber h2 {
+        font-size: 19px;
     }
-
-    /* HABER ALANI */
-
-    .news-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 22px;
-    }
-
-    .news-main {
-      background: white;
-      border: 1px solid #ddd;
-      padding: 28px;
-    }
-
-    .news-main .category {
-      color: #c40000;
-      font-size: 11px;
-      font-weight: bold;
-      letter-spacing: 1.5px;
-      margin-bottom: 12px;
-    }
-
-    .news-main h2 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 31px;
-      line-height: 1.15;
-      margin-bottom: 14px;
-    }
-
-    .news-main p {
-      color: #555;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 16px;
-      line-height: 1.65;
-      margin-bottom: 20px;
-    }
-
-    .source {
-      font-size: 11px;
-      color: #888;
-      letter-spacing: .5px;
-    }
-
-    .news-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .news-card {
-      background: white;
-      border: 1px solid #ddd;
-      padding: 20px;
-    }
-
-    .news-card .category {
-      color: #c40000;
-      font-size: 10px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
-    }
-
-    .news-card h3 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 19px;
-      line-height: 1.25;
-      margin-bottom: 8px;
-    }
-
-    .news-card p {
-      color: #666;
-      font-size: 13px;
-      line-height: 1.5;
-      margin-bottom: 10px;
-    }
-
-    /* SON HABERLER */
-
-    .latest-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 38px 0 18px;
-      font-family: Georgia, serif;
-      font-size: 25px;
-    }
-
-    .latest-title::after {
-      content: "";
-      height: 2px;
-      background: #111;
-      flex: 1;
-    }
-
-    .latest {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .latest article {
-      background: white;
-      border: 1px solid #ddd;
-      padding: 20px;
-    }
-
-    .latest article h3 {
-      font-family: Georgia, serif;
-      font-size: 20px;
-      line-height: 1.25;
-      margin: 8px 0;
-    }
-
-    .latest article p {
-      color: #666;
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .date {
-      color: #999;
-      font-size: 10px;
-      letter-spacing: 1px;
-    }
-
-    /* FOOTER */
-
-    footer {
-      background: #111;
-      color: #999;
-      text-align: center;
-      padding: 30px 20px;
-      margin-top: 60px;
-      font-size: 13px;
-    }
-
-    footer strong {
-      color: white;
-      font-family: Georgia, serif;
-      font-size: 20px;
-    }
-
-    /* MOBİL */
-
-    @media (max-width: 750px) {
-
-      header {
-        padding: 16px;
-      }
-
-      .logo {
-        font-size: 38px;
-      }
-
-      .tagline {
-        display: none;
-      }
-
-      .languages {
-        margin-top: 4px;
-      }
-
-      main {
-        margin-top: 25px;
-      }
-
-      .page-title {
-        font-size: 34px;
-      }
-
-      .news-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .news-main h2 {
-        font-size: 27px;
-      }
-
-      .latest {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-
+}
+</style>
 </head>
 
 <body>
 
 <header>
-
-  <div class="top">
-
-```
-<div class="logo">
-  KARŞI
-</div>
-
-<div class="top-right">
-
-  <div class="languages">
-    <a href="index.html" class="active">TR</a>
-    <span>|</span>
-    <a href="#">EN</a>
-    <span>|</span>
-    <a href="#">FR</a>
-  </div>
-
-  <div class="tagline">
-    Gücün karşısında,<br>
-    gerçeğin yanında.
-  </div>
-
-</div>
-```
-
-  </div>
-
+    <h1 class="logo">KARŞI</h1>
+    <div class="slogan">SORU SOR. DÜŞÜN. KARŞI DUR.</div>
 </header>
 
 <nav>
-
-  <div class="nav-inner">
-
-```
-<a href="index.html">ANA SAYFA</a>
-
-<a href="kose-yazilari.html">KÖŞE YAZILARI</a>
-
-<a href="gundem.html">GÜNDEM</a>
-
-<a href="#">DÜNYA</a>
-
-<a href="#">DOSYALAR</a>
-
-<a href="#">HAKKIMIZDA</a>
-```
-
-  </div>
-
+    <a href="index.html">ANA SAYFA</a>
+    <a href="gundem.html">GÜNDEM</a>
+    <a href="kose-yazilari.html">KÖŞE YAZILARI</a>
 </nav>
 
-<main>
+<main class="container">
 
-  <h1 class="page-title">
-    Gündem
-  </h1>
+    <h1 class="page-title">Gündem</h1>
 
-  <div class="title-line"></div>
-
-  <p class="page-intro">
-    Türkiye ve dünyadan gelişmeler. Haberleri olduğu gibi
-    aktarmakla yetinmeyen, arka planına ve sonuçlarına da
-    bakan bağımsız bir yayın.
-  </p>
-
-  <section class="news-grid">
-
-```
-<article class="news-main">
-
-  <div class="category">
-    GÜNDEM / ÖNE ÇIKAN
-  </div>
-
-  <h2>
-    KARŞI Gündem'e hoş geldiniz
-  </h2>
-
-  <p>
-    Bu alan günün en önemli gelişmelerinin yer alacağı
-    ana haber bölümü olacak. İlerleyen aşamada haber
-    akışımız otomatik olarak burada güncellenecek.
-  </p>
-
-  <div class="source">
-    KARŞI — Editör Masası
-  </div>
-
-</article>
-
-
-<div class="news-list">
-
-
-  <article class="news-card">
-
-    <div class="category">
-      TÜRKİYE
+    <div class="page-description">
+        Güncel haberler farklı kaynaklardan otomatik olarak derlenir.
     </div>
 
-    <h3>
-      Günün önemli gelişmeleri burada yer alacak
-    </h3>
-
-    <p>
-      Haber akışı otomatik sisteme bağlandığında
-      güncel içerikler burada görünecek.
-    </p>
-
-    <div class="source">
-      Kaynak: KARŞI
+    <div id="durum" class="status">
+        Haberler yükleniyor...
     </div>
 
-  </article>
-
-
-  <article class="news-card">
-
-    <div class="category">
-      EKONOMİ
-    </div>
-
-    <h3>
-      Ekonomi gündeminden gelişmeler
-    </h3>
-
-    <p>
-      Piyasalar, ekonomi ve gündem haberleri
-      bu bölümde listelenecek.
-    </p>
-
-    <div class="source">
-      Kaynak: KARŞI
-    </div>
-
-  </article>
-
-
-  <article class="news-card">
-
-    <div class="category">
-      SİYASET
-    </div>
-
-    <h3>
-      Siyasi gündem
-    </h3>
-
-    <p>
-      Güncel siyasi gelişmeler ve önemli açıklamalar
-      burada yer alacak.
-    </p>
-
-    <div class="source">
-      Kaynak: KARŞI
-    </div>
-
-  </article>
-
-
-</div>
-```
-
-  </section>
-
-  <h2 class="latest-title">
-    Son Haberler
-  </h2>
-
-  <section class="latest">
-
-```
-<article>
-
-  <div class="date">
-    YAKINDA
-  </div>
-
-  <h3>
-    Otomatik haber akışı
-  </h3>
-
-  <p>
-    Belirlediğimiz güvenilir kaynaklardan gelen
-    haberler burada listelenecek.
-  </p>
-
-</article>
-
-
-<article>
-
-  <div class="date">
-    YAKINDA
-  </div>
-
-  <h3>
-    Kaynak seçimi
-  </h3>
-
-  <p>
-    Hangi kaynaklardan haber alınacağını
-    birlikte belirleyeceğiz.
-  </p>
-
-</article>
-
-
-<article>
-
-  <div class="date">
-    YAKINDA
-  </div>
-
-  <h3>
-    KARŞI filtresi
-  </h3>
-
-  <p>
-    Haberleri sadece toplamak değil,
-    doğru başlık ve kaynak bilgisiyle sunmak istiyoruz.
-  </p>
-
-</article>
-```
-
-  </section>
+    <section id="haberler"></section>
 
 </main>
 
 <footer>
-
-<strong>KARŞI</strong>
-
-<br><br>
-
-Bağımsız düşüncenin tarafı.
-
-<br><br>
-
-© 2026 KARŞI
-
+    KARŞI — Bağımsız yayın
 </footer>
+
+<script>
+
+function tarihFormatla(tarih) {
+
+    if (!tarih) {
+        return "";
+    }
+
+    const date = new Date(tarih);
+
+    if (isNaN(date.getTime())) {
+        return tarih;
+    }
+
+    return date.toLocaleString("tr-TR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+}
+
+
+async function haberleriGetir() {
+
+    const durum = document.getElementById("durum");
+    const liste = document.getElementById("haberler");
+
+    try {
+
+        const cevap = await fetch(
+            "data/haberler.json?v=" + Date.now()
+        );
+
+        if (!cevap.ok) {
+            throw new Error("Haber dosyası bulunamadı.");
+        }
+
+        const veri = await cevap.json();
+
+        const haberler = veri.haberler || [];
+
+        if (haberler.length === 0) {
+
+            durum.textContent =
+                "Şu anda gösterilecek yeni haber bulunmuyor.";
+
+            return;
+        }
+
+        durum.textContent =
+            haberler.length + " haber bulundu.";
+
+        liste.innerHTML = "";
+
+        haberler.forEach(haber => {
+
+            const article = document.createElement("article");
+
+            article.className = "haber";
+
+            article.innerHTML = `
+
+                <div class="kaynak">
+                    ${guvenliMetin(haber.kaynak)}
+                </div>
+
+                <h2>
+                    <a href="${guvenliLink(haber.link)}"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        ${guvenliMetin(haber.baslik)}
+                    </a>
+                </h2>
+
+                ${
+                    haber.aciklama
+                    ? `<div class="aciklama">
+                        ${guvenliMetin(haber.aciklama)}
+                       </div>`
+                    : ""
+                }
+
+                <div class="tarih">
+                    ${tarihFormatla(haber.tarih)}
+                </div>
+            `;
+
+            liste.appendChild(article);
+        });
+
+    } catch (hata) {
+
+        console.error(hata);
+
+        durum.textContent =
+            "Haberler şu anda yüklenemiyor. Lütfen daha sonra tekrar deneyin.";
+    }
+}
+
+
+function guvenliMetin(metin) {
+
+    if (!metin) {
+        return "";
+    }
+
+    const div = document.createElement("div");
+
+    div.textContent = metin;
+
+    return div.innerHTML;
+}
+
+
+function guvenliLink(link) {
+
+    if (!link) {
+        return "#";
+    }
+
+    try {
+
+        const url = new URL(link);
+
+        if (
+            url.protocol === "http:" ||
+            url.protocol === "https:"
+        ) {
+            return url.href;
+        }
+
+    } catch (e) {}
+
+    return "#";
+}
+
+
+haberleriGetir();
+
+</script>
 
 </body>
 </html>
-
