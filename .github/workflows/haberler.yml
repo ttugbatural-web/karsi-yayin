@@ -1,0 +1,119 @@
+name: KARŞI Haber Motoru
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  haberleri-topla:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: KARŞI repository indir
+        uses: actions/checkout@v4
+
+      - name: Python kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: RSS haberlerini çek
+        run: |
+          python - <<'PY'
+          import urllib.request
+          import xml.etree.ElementTree as ET
+          import json
+          import os
+          import html
+          import re
+          from datetime import datetime, timezone
+
+          kaynaklar = [
+              {
+                  "ad": "Sözcü",
+                  "rss": "https://www.sozcu.com.tr/feeds-haberler"
+              },
+              {
+                  "ad": "Sözcü Gündem",
+                  "rss": "https://www.sozcu.com.tr/feeds-rss-category-gundem"
+              }
+          ]
+
+          haberler = []
+
+          for kaynak in kaynaklar:
+              try:
+                  request = urllib.request.Request(
+                      kaynak["rss"],
+                      headers={"User-Agent": "KarsiHaberMotoru/1.0"}
+                  )
+
+                  with urllib.request.urlopen(request, timeout=20) as response:
+                      data = response.read()
+
+                  root = ET.fromstring(data)
+
+                  for item in root.findall(".//item"):
+                      title = item.findtext("title", "")
+                      link = item.findtext("link", "")
+                      pub_date = item.findtext("pubDate", "")
+                      description = item.findtext("description", "")
+
+                      if not title or not link:
+                          continue
+
+                      description = html.unescape(description)
+                      description = re.sub(r"<[^>]+>", "", description)
+                      description = re.sub(r"\s+", " ", description).strip()
+
+                      haberler.append({
+                          "baslik": title.strip(),
+                          "aciklama": description[:300],
+                          "kaynak": kaynak["ad"],
+                          "link": link.strip(),
+                          "tarih": pub_date.strip()
+                      })
+
+              except Exception as e:
+                  print(f"{kaynak['ad']} okunamadı: {e}")
+
+          # Aynı haberi iki kez göstermemek için linke göre temizle
+          benzersiz = {}
+          for haber in haberler:
+              benzersiz[haber["link"]] = haber
+
+          haberler = list(benzersiz.values())
+
+          # En fazla 50 haber tut
+          haberler = haberler[:50]
+
+          veri = {
+              "guncelleme": datetime.now(timezone.utc).isoformat(),
+              "haberler": haberler
+          }
+
+          os.makedirs("data", exist_ok=True)
+
+          with open("data/haberler.json", "w", encoding="utf-8") as dosya:
+              json.dump(veri, dosya, ensure_ascii=False, indent=2)
+
+          print(f"{len(haberler)} haber bulundu.")
+          PY
+
+      - name: Haberleri GitHub'a kaydet
+        run: |
+          git config user.name "KARŞI Haber Botu"
+          git config user.email "actions@users.noreply.github.com"
+
+          git add data/haberler.json
+
+          if git diff --cached --quiet; then
+            echo "Yeni haber yok."
+          else
+            git commit -m "KARŞI haber akışını güncelle"
+            git push
+          fi
