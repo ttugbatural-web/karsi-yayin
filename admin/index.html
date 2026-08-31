@@ -1,1 +1,409 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>KARŞI — Yönetim Paneli</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f2f2f0;
+      color: #111;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      background: #111;
+      color: white;
+      border-bottom: 4px solid #c40000;
+      padding: 18px 20px;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 36px;
+      font-weight: bold;
+      letter-spacing: -2px;
+    }
+
+    .panel-name {
+      color: #aaa;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main {
+      max-width: 1100px;
+      margin: 35px auto;
+      padding: 0 18px;
+    }
+
+    .welcome {
+      margin-bottom: 30px;
+    }
+
+    .welcome h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
+
+    .welcome p {
+      color: #666;
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       PANEL GRID
+    ========================= */
+
+    .panel-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 20px;
+    }
+
+
+    /* =========================
+       PANEL KARTI
+    ========================= */
+
+    .panel-card {
+      background: white;
+      border: 1px solid #ddd;
+
+      padding: 25px;
+
+      text-decoration: none;
+      color: #111;
+
+      display: block;
+
+      transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+    }
+
+    .panel-card:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .icon {
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+
+    .panel-card h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      margin-bottom: 8px;
+    }
+
+    .panel-card p {
+      color: #666;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+
+    /* =========================
+       DURUM
+    ========================= */
+
+    .status {
+      margin-top: 30px;
+
+      background: #111;
+      color: #ddd;
+
+      padding: 18px;
+
+      border-left: 4px solid #c40000;
+
+      font-size: 13px;
+    }
+
+    .status strong {
+      color: white;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      margin-top: 60px;
+
+      background: #111;
+      color: #999;
+
+      text-align: center;
+
+      padding: 25px 20px;
+
+      font-size: 12px;
+    }
+
+
+    /* =========================
+       MOBİL
+    ========================= */
+
+    @media (max-width: 750px) {
+
+      .panel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome h1 {
+        font-size: 31px;
+      }
+
+      .panel-card {
+        padding: 22px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="header-inner">
+
+```
+<div class="logo">
+  KARŞI
+</div>
+
+<div class="panel-name">
+  Yönetim Paneli
+</div>
+```
+
+  </div>
+
+</header>
+
+<main>
+
+  <section class="welcome">
+
+```
+<h1>
+  Yönetim Paneli
+</h1>
+
+<p>
+  KARŞI yayın sistemini buradan yöneteceğiz.
+</p>
+```
+
+  </section>
+
+  <section class="panel-grid">
+
+```
+<!-- KÖŞE YAZILARI -->
+
+<a
+  href="#"
+  class="panel-card"
+>
+
+  <div class="icon">
+    ✍️
+  </div>
+
+  <h2>
+    Köşe Yazıları
+  </h2>
+
+  <p>
+    Yeni yazı oluştur, mevcut yazıları
+    düzenle veya taslakları yönet.
+  </p>
+
+</a>
+
+
+<!-- YAZARLAR -->
+
+<a
+  href="#"
+  class="panel-card"
+>
+
+  <div class="icon">
+    👤
+  </div>
+
+  <h2>
+    Yazarlar
+  </h2>
+
+  <p>
+    Yazar ekle, yazar bilgilerini düzenle
+    ve profil fotoğraflarını yönet.
+  </p>
+
+</a>
+
+
+<!-- HABERLER -->
+
+<a
+  href="#"
+  class="panel-card"
+>
+
+  <div class="icon">
+    📰
+  </div>
+
+  <h2>
+    Haberler
+  </h2>
+
+  <p>
+    Haberleri ekle, düzenle ve yayın durumlarını
+    kontrol et.
+  </p>
+
+</a>
+
+
+<!-- KARŞI GÜNDEM -->
+
+<a
+  href="#"
+  class="panel-card"
+>
+
+  <div class="icon">
+    ⚡
+  </div>
+
+  <h2>
+    Karşı Gündem
+  </h2>
+
+  <p>
+    Güncel gelişmeleri yorumla ve
+    KARŞI'nın gündemini oluştur.
+  </p>
+
+</a>
+
+
+<!-- YORUMLAR -->
+
+<a
+  href="#"
+  class="panel-card"
+>
+
+  <div class="icon">
+    💬
+  </div>
+
+  <h2>
+    Yorumlar
+  </h2>
+
+  <p>
+    Okuyucu yorumlarını incele,
+    onayla veya kaldır.
+  </p>
+
+</a>
+
+
+<!-- AYARLAR -->
+
+<a
+  href="#"
+  class="panel-card"
+>
+
+  <div class="icon">
+    ⚙️
+  </div>
+
+  <h2>
+    Ayarlar
+  </h2>
+
+  <p>
+    Yayın ayarlarını ve yönetim paneli
+    seçeneklerini yönet.
+  </p>
+
+</a>
+```
+
+  </section>
+
+  <div class="status">
+
+```
+<strong>Sistem:</strong>
+
+Yönetim paneli hazırlanıyor.
+İçerik yönetimi ve veritabanı bağlantısını
+bir sonraki aşamada ekleyeceğiz.
+```
+
+  </div>
+
+</main>
+
+<footer>
+
+KARŞI — Yönetim Paneli
+
+</footer>
+
+</body>
+</html>
 
