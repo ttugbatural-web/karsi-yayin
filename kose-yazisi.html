@@ -1,0 +1,633 @@
+```html
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Yazı — KARŞI</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f2f2f0;
+      color: #111;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      background: #111;
+      color: white;
+      padding: 18px 20px 22px;
+      border-bottom: 4px solid #c40000;
+    }
+
+    .top {
+      max-width: 900px;
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .logo {
+      position: relative;
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 48px;
+      font-weight: 900;
+
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+
+    .logo::after {
+      content: "";
+
+      position: absolute;
+
+      height: 5px;
+      width: 115%;
+
+      background: #c40000;
+
+      left: -7%;
+      top: 52%;
+
+      transform: rotate(-4deg);
+    }
+
+    .back {
+      color: #ccc;
+
+      text-decoration: none;
+
+      font-size: 12px;
+      font-weight: bold;
+
+      border: 1px solid #555;
+
+      padding: 9px 13px;
+    }
+
+    .back:hover {
+      background: white;
+      color: #111;
+    }
+
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main {
+      max-width: 900px;
+
+      margin: 45px auto;
+
+      padding: 0 20px;
+    }
+
+
+    /* =========================
+       YAZI
+    ========================= */
+
+    .article-category {
+
+      color: #c40000;
+
+      font-size: 11px;
+
+      font-weight: bold;
+
+      letter-spacing: 1.5px;
+
+      margin-bottom: 14px;
+    }
+
+
+    .article-title {
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 48px;
+
+      line-height: 1.12;
+
+      margin-bottom: 20px;
+    }
+
+
+    .article-meta {
+
+      border-top: 1px solid #ddd;
+
+      border-bottom: 1px solid #ddd;
+
+      padding: 13px 0;
+
+      margin-bottom: 30px;
+
+      color: #666;
+
+      font-size: 12px;
+    }
+
+    .article-meta strong {
+      color: #111;
+    }
+
+
+    /* =========================
+       KAPAK FOTOĞRAFI
+    ========================= */
+
+    .cover-image {
+
+      width: 100%;
+
+      max-height: 500px;
+
+      object-fit: cover;
+
+      display: block;
+
+      margin-bottom: 35px;
+    }
+
+
+    /* =========================
+       İÇERİK
+    ========================= */
+
+    .article-content {
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 19px;
+
+      line-height: 1.85;
+
+      color: #222;
+
+      white-space: pre-wrap;
+    }
+
+    .article-content p {
+      margin-bottom: 22px;
+    }
+
+
+    /* =========================
+       HATA
+    ========================= */
+
+    .error-box {
+
+      background: white;
+
+      border-left: 4px solid #c40000;
+
+      padding: 25px;
+
+      color: #555;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       GERİ
+    ========================= */
+
+    .back-to-list {
+
+      display: inline-block;
+
+      margin-top: 40px;
+
+      color: #111;
+
+      text-decoration: none;
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+      letter-spacing: 1px;
+
+      border-bottom: 2px solid #c40000;
+
+      padding-bottom: 5px;
+    }
+
+    .back-to-list:hover {
+      color: #c40000;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+
+      background: #111;
+
+      color: #999;
+
+      text-align: center;
+
+      padding: 30px 20px;
+
+      margin-top: 70px;
+
+      font-size: 13px;
+    }
+
+    footer strong {
+
+      color: white;
+
+      font-family: Georgia, serif;
+
+      font-size: 20px;
+    }
+
+
+    /* =========================
+       MOBİL
+    ========================= */
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 16px;
+      }
+
+      .logo {
+        font-size: 38px;
+      }
+
+      main {
+        margin-top: 30px;
+      }
+
+      .article-title {
+        font-size: 35px;
+      }
+
+      .article-content {
+        font-size: 18px;
+        line-height: 1.75;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <div class="top">
+
+    <div class="logo">
+      KARŞI
+    </div>
+
+
+    <a
+      href="kose-yazilari.html"
+      class="back"
+    >
+      ← KÖŞE YAZILARI
+    </a>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <div id="articleArea">
+
+    <div class="error-box">
+      Yazı yükleniyor...
+    </div>
+
+  </div>
+
+
+  <a
+    href="kose-yazilari.html"
+    class="back-to-list"
+  >
+    ← TÜM KÖŞE YAZILARI
+  </a>
+
+</main>
+
+
+<footer>
+
+  <strong>
+    KARŞI
+  </strong>
+
+  <br><br>
+
+  Bağımsız düşüncenin tarafı.
+
+  <br><br>
+
+  © 2026 KARŞI
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+  /* ==================================================
+     SUPABASE
+  ================================================== */
+
+  const SUPABASE_URL =
+    "https://rfqiffvudbmphvklxetf.supabase.co";
+
+
+  const SUPABASE_ANON_KEY =
+    "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+
+  /* ==================================================
+     GÜVENLİ METİN
+  ================================================== */
+
+  function guvenliMetin(metin) {
+
+    const div =
+      document.createElement("div");
+
+    div.textContent =
+      metin == null
+        ? ""
+        : String(metin);
+
+    return div.innerHTML;
+
+  }
+
+
+  /* ==================================================
+     SLUG'I URL'DEN AL
+  ================================================== */
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+
+  const slug =
+    params.get("slug");
+
+
+  /* ==================================================
+     YAZIYI GETİR
+  ================================================== */
+
+  async function yaziGetir() {
+
+    const area =
+      document.getElementById(
+        "articleArea"
+      );
+
+
+    if (!slug) {
+
+      area.innerHTML = `
+        <div class="error-box">
+          Yazı bulunamadı.
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+
+        .from("kose_yazilari")
+
+        .select(`
+          *,
+          yazarlar (
+            ad_soyad,
+            biyografi,
+            fotograf_url
+          )
+        `)
+
+        .eq(
+          "slug",
+          slug
+        )
+
+        .eq(
+          "durum",
+          "yayinda"
+        )
+
+        .single();
+
+
+    if (error || !data) {
+
+      console.error(
+        "Yazı yükleme hatası:",
+        error
+      );
+
+
+      area.innerHTML = `
+        <div class="error-box">
+          Bu yazı bulunamadı veya henüz yayınlanmadı.
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    /* ==========================================
+       YAZAR
+    ========================================== */
+
+    const authorName =
+      data.yazarlar &&
+      data.yazarlar.ad_soyad
+        ? data.yazarlar.ad_soyad
+        : "KARŞI";
+
+
+    /* ==========================================
+       TARİH
+    ========================================== */
+
+    let tarih = "";
+
+    if (data.yayin_tarihi) {
+
+      const date =
+        new Date(
+          data.yayin_tarihi
+        );
+
+      tarih =
+        date.toLocaleDateString(
+          "tr-TR",
+          {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          }
+        );
+
+    }
+
+
+    /* ==========================================
+       FOTOĞRAF
+    ========================================== */
+
+    const fotograf =
+      data.kapak_fotografi_url
+        ? `
+          <img
+            class="cover-image"
+            src="${guvenliMetin(data.kapak_fotografi_url)}"
+            alt="${guvenliMetin(data.baslik)}"
+          >
+        `
+        : "";
+
+
+    /* ==========================================
+       İÇERİK
+    ========================================== */
+
+    area.innerHTML = `
+
+      <div class="article-category">
+
+        ${guvenliMetin(
+          data.kategori || "KARŞI / YORUM"
+        )}
+
+      </div>
+
+
+      <h1 class="article-title">
+
+        ${guvenliMetin(
+          data.baslik
+        )}
+
+      </h1>
+
+
+      <div class="article-meta">
+
+        Yazan:
+        <strong>
+          ${guvenliMetin(
+            authorName
+          )}
+        </strong>
+
+        ${
+          tarih
+            ? " · " + guvenliMetin(tarih)
+            : ""
+        }
+
+      </div>
+
+
+      ${fotograf}
+
+
+      <div class="article-content">
+
+        ${guvenliMetin(
+          data.icerik
+        )}
+
+      </div>
+
+    `;
+
+
+    /* ==========================================
+       SAYFA BAŞLIĞI
+    ========================================== */
+
+    document.title =
+      data.baslik +
+      " — KARŞI";
+
+  }
+
+
+  /* ==================================================
+     BAŞLAT
+  ================================================== */
+
+  yaziGetir();
+
+</script>
+
+
+</body>
+</html>
+```
