@@ -425,19 +425,14 @@ async function jsonHaberleriGetir() {
         }
 
         const veriler =
-           await cevap.json();
+            await cevap.json();
 
-        const haberListesi =
-            Array.isArray(veriler)
-              ? veriler
-              : veriler.haberler;
-
-        if (!Array.isArray(haberListesi)) {
+        if (!Array.isArray(veriler)) {
             return [];
         }
 
-        return haberListesi.map(
-          function(haber) {
+        return veriler.map(
+            function(haber) {
 
                 return {
 
