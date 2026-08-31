@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Yazarlar — KARŞI Yönetim</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f2f2f0;
+      color: #111;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      background: #111;
+      color: white;
+      border-bottom: 4px solid #c40000;
+      padding: 18px 20px;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 36px;
+      font-weight: bold;
+      letter-spacing: -2px;
+    }
+
+    .back {
+      color: white;
+      text-decoration: none;
+
+      border: 1px solid #555;
+
+      padding: 8px 12px;
+
+      font-size: 12px;
+    }
+
+    .back:hover {
+      background: white;
+      color: #111;
+    }
+
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main {
+      max-width: 1100px;
+      margin: 35px auto;
+      padding: 0 18px;
+    }
+
+    .page-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
+
+    .page-description {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+
+    /* =========================
+       FORM
+    ========================= */
+
+    .form-box {
+      background: white;
+
+      border: 1px solid #ddd;
+
+      padding: 25px;
+
+      margin-bottom: 35px;
+    }
+
+    .form-box h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+
+      margin-bottom: 22px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+      margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+
+      border: 1px solid #ccc;
+
+      padding: 12px;
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      font-size: 14px;
+
+      outline: none;
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #111;
+    }
+
+
+    /* =========================
+       FOTOĞRAF
+    ========================= */
+
+    .photo-area {
+      display: flex;
+
+      align-items: center;
+
+      gap: 20px;
+
+      margin-bottom: 20px;
+    }
+
+    .photo-preview {
+      width: 90px;
+      height: 90px;
+
+      border-radius: 50%;
+
+      background: #ddd;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      overflow: hidden;
+
+      flex-shrink: 0;
+
+      font-size: 30px;
+
+      color: #777;
+    }
+
+    .photo-preview img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .photo-info {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .photo-info input {
+      margin-top: 8px;
+    }
+
+
+    /* =========================
+       BUTON
+    ========================= */
+
+    .save-button {
+      background: #111;
+
+      color: white;
+
+      border: none;
+
+      padding: 13px 20px;
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+      letter-spacing: 1px;
+
+      cursor: pointer;
+    }
+
+    .save-button:hover {
+      background: #c40000;
+    }
+
+
+    /* =========================
+       YAZARLAR
+    ========================= */
+
+    .authors-title {
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 27px;
+
+      margin-bottom: 15px;
+    }
+
+    .authors {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 18px;
+    }
+
+    .author-card {
+      background: white;
+
+      border: 1px solid #ddd;
+
+      padding: 20px;
+
+      display: flex;
+
+      gap: 15px;
+
+      align-items: center;
+    }
+
+    .author-photo {
+      width: 70px;
+      height: 70px;
+
+      border-radius: 50%;
+
+      background: #ddd;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      overflow: hidden;
+
+      flex-shrink: 0;
+    }
+
+    .author-photo img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .author-info h3 {
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 19px;
+
+      margin-bottom: 5px;
+    }
+
+    .author-info p {
+      color: #777;
+
+      font-size: 12px;
+
+      line-height: 1.4;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      margin-top: 60px;
+
+      background: #111;
+
+      color: #999;
+
+      text-align: center;
+
+      padding: 25px;
+
+      font-size: 12px;
+    }
+
+
+    /* =========================
+       MOBİL
+    ========================= */
+
+    @media (max-width: 750px) {
+
+      .authors {
+        grid-template-columns: 1fr;
+      }
+
+      .page-title {
+        font-size: 32px;
+      }
+
+      .form-box {
+        padding: 20px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="header-inner">
+
+```
+<div class="logo">
+  KARŞI
+</div>
+
+<a
+  class="back"
+  href="index.html"
+>
+  ← Yönetim Paneli
+</a>
+```
+
+  </div>
+
+</header>
+
+<main>
+
+  <h1 class="page-title">
+    Yazarlar
+  </h1>
+
+  <p class="page-description">
+    KARŞI'da yazacak yazarları buradan yöneteceğiz.
+  </p>
+
+  <!-- =========================
+       YENİ YAZAR
+  ========================= -->
+
+  <section class="form-box">
+
+```
+<h2>
+  Yeni Yazar Ekle
+</h2>
+
+
+<div class="form-group">
+
+  <label>
+    AD SOYAD
+  </label>
+
+  <input
+    type="text"
+    id="authorName"
+    placeholder="Örn. Taylan Özgür Tural"
+  >
+
+</div>
+
+
+<div class="form-group">
+
+  <label>
+    KISA BİYOGRAFİ
+  </label>
+
+  <textarea
+    id="authorBio"
+    placeholder="Yazar hakkında kısa bilgi..."
+  ></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+  <label>
+    FOTOĞRAF
+  </label>
+
+  <div class="photo-area">
+
+    <div
+      class="photo-preview"
+      id="photoPreview"
+    >
+      👤
+    </div>
+
+    <div class="photo-info">
+
+      Profil fotoğrafını seç.
+
+      <br>
+
+      JPG veya PNG kullanabilirsin.
+
+      <br>
+
+      <input
+        type="file"
+        id="authorPhoto"
+        accept="image/jpeg,image/png"
+      >
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<button
+  class="save-button"
+  onclick="yazarEkle()"
+>
+  YAZARI KAYDET
+</button>
+```
+
+  </section>
+
+  <!-- =========================
+       YAZAR LİSTESİ
+  ========================= -->
+
+  <h2 class="authors-title">
+    Mevcut Yazarlar
+  </h2>
+
+  <section
+    class="authors"
+    id="authorsList"
+  >
+
+```
+<!-- Yazarlar buraya gelecek -->
+```
+
+  </section>
+
+</main>
+
+<footer>
+
+KARŞI — Yönetim Paneli
+
+</footer>
+
+<script>
+
+  /* =========================
+     FOTOĞRAF ÖNİZLEME
+  ========================= */
+
+  const photoInput =
+    document.getElementById("authorPhoto");
+
+  const photoPreview =
+    document.getElementById("photoPreview");
+
+
+  photoInput.addEventListener(
+    "change",
+    function () {
+
+      const file =
+        this.files[0];
+
+      if (!file) {
+        return;
+      }
+
+      const reader =
+        new FileReader();
+
+      reader.onload =
+        function (e) {
+
+          photoPreview.innerHTML =
+            `<img src="${e.target.result}" alt="Yazar fotoğrafı">`;
+
+        };
+
+      reader.readAsDataURL(file);
+
+    }
+  );
+
+
+  /* =========================
+     YAZAR EKLE
+  ========================= */
+
+  function yazarEkle() {
+
+    const name =
+      document.getElementById(
+        "authorName"
+      ).value.trim();
+
+
+    const bio =
+      document.getElementById(
+        "authorBio"
+      ).value.trim();
+
+
+    if (!name) {
+
+      alert(
+        "Lütfen yazarın adını yaz."
+      );
+
+      return;
+    }
+
+
+    const photoFile =
+      document.getElementById(
+        "authorPhoto"
+      ).files[0];
+
+
+    if (photoFile) {
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        function (e) {
+
+          yazarGoster(
+            name,
+            bio,
+            e.target.result
+          );
+
+        };
+
+
+      reader.readAsDataURL(
+        photoFile
+      );
+
+    } else {
+
+      yazarGoster(
+        name,
+        bio,
+        null
+      );
+
+    }
+
+
+    document.getElementById(
+      "authorName"
+    ).value = "";
+
+
+    document.getElementById(
+      "authorBio"
+    ).value = "";
+
+
+    document.getElementById(
+      "authorPhoto"
+    ).value = "";
+
+
+    photoPreview.innerHTML =
+      "👤";
+
+  }
+
+
+  /* =========================
+     YAZARI EKRANA EKLE
+  ========================= */
+
+  function yazarGoster(
+    name,
+    bio,
+    photo
+  ) {
+
+    const list =
+      document.getElementById(
+        "authorsList"
+      );
+
+
+    const card =
+      document.createElement(
+        "div"
+      );
+
+    card.className =
+      "author-card";
+
+
+    const image =
+      photo
+      ? `<img src="${photo}" alt="${name}">`
+      : "👤";
+
+
+    card.innerHTML = `
+
+      <div class="author-photo">
+
+        ${image}
+
+      </div>
+
+      <div class="author-info">
+
+        <h3>
+          ${guvenliMetin(name)}
+        </h3>
+
+        <p>
+          ${guvenliMetin(
+            bio || "Biyografi eklenmedi."
+          )}
+        </p>
+
+      </div>
+
+    `;
+
+
+    list.appendChild(
+      card
+    );
+
+  }
+
+
+  /* =========================
+     GÜVENLİ METİN
+  ========================= */
+
+  function guvenliMetin(
+    metin
+  ) {
+
+    const div =
+      document.createElement(
+        "div"
+      );
+
+    div.textContent =
+      metin;
+
+    return div.innerHTML;
+
+  }
+
+</script>
+
+</body>
+</html>
