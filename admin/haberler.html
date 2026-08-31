@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="tr">
 
@@ -388,11 +389,13 @@
     class="message"
   ></div>
 
+
   <section class="form-box">
 
     <h2 id="formTitle">
       Yeni Haber
     </h2>
+
 
     <div class="form-group">
 
@@ -408,10 +411,11 @@
 
     </div>
 
+
     <div class="form-group">
 
       <label>
-        ÖZET / SPOT
+        SPOT
       </label>
 
       <textarea
@@ -420,6 +424,7 @@
       ></textarea>
 
     </div>
+
 
     <div class="form-group">
 
@@ -436,6 +441,7 @@
       </select>
 
     </div>
+
 
     <div class="form-group">
 
@@ -481,6 +487,7 @@
 
     </div>
 
+
     <div class="form-group">
 
       <label>
@@ -494,6 +501,22 @@
       ></textarea>
 
     </div>
+
+
+    <div class="form-group">
+
+      <label>
+        KAYNAK
+      </label>
+
+      <input
+        type="text"
+        id="articleSource"
+        placeholder="Örn. Reuters, AP, BBC veya KARŞI"
+      >
+
+    </div>
+
 
     <div class="form-group">
 
@@ -532,6 +555,7 @@
 
     </div>
 
+
     <div class="form-group">
 
       <label>
@@ -549,6 +573,7 @@
       </div>
 
     </div>
+
 
     <div class="form-group">
 
@@ -569,6 +594,7 @@
       </select>
 
     </div>
+
 
     <div class="buttons">
 
@@ -593,9 +619,11 @@
 
   </section>
 
+
   <h2 class="articles-title">
     Mevcut Haberler
   </h2>
+
 
   <section
     class="articles"
@@ -610,11 +638,13 @@
 
 </main>
 
+
 <footer>
 
   KARŞI — Yönetim Paneli
 
 </footer>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -629,6 +659,7 @@
 
   const SUPABASE_ANON_KEY =
     "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+
 
   const supabaseClient =
     window.supabase.createClient(
@@ -691,11 +722,13 @@
 
           document
             .getElementById("articleSlug")
-            .value = slug;
+            .value =
+              slug;
 
           document
             .getElementById("slugPreview")
-            .textContent = slug;
+            .textContent =
+              slug;
 
         }
 
@@ -712,11 +745,13 @@
         const slug =
           slugOlustur(this.value);
 
-        this.value = slug;
+        this.value =
+          slug;
 
         document
           .getElementById("slugPreview")
-          .textContent = slug;
+          .textContent =
+            slug;
 
       }
     );
@@ -866,7 +901,7 @@
         .trim();
 
 
-    const summary =
+    const spot =
       document
         .getElementById("articleSummary")
         .value
@@ -889,6 +924,13 @@
     const content =
       document
         .getElementById("articleContent")
+        .value
+        .trim();
+
+
+    const source =
+      document
+        .getElementById("articleSource")
         .value
         .trim();
 
@@ -1017,6 +1059,46 @@
         fotografUrl =
           publicUrlData.publicUrl;
 
+
+        /* ======================================
+           ESKİ FOTOĞRAFI SİL
+        ====================================== */
+
+        if (
+          duzenlenenHaberId &&
+          mevcutFotografUrl
+        ) {
+
+          const eskiParcalar =
+            mevcutFotografUrl
+              .split(
+                "/haber-fotograflari/"
+              );
+
+
+          if (
+            eskiParcalar.length > 1
+          ) {
+
+            const eskiDosyaYolu =
+              decodeURIComponent(
+                eskiParcalar[1]
+              );
+
+
+            await supabaseClient
+              .storage
+              .from(
+                "haber-fotograflari"
+              )
+              .remove([
+                eskiDosyaYolu
+              ]);
+
+          }
+
+        }
+
       }
 
 
@@ -1036,8 +1118,8 @@
               baslik:
                 title,
 
-              ozet:
-                summary || null,
+              spot:
+                spot || null,
 
               icerik:
                 content,
@@ -1049,6 +1131,9 @@
 
               kategori:
                 category || "Gündem",
+
+              kaynak:
+                source || null,
 
               kapak_fotografi_url:
                 fotografUrl,
@@ -1077,7 +1162,7 @@
 
 
       /* ==========================================
-         HABER GÜNCELLE
+         MEVCUT HABERİ GÜNCELLE
       ========================================== */
 
       else {
@@ -1092,8 +1177,8 @@
               baslik:
                 title,
 
-              ozet:
-                summary || null,
+              spot:
+                spot || null,
 
               icerik:
                 content,
@@ -1105,6 +1190,9 @@
 
               kategori:
                 category || "Gündem",
+
+              kaynak:
+                source || null,
 
               kapak_fotografi_url:
                 fotografUrl,
@@ -1216,7 +1304,9 @@
       list.innerHTML =
         `<div class="empty">
           Haberler yüklenemedi:
-          ${guvenliMetin(error.message)}
+          ${guvenliMetin(
+            error.message
+          )}
         </div>`;
 
       return;
@@ -1224,7 +1314,10 @@
     }
 
 
-    if (!data || data.length === 0) {
+    if (
+      !data ||
+      data.length === 0
+    ) {
 
       list.innerHTML =
         `<div class="empty">
@@ -1246,6 +1339,7 @@
           document.createElement(
             "div"
           );
+
 
         card.className =
           "article-card";
@@ -1276,26 +1370,41 @@
           </div>
 
           <h3>
-            ${guvenliMetin(article.baslik)}
+            ${guvenliMetin(
+              article.baslik
+            )}
           </h3>
 
           <div class="article-meta">
-            ${guvenliMetin(authorName)}
+            ${guvenliMetin(
+              authorName
+            )}
           </div>
 
           <div class="article-summary">
             ${guvenliMetin(
-              article.ozet ||
-              "Özet eklenmedi."
+              article.spot ||
+              "Spot eklenmedi."
             )}
           </div>
 
           <div class="article-meta">
-            ${guvenliMetin(article.kategori)}
+            ${guvenliMetin(
+              article.kategori
+            )}
           </div>
 
           <div class="article-meta">
-            /haberler/${guvenliMetin(article.slug)}
+            ${guvenliMetin(
+              article.kaynak ||
+              "Kaynak belirtilmedi"
+            )}
+          </div>
+
+          <div class="article-meta">
+            /haberler/${guvenliMetin(
+              article.slug
+            )}
           </div>
 
           <div class="card-buttons">
@@ -1379,7 +1488,7 @@
     document
       .getElementById("articleSummary")
       .value =
-        data.ozet || "";
+        data.spot || "";
 
 
     document
@@ -1401,6 +1510,12 @@
 
 
     document
+      .getElementById("articleSource")
+      .value =
+        data.kaynak || "";
+
+
+    document
       .getElementById("articleSlug")
       .value =
         data.slug || "";
@@ -1418,7 +1533,9 @@
         data.durum || "taslak";
 
 
-    if (data.kapak_fotografi_url) {
+    if (
+      data.kapak_fotografi_url
+    ) {
 
       photoPreview.innerHTML =
         `<img
@@ -1508,14 +1625,20 @@
          FOTOĞRAF STORAGE'DAN SİL
       ========================================== */
 
-      if (data.kapak_fotografi_url) {
+      if (
+        data.kapak_fotografi_url
+      ) {
 
         const parcalar =
           data.kapak_fotografi_url
-            .split("/haber-fotograflari/");
+            .split(
+              "/haber-fotograflari/"
+            );
 
 
-        if (parcalar.length > 1) {
+        if (
+          parcalar.length > 1
+        ) {
 
           const dosyaYolu =
             decodeURIComponent(
@@ -1636,6 +1759,11 @@
 
 
     document
+      .getElementById("articleSource")
+      .value = "";
+
+
+    document
       .getElementById("articleSlug")
       .value = "";
 
@@ -1709,3 +1837,4 @@
 
 </body>
 </html>
+```
