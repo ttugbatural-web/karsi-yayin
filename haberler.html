@@ -3,7 +3,6 @@
 <html lang="tr">
 
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -22,10 +21,6 @@
       background: #f2f2f0;
       color: #111;
     }
-
-    /* =========================
-       HEADER
-    ========================= */
 
     header {
       background: #111;
@@ -100,10 +95,6 @@
       line-height: 1.4;
     }
 
-    /* =========================
-       NAV
-    ========================= */
-
     nav {
       background: white;
       border-bottom: 1px solid #d4d4d4;
@@ -129,10 +120,6 @@
       background: #111;
       color: white;
     }
-
-    /* =========================
-       MAIN
-    ========================= */
 
     main {
       max-width: 1100px;
@@ -161,10 +148,6 @@
       margin-bottom: 30px;
     }
 
-    /* =========================
-       HABERLER
-    ========================= */
-
     .articles {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -189,20 +172,6 @@
 
       box-shadow:
         0 8px 20px rgba(0,0,0,0.08);
-    }
-
-    .article-image {
-      width: 100%;
-      height: 190px;
-      background: #ddd;
-      overflow: hidden;
-    }
-
-    .article-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
     }
 
     .article-content {
@@ -240,10 +209,6 @@
       font-size: 11px;
     }
 
-    .article-meta strong {
-      color: #111;
-    }
-
     .read {
       margin-top: 14px;
       font-size: 10px;
@@ -255,10 +220,6 @@
       content: " →";
       color: #c40000;
     }
-
-    /* =========================
-       DURUM
-    ========================= */
 
     .message {
       background: white;
@@ -272,10 +233,6 @@
       border-left: 4px solid #c40000;
       color: #7a0000;
     }
-
-    /* =========================
-       FOOTER
-    ========================= */
 
     footer {
       background: #111;
@@ -291,10 +248,6 @@
       font-family: Georgia, serif;
       font-size: 20px;
     }
-
-    /* =========================
-       MOBİL
-    ========================= */
 
     @media (max-width: 800px) {
 
@@ -326,19 +279,13 @@
         grid-template-columns: 1fr;
       }
 
-      .article-image {
-        height: 210px;
-      }
-
     }
 
   </style>
 
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -352,21 +299,15 @@
 
       <div class="languages">
 
-        <a href="index.html" class="active">
-          TR
-        </a>
+        <a href="index.html" class="active">TR</a>
 
         <span>|</span>
 
-        <a href="#">
-          EN
-        </a>
+        <a href="#">EN</a>
 
         <span>|</span>
 
-        <a href="#">
-          FR
-        </a>
+        <a href="#">FR</a>
 
       </div>
 
@@ -386,33 +327,19 @@
 
   <div class="nav-inner">
 
-    <a href="index.html">
-      ANA SAYFA
-    </a>
+    <a href="index.html">ANA SAYFA</a>
 
-    <a href="kose-yazilari.html">
-      KÖŞE YAZILARI
-    </a>
+    <a href="kose-yazilari.html">KÖŞE YAZILARI</a>
 
-    <a href="haberler.html">
-      HABERLER
-    </a>
+    <a href="haberler.html">HABERLER</a>
 
-    <a href="gundem.html">
-      KARŞI GÜNDEM
-    </a>
+    <a href="gundem.html">KARŞI GÜNDEM</a>
 
-    <a href="#">
-      DÜNYA
-    </a>
+    <a href="#">DÜNYA</a>
 
-    <a href="#">
-      DOSYALAR
-    </a>
+    <a href="#">DOSYALAR</a>
 
-    <a href="#">
-      HAKKIMIZDA
-    </a>
+    <a href="#">HAKKIMIZDA</a>
 
   </div>
 
@@ -429,8 +356,8 @@
 
   <p class="page-intro">
     Türkiye'den ve dünyadan gelişmeler,
-    gündemin öne çıkan başlıkları ve KARŞI'nın
-    farklı bakış açısıyla haberler.
+    gündemin öne çıkan başlıkları.
+    Farklı kaynaklardan derlenen haberler.
   </p>
 
 
@@ -463,30 +390,7 @@
 </footer>
 
 
-<!-- SUPABASE -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
 <script>
-
-/* ==================================================
-   SUPABASE
-================================================== */
-
-const SUPABASE_URL =
-  "https://rfqiffvudbmphvklxetf.supabase.co";
-
-const SUPABASE_ANON_KEY =
-  "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
-
-
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
-
 
 /* ==================================================
    GÜVENLİ METİN
@@ -503,52 +407,6 @@ function guvenliMetin(metin) {
       : String(metin);
 
   return div.innerHTML;
-
-}
-
-
-/* ==================================================
-   GÜVENLİ URL
-================================================== */
-
-function guvenliUrl(url) {
-
-  if (!url) {
-    return "";
-  }
-
-  try {
-
-    const temiz =
-      String(url).trim();
-
-    const parsed =
-      new URL(
-        temiz,
-        window.location.href
-      );
-
-    if (
-      parsed.protocol === "http:" ||
-      parsed.protocol === "https:"
-    ) {
-
-      return parsed.href;
-
-    }
-
-  }
-
-  catch (error) {
-
-    console.warn(
-      "Geçersiz görsel URL:",
-      url
-    );
-
-  }
-
-  return "";
 
 }
 
@@ -583,7 +441,7 @@ function tarihFormatla(tarih) {
 
 
 /* ==================================================
-   HABERLERİ GETİR
+   DIŞ HABERLERİ GETİR
 ================================================== */
 
 async function haberleriGetir() {
@@ -596,106 +454,57 @@ async function haberleriGetir() {
 
   try {
 
-    console.log(
-      "KARŞI haberleri yükleniyor..."
-    );
-
-
-    /*
-     * ÖNEMLİ:
-     *
-     * Burada yazarlar tablosuna JOIN YAPMIYORUZ.
-     *
-     * Böylece yazarlar ilişkisiyle ilgili
-     * bir hata haberlerin tamamını engellemiyor.
-     */
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .from("haberler")
-        .select(`
-          id,
-          baslik,
-          ozet,
-          spot,
-          kategori,
-          slug,
-          kapak_fotografi_url,
-          yayin_tarihi,
-          created_at,
-          durum
-        `)
-        .eq(
-          "durum",
-          "yayinda"
-        )
-        .order(
-          "yayin_tarihi",
-          {
-            ascending: false,
-            nullsFirst: false
-          }
-        );
-
-
-    /* ==========================================
-       HATA
-    ========================================== */
-
-    if (error) {
-
-      console.error(
-        "Supabase haber sorgusu hatası:",
-        error
+    const cevap =
+      await fetch(
+        "data/haberler.json?v=" +
+        Date.now()
       );
 
 
-      list.innerHTML =
-        `
-        <div class="message error">
+    if (!cevap.ok) {
 
-          <strong>
-            Haberler yüklenemedi.
-          </strong>
-
-          <br><br>
-
-          Supabase:
-          ${guvenliMetin(
-            error.message
-          )}
-
-        </div>
-        `;
-
-      return;
+      throw new Error(
+        "haberler.json yüklenemedi."
+      );
 
     }
 
 
-    /* ==========================================
-       BOŞ
-    ========================================== */
+    const json =
+      await cevap.json();
+
+
+    /*
+     * JSON YAPISI:
+     *
+     * {
+     *   guncelleme: "...",
+     *   haberler: [...]
+     * }
+     */
 
     if (
-      !data ||
-      data.length === 0
+      !json ||
+      !Array.isArray(json.haberler)
     ) {
 
-      console.log(
-        "Yayınlanmış haber bulunamadı."
+      throw new Error(
+        "JSON içinde haberler listesi bulunamadı."
       );
 
+    }
+
+
+    const data =
+      json.haberler;
+
+
+    if (data.length === 0) {
 
       list.innerHTML =
         `
         <div class="message">
-
-          Henüz yayınlanmış haber bulunmuyor.
-
+          Henüz dış haber bulunmuyor.
         </div>
         `;
 
@@ -704,22 +513,31 @@ async function haberleriGetir() {
     }
 
 
-    console.log(
-      data.length +
-      " KARŞI haberi bulundu."
+    /*
+     * TARİHİ OLANLARI ÜSTE AL
+     */
+
+    data.sort(
+      function(a, b) {
+
+        const tarihA =
+          new Date(
+            a.tarih || 0
+          ).getTime();
+
+        const tarihB =
+          new Date(
+            b.tarih || 0
+          ).getTime();
+
+        return tarihB - tarihA;
+
+      }
     );
 
 
-    /* ==========================================
-       TEMİZLE
-    ========================================== */
-
     list.innerHTML = "";
 
-
-    /* ==========================================
-       HABERLERİ OLUŞTUR
-    ========================================== */
 
     data.forEach(
       function(article) {
@@ -732,120 +550,44 @@ async function haberleriGetir() {
           "article-card";
 
 
-        /*
-         * Haber sayfasına git
-         */
-
-        if (article.slug) {
-
-          card.href =
-            "haber.html?slug=" +
-            encodeURIComponent(
-              article.slug
-            );
-
-        }
-
-        else {
-
-          card.href =
-            "#";
-
-        }
+        const link =
+          article.link ||
+          article.url ||
+          "#";
 
 
-        /* ======================================
-           ÖZET
-        ====================================== */
+        card.href =
+          guvenliMetin(link);
+
+
+        card.target =
+          "_blank";
+
+
+        card.rel =
+          "noopener noreferrer";
+
 
         const summary =
-          article.ozet ||
-          article.spot ||
+          article.aciklama ||
           "";
 
 
-        /* ======================================
-           TARİH
-        ====================================== */
-
         const tarih =
-          article.yayin_tarihi ||
-          article.created_at ||
-          null;
-
-
-        /* ======================================
-           GÖRSEL
-        ====================================== */
-
-        let imageHtml =
-          `
-          <div class="article-image">
-
-            <div style="
-              width:100%;
-              height:100%;
-              display:flex;
-              align-items:center;
-              justify-content:center;
-              font-family:Georgia,serif;
-              font-size:35px;
-              color:#777;
-            ">
-
-              KARŞI
-
-            </div>
-
-          </div>
-          `;
-
-
-        const fotograf =
-          guvenliUrl(
-            article.kapak_fotografi_url
+          tarihFormatla(
+            article.tarih
           );
 
-
-        if (fotograf) {
-
-          imageHtml =
-            `
-            <div class="article-image">
-
-              <img
-                src="${guvenliMetin(
-                  fotograf
-                )}"
-                alt="${guvenliMetin(
-                  article.baslik
-                )}"
-                loading="lazy"
-              >
-
-            </div>
-            `;
-
-        }
-
-
-        /* ======================================
-           KART
-        ====================================== */
 
         card.innerHTML =
           `
 
-          ${imageHtml}
-
-
           <div class="article-content">
-
 
             <div class="category">
 
               ${guvenliMetin(
-                article.kategori ||
+                article.kaynak ||
                 "HABER"
               )}
 
@@ -866,35 +608,21 @@ async function haberleriGetir() {
               summary
                 ? `
                   <p>
-
                     ${guvenliMetin(
                       summary
                     )}
-
                   </p>
-                  `
+                `
                 : ""
             }
 
 
             <div class="article-meta">
 
-              Yazan:
-              <strong>
-                KARŞI
-              </strong>
-
               ${
                 tarih
-                  ? `
-                    ·
-                    ${guvenliMetin(
-                      tarihFormatla(
-                        tarih
-                      )
-                    )}
-                    `
-                  : ""
+                  ? tarih
+                  : "Güncel haber"
               }
 
             </div>
@@ -905,7 +633,6 @@ async function haberleriGetir() {
               HABERİ OKU
 
             </div>
-
 
           </div>
 
@@ -919,24 +646,23 @@ async function haberleriGetir() {
       }
     );
 
-
   }
+
 
   catch (error) {
 
     console.error(
-      "Beklenmeyen haber sistemi hatası:",
+      "Dış haberler yüklenemedi:",
       error
     );
 
 
     list.innerHTML =
       `
+
       <div class="message error">
 
-        <strong>
-          Haberler yüklenirken bir hata oluştu.
-        </strong>
+        Haberler yüklenemedi.
 
         <br><br>
 
@@ -945,6 +671,7 @@ async function haberleriGetir() {
         )}
 
       </div>
+
       `;
 
   }
@@ -959,7 +686,6 @@ async function haberleriGetir() {
 haberleriGetir();
 
 </script>
-
 
 </body>
 
