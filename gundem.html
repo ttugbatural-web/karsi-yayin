@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -13,10 +14,14 @@
 
 body {
     margin: 0;
-    background: #f5f5f5;
+    background: #f3f3f3;
     color: #111;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 header {
     background: #111;
@@ -39,6 +44,10 @@ header {
     opacity: 0.8;
 }
 
+/* =========================
+   NAVIGATION
+========================= */
+
 nav {
     background: white;
     border-bottom: 1px solid #ddd;
@@ -59,36 +68,78 @@ nav a:hover {
     text-decoration: underline;
 }
 
+/* =========================
+   MAIN
+========================= */
+
 .container {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 30px 18px 50px;
+    padding: 35px 20px 60px;
 }
 
 .page-title {
-    font-size: 30px;
+    font-size: 34px;
     font-weight: 900;
-    margin-bottom: 8px;
+    margin: 0 0 8px;
 }
 
 .page-description {
     color: #666;
-    margin-bottom: 28px;
+    margin-bottom: 25px;
+    line-height: 1.5;
 }
 
 .status {
     background: white;
     border-left: 5px solid #111;
-    padding: 15px;
-    margin-bottom: 20px;
+    padding: 14px 16px;
+    margin-bottom: 30px;
     font-size: 14px;
 }
+
+/* =========================
+   HABER SÜTUNLARI
+========================= */
+
+.haber-sutunlari {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    align-items: start;
+}
+
+.kaynak-sutunu {
+    min-width: 0;
+}
+
+.kaynak-baslik {
+    background: #111;
+    color: white;
+    padding: 14px 16px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-left: 5px solid #555;
+}
+
+.kaynak-aciklama {
+    color: #777;
+    font-size: 12px;
+    margin: -7px 0 15px 5px;
+}
+
+/* =========================
+   HABER KARTI
+========================= */
 
 .haber {
     background: white;
     border: 1px solid #ddd;
-    margin-bottom: 18px;
-    padding: 22px;
+    margin-bottom: 15px;
+    padding: 18px;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -97,19 +148,14 @@ nav a:hover {
     box-shadow: 0 5px 18px rgba(0,0,0,0.08);
 }
 
-.kaynak {
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #777;
-    margin-bottom: 9px;
+.haber .kaynak {
+    display: none;
 }
 
 .haber h2 {
-    margin: 0 0 10px;
-    font-size: 21px;
-    line-height: 1.3;
+    margin: 0 0 9px;
+    font-size: 18px;
+    line-height: 1.35;
 }
 
 .haber h2 a {
@@ -123,15 +169,19 @@ nav a:hover {
 
 .aciklama {
     color: #555;
-    font-size: 15px;
-    line-height: 1.55;
-    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 12px;
 }
 
 .tarih {
     color: #888;
-    font-size: 12px;
+    font-size: 11px;
 }
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
     text-align: center;
@@ -141,7 +191,11 @@ footer {
     font-size: 12px;
 }
 
-@media (max-width: 600px) {
+/* =========================
+   MOBİL
+========================= */
+
+@media (max-width: 700px) {
 
     .logo {
         font-size: 34px;
@@ -149,26 +203,41 @@ footer {
     }
 
     nav {
-        gap: 18px;
+        gap: 15px;
+        flex-wrap: wrap;
     }
 
     nav a {
-        font-size: 13px;
+        font-size: 12px;
+    }
+
+    .container {
+        padding: 25px 14px 45px;
     }
 
     .page-title {
-        font-size: 26px;
+        font-size: 28px;
+    }
+
+    .haber-sutunlari {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .kaynak-baslik {
+        margin-top: 15px;
     }
 
     .haber {
-        padding: 18px;
+        padding: 16px;
     }
 
     .haber h2 {
-        font-size: 19px;
+        font-size: 18px;
     }
 }
 </style>
+
 </head>
 
 <body>
@@ -186,17 +255,19 @@ footer {
 
 <main class="container">
 
-    <h1 class="page-title">Gündem</h1>
+```
+<h1 class="page-title">KARŞI GÜNDEM</h1>
 
-    <div class="page-description">
-        Güncel haberler farklı kaynaklardan otomatik olarak derlenir.
-    </div>
+<div class="page-description">
+    Aynı ülke, farklı manşetler.
+</div>
 
-    <div id="durum" class="status">
-        Haberler yükleniyor...
-    </div>
+<div id="durum" class="status">
+    Haberler yükleniyor...
+</div>
 
-    <section id="haberler"></section>
+<section id="haberler" class="haber-sutunlari"></section>
+```
 
 </main>
 
@@ -227,6 +298,10 @@ function tarihFormatla(tarih) {
     });
 }
 
+
+/* =========================
+   HABERLERİ GETİR
+========================= */
 
 async function haberleriGetir() {
 
@@ -260,40 +335,92 @@ async function haberleriGetir() {
 
         liste.innerHTML = "";
 
+        /* =========================
+           KAYNAKLARI GRUPLA
+        ========================= */
+
+        const kaynaklar = {};
+
         haberler.forEach(haber => {
 
-            const article = document.createElement("article");
+            const kaynak = haber.kaynak || "Diğer";
 
-            article.className = "haber";
+            if (!kaynaklar[kaynak]) {
+                kaynaklar[kaynak] = [];
+            }
 
-            article.innerHTML = `
+            kaynaklar[kaynak].push(haber);
+        });
 
-                <div class="kaynak">
-                    ${guvenliMetin(haber.kaynak)}
-                </div>
 
-                <h2>
-                    <a href="${guvenliLink(haber.link)}"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        ${guvenliMetin(haber.baslik)}
-                    </a>
-                </h2>
+        /* =========================
+           HER KAYNAK İÇİN SÜTUN
+        ========================= */
 
-                ${
-                    haber.aciklama
-                    ? `<div class="aciklama">
-                        ${guvenliMetin(haber.aciklama)}
-                       </div>`
-                    : ""
-                }
+        Object.keys(kaynaklar).forEach(kaynak => {
 
-                <div class="tarih">
-                    ${tarihFormatla(haber.tarih)}
-                </div>
-            `;
+            const sutun = document.createElement("div");
 
-            liste.appendChild(article);
+            sutun.className = "kaynak-sutunu";
+
+            const baslik = document.createElement("div");
+
+            baslik.className = "kaynak-baslik";
+
+            baslik.textContent = kaynak;
+
+            sutun.appendChild(baslik);
+
+
+            const aciklama =
+                document.createElement("div");
+
+            aciklama.className =
+                "kaynak-aciklama";
+
+            aciklama.textContent =
+                kaynaklar[kaynak].length +
+                " haber";
+
+            sutun.appendChild(aciklama);
+
+
+            kaynaklar[kaynak].forEach(haber => {
+
+                const article =
+                    document.createElement("article");
+
+                article.className = "haber";
+
+                article.innerHTML = `
+
+                    <h2>
+                        <a href="${guvenliLink(haber.link)}"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            ${guvenliMetin(haber.baslik)}
+                        </a>
+                    </h2>
+
+                    ${
+                        haber.aciklama
+                        ? `<div class="aciklama">
+                            ${guvenliMetin(haber.aciklama)}
+                           </div>`
+                        : ""
+                    }
+
+                    <div class="tarih">
+                        ${tarihFormatla(haber.tarih)}
+                    </div>
+                `;
+
+                sutun.appendChild(article);
+
+            });
+
+            liste.appendChild(sutun);
+
         });
 
     } catch (hata) {
@@ -306,19 +433,28 @@ async function haberleriGetir() {
 }
 
 
+/* =========================
+   GÜVENLİ METİN
+========================= */
+
 function guvenliMetin(metin) {
 
     if (!metin) {
         return "";
     }
 
-    const div = document.createElement("div");
+    const div =
+        document.createElement("div");
 
     div.textContent = metin;
 
     return div.innerHTML;
 }
 
+
+/* =========================
+   GÜVENLİ LİNK
+========================= */
 
 function guvenliLink(link) {
 
@@ -328,7 +464,8 @@ function guvenliLink(link) {
 
     try {
 
-        const url = new URL(link);
+        const url =
+            new URL(link);
 
         if (
             url.protocol === "http:" ||
@@ -342,6 +479,10 @@ function guvenliLink(link) {
     return "#";
 }
 
+
+/* =========================
+   BAŞLAT
+========================= */
 
 haberleriGetir();
 
