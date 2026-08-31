@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: RSS haberlerini çek
+      - name: RSS ve web haberlerini çek
         run: |
           python - <<'PY'
           import urllib.request
@@ -31,8 +31,16 @@ jobs:
           import html
           import re
           from datetime import datetime, timezone
+          from html.parser import HTMLParser
+          from urllib.parse import urljoin
 
-          kaynaklar = [
+          haberler = []
+
+          # --------------------------------------------------
+          # SÖZCÜ RSS KAYNAKLARI
+          # --------------------------------------------------
+
+          rss_kaynaklari = [
               {
                   "ad": "Sözcü",
                   "rss": "https://www.sozcu.com.tr/feeds-haberler"
@@ -43,13 +51,15 @@ jobs:
               }
           ]
 
-          haberler = []
+          for kaynak in rss_kaynaklari:
 
-          for kaynak in kaynaklar:
               try:
+
                   request = urllib.request.Request(
                       kaynak["rss"],
-                      headers={"User-Agent": "KarsiHaberMotoru/1.0"}
+                      headers={
+                          "User-Agent": "Mozilla/5.0 (KarsiHaberMotoru/1.0)"
+                      }
                   )
 
                   with urllib.request.urlopen(request, timeout=20) as response:
@@ -58,6 +68,7 @@ jobs:
                   root = ET.fromstring(data)
 
                   for item in root.findall(".//item"):
+
                       title = item.findtext("title", "")
                       link = item.findtext("link", "")
                       pub_date = item.findtext("pubDate", "")
@@ -67,8 +78,18 @@ jobs:
                           continue
 
                       description = html.unescape(description)
-                      description = re.sub(r"<[^>]+>", "", description)
-                      description = re.sub(r"\s+", " ", description).strip()
+
+                      description = re.sub(
+                          r"<[^>]+>",
+                          "",
+                          description
+                      )
+
+                      description = re.sub(
+                          r"\s+",
+                          " ",
+                          description
+                      ).strip()
 
                       haberler.append({
                           "baslik": title.strip(),
@@ -78,30 +99,215 @@ jobs:
                           "tarih": pub_date.strip()
                       })
 
+                  print(f"{kaynak['ad']} başarıyla okundu.")
+
               except Exception as e:
-                  print(f"{kaynak['ad']} okunamadı: {e}")
 
-          # Aynı haberi iki kez göstermemek için linke göre temizle
+                  print(
+                      f"{kaynak['ad']} okunamadı: {e}"
+                  )
+
+
+          # --------------------------------------------------
+          # NEFES GÜNDEM
+          # --------------------------------------------------
+
+          class NefesParser(HTMLParser):
+
+              def __init__(self):
+
+                  super().__init__()
+
+                  self.in_link = False
+                  self.current_link = ""
+                  self.current_text = ""
+                  self.links = []
+
+              def handle_starttag(self, tag, attrs):
+
+                  if tag != "a":
+                      return
+
+                  attributes = dict(attrs)
+
+                  href = attributes.get("href", "")
+
+                  if not href:
+                      return
+
+                  if href.startswith("/"):
+                      href = urljoin(
+                          "https://www.nefes.com.tr",
+                          href
+                      )
+
+                  if "nefes.com.tr" not in href:
+                      return
+
+                  self.in_link = True
+                  self.current_link = href
+                  self.current_text = ""
+
+              def handle_data(self, data):
+
+                  if self.in_link:
+                      self.current_text += data
+
+              def handle_endtag(self, tag):
+
+                  if tag != "a":
+                      return
+
+                  if not self.in_link:
+                      return
+
+                  title = re.sub(
+                      r"\s+",
+                      " ",
+                      self.current_text
+                  ).strip()
+
+                  link = self.current_link.strip()
+
+                  # Haber bağlantılarını seç
+                  if (
+                      title
+                      and len(title) >= 20
+                      and link.startswith("https://www.nefes.com.tr/")
+                      and link.rstrip("/").count("/") >= 3
+                  ):
+
+                      self.links.append(
+                          (title, link)
+                      )
+
+                  self.in_link = False
+                  self.current_link = ""
+                  self.current_text = ""
+
+
+          try:
+
+              nefes_url = "https://www.nefes.com.tr/gundem"
+
+              request = urllib.request.Request(
+                  nefes_url,
+                  headers={
+                      "User-Agent":
+                      "Mozilla/5.0 (compatible; KarsiHaberMotoru/1.0)"
+                  }
+              )
+
+              with urllib.request.urlopen(
+                  request,
+                  timeout=20
+              ) as response:
+
+                  nefes_html = response.read().decode(
+                      "utf-8",
+                      errors="ignore"
+                  )
+
+              parser = NefesParser()
+
+              parser.feed(nefes_html)
+
+              gorulen_linkler = set()
+
+              for title, link in parser.links:
+
+                  if link in gorulen_linkler:
+                      continue
+
+                  gorulen_linkler.add(link)
+
+                  haberler.append({
+                      "baslik": title,
+                      "aciklama": "",
+                      "kaynak": "Nefes",
+                      "link": link,
+                      "tarih": ""
+                  })
+
+                  if len(gorulen_linkler) >= 25:
+                      break
+
+              print(
+                  f"Nefes: {len(gorulen_linkler)} haber bulundu."
+              )
+
+          except Exception as e:
+
+              print(
+                  f"Nefes okunamadı: {e}"
+              )
+
+
+          # --------------------------------------------------
+          # TEKRARLARI TEMİZLE
+          # --------------------------------------------------
+
           benzersiz = {}
+
           for haber in haberler:
-              benzersiz[haber["link"]] = haber
 
-          haberler = list(benzersiz.values())
+              link = haber["link"].strip()
 
-          # En fazla 50 haber tut
-          haberler = haberler[:50]
+              if not link:
+                  continue
+
+              if link not in benzersiz:
+                  benzersiz[link] = haber
+
+          haberler = list(
+              benzersiz.values()
+          )
+
+
+          # --------------------------------------------------
+          # EN FAZLA 75 HABER
+          # --------------------------------------------------
+
+          haberler = haberler[:75]
+
+
+          # --------------------------------------------------
+          # JSON DOSYASI
+          # --------------------------------------------------
 
           veri = {
-              "guncelleme": datetime.now(timezone.utc).isoformat(),
-              "haberler": haberler
+              "guncelleme":
+                  datetime.now(timezone.utc).isoformat(),
+
+              "haberler":
+                  haberler
           }
 
-          os.makedirs("data", exist_ok=True)
 
-          with open("data/haberler.json", "w", encoding="utf-8") as dosya:
-              json.dump(veri, dosya, ensure_ascii=False, indent=2)
+          os.makedirs(
+              "data",
+              exist_ok=True
+          )
 
-          print(f"{len(haberler)} haber bulundu.")
+
+          with open(
+              "data/haberler.json",
+              "w",
+              encoding="utf-8"
+          ) as dosya:
+
+              json.dump(
+                  veri,
+                  dosya,
+                  ensure_ascii=False,
+                  indent=2
+              )
+
+
+          print(
+              f"Toplam {len(haberler)} benzersiz haber bulundu."
+          )
+
           PY
 
       - name: Haberleri GitHub'a kaydet
