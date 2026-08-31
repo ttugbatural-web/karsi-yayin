@@ -8,6 +8,7 @@
   <title>Köşe Yazıları — KARŞI</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -20,7 +21,9 @@
       color: #111;
     }
 
-    /* ÜST BAR */
+    /* =========================
+       ÜST BAR
+    ========================= */
 
     header {
       background: #111;
@@ -77,10 +80,7 @@
       text-decoration: none;
     }
 
-    .languages a:hover {
-      color: white;
-    }
-
+    .languages a:hover,
     .languages .active {
       color: white;
     }
@@ -98,7 +98,10 @@
       line-height: 1.4;
     }
 
-    /* MENÜ */
+
+    /* =========================
+       MENÜ
+    ========================= */
 
     nav {
       background: white;
@@ -126,7 +129,10 @@
       color: white;
     }
 
-    /* ANA ALAN */
+
+    /* =========================
+       ANA ALAN
+    ========================= */
 
     main {
       max-width: 1100px;
@@ -155,7 +161,69 @@
       margin-bottom: 30px;
     }
 
-    /* YAZI KARTLARI */
+
+    /* =========================
+       YAZAR BİLGİSİ
+    ========================= */
+
+    .author-strip {
+      background: #111;
+      color: white;
+      padding: 18px 22px;
+      margin-bottom: 30px;
+
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .author-avatar-placeholder {
+      width: 58px;
+      height: 58px;
+
+      border-radius: 50%;
+
+      background: #333;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-family: Georgia, serif;
+      font-size: 22px;
+      font-weight: bold;
+
+      flex-shrink: 0;
+    }
+
+    .author-info {
+      min-width: 0;
+    }
+
+    .author-label {
+      color: #aaa;
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
+    }
+
+    .author-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .author-description {
+      color: #bbb;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+
+    /* =========================
+       YAZI KARTLARI
+    ========================= */
 
     .articles {
       display: grid;
@@ -167,15 +235,22 @@
       background: white;
       border: 1px solid #ddd;
       padding: 24px;
+
       text-decoration: none;
       color: #111;
+
       display: block;
-      transition: transform 0.2s, box-shadow 0.2s;
+
+      transition:
+        transform 0.2s,
+        box-shadow 0.2s;
     }
 
     .article-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
+      box-shadow:
+        0 8px 20px rgba(0,0,0,0.08);
     }
 
     .category {
@@ -195,11 +270,43 @@
 
     .article-card p {
       color: #555;
+
       font-family: Georgia, "Times New Roman", serif;
+
       font-size: 15px;
+
       line-height: 1.6;
+
       margin-bottom: 20px;
     }
+
+
+    /* =========================
+       YAZAR SATIRI
+    ========================= */
+
+    .article-author {
+      border-top: 1px solid #e5e5e5;
+
+      padding-top: 12px;
+
+      margin-top: 8px;
+
+      margin-bottom: 16px;
+
+      font-size: 12px;
+
+      color: #666;
+    }
+
+    .article-author strong {
+      color: #111;
+    }
+
+
+    /* =========================
+       OKU
+    ========================= */
 
     .read {
       font-size: 11px;
@@ -213,31 +320,44 @@
       color: #c40000;
     }
 
-    /* ALT */
+
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
       background: #111;
       color: #999;
       text-align: center;
+
       padding: 30px 20px;
+
       margin-top: 60px;
+
       font-size: 13px;
     }
 
     footer strong {
       color: white;
+
       font-family: Georgia, serif;
+
       font-size: 20px;
     }
 
-    /* MOBİL */
+
+    /* =========================
+       MOBİL
+    ========================= */
 
     @media (max-width: 800px) {
 
       .articles {
         grid-template-columns: repeat(2, 1fr);
       }
+
     }
+
 
     @media (max-width: 600px) {
 
@@ -276,12 +396,22 @@
       .article-card h2 {
         font-size: 23px;
       }
+
+      .author-strip {
+        padding: 16px;
+      }
+
     }
+
   </style>
 
 </head>
 
 <body>
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
@@ -292,19 +422,35 @@
   KARŞI
 </div>
 
+
 <div class="top-right">
 
   <div class="languages">
-    <a href="index.html" class="active">TR</a>
+
+    <a href="index.html" class="active">
+      TR
+    </a>
+
     <span>|</span>
-    <a href="#">EN</a>
+
+    <a href="#">
+      EN
+    </a>
+
     <span>|</span>
-    <a href="#">FR</a>
+
+    <a href="#">
+      FR
+    </a>
+
   </div>
 
+
   <div class="tagline">
+
     Gücün karşısında,<br>
     gerçeğin yanında.
+
   </div>
 
 </div>
@@ -314,27 +460,51 @@
 
 </header>
 
+<!-- =========================
+     NAV
+========================= -->
+
 <nav>
 
   <div class="nav-inner">
 
 ```
-<a href="index.html">ANA SAYFA</a>
+<a href="index.html">
+  ANA SAYFA
+</a>
 
-<a href="kose-yazilari.html">KÖŞE YAZILARI</a>
+<a href="kose-yazilari.html">
+  KÖŞE YAZILARI
+</a>
 
-<a href="#">GÜNDEM</a>
+<a href="haberler.html">
+  HABERLER
+</a>
 
-<a href="#">DÜNYA</a>
+<a href="gundem.html">
+  KARŞI GÜNDEM
+</a>
 
-<a href="#">DOSYALAR</a>
+<a href="#">
+  DÜNYA
+</a>
 
-<a href="#">HAKKIMIZDA</a>
+<a href="#">
+  DOSYALAR
+</a>
+
+<a href="#">
+  HAKKIMIZDA
+</a>
 ```
 
   </div>
 
 </nav>
+
+<!-- =========================
+     MAIN
+========================= -->
 
 <main>
 
@@ -345,14 +515,55 @@
   <div class="title-line"></div>
 
   <p class="page-intro">
-    Gündeme, siyasete, topluma ve dünyaya dair
-    bağımsız düşünceler. Rahatsız edici sorular,
-    farklı bakış açıları ve söylenmeyenler.
+
+```
+Gündeme, siyasete, topluma ve dünyaya dair
+bağımsız düşünceler. Rahatsız edici sorular,
+farklı bakış açıları ve söylenmeyenler.
+```
+
   </p>
+
+  <!-- =========================
+       YAZAR
+  ========================= -->
+
+  <div class="author-strip">
+
+```
+<div class="author-avatar-placeholder">
+  TÖT
+</div>
+
+
+<div class="author-info">
+
+  <div class="author-label">
+    KARŞI YAZARI
+  </div>
+
+  <div class="author-name">
+    Taylan Özgür Tural
+  </div>
+
+  <div class="author-description">
+    Bağımsız yazar · KARŞI
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- =========================
+       YAZILAR
+  ========================= -->
 
   <section class="articles">
 
 ```
+<!-- YAZI 1 -->
+
 <a
   class="article-card"
   href="diktator-olmadan-once-herkes-halkcidir.html"
@@ -362,15 +573,30 @@
     KARŞI / YORUM
   </div>
 
+
   <h2>
     Diktatör Olmadan Önce Herkes Halkçıdır
   </h2>
 
+
   <p>
-    İktidara giden yolun ilk taşları genellikle
-    halkın sofrasından döşenir. Sonra bir gün
-    sofranın sahibi değişir.
+
+    İktidara giden yolun taşları genellikle
+    halkın sofrasında döşenir. Nedense o yol,
+    sofranın sahibini değiştirir.
+
   </p>
+
+
+  <div class="article-author">
+
+    Yazan:
+    <strong>
+      Taylan Özgür Tural
+    </strong>
+
+  </div>
+
 
   <div class="read">
     YAZIYI OKU
@@ -379,20 +605,37 @@
 </a>
 
 
+<!-- YAZI 2 -->
+
 <div class="article-card">
 
   <div class="category">
     YAKINDA
   </div>
 
+
   <h2>
     Yeni bir yazı burada olacak
   </h2>
 
+
   <p>
+
     KARŞI'nın yeni yazıları burada yer alacak.
     Gündemin farklı yönlerini birlikte sorgulayacağız.
+
   </p>
+
+
+  <div class="article-author">
+
+    Yazan:
+    <strong>
+      Taylan Özgür Tural
+    </strong>
+
+  </div>
+
 
   <div class="read">
     YAKINDA
@@ -401,20 +644,37 @@
 </div>
 
 
+<!-- YAZI 3 -->
+
 <div class="article-card">
 
   <div class="category">
     YAKINDA
   </div>
 
+
   <h2>
     Söylenmeyeni söylemek
   </h2>
 
+
   <p>
+
     Yeni yazılarımız ve özel yorumlarımız
     çok yakında burada.
+
   </p>
+
+
+  <div class="article-author">
+
+    Yazan:
+    <strong>
+      Taylan Özgür Tural
+    </strong>
+
+  </div>
+
 
   <div class="read">
     YAKINDA
@@ -427,9 +687,15 @@
 
 </main>
 
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
-<strong>KARŞI</strong>
+  <strong>
+    KARŞI
+  </strong>
 
 <br><br>
 
@@ -443,4 +709,3 @@ Bağımsız düşüncenin tarafı.
 
 </body>
 </html>
-
