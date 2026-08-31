@@ -1,0 +1,2127 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Haberler — KARŞI Yönetim</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f2f2f0;
+      color: #111;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      background: #111;
+      color: white;
+      border-bottom: 4px solid #c40000;
+      padding: 18px 20px;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 36px;
+      font-weight: bold;
+      letter-spacing: -2px;
+    }
+
+    .back {
+      color: white;
+      text-decoration: none;
+
+      border: 1px solid #555;
+
+      padding: 8px 12px;
+
+      font-size: 12px;
+    }
+
+    .back:hover {
+      background: white;
+      color: #111;
+    }
+
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main {
+      max-width: 1100px;
+      margin: 35px auto;
+      padding: 0 18px;
+    }
+
+    .page-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
+
+    .page-description {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+
+    /* =========================
+       MESAJ
+    ========================= */
+
+    .message {
+      display: none;
+
+      padding: 14px;
+
+      margin-bottom: 20px;
+
+      font-size: 13px;
+    }
+
+    .message.success {
+      display: block;
+
+      background: #e6f4e6;
+
+      border-left: 4px solid #228b22;
+
+      color: #145214;
+    }
+
+    .message.error {
+      display: block;
+
+      background: #f8e5e5;
+
+      border-left: 4px solid #c40000;
+
+      color: #7a0000;
+    }
+
+
+    /* =========================
+       FORM
+    ========================= */
+
+    .form-box {
+      background: white;
+
+      border: 1px solid #ddd;
+
+      padding: 25px;
+
+      margin-bottom: 35px;
+    }
+
+    .form-box h2 {
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 25px;
+
+      margin-bottom: 22px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+      margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+
+      width: 100%;
+
+      border: 1px solid #ccc;
+
+      padding: 12px;
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      font-size: 14px;
+
+      outline: none;
+    }
+
+    .form-group textarea {
+      min-height: 130px;
+
+      resize: vertical;
+    }
+
+    .form-group textarea.icerik {
+      min-height: 450px;
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      line-height: 1.7;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+
+      border-color: #111;
+    }
+
+
+    /* =========================
+       FOTOĞRAF
+    ========================= */
+
+    .photo-area {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 20px;
+    }
+
+    .photo-preview {
+
+      width: 180px;
+
+      height: 110px;
+
+      background: #ddd;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      overflow: hidden;
+
+      flex-shrink: 0;
+
+      font-size: 30px;
+
+      color: #777;
+    }
+
+    .photo-preview img {
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .photo-info {
+
+      font-size: 12px;
+
+      color: #666;
+
+      line-height: 1.5;
+    }
+
+    .photo-info input {
+
+      margin-top: 8px;
+    }
+
+
+    /* =========================
+       SLUG
+    ========================= */
+
+    .slug-preview {
+
+      margin-top: 7px;
+
+      color: #777;
+
+      font-size: 12px;
+    }
+
+
+    /* =========================
+       BUTONLAR
+    ========================= */
+
+    .buttons {
+
+      display: flex;
+
+      gap: 10px;
+
+      flex-wrap: wrap;
+
+      margin-top: 25px;
+    }
+
+    .button {
+
+      border: none;
+
+      padding: 13px 20px;
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+      letter-spacing: 1px;
+
+      cursor: pointer;
+    }
+
+    .save-button {
+
+      background: #111;
+
+      color: white;
+    }
+
+    .save-button:hover {
+
+      background: #c40000;
+    }
+
+    .cancel-button {
+
+      background: white;
+
+      border: 1px solid #ccc;
+
+      color: #555;
+    }
+
+    .cancel-button:hover {
+
+      background: #eee;
+    }
+
+
+    /* =========================
+       HABERLER
+    ========================= */
+
+    .news-title {
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 27px;
+
+      margin-bottom: 15px;
+    }
+
+    .news-list {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 18px;
+    }
+
+    .news-card {
+
+      background: white;
+
+      border: 1px solid #ddd;
+
+      padding: 20px;
+    }
+
+    .news-image {
+
+      width: 100%;
+
+      height: 180px;
+
+      background: #ddd;
+
+      margin-bottom: 18px;
+
+      overflow: hidden;
+    }
+
+    .news-image img {
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .status-badge {
+
+      display: inline-block;
+
+      padding: 5px 8px;
+
+      font-size: 10px;
+
+      font-weight: bold;
+
+      letter-spacing: 1px;
+
+      margin-bottom: 12px;
+    }
+
+    .status-yayinda {
+
+      background: #e3f2e3;
+
+      color: #287028;
+    }
+
+    .status-taslak {
+
+      background: #eee;
+
+      color: #666;
+    }
+
+    .news-card h3 {
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 22px;
+
+      line-height: 1.25;
+
+      margin-bottom: 8px;
+    }
+
+    .news-meta {
+
+      color: #777;
+
+      font-size: 12px;
+
+      margin-bottom: 10px;
+
+      line-height: 1.5;
+    }
+
+    .news-summary {
+
+      color: #555;
+
+      font-size: 13px;
+
+      line-height: 1.5;
+
+      margin-bottom: 12px;
+    }
+
+    .news-slug {
+
+      color: #777;
+
+      font-size: 11px;
+
+      margin-top: 10px;
+    }
+
+    .card-buttons {
+
+      display: flex;
+
+      gap: 8px;
+
+      margin-top: 15px;
+    }
+
+    .card-button {
+
+      border: 1px solid #ccc;
+
+      background: white;
+
+      padding: 8px 12px;
+
+      cursor: pointer;
+
+      font-size: 11px;
+    }
+
+    .card-button:hover {
+
+      background: #eee;
+    }
+
+    .delete-button {
+
+      color: #a00000;
+    }
+
+    .empty {
+
+      background: white;
+
+      border: 1px solid #ddd;
+
+      padding: 25px;
+
+      color: #777;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+
+      margin-top: 60px;
+
+      background: #111;
+
+      color: #999;
+
+      text-align: center;
+
+      padding: 25px;
+
+      font-size: 12px;
+    }
+
+
+    /* =========================
+       MOBİL
+    ========================= */
+
+    @media (max-width: 750px) {
+
+      .page-title {
+        font-size: 32px;
+      }
+
+      .form-box {
+        padding: 20px;
+      }
+
+      .news-list {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-area {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
+      .photo-preview {
+
+        width: 100%;
+
+        height: 180px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <div class="header-inner">
+
+    <div class="logo">
+      KARŞI
+    </div>
+
+    <a
+      class="back"
+      href="index.html"
+    >
+      ← Yönetim Paneli
+    </a>
+
+  </div>
+
+</header>
+
+
+<main>
+
+
+  <h1 class="page-title">
+    Haberler
+  </h1>
+
+
+  <p class="page-description">
+    KARŞI haberlerini buradan oluşturabilir,
+    düzenleyebilir ve yayınlayabilirsin.
+  </p>
+
+
+  <div
+    id="message"
+    class="message"
+  ></div>
+
+
+  <!-- =========================
+       HABER FORMU
+  ========================= -->
+
+  <section class="form-box">
+
+
+    <h2 id="formTitle">
+      Yeni Haber
+    </h2>
+
+
+    <!-- BAŞLIK -->
+
+    <div class="form-group">
+
+      <label>
+        BAŞLIK
+      </label>
+
+      <input
+        type="text"
+        id="newsTitle"
+        placeholder="Haber başlığı..."
+      >
+
+    </div>
+
+
+    <!-- SPOT -->
+
+    <div class="form-group">
+
+      <label>
+        SPOT / ÖZET
+      </label>
+
+      <textarea
+        id="newsSpot"
+        placeholder="Haberin kısa özeti..."
+      ></textarea>
+
+    </div>
+
+
+    <!-- KATEGORİ -->
+
+    <div class="form-group">
+
+      <label>
+        KATEGORİ
+      </label>
+
+      <select id="newsCategory">
+
+        <option value="Gündem">
+          Gündem
+        </option>
+
+        <option value="Siyaset">
+          Siyaset
+        </option>
+
+        <option value="Dünya">
+          Dünya
+        </option>
+
+        <option value="Ekonomi">
+          Ekonomi
+        </option>
+
+        <option value="Toplum">
+          Toplum
+        </option>
+
+        <option value="Kültür">
+          Kültür
+        </option>
+
+        <option value="Spor">
+          Spor
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- KAYNAK -->
+
+    <div class="form-group">
+
+      <label>
+        KAYNAK
+      </label>
+
+      <input
+        type="text"
+        id="newsSource"
+        placeholder="Örn. Reuters, BBC, AA..."
+      >
+
+    </div>
+
+
+    <!-- YAZI -->
+
+    <div class="form-group">
+
+      <label>
+        HABER METNİ
+      </label>
+
+      <textarea
+        id="newsContent"
+        class="icerik"
+        placeholder="Haber metnini buraya yaz..."
+      ></textarea>
+
+    </div>
+
+
+    <!-- FOTOĞRAF -->
+
+    <div class="form-group">
+
+      <label>
+        KAPAK FOTOĞRAFI
+      </label>
+
+
+      <div class="photo-area">
+
+
+        <div
+          class="photo-preview"
+          id="photoPreview"
+        >
+          📰
+        </div>
+
+
+        <div class="photo-info">
+
+          Haber için kapak fotoğrafı seç.
+
+          <br>
+
+          JPG veya PNG kullanabilirsin.
+
+          <br>
+
+          <input
+            type="file"
+            id="newsPhoto"
+            accept="image/jpeg,image/png"
+          >
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- SLUG -->
+
+    <div class="form-group">
+
+      <label>
+        SLUG
+      </label>
+
+      <input
+        type="text"
+        id="newsSlug"
+        placeholder="ornek-haber-basligi"
+      >
+
+      <div class="slug-preview">
+
+        URL:
+        /haberler/<span id="slugPreview"></span>
+
+      </div>
+
+    </div>
+
+
+    <!-- DURUM -->
+
+    <div class="form-group">
+
+      <label>
+        DURUM
+      </label>
+
+      <select id="newsStatus">
+
+        <option value="taslak">
+          Taslak
+        </option>
+
+        <option value="yayinda">
+          Yayında
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- BUTONLAR -->
+
+    <div class="buttons">
+
+      <button
+        class="button save-button"
+        id="saveButton"
+        onclick="haberKaydet()"
+      >
+        HABERİ KAYDET
+      </button>
+
+
+      <button
+        class="button cancel-button"
+        id="cancelButton"
+        onclick="formTemizle()"
+        style="display:none;"
+      >
+        DÜZENLEMEYİ İPTAL ET
+      </button>
+
+    </div>
+
+
+  </section>
+
+
+  <!-- =========================
+       HABER LİSTESİ
+  ========================= -->
+
+  <h2 class="news-title">
+    Mevcut Haberler
+  </h2>
+
+
+  <section
+    class="news-list"
+    id="newsList"
+  >
+
+    <div class="empty">
+      Haberler yükleniyor...
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<footer>
+
+  KARŞI — Yönetim Paneli
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+  /* ==================================================
+     SUPABASE
+  ================================================== */
+
+
+  const SUPABASE_URL =
+    "https://rfqiffvudbmphvklxetf.supabase.co";
+
+
+  const SUPABASE_ANON_KEY =
+    "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+
+  /* ==================================================
+     DEĞİŞKENLER
+  ================================================== */
+
+
+  let duzenlenenHaberId = null;
+
+  let mevcutFotografUrl = null;
+
+
+  const photoInput =
+    document.getElementById("newsPhoto");
+
+
+  const photoPreview =
+    document.getElementById("photoPreview");
+
+
+  const saveButton =
+    document.getElementById("saveButton");
+
+
+  /* ==================================================
+     SLUG
+  ================================================== */
+
+
+  function slugOlustur(metin) {
+
+    return metin
+
+      .toLowerCase()
+
+      .replace(/ğ/g, "g")
+      .replace(/ü/g, "u")
+      .replace(/ş/g, "s")
+      .replace(/ı/g, "i")
+      .replace(/ö/g, "o")
+      .replace(/ç/g, "c")
+
+      .replace(/[^a-z0-9\s-]/g, "")
+
+      .trim()
+
+      .replace(/\s+/g, "-")
+
+      .replace(/-+/g, "-");
+
+  }
+
+
+  document
+    .getElementById("newsTitle")
+    .addEventListener(
+      "input",
+      function () {
+
+        if (!duzenlenenHaberId) {
+
+          const slug =
+            slugOlustur(this.value);
+
+
+          document
+            .getElementById("newsSlug")
+            .value = slug;
+
+
+          document
+            .getElementById("slugPreview")
+            .textContent = slug;
+
+        }
+
+      }
+    );
+
+
+  document
+    .getElementById("newsSlug")
+    .addEventListener(
+      "input",
+      function () {
+
+        const slug =
+          slugOlustur(this.value);
+
+
+        this.value = slug;
+
+
+        document
+          .getElementById("slugPreview")
+          .textContent = slug;
+
+      }
+    );
+
+
+  /* ==================================================
+     FOTOĞRAF ÖNİZLEME
+  ================================================== */
+
+
+  photoInput.addEventListener(
+    "change",
+    function () {
+
+      const file =
+        this.files[0];
+
+
+      if (!file) {
+        return;
+      }
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        function (e) {
+
+          photoPreview.innerHTML =
+            `<img
+              src="${e.target.result}"
+              alt="Haber fotoğrafı"
+            >`;
+
+        };
+
+
+      reader.readAsDataURL(file);
+
+    }
+  );
+
+
+  /* ==================================================
+     MESAJ
+  ================================================== */
+
+
+  function mesajGoster(
+    text,
+    type
+  ) {
+
+    const message =
+      document.getElementById(
+        "message"
+      );
+
+
+    message.textContent =
+      text;
+
+
+    message.className =
+      "message " + type;
+
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+
+  /* ==================================================
+     FOTOĞRAF SİL
+  ================================================== */
+
+
+  async function fotografSil(url) {
+
+    if (!url) {
+      return;
+    }
+
+
+    try {
+
+      const marker =
+        "/storage/v1/object/public/haber-fotograflari/";
+
+
+      const index =
+        url.indexOf(marker);
+
+
+      if (index === -1) {
+        return;
+      }
+
+
+      const dosyaYolu =
+        decodeURIComponent(
+          url.substring(
+            index + marker.length
+          )
+        );
+
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .storage
+          .from("haber-fotograflari")
+          .remove([
+            dosyaYolu
+          ]);
+
+
+      if (error) {
+
+        console.error(
+          "Fotoğraf silinemedi:",
+          error
+        );
+
+      }
+
+    }
+
+    catch (error) {
+
+      console.error(
+        "Fotoğraf silme hatası:",
+        error
+      );
+
+    }
+
+  }
+
+
+  /* ==================================================
+     HABER KAYDET
+  ================================================== */
+
+
+  async function haberKaydet() {
+
+
+    const title =
+      document
+        .getElementById("newsTitle")
+        .value
+        .trim();
+
+
+    const spot =
+      document
+        .getElementById("newsSpot")
+        .value
+        .trim();
+
+
+    const category =
+      document
+        .getElementById("newsCategory")
+        .value;
+
+
+    const source =
+      document
+        .getElementById("newsSource")
+        .value
+        .trim();
+
+
+    const content =
+      document
+        .getElementById("newsContent")
+        .value
+        .trim();
+
+
+    const slug =
+      document
+        .getElementById("newsSlug")
+        .value
+        .trim();
+
+
+    const status =
+      document
+        .getElementById("newsStatus")
+        .value;
+
+
+    const photoFile =
+      photoInput.files[0];
+
+
+    if (!title) {
+
+      mesajGoster(
+        "Lütfen haber başlığını yaz.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if (!content) {
+
+      mesajGoster(
+        "Lütfen haber metnini yaz.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if (!slug) {
+
+      mesajGoster(
+        "Lütfen slug oluştur.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    saveButton.disabled = true;
+
+    saveButton.textContent =
+      "KAYDEDİLİYOR...";
+
+
+    try {
+
+
+      let fotografUrl =
+        mevcutFotografUrl;
+
+
+      let yeniFotografYuklendi =
+        false;
+
+
+      /* ==========================================
+         FOTOĞRAF YÜKLE
+      ========================================== */
+
+
+      if (photoFile) {
+
+
+        const uzanti =
+          photoFile.name
+            .split(".")
+            .pop()
+            .toLowerCase();
+
+
+        const dosyaAdi =
+          slug +
+          "-" +
+          Date.now() +
+          "." +
+          uzanti;
+
+
+        const {
+          error: uploadError
+        } =
+          await supabaseClient
+            .storage
+            .from("haber-fotograflari")
+            .upload(
+              dosyaAdi,
+              photoFile,
+              {
+                cacheControl: "3600",
+
+                upsert: false
+              }
+            );
+
+
+        if (uploadError) {
+
+          throw uploadError;
+
+        }
+
+
+        const {
+          data: publicUrlData
+        } =
+          supabaseClient
+            .storage
+            .from("haber-fotograflari")
+            .getPublicUrl(
+              dosyaAdi
+            );
+
+
+        fotografUrl =
+          publicUrlData.publicUrl;
+
+
+        yeniFotografYuklendi =
+          true;
+
+      }
+
+
+      /* ==========================================
+         YENİ HABER
+      ========================================== */
+
+
+      if (!duzenlenenHaberId) {
+
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("haberler")
+            .insert({
+
+              baslik:
+                title,
+
+              spot:
+                spot || null,
+
+              icerik:
+                content,
+
+              kategori:
+                category || "Gündem",
+
+              kaynak:
+                source || null,
+
+              kapak_fotografi_url:
+                fotografUrl,
+
+              slug:
+                slug,
+
+              durum:
+                status,
+
+              yayin_tarihi:
+                status === "yayinda"
+                  ? new Date().toISOString()
+                  : null
+
+            });
+
+
+        if (error) {
+
+          throw error;
+
+        }
+
+      }
+
+
+      /* ==========================================
+         HABER GÜNCELLE
+      ========================================== */
+
+
+      else {
+
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("haberler")
+            .update({
+
+              baslik:
+                title,
+
+              spot:
+                spot || null,
+
+              icerik:
+                content,
+
+              kategori:
+                category || "Gündem",
+
+              kaynak:
+                source || null,
+
+              kapak_fotografi_url:
+                fotografUrl,
+
+              slug:
+                slug,
+
+              durum:
+                status,
+
+              yayin_tarihi:
+                status === "yayinda"
+                  ? new Date().toISOString()
+                  : null
+
+            })
+            .eq(
+              "id",
+              duzenlenenHaberId
+            );
+
+
+        if (error) {
+
+          /* Yeni fotoğraf yüklenmiş ama
+             veritabanı güncellenememişse
+             yeni fotoğrafı temizle. */
+
+          if (
+            yeniFotografYuklendi &&
+            fotografUrl
+          ) {
+
+            await fotografSil(
+              fotografUrl
+            );
+
+          }
+
+
+          throw error;
+
+        }
+
+
+        /* Eski fotoğrafı,
+           yeni fotoğraf başarıyla
+           kaydedildikten sonra sil. */
+
+        if (
+          yeniFotografYuklendi &&
+          mevcutFotografUrl &&
+          mevcutFotografUrl !== fotografUrl
+        ) {
+
+          await fotografSil(
+            mevcutFotografUrl
+          );
+
+        }
+
+      }
+
+
+      /* ==========================================
+         BAŞARILI
+      ========================================== */
+
+
+      mesajGoster(
+
+        duzenlenenHaberId
+
+          ? "Haber başarıyla güncellendi."
+
+          : "Haber başarıyla kaydedildi.",
+
+        "success"
+
+      );
+
+
+      formTemizle();
+
+
+      await haberleriGetir();
+
+
+    }
+
+    catch (error) {
+
+
+      console.error(
+        "Haber kaydetme hatası:",
+        error
+      );
+
+
+      mesajGoster(
+
+        "Haber kaydedilemedi: " +
+        error.message,
+
+        "error"
+
+      );
+
+    }
+
+    finally {
+
+
+      saveButton.disabled =
+        false;
+
+
+      saveButton.textContent =
+        "HABERİ KAYDET";
+
+    }
+
+  }
+
+
+  /* ==================================================
+     HABERLERİ GETİR
+  ================================================== */
+
+
+  async function haberleriGetir() {
+
+
+    const list =
+      document.getElementById(
+        "newsList"
+      );
+
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("haberler")
+        .select("*")
+        .order(
+          "id",
+          {
+            ascending: false
+          }
+        );
+
+
+    if (error) {
+
+
+      list.innerHTML =
+        `<div class="empty">
+
+          Haberler yüklenemedi:
+
+          ${guvenliMetin(
+            error.message
+          )}
+
+        </div>`;
+
+
+      return;
+
+    }
+
+
+    if (
+      !data ||
+      data.length === 0
+    ) {
+
+
+      list.innerHTML =
+        `<div class="empty">
+
+          Henüz kayıtlı haber bulunmuyor.
+
+        </div>`;
+
+
+      return;
+
+    }
+
+
+    list.innerHTML = "";
+
+
+    data.forEach(
+      function (news) {
+
+
+        const card =
+          document.createElement(
+            "div"
+          );
+
+
+        card.className =
+          "news-card";
+
+
+        const statusClass =
+          news.durum === "yayinda"
+
+            ? "status-yayinda"
+
+            : "status-taslak";
+
+
+        const statusText =
+          news.durum === "yayinda"
+
+            ? "YAYINDA"
+
+            : "TASLAK";
+
+
+        const image =
+          news.kapak_fotografi_url
+
+            ? `<img
+                src="${guvenliMetin(
+                  news.kapak_fotografi_url
+                )}"
+                alt="${guvenliMetin(
+                  news.baslik
+                )}"
+              >`
+
+            : "📰";
+
+
+        card.innerHTML = `
+
+          ${
+            news.kapak_fotografi_url
+
+              ? `
+                <div class="news-image">
+                  ${image}
+                </div>
+              `
+
+              : ""
+          }
+
+
+          <div class="status-badge ${statusClass}">
+            ${statusText}
+          </div>
+
+
+          <h3>
+            ${guvenliMetin(
+              news.baslik
+            )}
+          </h3>
+
+
+          <div class="news-meta">
+
+            ${
+              guvenliMetin(
+                news.kategori ||
+                "Gündem"
+              )
+            }
+
+            ${
+              news.kaynak
+                ? " · Kaynak: " +
+                  guvenliMetin(
+                    news.kaynak
+                  )
+                : ""
+            }
+
+          </div>
+
+
+          <div class="news-summary">
+
+            ${guvenliMetin(
+              news.spot ||
+              "Spot eklenmedi."
+            )}
+
+          </div>
+
+
+          <div class="news-slug">
+
+            /haberler/${guvenliMetin(
+              news.slug
+            )}
+
+          </div>
+
+
+          <div class="card-buttons">
+
+
+            <button
+              class="card-button"
+              onclick="haberDuzenle(${news.id})"
+            >
+              DÜZENLE
+            </button>
+
+
+            <button
+              class="card-button delete-button"
+              onclick="haberSil(${news.id})"
+            >
+              SİL
+            </button>
+
+
+          </div>
+
+        `;
+
+
+        list.appendChild(
+          card
+        );
+
+      }
+    );
+
+  }
+
+
+  /* ==================================================
+     HABER DÜZENLE
+  ================================================== */
+
+
+  async function haberDuzenle(id) {
+
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("haberler")
+        .select("*")
+        .eq(
+          "id",
+          id
+        )
+        .single();
+
+
+    if (error) {
+
+
+      mesajGoster(
+
+        "Haber yüklenemedi: " +
+        error.message,
+
+        "error"
+
+      );
+
+
+      return;
+
+    }
+
+
+    duzenlenenHaberId =
+      data.id;
+
+
+    mevcutFotografUrl =
+      data.kapak_fotografi_url;
+
+
+    document
+      .getElementById("newsTitle")
+      .value =
+        data.baslik || "";
+
+
+    document
+      .getElementById("newsSpot")
+      .value =
+        data.spot || "";
+
+
+    document
+      .getElementById("newsCategory")
+      .value =
+        data.kategori || "Gündem";
+
+
+    document
+      .getElementById("newsSource")
+      .value =
+        data.kaynak || "";
+
+
+    document
+      .getElementById("newsContent")
+      .value =
+        data.icerik || "";
+
+
+    document
+      .getElementById("newsSlug")
+      .value =
+        data.slug || "";
+
+
+    document
+      .getElementById("slugPreview")
+      .textContent =
+        data.slug || "";
+
+
+    document
+      .getElementById("newsStatus")
+      .value =
+        data.durum || "taslak";
+
+
+    if (
+      data.kapak_fotografi_url
+    ) {
+
+
+      photoPreview.innerHTML =
+
+        `<img
+          src="${guvenliMetin(
+            data.kapak_fotografi_url
+          )}"
+          alt="Haber fotoğrafı"
+        >`;
+
+    }
+
+    else {
+
+
+      photoPreview.innerHTML =
+        "📰";
+
+    }
+
+
+    document
+      .getElementById("formTitle")
+      .textContent =
+        "Haberi Düzenle";
+
+
+    saveButton.textContent =
+      "DEĞİŞİKLİKLERİ KAYDET";
+
+
+    document
+      .getElementById("cancelButton")
+      .style.display =
+        "inline-block";
+
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+
+  /* ==================================================
+     HABER SİL
+  ================================================== */
+
+
+  async function haberSil(id) {
+
+
+    const onay =
+      confirm(
+        "Bu haberi silmek istediğine emin misin?"
+      );
+
+
+    if (!onay) {
+      return;
+    }
+
+
+    const {
+      data,
+      error: fetchError
+    } =
+      await supabaseClient
+        .from("haberler")
+        .select(
+          "kapak_fotografi_url"
+        )
+        .eq(
+          "id",
+          id
+        )
+        .single();
+
+
+    if (fetchError) {
+
+
+      mesajGoster(
+
+        "Haber bilgisi alınamadı: " +
+        fetchError.message,
+
+        "error"
+
+      );
+
+
+      return;
+
+    }
+
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .from("haberler")
+        .delete()
+        .eq(
+          "id",
+          id
+        );
+
+
+    if (error) {
+
+
+      mesajGoster(
+
+        "Haber silinemedi: " +
+        error.message,
+
+        "error"
+
+      );
+
+
+      return;
+
+    }
+
+
+    /* Haber başarıyla silindiyse
+       kapak fotoğrafını da Storage'dan sil. */
+
+    if (
+      data &&
+      data.kapak_fotografi_url
+    ) {
+
+      await fotografSil(
+        data.kapak_fotografi_url
+      );
+
+    }
+
+
+    mesajGoster(
+      "Haber başarıyla silindi.",
+      "success"
+    );
+
+
+    await haberleriGetir();
+
+  }
+
+
+  /* ==================================================
+     FORM TEMİZLE
+  ================================================== */
+
+
+  function formTemizle() {
+
+
+    duzenlenenHaberId =
+      null;
+
+
+    mevcutFotografUrl =
+      null;
+
+
+    document
+      .getElementById("newsTitle")
+      .value = "";
+
+
+    document
+      .getElementById("newsSpot")
+      .value = "";
+
+
+    document
+      .getElementById("newsCategory")
+      .value =
+        "Gündem";
+
+
+    document
+      .getElementById("newsSource")
+      .value = "";
+
+
+    document
+      .getElementById("newsContent")
+      .value = "";
+
+
+    document
+      .getElementById("newsSlug")
+      .value = "";
+
+
+    document
+      .getElementById("slugPreview")
+      .textContent = "";
+
+
+    document
+      .getElementById("newsStatus")
+      .value =
+        "taslak";
+
+
+    photoInput.value = "";
+
+
+    photoPreview.innerHTML =
+      "📰";
+
+
+    document
+      .getElementById("formTitle")
+      .textContent =
+        "Yeni Haber";
+
+
+    saveButton.textContent =
+      "HABERİ KAYDET";
+
+
+    document
+      .getElementById("cancelButton")
+      .style.display =
+        "none";
+
+  }
+
+
+  /* ==================================================
+     GÜVENLİ METİN
+  ================================================== */
+
+
+  function guvenliMetin(
+    metin
+  ) {
+
+
+    const div =
+      document.createElement(
+        "div"
+      );
+
+
+    div.textContent =
+      metin == null
+        ? ""
+        : String(metin);
+
+
+    return div.innerHTML;
+
+  }
+
+
+  /* ==================================================
+     BAŞLANGIÇ
+  ================================================== */
+
+
+  haberleriGetir();
+
+</script>
+
+
+</body>
+
+</html>
