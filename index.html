@@ -4,731 +4,695 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>KARŞI — Bağımsız Yayın</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f2f2f0;
+      color: #111;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      width: 100%;
+      background: #111;
+      color: white;
+      border-bottom: 4px solid #c40000;
+      padding: 18px 20px 20px;
+    }
+
+    .top {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      position: relative;
+      display: inline-block;
+
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 48px;
+      font-weight: 900;
+
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+
+    .logo::after {
+      content: "";
+
+      position: absolute;
+
+      height: 5px;
+      width: 115%;
 
-<title>KARŞI TEST 123</title>
+      background: #c40000;
 
-<style>
+      left: -7%;
+      top: 52%;
 
-/* =========================
-   TEMEL
-========================= */
+      transform: rotate(-4deg);
+    }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    .top-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 7px;
+    }
 
-html,
-body {
-  width: 100%;
-  min-height: 100%;
-}
+    .languages {
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f2f2f0;
-  color: #111;
-}
+    .languages a {
+      color: #aaa;
+      text-decoration: none;
+    }
 
+    .languages a:hover,
+    .languages .active {
+      color: white;
+    }
 
-/* =========================
-   HEADER
-========================= */
+    .languages span {
+      color: #555;
+      margin: 0 4px;
+    }
 
-header {
-  width: 100%;
-  background: #111;
-  color: white;
-  border-bottom: 4px solid #c40000;
-  padding: 18px 20px 22px;
-}
+    .tagline {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 13px;
+      color: #cfcfcf;
+      text-align: right;
+      line-height: 1.4;
+    }
 
-.top {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    /* =========================
+       NAVİGASYON
+    ========================= */
 
-  gap: 20px;
-}
+    nav {
+      width: 100%;
+      background: white;
+      border-bottom: 1px solid #d4d4d4;
+    }
 
-.logo {
-  position: relative;
+    .nav-inner {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
 
-  display: inline-block;
+      display: flex;
+      overflow-x: auto;
+    }
 
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 48px;
-  font-weight: 900;
+    .nav-inner a {
+      color: #111;
+      text-decoration: none;
 
-  letter-spacing: -3px;
-  line-height: 1;
-}
+      font-size: 13px;
+      font-weight: bold;
 
-.logo::after {
-  content: "";
+      padding: 13px 17px;
 
-  position: absolute;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
 
-  height: 5px;
-  width: 115%;
+    .nav-inner a:hover {
+      background: #111;
+      color: white;
+    }
 
-  background: #c40000;
 
-  left: -7%;
-  top: 52%;
+    /* =========================
+       ANA ALAN
+    ========================= */
 
-  transform: rotate(-4deg);
-}
+    main {
+      width: 100%;
+      max-width: 1100px;
 
-.top-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+      margin: 26px auto;
 
-  gap: 8px;
-}
+      padding: 0 18px;
+    }
 
-.languages {
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
 
-.languages a {
-  color: #aaa;
-  text-decoration: none;
-}
+    /* =========================
+       BÜYÜK BANNER
+    ========================= */
 
-.languages a:hover,
-.languages .active {
-  color: white;
-}
+    .headline {
+      width: 100%;
 
-.languages span {
-  color: #555;
-  margin: 0 4px;
-}
+      background: #111;
+      color: white;
 
-.tagline {
-  font-family: Georgia, "Times New Roman", serif;
+      padding: 30px;
 
-  font-size: 14px;
+      margin-bottom: 26px;
 
-  color: #cfcfcf;
+      position: relative;
+      overflow: hidden;
+    }
 
-  text-align: right;
+    .headline::before {
+      content: "KARŞI";
 
-  line-height: 1.4;
-}
+      position: absolute;
 
+      right: -20px;
+      bottom: -45px;
 
-/* =========================
-   NAVİGASYON
-========================= */
+      font-family: Georgia, serif;
 
-nav {
-  width: 100%;
+      font-size: 140px;
+      font-weight: bold;
 
-  background: white;
+      color: #1d1d1d;
 
-  border-bottom: 1px solid #d4d4d4;
-}
+      transform: rotate(-8deg);
 
-.nav-inner {
-  width: 100%;
-  max-width: 1100px;
+      pointer-events: none;
+    }
 
-  margin: 0 auto;
+    .headline-content {
+      position: relative;
+      z-index: 2;
 
-  display: flex;
+      max-width: 700px;
+    }
 
-  overflow-x: auto;
-}
+    .label {
+      display: inline-block;
 
-.nav-inner a {
-  color: #111;
+      background: #c40000;
+      color: white;
 
-  text-decoration: none;
+      padding: 4px 8px;
 
-  font-size: 14px;
-  font-weight: bold;
+      font-size: 10px;
+      font-weight: bold;
 
-  padding: 15px 18px;
+      letter-spacing: 1px;
 
-  white-space: nowrap;
+      margin-bottom: 12px;
+    }
 
-  flex-shrink: 0;
-}
+    .headline h1 {
+      font-family: Georgia, "Times New Roman", serif;
 
-.nav-inner a:hover {
-  background: #111;
-  color: white;
-}
+      font-size: 34px;
 
+      line-height: 1.1;
 
-/* =========================
-   ANA ALAN
-========================= */
+      margin-bottom: 12px;
+    }
 
-main {
-  width: 100%;
-  max-width: 1100px;
+    .headline p {
+      color: #d0d0d0;
 
-  margin: 30px auto;
+      line-height: 1.5;
 
-  padding: 0 18px;
-}
+      font-size: 14px;
+    }
 
 
-/* =========================
-   BÜYÜK BANNER
-========================= */
+    /* =========================
+       BÖLÜM BAŞLIĞI
+    ========================= */
 
-.headline {
-  width: 100%;
+    .section-title {
+      width: 100%;
 
-  background: #111;
+      display: flex;
+      align-items: center;
 
-  color: white;
+      gap: 10px;
 
-  padding: 35px;
+      margin: 0 0 13px;
 
-  margin-bottom: 30px;
+      font-family: Georgia, serif;
 
-  position: relative;
+      font-size: 23px;
+    }
 
-  overflow: hidden;
-}
+    .section-title::after {
+      content: "";
 
-.headline::before {
-  content: "KARŞI";
+      height: 2px;
 
-  position: absolute;
+      background: #111;
 
-  right: -20px;
-  bottom: -45px;
+      flex: 1;
+    }
 
-  font-family: Georgia, serif;
 
-  font-size: 150px;
-  font-weight: bold;
+    /* =========================
+       KART ALANI
+    ========================= */
 
-  color: #1d1d1d;
+    .cards {
+      width: 100%;
 
-  transform: rotate(-8deg);
+      display: grid;
 
-  pointer-events: none;
-}
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
-.headline-content {
-  position: relative;
+      gap: 14px;
 
-  z-index: 2;
+      align-items: start;
+    }
 
-  max-width: 720px;
-}
 
-.label {
-  display: inline-block;
+    /* =========================
+       KART
+    ========================= */
 
-  background: #c40000;
+    .card {
+      width: 100%;
+      min-width: 0;
 
-  color: white;
+      background: white;
 
-  padding: 5px 9px;
+      border: 1px solid #d9d9d9;
 
-  font-size: 11px;
+      padding: 16px;
 
-  font-weight: bold;
+      min-height: 160px;
 
-  letter-spacing: 1px;
+      display: flex;
+      flex-direction: column;
 
-  margin-bottom: 15px;
-}
+      text-decoration: none;
 
-.headline h1 {
-  font-family: Georgia, "Times New Roman", serif;
+      color: #111;
 
-  font-size: 38px;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
 
-  line-height: 1.08;
+    .card:hover {
+      transform: translateY(-2px);
 
-  margin-bottom: 15px;
-}
+      box-shadow:
+        0 5px 14px rgba(0,0,0,0.08);
+    }
 
-.headline p {
-  color: #d0d0d0;
 
-  line-height: 1.6;
+    /* =========================
+       KART İÇERİĞİ
+    ========================= */
 
-  font-size: 16px;
-}
+    .card-category {
+      color: #c40000;
 
+      font-size: 9px;
 
-/* =========================
-   BÖLÜM BAŞLIĞI
-========================= */
+      font-weight: bold;
 
-.section-title {
-  width: 100%;
+      letter-spacing: 1.1px;
 
-  display: flex;
+      margin-bottom: 7px;
+    }
 
-  align-items: center;
+    .card-title {
+      font-family: Georgia, "Times New Roman", serif;
 
-  gap: 12px;
+      font-size: 18px;
 
-  margin: 0 0 16px;
+      line-height: 1.2;
 
-  font-family: Georgia, serif;
+      margin-bottom: 8px;
+    }
 
-  font-size: 25px;
-}
+    .card-text {
+      color: #555;
 
-.section-title::after {
-  content: "";
+      font-family: Georgia, "Times New Roman", serif;
 
-  height: 2px;
+      font-size: 12px;
 
-  background: #111;
+      line-height: 1.5;
+    }
 
-  flex: 1;
-}
 
+    /* =========================
+       FOOTER
+    ========================= */
 
-/* =========================
-   KART ALANI
-========================= */
+    footer {
+      width: 100%;
 
-/*
-   ÖNEMLİ:
-   Burada yalnızca 3 kart var.
-   Ekstra article, boş kolon veya
-   gizli içerik bulunmuyor.
-*/
+      background: #111;
 
-.cards {
-  width: 100%;
+      color: #999;
 
-  display: grid;
+      text-align: center;
 
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+      padding: 28px 20px;
 
-  gap: 16px;
+      margin-top: 45px;
 
-  align-items: stretch;
-}
+      font-size: 12px;
+    }
 
+    footer strong {
+      color: white;
 
-/* =========================
-   KART
-========================= */
+      font-family: Georgia, serif;
 
-.card {
-  width: 100%;
+      font-size: 18px;
+    }
 
-  min-width: 0;
 
-  background: white;
+    /* =========================
+       TABLET
+    ========================= */
 
-  border: 1px solid #d9d9d9;
+    @media (max-width: 800px) {
 
-  padding: 19px;
+      .cards {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
 
-  min-height: 190px;
+    }
 
-  display: flex;
 
-  flex-direction: column;
+    /* =========================
+       MOBİL
+    ========================= */
 
-  text-decoration: none;
+    @media (max-width: 600px) {
 
-  color: #111;
+      header {
+        padding: 15px;
+      }
 
-  overflow: hidden;
+      .logo {
+        font-size: 38px;
+      }
 
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
+      .tagline {
+        display: none;
+      }
 
-.card:hover {
-  transform: translateY(-3px);
+      .headline {
+        padding: 23px 19px;
+      }
 
-  box-shadow:
-    0 7px 18px rgba(0,0,0,0.08);
-}
+      .headline h1 {
+        font-size: 28px;
+      }
 
+      .headline p {
+        font-size: 13px;
+      }
 
-/* =========================
-   KART İÇERİĞİ
-========================= */
+      .cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
 
-.card-category {
-  color: #c40000;
+      .card {
+        min-height: 0;
+        padding: 15px;
+      }
 
-  font-size: 10px;
+      .card-title {
+        font-size: 19px;
+      }
 
-  font-weight: bold;
+    }
 
-  letter-spacing: 1.2px;
 
-  margin-bottom: 9px;
-}
+    /* =========================
+       ÇOK KÜÇÜK EKRAN
+    ========================= */
 
-.card-title {
-  font-family: Georgia, "Times New Roman", serif;
+    @media (max-width: 380px) {
 
-  font-size: 20px;
+      .headline h1 {
+        font-size: 25px;
+      }
 
-  line-height: 1.22;
+      .section-title {
+        font-size: 21px;
+      }
 
-  margin-bottom: 10px;
-}
+    }
 
-.card-text {
-  color: #555;
-
-  font-family: Georgia, "Times New Roman", serif;
-
-  font-size: 13px;
-
-  line-height: 1.55;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-  width: 100%;
-
-  background: #111;
-
-  color: #999;
-
-  text-align: center;
-
-  padding: 30px 20px;
-
-  margin-top: 50px;
-
-  font-size: 13px;
-}
-
-footer strong {
-  color: white;
-
-  font-family: Georgia, serif;
-
-  font-size: 18px;
-}
-
-
-/* =========================
-   TABLET
-========================= */
-
-@media (max-width: 800px) {
-
-  .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-}
-
-
-/* =========================
-   MOBİL
-========================= */
-
-@media (max-width: 600px) {
-
-  header {
-    padding: 16px;
-  }
-
-  .logo {
-    font-size: 38px;
-  }
-
-  .tagline {
-    display: none;
-  }
-
-  .headline {
-    padding: 25px 20px;
-  }
-
-  .headline h1 {
-    font-size: 29px;
-  }
-
-  .headline p {
-    font-size: 14px;
-  }
-
-  .cards {
-    grid-template-columns: 1fr;
-
-    gap: 12px;
-  }
-
-  .card {
-    min-height: 0;
-
-    padding: 18px;
-  }
-
-  .card-title {
-    font-size: 20px;
-  }
-
-}
-
-
-/* =========================
-   ÇOK KÜÇÜK EKRAN
-========================= */
-
-@media (max-width: 380px) {
-
-  .headline h1 {
-    font-size: 26px;
-  }
-
-  .section-title {
-    font-size: 22px;
-  }
-
-}
-
-</style>
+  </style>
 
 </head>
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
+  <!-- =========================
+       HEADER
+  ========================= -->
 
-<header>
-
-  <div class="top">
+  <header>
 
 ```
-<div class="logo">
-  KARŞI
-</div>
+<div class="top">
 
-<div class="top-right">
-
-  <div class="languages">
-
-    <a href="index.html" class="active">
-      TR
-    </a>
-
-    <span>|</span>
-
-    <a href="#">
-      EN
-    </a>
-
-    <span>|</span>
-
-    <a href="#">
-      FR
-    </a>
-
-  </div>
-
-  <div class="tagline">
-    Gücün karşısında,<br>
-    gerçeğin yanında.
-  </div>
-
-</div>
-```
-
-  </div>
-
-</header>
-
-<!-- =========================
-     NAV
-========================= -->
-
-<nav>
-
-  <div class="nav-inner">
-
-```
-<a href="index.html">
-  ANA SAYFA
-</a>
-
-<a href="kose-yazilari.html">
-  KÖŞE YAZILARI
-</a>
-
-<a href="haberler.html">
-  HABERLER
-</a>
-
-<a href="gundem.html">
-  KARŞI GÜNDEM
-</a>
-
-<a href="#">
-  DÜNYA
-</a>
-
-<a href="#">
-  DOSYALAR
-</a>
-
-<a href="#">
-  HAKKIMIZDA
-</a>
-```
-
-  </div>
-
-</nav>
-
-<!-- =========================
-     MAIN
-========================= -->
-
-<main>
-
-  <!-- BÜYÜK BANNER -->
-
-  <section class="headline">
-
-```
-<div class="headline-content">
-
-  <div class="label">
-    KARŞI'DAN
-  </div>
-
-  <h1>
-    Söylenmeyeni söylemek,
-    sorulmayanı sormak için.
-  </h1>
-
-  <p>
-    Bağımsız düşünce, özgür söz ve güç karşısında
-    susmayan bir yayın.
-  </p>
-
-</div>
-```
-
-  </section>
-
-  <!-- KÖŞE YAZILARI -->
-
-  <h2 class="section-title">
-    Köşe Yazıları
-  </h2>
-
-  <!--
-       SADECE 3 KART
-       BURADA BAŞKA BİR ŞEY YOK
-  -->
-
-  <section class="cards">
-
-```
-<!-- KART 1 -->
-
-<a
-  class="card"
-  href="diktator-olmadan-once-herkes-halkcidir.html"
->
-
-  <div class="card-category">
-    KARŞI / YORUM
-  </div>
-
-  <div class="card-title">
-    Diktatör Olmadan Önce Herkes Halkçıdır
-  </div>
-
-  <div class="card-text">
-    İktidara giden yolun ilk taşları genellikle
-    halkın sofrasından döşenir. Sonra bir gün
-    sofranın sahibi değişir.
-  </div>
-
-</a>
-
-
-<!-- KART 2 -->
-
-<div class="card">
-
-  <div class="card-category">
-    GÜNDEM
-  </div>
-
-  <div class="card-title">
-    Burada gündemi konuşacağız
-  </div>
-
-  <div class="card-text">
-    Türkiye'den ve dünyadan önemli gelişmeleri
-    sade ve anlaşılır şekilde aktaracağız.
-  </div>
-
-</div>
-
-
-<!-- KART 3 -->
-
-<div class="card">
-
-  <div class="card-category">
-    DOSYA
-  </div>
-
-  <div class="card-title">
-    Görünmeyenin peşinde
-  </div>
-
-  <div class="card-text">
-    Üzerine fazla konuşulmayan konular,
-    araştırmalar ve özel dosyalar.
-  </div>
-
-</div>
-```
-
-  </section>
-
-</main>
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-  <strong>
+  <div class="logo">
     KARŞI
-  </strong>
+  </div>
+
+  <div class="top-right">
+
+    <div class="languages">
+
+      <a href="index.html" class="active">
+        TR
+      </a>
+
+      <span>|</span>
+
+      <a href="#">
+        EN
+      </a>
+
+      <span>|</span>
+
+      <a href="#">
+        FR
+      </a>
+
+    </div>
+
+    <div class="tagline">
+      Gücün karşısında,<br>
+      gerçeğin yanında.
+    </div>
+
+  </div>
+
+</div>
+```
+
+  </header>
+
+  <!-- =========================
+       NAV
+  ========================= -->
+
+  <nav>
+
+```
+<div class="nav-inner">
+
+  <a href="index.html">
+    ANA SAYFA
+  </a>
+
+  <a href="kose-yazilari.html">
+    KÖŞE YAZILARI
+  </a>
+
+  <a href="haberler.html">
+    HABERLER
+  </a>
+
+  <a href="gundem.html">
+    KARŞI GÜNDEM
+  </a>
+
+  <a href="#">
+    DÜNYA
+  </a>
+
+  <a href="#">
+    DOSYALAR
+  </a>
+
+  <a href="#">
+    HAKKIMIZDA
+  </a>
+
+</div>
+```
+
+  </nav>
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <main>
+
+```
+<!-- BÜYÜK BANNER -->
+
+<section class="headline">
+
+  <div class="headline-content">
+
+    <div class="label">
+      KARŞI'DAN
+    </div>
+
+    <h1>
+      Söylenmeyeni söylemek,
+      sorulmayanı sormak için.
+    </h1>
+
+    <p>
+      Bağımsız düşünce, özgür söz ve güç karşısında
+      susmayan bir yayın.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- KÖŞE YAZILARI -->
+
+<h2 class="section-title">
+  Köşe Yazıları
+</h2>
+
+
+<section class="cards">
+
+
+  <!-- KART 1 -->
+
+  <a
+    class="card"
+    href="diktator-olmadan-once-herkes-halkcidir.html"
+  >
+
+    <div class="card-category">
+      KARŞI / YORUM
+    </div>
+
+    <div class="card-title">
+      Diktatör Olmadan Önce Herkes Halkçıdır
+    </div>
+
+    <div class="card-text">
+      İktidara giden yolun ilk taşları genellikle
+      halkın sofrasından döşenir. Sonra bir gün
+      sofranın sahibi değişir.
+    </div>
+
+  </a>
+
+
+  <!-- KART 2 -->
+
+  <div class="card">
+
+    <div class="card-category">
+      GÜNDEM
+    </div>
+
+    <div class="card-title">
+      Burada gündemi konuşacağız
+    </div>
+
+    <div class="card-text">
+      Türkiye'den ve dünyadan önemli gelişmeleri
+      sade ve anlaşılır şekilde aktaracağız.
+    </div>
+
+  </div>
+
+
+  <!-- KART 3 -->
+
+  <div class="card">
+
+    <div class="card-category">
+      DOSYA
+    </div>
+
+    <div class="card-title">
+      Görünmeyenin peşinde
+    </div>
+
+    <div class="card-text">
+      Üzerine fazla konuşulmayan konular,
+      araştırmalar ve özel dosyalar.
+    </div>
+
+  </div>
+
+
+</section>
+```
+
+  </main>
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+```
+<strong>
+  KARŞI
+</strong>
 
 <br><br>
 
@@ -737,8 +701,9 @@ Bağımsız düşüncenin tarafı.
 <br><br>
 
 © 2026 KARŞI
+```
 
-</footer>
+  </footer>
 
 </body>
 
