@@ -31,27 +31,32 @@ jobs:
           import html
           import re
           from datetime import datetime, timezone
+          from email.utils import parsedate_to_datetime
           from html.parser import HTMLParser
           from urllib.parse import urljoin
 
           haberler = []
 
-          # --------------------------------------------------
+          # ==================================================
           # SÖZCÜ RSS KAYNAKLARI
-          # --------------------------------------------------
+          # ==================================================
 
           rss_kaynaklari = [
               {
                   "ad": "Sözcü",
-                  "rss": "https://www.sozcu.com.tr/feeds-haberler"
+                  "rss": "https://www.sozcu.com.tr/feeds-haberler",
+                  "limit": 30
               },
               {
                   "ad": "Sözcü Gündem",
-                  "rss": "https://www.sozcu.com.tr/feeds-rss-category-gundem"
+                  "rss": "https://www.sozcu.com.tr/feeds-rss-category-gundem",
+                  "limit": 25
               }
           ]
 
           for kaynak in rss_kaynaklari:
+
+              kaynak_haberleri = []
 
               try:
 
@@ -62,7 +67,11 @@ jobs:
                       }
                   )
 
-                  with urllib.request.urlopen(request, timeout=20) as response:
+                  with urllib.request.urlopen(
+                      request,
+                      timeout=20
+                  ) as response:
+
                       data = response.read()
 
                   root = ET.fromstring(data)
@@ -91,7 +100,7 @@ jobs:
                           description
                       ).strip()
 
-                      haberler.append({
+                      kaynak_haberleri.append({
                           "baslik": title.strip(),
                           "aciklama": description[:300],
                           "kaynak": kaynak["ad"],
@@ -99,7 +108,32 @@ jobs:
                           "tarih": pub_date.strip()
                       })
 
-                  print(f"{kaynak['ad']} başarıyla okundu.")
+                  # Önce bu kaynağın kendi haberlerini tarihe göre sırala
+                  def rss_tarih(haber):
+
+                      try:
+                          return parsedate_to_datetime(
+                              haber["tarih"]
+                          ).timestamp()
+                      except:
+                          return 0
+
+                  kaynak_haberleri.sort(
+                      key=rss_tarih,
+                      reverse=True
+                  )
+
+                  # Kaynak başına limit
+                  kaynak_haberleri = kaynak_haberleri[
+                      :kaynak["limit"]
+                  ]
+
+                  haberler.extend(kaynak_haberleri)
+
+                  print(
+                      f"{kaynak['ad']} başarıyla okundu: "
+                      f"{len(kaynak_haberleri)} haber."
+                  )
 
               except Exception as e:
 
@@ -108,9 +142,9 @@ jobs:
                   )
 
 
-          # --------------------------------------------------
+          # ==================================================
           # NEFES GÜNDEM
-          # --------------------------------------------------
+          # ==================================================
 
           class NefesParser(HTMLParser):
 
@@ -169,11 +203,12 @@ jobs:
 
                   link = self.current_link.strip()
 
-                  # Haber bağlantılarını seç
                   if (
                       title
                       and len(title) >= 20
-                      and link.startswith("https://www.nefes.com.tr/")
+                      and link.startswith(
+                          "https://www.nefes.com.tr/"
+                      )
                       and link.rstrip("/").count("/") >= 3
                   ):
 
@@ -194,7 +229,8 @@ jobs:
                   nefes_url,
                   headers={
                       "User-Agent":
-                      "Mozilla/5.0 (compatible; KarsiHaberMotoru/1.0)"
+                      "Mozilla/5.0 "
+                      "(compatible; KarsiHaberMotoru/1.0)"
                   }
               )
 
@@ -233,7 +269,8 @@ jobs:
                       break
 
               print(
-                  f"Nefes: {len(gorulen_linkler)} haber bulundu."
+                  f"Nefes: "
+                  f"{len(gorulen_linkler)} haber bulundu."
               )
 
           except Exception as e:
@@ -243,9 +280,9 @@ jobs:
               )
 
 
-          # --------------------------------------------------
+          # ==================================================
           # TEKRARLARI TEMİZLE
-          # --------------------------------------------------
+          # ==================================================
 
           benzersiz = {}
 
@@ -264,16 +301,44 @@ jobs:
           )
 
 
-          # --------------------------------------------------
+          # ==================================================
+          # TARİHE GÖRE SIRALA
+          # ==================================================
+
+          def haber_tarihi(haber):
+
+              tarih = haber.get("tarih", "")
+
+              if not tarih:
+                  return 0
+
+              try:
+
+                  return parsedate_to_datetime(
+                      tarih
+                  ).timestamp()
+
+              except:
+
+                  return 0
+
+
+          haberler.sort(
+              key=haber_tarihi,
+              reverse=True
+          )
+
+
+          # ==================================================
           # EN FAZLA 75 HABER
-          # --------------------------------------------------
+          # ==================================================
 
           haberler = haberler[:75]
 
 
-          # --------------------------------------------------
+          # ==================================================
           # JSON DOSYASI
-          # --------------------------------------------------
+          # ==================================================
 
           veri = {
               "guncelleme":
@@ -304,9 +369,33 @@ jobs:
               )
 
 
+          # ==================================================
+          # SONUÇ
+          # ==================================================
+
+          kaynak_sayilari = {}
+
+          for haber in haberler:
+
+              kaynak = haber["kaynak"]
+
+              kaynak_sayilari[kaynak] = (
+                  kaynak_sayilari.get(kaynak, 0) + 1
+              )
+
+          print("")
+          print("========== KARŞI HABER MOTORU ==========")
           print(
-              f"Toplam {len(haberler)} benzersiz haber bulundu."
+              f"Toplam: {len(haberler)} haber"
           )
+
+          for kaynak, sayi in kaynak_sayilari.items():
+
+              print(
+                  f"{kaynak}: {sayi}"
+              )
+
+          print("=========================================")
 
           PY
 
