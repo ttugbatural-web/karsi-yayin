@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 
 <html lang="tr">
+
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>KARŞI — Bağımsız Yayın</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -20,10 +23,14 @@
       color: #111;
     }
 
+    /* =========================
+       HEADER
+    ========================= */
+
     header {
       background: #111;
       color: white;
-      padding: 18px 20px 22px;
+      padding: 16px 20px 19px;
       border-bottom: 4px solid #c40000;
     }
 
@@ -40,7 +47,7 @@
       position: relative;
       display: inline-block;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 48px;
+      font-size: 46px;
       font-weight: 900;
       letter-spacing: -3px;
       line-height: 1;
@@ -61,11 +68,11 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 8px;
+      gap: 7px;
     }
 
     .languages {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: bold;
       letter-spacing: 1px;
     }
@@ -87,12 +94,16 @@
 
     .tagline {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 14px;
+      font-size: 13px;
       color: #cfcfcf;
       max-width: 260px;
       text-align: right;
-      line-height: 1.4;
+      line-height: 1.35;
     }
+
+    /* =========================
+       NAV
+    ========================= */
 
     nav {
       background: white;
@@ -109,9 +120,9 @@
     nav a {
       color: #111;
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: bold;
-      padding: 15px 18px;
+      padding: 13px 17px;
       white-space: nowrap;
     }
 
@@ -120,28 +131,37 @@
       color: white;
     }
 
+    /* =========================
+       MAIN
+    ========================= */
+
     main {
       max-width: 1100px;
-      margin: 30px auto;
+      margin: 26px auto;
       padding: 0 18px;
     }
+
+    /* =========================
+       ANA MANŞET
+    ========================= */
 
     .headline {
       background: #111;
       color: white;
-      padding: 35px;
-      margin-bottom: 28px;
+      padding: 26px 30px;
+      margin-bottom: 25px;
       position: relative;
       overflow: hidden;
+      border-left: 5px solid #c40000;
     }
 
     .headline::before {
       content: "KARŞI";
       position: absolute;
-      right: -20px;
-      bottom: -45px;
+      right: -15px;
+      bottom: -42px;
       font-family: Georgia, serif;
-      font-size: 150px;
+      font-size: 125px;
       font-weight: bold;
       color: #1d1d1d;
       transform: rotate(-8deg);
@@ -150,40 +170,44 @@
     .headline-content {
       position: relative;
       z-index: 2;
-      max-width: 720px;
+      max-width: 680px;
     }
 
     .label {
       display: inline-block;
       background: #c40000;
       color: white;
-      padding: 5px 9px;
-      font-size: 11px;
+      padding: 4px 8px;
+      font-size: 10px;
       font-weight: bold;
       letter-spacing: 1px;
-      margin-bottom: 15px;
+      margin-bottom: 11px;
     }
 
     .headline h1 {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 38px;
-      line-height: 1.08;
-      margin-bottom: 15px;
+      font-size: 31px;
+      line-height: 1.1;
+      margin-bottom: 10px;
     }
 
     .headline p {
       color: #d0d0d0;
-      line-height: 1.6;
-      font-size: 16px;
+      line-height: 1.5;
+      font-size: 14px;
     }
+
+    /* =========================
+       BÖLÜM BAŞLIĞI
+    ========================= */
 
     .section-title {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin: 30px 0 16px;
+      margin: 27px 0 14px;
       font-family: Georgia, serif;
-      font-size: 25px;
+      font-size: 22px;
     }
 
     .section-title::after {
@@ -193,48 +217,56 @@
       flex: 1;
     }
 
+    /* =========================
+       KARTLAR
+    ========================= */
+
     .articles {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 14px;
     }
 
     article {
       background: white;
       border: 1px solid #ddd;
-      padding: 22px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      padding: 17px;
+      min-height: 190px;
+      transition:
+        transform 0.18s,
+        box-shadow 0.18s;
     }
 
     article:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 7px 18px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+      box-shadow:
+        0 5px 14px rgba(0,0,0,0.07);
     }
 
     article .category {
       color: #c40000;
-      font-size: 11px;
+      font-size: 9px;
       font-weight: bold;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
+      letter-spacing: 1.2px;
+      margin-bottom: 8px;
     }
 
     article h2 {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 22px;
-      line-height: 1.2;
-      margin-bottom: 10px;
+      font-size: 19px;
+      line-height: 1.22;
+      margin-bottom: 8px;
     }
 
     article p {
       color: #555;
-      line-height: 1.6;
-      font-size: 14px;
+      line-height: 1.5;
+      font-size: 13px;
     }
 
     .read {
-      margin-top: 18px;
-      font-size: 11px;
+      margin-top: 13px;
+      font-size: 9px;
       font-weight: bold;
       letter-spacing: 1px;
       color: #111;
@@ -245,33 +277,53 @@
       color: #c40000;
     }
 
+    /* =========================
+       FOOTER
+    ========================= */
+
     footer {
       background: #111;
       color: #999;
       text-align: center;
-      padding: 30px 20px;
-      margin-top: 50px;
-      font-size: 13px;
+      padding: 26px 20px;
+      margin-top: 42px;
+      font-size: 12px;
     }
 
     footer strong {
       color: white;
       font-family: Georgia, serif;
-      font-size: 18px;
+      font-size: 17px;
     }
 
-    @media (max-width: 700px) {
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      .articles {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+    }
+
+    /* =========================
+       MOBİL
+    ========================= */
+
+    @media (max-width: 600px) {
 
       header {
-        padding: 16px;
+        padding: 14px 15px 17px;
       }
 
       .logo {
-        font-size: 38px;
+        font-size: 37px;
       }
 
       .top-right {
-        gap: 5px;
+        gap: 4px;
       }
 
       .tagline {
@@ -279,29 +331,71 @@
       }
 
       .languages {
-        margin-top: 4px;
+        margin-top: 3px;
+        font-size: 9px;
+      }
+
+      nav a {
+        font-size: 11px;
+        padding: 12px 13px;
+      }
+
+      main {
+        margin: 20px auto;
+        padding: 0 13px;
       }
 
       .headline {
-        padding: 25px 20px;
+        padding: 21px 18px;
+        margin-bottom: 21px;
+      }
+
+      .headline::before {
+        font-size: 90px;
+        bottom: -28px;
       }
 
       .headline h1 {
-        font-size: 29px;
+        font-size: 25px;
       }
 
       .headline p {
-        font-size: 14px;
+        font-size: 13px;
+      }
+
+      .section-title {
+        font-size: 20px;
+        margin: 23px 0 12px;
       }
 
       .articles {
         grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      article {
+        padding: 15px;
+        min-height: 0;
       }
 
       article h2 {
-        font-size: 21px;
+        font-size: 18px;
       }
+
+      article p {
+        font-size: 13px;
+      }
+
+      .read {
+        margin-top: 10px;
+      }
+
+      footer {
+        margin-top: 35px;
+      }
+
     }
+
   </style>
 
 </head>
@@ -344,23 +438,33 @@
   <div class="nav-inner">
 
 ```
-<a href="index.html">ANA SAYFA</a>
+<a href="index.html">
+  ANA SAYFA
+</a>
 
-<a href="kose-yazilari.html">KÖŞE YAZILARI</a>
+<a href="kose-yazilari.html">
+  KÖŞE YAZILARI
+</a>
 
 <a href="haberler.html">
-    HABERLER
+  HABERLER
 </a>
 
 <a href="gundem.html">
-    KARŞI GÜNDEM
+  KARŞI GÜNDEM
 </a>
 
-<a href="#">DÜNYA</a>
+<a href="#">
+  DÜNYA
+</a>
 
-<a href="#">DOSYALAR</a>
+<a href="#">
+  DOSYALAR
+</a>
 
-<a href="#">HAKKIMIZDA</a>
+<a href="#">
+  HAKKIMIZDA
+</a>
 ```
 
   </div>
@@ -401,8 +505,7 @@
 
 ```
 <article
-  
-onclick="window.location.href='diktator-olmadan-once-herkes-halkcidir.html'"
+  onclick="window.location.href='diktator-olmadan-once-herkes-halkcidir.html'"
   style="cursor: pointer;"
 >
 
@@ -481,5 +584,5 @@ Bağımsız düşüncenin tarafı.
 </footer>
 
 </body>
-</html>
 
+</html>
