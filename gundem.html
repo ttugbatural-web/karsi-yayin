@@ -282,8 +282,6 @@ KARŞI — Bağımsız yayın
 </footer>
 
 
-<!-- SUPABASE -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
@@ -316,11 +314,10 @@ function tarihFormatla(tarih) {
         return "";
     }
 
-    const date =
-        new Date(tarih);
+    const date = new Date(tarih);
 
     if (isNaN(date.getTime())) {
-        return tarih;
+        return "";
     }
 
     return date.toLocaleString(
@@ -391,7 +388,7 @@ function guvenliUrl(url) {
     catch (error) {
 
         console.warn(
-            "Geçersiz bağlantı:",
+            "Geçersiz URL:",
             url
         );
 
@@ -403,7 +400,8 @@ function guvenliUrl(url) {
 
 
 /* ==================================================
-   JSON HABERLERİ
+   DIŞ HABERLER
+   data/haberler.json
 ================================================== */
 
 async function jsonHaberleriGetir() {
@@ -416,6 +414,7 @@ async function jsonHaberleriGetir() {
                 Date.now()
             );
 
+
         if (!cevap.ok) {
 
             throw new Error(
@@ -424,14 +423,32 @@ async function jsonHaberleriGetir() {
 
         }
 
+
         const veriler =
             await cevap.json();
 
-        if (!Array.isArray(veriler)) {
-            return [];
-        }
 
-        return veriler.map(
+        /*
+         * JSON iki farklı yapıda olabilir:
+         *
+         * [...]
+         *
+         * veya
+         *
+         * {
+         *   "haberler": [...]
+         * }
+         */
+
+        const liste =
+            Array.isArray(veriler)
+                ? veriler
+                : Array.isArray(veriler.haberler)
+                    ? veriler.haberler
+                    : [];
+
+
+        return liste.map(
             function(haber) {
 
                 return {
@@ -475,7 +492,7 @@ async function jsonHaberleriGetir() {
 
     catch (error) {
 
-        console.warn(
+        console.error(
             "Dış haberler alınamadı:",
             error
         );
@@ -488,7 +505,8 @@ async function jsonHaberleriGetir() {
 
 
 /* ==================================================
-   SUPABASE HABERLERİ
+   KARŞI HABERLERİ
+   SUPABASE
 ================================================== */
 
 async function supabaseHaberleriGetir() {
@@ -500,7 +518,20 @@ async function supabaseHaberleriGetir() {
         await supabaseClient
             .from("haberler")
             .select(
-                "id, baslik, spot, ozet, icerik, kategori, kaynak, kapak_fotografi_url, slug, durum, yayin_tarihi, created_at"
+                `
+                id,
+                baslik,
+                spot,
+                ozet,
+                icerik,
+                kategori,
+                kaynak,
+                kapak_fotografi_url,
+                slug,
+                durum,
+                yayin_tarihi,
+                created_at
+                `
             )
             .eq(
                 "durum",
@@ -517,7 +548,7 @@ async function supabaseHaberleriGetir() {
     if (error) {
 
         console.error(
-            "Supabase haberleri alınamadı:",
+            "KARŞI haberleri alınamadı:",
             error
         );
 
@@ -542,15 +573,12 @@ async function supabaseHaberleriGetir() {
                     haber.id,
 
                 baslik:
-                    haber.baslik,
+                    haber.baslik ||
+                    "Başlıksız haber",
 
                 aciklama:
                     haber.spot ||
                     haber.ozet ||
-                    "",
-
-                icerik:
-                    haber.icerik ||
                     "",
 
                 kaynak:
@@ -566,12 +594,17 @@ async function supabaseHaberleriGetir() {
                     null,
 
                 slug:
-                    haber.slug,
+                    haber.slug ||
+                    "",
 
                 url:
-                    "haberler/" +
-                    haber.slug +
-                    ".html",
+                    haber.slug
+                        ? "haberler/" +
+                          encodeURIComponent(
+                              haber.slug
+                          ) +
+                          ".html"
+                        : "#",
 
                 tarih:
                     haber.yayin_tarihi ||
@@ -613,7 +646,7 @@ function haberleriSirala(haberler) {
 
 
 /* ==================================================
-   HABERLERİ EKRANA BAS
+   HABERLERİ GÖSTER
 ================================================== */
 
 function haberleriGoster(haberler) {
@@ -662,7 +695,7 @@ function haberleriGoster(haberler) {
 
 
             /* ======================================
-               KARŞI HABERİ
+               KARŞI HABER
             ====================================== */
 
             if (
@@ -706,25 +739,31 @@ function haberleriGoster(haberler) {
                     </div>
 
                     <h2>
-                        <a
-                            href="${haberUrl}"
-                        >
+
+                        <a href="${haberUrl}">
+
                             ${guvenliMetin(
                                 haber.baslik
                             )}
+
                         </a>
+
                     </h2>
 
                     <div class="aciklama">
+
                         ${guvenliMetin(
                             haber.aciklama
                         )}
+
                     </div>
 
                     <div class="tarih">
+
                         ${tarihFormatla(
                             haber.tarih
                         )}
+
                     </div>
 
                 `;
@@ -733,7 +772,7 @@ function haberleriGoster(haberler) {
 
 
             /* ======================================
-               DIŞ KAYNAK HABERİ
+               DIŞ KAYNAK HABER
             ====================================== */
 
             else {
@@ -747,9 +786,11 @@ function haberleriGoster(haberler) {
                 article.innerHTML = `
 
                     <div class="kaynak">
+
                         ${guvenliMetin(
                             haber.kaynak
                         )}
+
                     </div>
 
                     <h2>
@@ -818,7 +859,8 @@ async function haberleriGetir() {
 
 
         /*
-         * İKİ KAYNAĞI AYNI ANDA GETİR
+         * DIŞ HABERLER VE KARŞI HABERLER
+         * AYNI ANDA GETİRİLİYOR.
          */
 
         const [
@@ -832,7 +874,7 @@ async function haberleriGetir() {
 
 
         /*
-         * BİRLEŞTİR
+         * İKİ KAYNAĞI BİRLEŞTİR
          */
 
         const tumHaberler =
@@ -843,7 +885,7 @@ async function haberleriGetir() {
 
 
         /*
-         * TARİHE GÖRE SIRALA
+         * YENİDEN TARİHE GÖRE SIRALA
          */
 
         haberleriSirala(
@@ -861,13 +903,12 @@ async function haberleriGetir() {
 
 
         /*
-         * DURUM MESAJI
+         * DURUM
          */
 
         durum.textContent =
             tumHaberler.length +
             " haber gösteriliyor.";
-
 
     }
 
@@ -877,7 +918,6 @@ async function haberleriGetir() {
             "Haber sistemi hatası:",
             error
         );
-
 
         durum.textContent =
             "Haberler yüklenirken bir hata oluştu.";
