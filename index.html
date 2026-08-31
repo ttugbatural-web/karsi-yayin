@@ -23,7 +23,6 @@
       color: #111;
     }
 
-
     /* =========================
        HEADER
     ========================= */
@@ -31,7 +30,7 @@
     header {
       background: #111;
       color: white;
-      padding: 16px 20px 19px;
+      padding: 18px 20px 22px;
       border-bottom: 4px solid #c40000;
     }
 
@@ -48,7 +47,7 @@
       position: relative;
       display: inline-block;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 46px;
+      font-size: 48px;
       font-weight: 900;
       letter-spacing: -3px;
       line-height: 1;
@@ -69,11 +68,11 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 7px;
+      gap: 8px;
     }
 
     .languages {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: bold;
       letter-spacing: 1px;
     }
@@ -95,13 +94,12 @@
 
     .tagline {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 13px;
+      font-size: 14px;
       color: #cfcfcf;
       max-width: 260px;
       text-align: right;
-      line-height: 1.35;
+      line-height: 1.4;
     }
-
 
     /* =========================
        NAV
@@ -122,9 +120,9 @@
     nav a {
       color: #111;
       text-decoration: none;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: bold;
-      padding: 13px 17px;
+      padding: 15px 18px;
       white-space: nowrap;
     }
 
@@ -133,39 +131,36 @@
       color: white;
     }
 
-
     /* =========================
        MAIN
     ========================= */
 
     main {
       max-width: 1100px;
-      margin: 26px auto;
+      margin: 30px auto;
       padding: 0 18px;
     }
 
-
     /* =========================
-       ANA BANNER
+       BÜYÜK BANNER
     ========================= */
 
     .headline {
       background: #111;
       color: white;
-      padding: 26px 30px;
-      margin-bottom: 25px;
+      padding: 35px;
+      margin-bottom: 28px;
       position: relative;
       overflow: hidden;
-      border-left: 5px solid #c40000;
     }
 
     .headline::before {
       content: "KARŞI";
       position: absolute;
-      right: -15px;
-      bottom: -42px;
+      right: -20px;
+      bottom: -45px;
       font-family: Georgia, serif;
-      font-size: 125px;
+      font-size: 150px;
       font-weight: bold;
       color: #1d1d1d;
       transform: rotate(-8deg);
@@ -174,33 +169,32 @@
     .headline-content {
       position: relative;
       z-index: 2;
-      max-width: 680px;
+      max-width: 720px;
     }
 
     .label {
       display: inline-block;
       background: #c40000;
       color: white;
-      padding: 4px 8px;
-      font-size: 10px;
+      padding: 5px 9px;
+      font-size: 11px;
       font-weight: bold;
       letter-spacing: 1px;
-      margin-bottom: 11px;
+      margin-bottom: 15px;
     }
 
     .headline h1 {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 31px;
-      line-height: 1.1;
-      margin-bottom: 10px;
+      font-size: 38px;
+      line-height: 1.08;
+      margin-bottom: 15px;
     }
 
     .headline p {
       color: #d0d0d0;
-      line-height: 1.5;
-      font-size: 14px;
+      line-height: 1.6;
+      font-size: 16px;
     }
-
 
     /* =========================
        BÖLÜM BAŞLIĞI
@@ -210,9 +204,9 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      margin: 27px 0 14px;
+      margin: 30px 0 16px;
       font-family: Georgia, serif;
-      font-size: 22px;
+      font-size: 25px;
     }
 
     .section-title::after {
@@ -222,67 +216,65 @@
       flex: 1;
     }
 
-
     /* =========================
-       KARTLAR
+       3 KART
     ========================= */
 
     .articles {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      align-items: start;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      align-items: stretch;
     }
 
-    article {
+    .article-card {
       background: white;
       border: 1px solid #ddd;
-      padding: 17px;
+      padding: 20px;
+      min-height: 205px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      text-decoration: none;
+      color: #111;
       transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
+        transform 0.2s,
+        box-shadow 0.2s;
     }
 
-    article:hover {
-      transform: translateY(-2px);
-      box-shadow:
-        0 5px 14px rgba(0,0,0,0.07);
+    .article-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 18px rgba(0,0,0,0.08);
     }
 
-    article .category {
+    .article-card .category {
       color: #c40000;
-      font-size: 9px;
+      font-size: 10px;
       font-weight: bold;
-      letter-spacing: 1.2px;
-      margin-bottom: 8px;
+      letter-spacing: 1px;
+      margin-bottom: 9px;
     }
 
-    article h2 {
+    .article-card h2 {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 19px;
-      line-height: 1.22;
-      margin-bottom: 8px;
+      font-size: 20px;
+      line-height: 1.25;
+      margin-bottom: 10px;
     }
 
-    article p {
+    .article-card p {
       color: #555;
-      line-height: 1.5;
+      line-height: 1.55;
       font-size: 13px;
     }
 
-    .read {
-      margin-top: 13px;
-      font-size: 9px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      color: #111;
-    }
+    /* =========================
+       SADECE İLK KART TIKLANABİLİR
+    ========================= */
 
-    .read::after {
-      content: " →";
-      color: #c40000;
+    .article-card.active {
+      cursor: pointer;
     }
-
 
     /* =========================
        FOOTER
@@ -292,30 +284,28 @@
       background: #111;
       color: #999;
       text-align: center;
-      padding: 26px 20px;
-      margin-top: 42px;
-      font-size: 12px;
+      padding: 30px 20px;
+      margin-top: 50px;
+      font-size: 13px;
     }
 
     footer strong {
       color: white;
       font-family: Georgia, serif;
-      font-size: 17px;
+      font-size: 18px;
     }
-
 
     /* =========================
        TABLET
     ========================= */
 
-    @media (max-width: 850px) {
+    @media (max-width: 800px) {
 
       .articles {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, 1fr);
       }
 
     }
-
 
     /* =========================
        MOBİL
@@ -324,15 +314,15 @@
     @media (max-width: 600px) {
 
       header {
-        padding: 14px 15px 17px;
+        padding: 16px;
       }
 
       .logo {
-        font-size: 37px;
+        font-size: 38px;
       }
 
       .top-right {
-        gap: 4px;
+        gap: 5px;
       }
 
       .tagline {
@@ -340,66 +330,33 @@
       }
 
       .languages {
-        margin-top: 3px;
-        font-size: 9px;
-      }
-
-      nav a {
-        font-size: 11px;
-        padding: 12px 13px;
-      }
-
-      main {
-        margin: 20px auto;
-        padding: 0 13px;
+        margin-top: 4px;
       }
 
       .headline {
-        padding: 21px 18px;
-        margin-bottom: 21px;
-      }
-
-      .headline::before {
-        font-size: 90px;
-        bottom: -28px;
+        padding: 25px 20px;
       }
 
       .headline h1 {
-        font-size: 25px;
+        font-size: 29px;
       }
 
       .headline p {
-        font-size: 13px;
-      }
-
-      .section-title {
-        font-size: 20px;
-        margin: 23px 0 12px;
+        font-size: 14px;
       }
 
       .articles {
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 14px;
       }
 
-      article {
-        padding: 15px;
+      .article-card {
+        min-height: 0;
+        padding: 18px;
       }
 
-      article h2 {
-        font-size: 18px;
-      }
-
-      article p {
-        font-size: 13px;
-      }
-
-      .read {
-        margin-top: 10px;
-      }
-
-      footer {
-        margin-top: 35px;
+      .article-card h2 {
+        font-size: 20px;
       }
 
     }
@@ -493,6 +450,8 @@
 
 <main>
 
+  <!-- BÜYÜK BANNER -->
+
   <section class="headline">
 
 ```
@@ -517,6 +476,8 @@
 
   </section>
 
+  <!-- KÖŞE YAZILARI -->
+
   <h2 class="section-title">
     Köşe Yazıları
   </h2>
@@ -524,9 +485,11 @@
   <section class="articles">
 
 ```
-<article
-  onclick="window.location.href='diktator-olmadan-once-herkes-halkcidir.html'"
-  style="cursor: pointer;"
+<!-- 1. KART -->
+
+<a
+  class="article-card active"
+  href="diktator-olmadan-once-herkes-halkcidir.html"
 >
 
   <div class="category">
@@ -538,18 +501,17 @@
   </h2>
 
   <p>
-    İktidara giden yolun ilk taşları genellikle halkın
-    sofrasından döşenir. Sonra bir gün sofranın sahibi değişir.
+    İktidara giden yolun ilk taşları genellikle
+    halkın sofrasından döşenir. Sonra bir gün
+    sofranın sahibi değişir.
   </p>
 
-  <div class="read">
-    YAZIYI OKU
-  </div>
-
-</article>
+</a>
 
 
-<article>
+<!-- 2. KART -->
+
+<div class="article-card">
 
   <div class="category">
     GÜNDEM
@@ -564,10 +526,12 @@
     sade ve anlaşılır şekilde aktaracağız.
   </p>
 
-</article>
+</div>
 
 
-<article>
+<!-- 3. KART -->
+
+<div class="article-card">
 
   <div class="category">
     DOSYA
@@ -582,7 +546,7 @@
     araştırmalar ve özel dosyalar.
   </p>
 
-</article>
+</div>
 ```
 
   </section>
@@ -591,9 +555,7 @@
 
 <footer>
 
-  <strong>
-    KARŞI
-  </strong>
+<strong>KARŞI</strong>
 
 <br><br>
 
@@ -606,5 +568,4 @@ Bağımsız düşüncenin tarafı.
 </footer>
 
 </body>
-
 </html>
