@@ -22,10 +22,6 @@
       color: #111;
     }
 
-    /* =========================
-       HEADER
-    ========================= */
-
     header {
       background: #111;
       color: white;
@@ -36,11 +32,9 @@
     .header-inner {
       max-width: 1100px;
       margin: auto;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       gap: 20px;
     }
 
@@ -54,11 +48,8 @@
     .back {
       color: white;
       text-decoration: none;
-
       border: 1px solid #555;
-
       padding: 8px 12px;
-
       font-size: 12px;
     }
 
@@ -66,11 +57,6 @@
       background: white;
       color: #111;
     }
-
-
-    /* =========================
-       MAIN
-    ========================= */
 
     main {
       max-width: 1100px;
@@ -90,61 +76,16 @@
       margin-bottom: 30px;
     }
 
-
-    /* =========================
-       MESAJ
-    ========================= */
-
-    .message {
-      display: none;
-
-      padding: 14px;
-
-      margin-bottom: 20px;
-
-      font-size: 13px;
-    }
-
-    .message.success {
-      display: block;
-
-      background: #e6f4e6;
-
-      border-left: 4px solid #228b22;
-
-      color: #145214;
-    }
-
-    .message.error {
-      display: block;
-
-      background: #f8e5e5;
-
-      border-left: 4px solid #c40000;
-
-      color: #7a0000;
-    }
-
-
-    /* =========================
-       FORM
-    ========================= */
-
     .form-box {
       background: white;
-
       border: 1px solid #ddd;
-
       padding: 25px;
-
       margin-bottom: 35px;
     }
 
     .form-box h2 {
       font-family: Georgia, "Times New Roman", serif;
-
       font-size: 25px;
-
       margin-bottom: 22px;
     }
 
@@ -154,378 +95,231 @@
 
     .form-group label {
       display: block;
-
       font-size: 12px;
-
       font-weight: bold;
-
       margin-bottom: 7px;
     }
 
     .form-group input,
     .form-group textarea,
     .form-group select {
-
       width: 100%;
-
       border: 1px solid #ccc;
-
       padding: 12px;
-
       font-family: Arial, Helvetica, sans-serif;
-
       font-size: 14px;
-
       outline: none;
     }
 
     .form-group textarea {
-      min-height: 130px;
-
+      min-height: 140px;
       resize: vertical;
     }
 
     .form-group textarea.icerik {
-      min-height: 450px;
-
+      min-height: 420px;
       font-family: Georgia, "Times New Roman", serif;
-
       line-height: 1.7;
     }
 
     .form-group input:focus,
     .form-group textarea:focus,
     .form-group select:focus {
-
       border-color: #111;
     }
 
-
-    /* =========================
-       FOTOĞRAF
-    ========================= */
-
     .photo-area {
-
       display: flex;
-
       align-items: center;
-
       gap: 20px;
     }
 
     .photo-preview {
-
       width: 180px;
-
       height: 110px;
-
       background: #ddd;
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       overflow: hidden;
-
       flex-shrink: 0;
-
       font-size: 30px;
-
       color: #777;
     }
 
     .photo-preview img {
-
       width: 100%;
-
       height: 100%;
-
       object-fit: cover;
     }
 
     .photo-info {
-
       font-size: 12px;
-
       color: #666;
-
       line-height: 1.5;
     }
 
     .photo-info input {
-
       margin-top: 8px;
     }
 
-
-    /* =========================
-       SLUG
-    ========================= */
-
     .slug-preview {
-
       margin-top: 7px;
-
       color: #777;
-
       font-size: 12px;
     }
 
-
-    /* =========================
-       BUTONLAR
-    ========================= */
-
     .buttons {
-
       display: flex;
-
       gap: 10px;
-
       flex-wrap: wrap;
-
       margin-top: 25px;
     }
 
     .button {
-
       border: none;
-
       padding: 13px 20px;
-
       font-size: 12px;
-
       font-weight: bold;
-
       letter-spacing: 1px;
-
       cursor: pointer;
     }
 
     .save-button {
-
       background: #111;
-
       color: white;
     }
 
     .save-button:hover {
-
       background: #c40000;
     }
 
     .cancel-button {
-
       background: white;
-
       border: 1px solid #ccc;
-
       color: #555;
     }
 
     .cancel-button:hover {
-
       background: #eee;
     }
 
+    .message {
+      padding: 14px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      display: none;
+    }
 
-    /* =========================
-       HABERLER
-    ========================= */
+    .message.success {
+      display: block;
+      background: #e6f4e6;
+      border-left: 4px solid #228b22;
+      color: #145214;
+    }
 
-    .news-title {
+    .message.error {
+      display: block;
+      background: #f8e5e5;
+      border-left: 4px solid #c40000;
+      color: #7a0000;
+    }
 
+    .articles-title {
       font-family: Georgia, "Times New Roman", serif;
-
       font-size: 27px;
-
       margin-bottom: 15px;
     }
 
-    .news-list {
-
+    .articles {
       display: grid;
-
-      grid-template-columns:
-        repeat(2, 1fr);
-
+      grid-template-columns: repeat(2, 1fr);
       gap: 18px;
     }
 
-    .news-card {
-
+    .article-card {
       background: white;
-
       border: 1px solid #ddd;
-
       padding: 20px;
     }
 
-    .news-image {
-
-      width: 100%;
-
-      height: 180px;
-
-      background: #ddd;
-
-      margin-bottom: 18px;
-
-      overflow: hidden;
+    .article-card h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      margin-bottom: 8px;
+      line-height: 1.25;
     }
 
-    .news-image img {
+    .article-meta {
+      color: #777;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
 
-      width: 100%;
-
-      height: 100%;
-
-      object-fit: cover;
+    .article-summary {
+      color: #555;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 15px;
     }
 
     .status-badge {
-
       display: inline-block;
-
       padding: 5px 8px;
-
       font-size: 10px;
-
       font-weight: bold;
-
       letter-spacing: 1px;
-
       margin-bottom: 12px;
     }
 
     .status-yayinda {
-
       background: #e3f2e3;
-
       color: #287028;
     }
 
     .status-taslak {
-
       background: #eee;
-
       color: #666;
     }
 
-    .news-card h3 {
-
-      font-family: Georgia, "Times New Roman", serif;
-
-      font-size: 22px;
-
-      line-height: 1.25;
-
-      margin-bottom: 8px;
-    }
-
-    .news-meta {
-
-      color: #777;
-
-      font-size: 12px;
-
-      margin-bottom: 10px;
-
-      line-height: 1.5;
-    }
-
-    .news-summary {
-
-      color: #555;
-
-      font-size: 13px;
-
-      line-height: 1.5;
-
-      margin-bottom: 12px;
-    }
-
-    .news-slug {
-
-      color: #777;
-
-      font-size: 11px;
-
-      margin-top: 10px;
-    }
-
     .card-buttons {
-
       display: flex;
-
       gap: 8px;
-
       margin-top: 15px;
     }
 
     .card-button {
-
       border: 1px solid #ccc;
-
       background: white;
-
       padding: 8px 12px;
-
       cursor: pointer;
-
       font-size: 11px;
     }
 
     .card-button:hover {
-
       background: #eee;
     }
 
     .delete-button {
-
       color: #a00000;
     }
 
     .empty {
-
       background: white;
-
       border: 1px solid #ddd;
-
       padding: 25px;
-
       color: #777;
-
       font-size: 14px;
     }
 
-
-    /* =========================
-       FOOTER
-    ========================= */
-
     footer {
-
       margin-top: 60px;
-
       background: #111;
-
       color: #999;
-
       text-align: center;
-
       padding: 25px;
-
       font-size: 12px;
     }
-
-
-    /* =========================
-       MOBİL
-    ========================= */
 
     @media (max-width: 750px) {
 
@@ -537,21 +331,17 @@
         padding: 20px;
       }
 
-      .news-list {
+      .articles {
         grid-template-columns: 1fr;
       }
 
       .photo-area {
-
         align-items: flex-start;
-
         flex-direction: column;
       }
 
       .photo-preview {
-
         width: 100%;
-
         height: 180px;
       }
 
@@ -561,9 +351,7 @@
 
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -584,40 +372,27 @@
 
 </header>
 
-
 <main>
-
 
   <h1 class="page-title">
     Haberler
   </h1>
-
 
   <p class="page-description">
     KARŞI haberlerini buradan oluşturabilir,
     düzenleyebilir ve yayınlayabilirsin.
   </p>
 
-
   <div
     id="message"
     class="message"
   ></div>
 
-
-  <!-- =========================
-       HABER FORMU
-  ========================= -->
-
   <section class="form-box">
-
 
     <h2 id="formTitle">
       Yeni Haber
     </h2>
-
-
-    <!-- BAŞLIK -->
 
     <div class="form-group">
 
@@ -627,30 +402,40 @@
 
       <input
         type="text"
-        id="newsTitle"
+        id="articleTitle"
         placeholder="Haber başlığı..."
       >
 
     </div>
 
-
-    <!-- SPOT -->
-
     <div class="form-group">
 
       <label>
-        SPOT / ÖZET
+        ÖZET / SPOT
       </label>
 
       <textarea
-        id="newsSpot"
-        placeholder="Haberin kısa özeti..."
+        id="articleSummary"
+        placeholder="Haberin kısa özeti veya spot metni..."
       ></textarea>
 
     </div>
 
+    <div class="form-group">
 
-    <!-- KATEGORİ -->
+      <label>
+        YAZAR
+      </label>
+
+      <select id="articleAuthor">
+
+        <option value="">
+          Yazar seç
+        </option>
+
+      </select>
+
+    </div>
 
     <div class="form-group">
 
@@ -658,14 +443,14 @@
         KATEGORİ
       </label>
 
-      <select id="newsCategory">
+      <select id="articleCategory">
 
         <option value="Gündem">
           Gündem
         </option>
 
-        <option value="Siyaset">
-          Siyaset
+        <option value="Politika">
+          Politika
         </option>
 
         <option value="Dünya">
@@ -680,6 +465,10 @@
           Toplum
         </option>
 
+        <option value="Teknoloji">
+          Teknoloji
+        </option>
+
         <option value="Kültür">
           Kültür
         </option>
@@ -692,26 +481,6 @@
 
     </div>
 
-
-    <!-- KAYNAK -->
-
-    <div class="form-group">
-
-      <label>
-        KAYNAK
-      </label>
-
-      <input
-        type="text"
-        id="newsSource"
-        placeholder="Örn. Reuters, BBC, AA..."
-      >
-
-    </div>
-
-
-    <!-- YAZI -->
-
     <div class="form-group">
 
       <label>
@@ -719,15 +488,12 @@
       </label>
 
       <textarea
-        id="newsContent"
+        id="articleContent"
         class="icerik"
         placeholder="Haber metnini buraya yaz..."
       ></textarea>
 
     </div>
-
-
-    <!-- FOTOĞRAF -->
 
     <div class="form-group">
 
@@ -735,9 +501,7 @@
         KAPAK FOTOĞRAFI
       </label>
 
-
       <div class="photo-area">
-
 
         <div
           class="photo-preview"
@@ -745,7 +509,6 @@
         >
           📰
         </div>
-
 
         <div class="photo-info">
 
@@ -759,7 +522,7 @@
 
           <input
             type="file"
-            id="newsPhoto"
+            id="articlePhoto"
             accept="image/jpeg,image/png"
           >
 
@@ -769,9 +532,6 @@
 
     </div>
 
-
-    <!-- SLUG -->
-
     <div class="form-group">
 
       <label>
@@ -780,21 +540,15 @@
 
       <input
         type="text"
-        id="newsSlug"
-        placeholder="ornek-haber-basligi"
+        id="articleSlug"
+        placeholder="haber-basligi"
       >
 
       <div class="slug-preview">
-
-        URL:
-        /haberler/<span id="slugPreview"></span>
-
+        URL: /haberler/<span id="slugPreview"></span>
       </div>
 
     </div>
-
-
-    <!-- DURUM -->
 
     <div class="form-group">
 
@@ -802,7 +556,7 @@
         DURUM
       </label>
 
-      <select id="newsStatus">
+      <select id="articleStatus">
 
         <option value="taslak">
           Taslak
@@ -816,9 +570,6 @@
 
     </div>
 
-
-    <!-- BUTONLAR -->
-
     <div class="buttons">
 
       <button
@@ -828,7 +579,6 @@
       >
         HABERİ KAYDET
       </button>
-
 
       <button
         class="button cancel-button"
@@ -841,22 +591,15 @@
 
     </div>
 
-
   </section>
 
-
-  <!-- =========================
-       HABER LİSTESİ
-  ========================= -->
-
-  <h2 class="news-title">
+  <h2 class="articles-title">
     Mevcut Haberler
   </h2>
 
-
   <section
-    class="news-list"
-    id="newsList"
+    class="articles"
+    id="articlesList"
   >
 
     <div class="empty">
@@ -865,9 +608,7 @@
 
   </section>
 
-
 </main>
-
 
 <footer>
 
@@ -875,9 +616,7 @@
 
 </footer>
 
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <script>
 
@@ -885,14 +624,11 @@
      SUPABASE
   ================================================== */
 
-
   const SUPABASE_URL =
     "https://rfqiffvudbmphvklxetf.supabase.co";
 
-
   const SUPABASE_ANON_KEY =
     "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
-
 
   const supabaseClient =
     window.supabase.createClient(
@@ -905,19 +641,16 @@
      DEĞİŞKENLER
   ================================================== */
 
-
   let duzenlenenHaberId = null;
 
   let mevcutFotografUrl = null;
 
 
   const photoInput =
-    document.getElementById("newsPhoto");
-
+    document.getElementById("articlePhoto");
 
   const photoPreview =
     document.getElementById("photoPreview");
-
 
   const saveButton =
     document.getElementById("saveButton");
@@ -927,33 +660,26 @@
      SLUG
   ================================================== */
 
-
   function slugOlustur(metin) {
 
     return metin
-
       .toLowerCase()
-
       .replace(/ğ/g, "g")
       .replace(/ü/g, "u")
       .replace(/ş/g, "s")
       .replace(/ı/g, "i")
       .replace(/ö/g, "o")
       .replace(/ç/g, "c")
-
       .replace(/[^a-z0-9\s-]/g, "")
-
       .trim()
-
       .replace(/\s+/g, "-")
-
       .replace(/-+/g, "-");
 
   }
 
 
   document
-    .getElementById("newsTitle")
+    .getElementById("articleTitle")
     .addEventListener(
       "input",
       function () {
@@ -963,11 +689,9 @@
           const slug =
             slugOlustur(this.value);
 
-
           document
-            .getElementById("newsSlug")
+            .getElementById("articleSlug")
             .value = slug;
-
 
           document
             .getElementById("slugPreview")
@@ -980,7 +704,7 @@
 
 
   document
-    .getElementById("newsSlug")
+    .getElementById("articleSlug")
     .addEventListener(
       "input",
       function () {
@@ -988,9 +712,7 @@
         const slug =
           slugOlustur(this.value);
 
-
         this.value = slug;
-
 
         document
           .getElementById("slugPreview")
@@ -1004,7 +726,6 @@
      FOTOĞRAF ÖNİZLEME
   ================================================== */
 
-
   photoInput.addEventListener(
     "change",
     function () {
@@ -1012,15 +733,12 @@
       const file =
         this.files[0];
 
-
       if (!file) {
         return;
       }
 
-
       const reader =
         new FileReader();
-
 
       reader.onload =
         function (e) {
@@ -1033,7 +751,6 @@
 
         };
 
-
       reader.readAsDataURL(file);
 
     }
@@ -1044,25 +761,19 @@
      MESAJ
   ================================================== */
 
-
   function mesajGoster(
     text,
     type
   ) {
 
     const message =
-      document.getElementById(
-        "message"
-      );
-
+      document.getElementById("message");
 
     message.textContent =
       text;
 
-
     message.className =
       "message " + type;
-
 
     window.scrollTo({
       top: 0,
@@ -1073,70 +784,71 @@
 
 
   /* ==================================================
-     FOTOĞRAF SİL
+     YAZARLARI GETİR
   ================================================== */
 
+  async function yazarlariGetir() {
 
-  async function fotografSil(url) {
-
-    if (!url) {
-      return;
-    }
-
-
-    try {
-
-      const marker =
-        "/storage/v1/object/public/haber-fotograflari/";
-
-
-      const index =
-        url.indexOf(marker);
-
-
-      if (index === -1) {
-        return;
-      }
-
-
-      const dosyaYolu =
-        decodeURIComponent(
-          url.substring(
-            index + marker.length
-          )
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("yazarlar")
+        .select("id, ad_soyad")
+        .order(
+          "ad_soyad",
+          {
+            ascending: true
+          }
         );
 
 
-      const {
-        error
-      } =
-        await supabaseClient
-          .storage
-          .from("haber-fotograflari")
-          .remove([
-            dosyaYolu
-          ]);
+    if (error) {
 
-
-      if (error) {
-
-        console.error(
-          "Fotoğraf silinemedi:",
-          error
-        );
-
-      }
-
-    }
-
-    catch (error) {
-
-      console.error(
-        "Fotoğraf silme hatası:",
-        error
+      mesajGoster(
+        "Yazarlar yüklenemedi: " +
+        error.message,
+        "error"
       );
 
+      return;
+
     }
+
+
+    const select =
+      document.getElementById(
+        "articleAuthor"
+      );
+
+
+    select.innerHTML =
+      `<option value="">
+        Yazar seç
+      </option>`;
+
+
+    data.forEach(
+      function (author) {
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value =
+          author.id;
+
+        option.textContent =
+          author.ad_soyad;
+
+        select.appendChild(
+          option
+        );
+
+      }
+    );
 
   }
 
@@ -1145,54 +857,52 @@
      HABER KAYDET
   ================================================== */
 
-
   async function haberKaydet() {
-
 
     const title =
       document
-        .getElementById("newsTitle")
+        .getElementById("articleTitle")
         .value
         .trim();
 
 
-    const spot =
+    const summary =
       document
-        .getElementById("newsSpot")
+        .getElementById("articleSummary")
         .value
         .trim();
+
+
+    const authorId =
+      document
+        .getElementById("articleAuthor")
+        .value;
 
 
     const category =
       document
-        .getElementById("newsCategory")
-        .value;
-
-
-    const source =
-      document
-        .getElementById("newsSource")
+        .getElementById("articleCategory")
         .value
         .trim();
 
 
     const content =
       document
-        .getElementById("newsContent")
+        .getElementById("articleContent")
         .value
         .trim();
 
 
     const slug =
       document
-        .getElementById("newsSlug")
+        .getElementById("articleSlug")
         .value
         .trim();
 
 
     const status =
       document
-        .getElementById("newsStatus")
+        .getElementById("articleStatus")
         .value;
 
 
@@ -1236,7 +946,8 @@
     }
 
 
-    saveButton.disabled = true;
+    saveButton.disabled =
+      true;
 
     saveButton.textContent =
       "KAYDEDİLİYOR...";
@@ -1244,22 +955,15 @@
 
     try {
 
-
       let fotografUrl =
         mevcutFotografUrl;
-
-
-      let yeniFotografYuklendi =
-        false;
 
 
       /* ==========================================
          FOTOĞRAF YÜKLE
       ========================================== */
 
-
       if (photoFile) {
-
 
         const uzanti =
           photoFile.name
@@ -1287,7 +991,6 @@
               photoFile,
               {
                 cacheControl: "3600",
-
                 upsert: false
               }
             );
@@ -1314,10 +1017,6 @@
         fotografUrl =
           publicUrlData.publicUrl;
 
-
-        yeniFotografYuklendi =
-          true;
-
       }
 
 
@@ -1325,9 +1024,7 @@
          YENİ HABER
       ========================================== */
 
-
       if (!duzenlenenHaberId) {
-
 
         const {
           error
@@ -1339,17 +1036,19 @@
               baslik:
                 title,
 
-              spot:
-                spot || null,
+              ozet:
+                summary || null,
 
               icerik:
                 content,
 
+              yazar_id:
+                authorId
+                  ? Number(authorId)
+                  : null,
+
               kategori:
                 category || "Gündem",
-
-              kaynak:
-                source || null,
 
               kapak_fotografi_url:
                 fotografUrl,
@@ -1381,9 +1080,7 @@
          HABER GÜNCELLE
       ========================================== */
 
-
       else {
-
 
         const {
           error
@@ -1395,17 +1092,19 @@
               baslik:
                 title,
 
-              spot:
-                spot || null,
+              ozet:
+                summary || null,
 
               icerik:
                 content,
 
+              yazar_id:
+                authorId
+                  ? Number(authorId)
+                  : null,
+
               kategori:
                 category || "Gündem",
-
-              kaynak:
-                source || null,
 
               kapak_fotografi_url:
                 fotografUrl,
@@ -1430,74 +1129,28 @@
 
         if (error) {
 
-          /* Yeni fotoğraf yüklenmiş ama
-             veritabanı güncellenememişse
-             yeni fotoğrafı temizle. */
-
-          if (
-            yeniFotografYuklendi &&
-            fotografUrl
-          ) {
-
-            await fotografSil(
-              fotografUrl
-            );
-
-          }
-
-
           throw error;
-
-        }
-
-
-        /* Eski fotoğrafı,
-           yeni fotoğraf başarıyla
-           kaydedildikten sonra sil. */
-
-        if (
-          yeniFotografYuklendi &&
-          mevcutFotografUrl &&
-          mevcutFotografUrl !== fotografUrl
-        ) {
-
-          await fotografSil(
-            mevcutFotografUrl
-          );
 
         }
 
       }
 
 
-      /* ==========================================
-         BAŞARILI
-      ========================================== */
-
-
       mesajGoster(
-
         duzenlenenHaberId
-
           ? "Haber başarıyla güncellendi."
-
           : "Haber başarıyla kaydedildi.",
-
         "success"
-
       );
 
 
       formTemizle();
 
-
       await haberleriGetir();
-
 
     }
 
     catch (error) {
-
 
       console.error(
         "Haber kaydetme hatası:",
@@ -1506,22 +1159,17 @@
 
 
       mesajGoster(
-
         "Haber kaydedilemedi: " +
         error.message,
-
         "error"
-
       );
 
     }
 
     finally {
 
-
       saveButton.disabled =
         false;
-
 
       saveButton.textContent =
         "HABERİ KAYDET";
@@ -1535,13 +1183,11 @@
      HABERLERİ GETİR
   ================================================== */
 
-
   async function haberleriGetir() {
-
 
     const list =
       document.getElementById(
-        "newsList"
+        "articlesList"
       );
 
 
@@ -1551,7 +1197,12 @@
     } =
       await supabaseClient
         .from("haberler")
-        .select("*")
+        .select(`
+          *,
+          yazarlar (
+            ad_soyad
+          )
+        `)
         .order(
           "id",
           {
@@ -1562,37 +1213,23 @@
 
     if (error) {
 
-
       list.innerHTML =
         `<div class="empty">
-
           Haberler yüklenemedi:
-
-          ${guvenliMetin(
-            error.message
-          )}
-
+          ${guvenliMetin(error.message)}
         </div>`;
-
 
       return;
 
     }
 
 
-    if (
-      !data ||
-      data.length === 0
-    ) {
-
+    if (!data || data.length === 0) {
 
       list.innerHTML =
         `<div class="empty">
-
           Henüz kayıtlı haber bulunmuyor.
-
         </div>`;
-
 
       return;
 
@@ -1603,135 +1240,79 @@
 
 
     data.forEach(
-      function (news) {
-
+      function (article) {
 
         const card =
           document.createElement(
             "div"
           );
 
-
         card.className =
-          "news-card";
+          "article-card";
 
 
         const statusClass =
-          news.durum === "yayinda"
-
+          article.durum === "yayinda"
             ? "status-yayinda"
-
             : "status-taslak";
 
 
         const statusText =
-          news.durum === "yayinda"
-
+          article.durum === "yayinda"
             ? "YAYINDA"
-
             : "TASLAK";
 
 
-        const image =
-          news.kapak_fotografi_url
-
-            ? `<img
-                src="${guvenliMetin(
-                  news.kapak_fotografi_url
-                )}"
-                alt="${guvenliMetin(
-                  news.baslik
-                )}"
-              >`
-
-            : "📰";
+        const authorName =
+          article.yazarlar
+            ? article.yazarlar.ad_soyad
+            : "Yazar belirtilmedi";
 
 
         card.innerHTML = `
-
-          ${
-            news.kapak_fotografi_url
-
-              ? `
-                <div class="news-image">
-                  ${image}
-                </div>
-              `
-
-              : ""
-          }
-
 
           <div class="status-badge ${statusClass}">
             ${statusText}
           </div>
 
-
           <h3>
-            ${guvenliMetin(
-              news.baslik
-            )}
+            ${guvenliMetin(article.baslik)}
           </h3>
 
-
-          <div class="news-meta">
-
-            ${
-              guvenliMetin(
-                news.kategori ||
-                "Gündem"
-              )
-            }
-
-            ${
-              news.kaynak
-                ? " · Kaynak: " +
-                  guvenliMetin(
-                    news.kaynak
-                  )
-                : ""
-            }
-
+          <div class="article-meta">
+            ${guvenliMetin(authorName)}
           </div>
 
-
-          <div class="news-summary">
-
+          <div class="article-summary">
             ${guvenliMetin(
-              news.spot ||
-              "Spot eklenmedi."
+              article.ozet ||
+              "Özet eklenmedi."
             )}
-
           </div>
 
-
-          <div class="news-slug">
-
-            /haberler/${guvenliMetin(
-              news.slug
-            )}
-
+          <div class="article-meta">
+            ${guvenliMetin(article.kategori)}
           </div>
 
+          <div class="article-meta">
+            /haberler/${guvenliMetin(article.slug)}
+          </div>
 
           <div class="card-buttons">
 
-
             <button
               class="card-button"
-              onclick="haberDuzenle(${news.id})"
+              onclick="haberDuzenle(${article.id})"
             >
               DÜZENLE
             </button>
 
-
             <button
               class="card-button delete-button"
-              onclick="haberSil(${news.id})"
+              onclick="haberSil(${article.id})"
             >
               SİL
             </button>
-
 
           </div>
 
@@ -1752,9 +1333,7 @@
      HABER DÜZENLE
   ================================================== */
 
-
   async function haberDuzenle(id) {
-
 
     const {
       data,
@@ -1772,16 +1351,11 @@
 
     if (error) {
 
-
       mesajGoster(
-
         "Haber yüklenemedi: " +
         error.message,
-
         "error"
-
       );
-
 
       return;
 
@@ -1797,37 +1371,37 @@
 
 
     document
-      .getElementById("newsTitle")
+      .getElementById("articleTitle")
       .value =
         data.baslik || "";
 
 
     document
-      .getElementById("newsSpot")
+      .getElementById("articleSummary")
       .value =
-        data.spot || "";
+        data.ozet || "";
 
 
     document
-      .getElementById("newsCategory")
+      .getElementById("articleAuthor")
+      .value =
+        data.yazar_id || "";
+
+
+    document
+      .getElementById("articleCategory")
       .value =
         data.kategori || "Gündem";
 
 
     document
-      .getElementById("newsSource")
-      .value =
-        data.kaynak || "";
-
-
-    document
-      .getElementById("newsContent")
+      .getElementById("articleContent")
       .value =
         data.icerik || "";
 
 
     document
-      .getElementById("newsSlug")
+      .getElementById("articleSlug")
       .value =
         data.slug || "";
 
@@ -1839,18 +1413,14 @@
 
 
     document
-      .getElementById("newsStatus")
+      .getElementById("articleStatus")
       .value =
         data.durum || "taslak";
 
 
-    if (
-      data.kapak_fotografi_url
-    ) {
-
+    if (data.kapak_fotografi_url) {
 
       photoPreview.innerHTML =
-
         `<img
           src="${guvenliMetin(
             data.kapak_fotografi_url
@@ -1862,7 +1432,6 @@
 
     else {
 
-
       photoPreview.innerHTML =
         "📰";
 
@@ -1872,7 +1441,7 @@
     document
       .getElementById("formTitle")
       .textContent =
-        "Haberi Düzenle";
+        "Haber Düzenle";
 
 
     saveButton.textContent =
@@ -1897,9 +1466,7 @@
      HABER SİL
   ================================================== */
 
-
   async function haberSil(id) {
-
 
     const onay =
       confirm(
@@ -1912,92 +1479,119 @@
     }
 
 
-    const {
-      data,
-      error: fetchError
-    } =
-      await supabaseClient
-        .from("haberler")
-        .select(
-          "kapak_fotografi_url"
-        )
-        .eq(
-          "id",
-          id
-        )
-        .single();
+    try {
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("haberler")
+          .select(
+            "kapak_fotografi_url"
+          )
+          .eq(
+            "id",
+            id
+          )
+          .single();
 
 
-    if (fetchError) {
+      if (error) {
+
+        throw error;
+
+      }
+
+
+      /* ==========================================
+         FOTOĞRAF STORAGE'DAN SİL
+      ========================================== */
+
+      if (data.kapak_fotografi_url) {
+
+        const parcalar =
+          data.kapak_fotografi_url
+            .split("/haber-fotograflari/");
+
+
+        if (parcalar.length > 1) {
+
+          const dosyaYolu =
+            decodeURIComponent(
+              parcalar[1]
+            );
+
+
+          const {
+            error: storageError
+          } =
+            await supabaseClient
+              .storage
+              .from(
+                "haber-fotograflari"
+              )
+              .remove([
+                dosyaYolu
+              ]);
+
+
+          if (storageError) {
+
+            console.warn(
+              "Fotoğraf silinemedi:",
+              storageError
+            );
+
+          }
+
+        }
+
+      }
+
+
+      /* ==========================================
+         VERİTABANI KAYDINI SİL
+      ========================================== */
+
+      const {
+        error: deleteError
+      } =
+        await supabaseClient
+          .from("haberler")
+          .delete()
+          .eq(
+            "id",
+            id
+          );
+
+
+      if (deleteError) {
+
+        throw deleteError;
+
+      }
 
 
       mesajGoster(
-
-        "Haber bilgisi alınamadı: " +
-        fetchError.message,
-
-        "error"
-
+        "Haber başarıyla silindi.",
+        "success"
       );
 
 
-      return;
+      await haberleriGetir();
 
     }
 
-
-    const {
-      error
-    } =
-      await supabaseClient
-        .from("haberler")
-        .delete()
-        .eq(
-          "id",
-          id
-        );
-
-
-    if (error) {
-
+    catch (error) {
 
       mesajGoster(
-
         "Haber silinemedi: " +
         error.message,
-
         "error"
-
-      );
-
-
-      return;
-
-    }
-
-
-    /* Haber başarıyla silindiyse
-       kapak fotoğrafını da Storage'dan sil. */
-
-    if (
-      data &&
-      data.kapak_fotografi_url
-    ) {
-
-      await fotografSil(
-        data.kapak_fotografi_url
       );
 
     }
-
-
-    mesajGoster(
-      "Haber başarıyla silindi.",
-      "success"
-    );
-
-
-    await haberleriGetir();
 
   }
 
@@ -2006,46 +1600,43 @@
      FORM TEMİZLE
   ================================================== */
 
-
   function formTemizle() {
-
 
     duzenlenenHaberId =
       null;
-
 
     mevcutFotografUrl =
       null;
 
 
     document
-      .getElementById("newsTitle")
+      .getElementById("articleTitle")
       .value = "";
 
 
     document
-      .getElementById("newsSpot")
+      .getElementById("articleSummary")
       .value = "";
 
 
     document
-      .getElementById("newsCategory")
+      .getElementById("articleAuthor")
+      .value = "";
+
+
+    document
+      .getElementById("articleCategory")
       .value =
         "Gündem";
 
 
     document
-      .getElementById("newsSource")
+      .getElementById("articleContent")
       .value = "";
 
 
     document
-      .getElementById("newsContent")
-      .value = "";
-
-
-    document
-      .getElementById("newsSlug")
+      .getElementById("articleSlug")
       .value = "";
 
 
@@ -2055,13 +1646,13 @@
 
 
     document
-      .getElementById("newsStatus")
+      .getElementById("articleStatus")
       .value =
         "taslak";
 
 
-    photoInput.value = "";
-
+    photoInput.value =
+      "";
 
     photoPreview.innerHTML =
       "📰";
@@ -2089,23 +1680,17 @@
      GÜVENLİ METİN
   ================================================== */
 
-
-  function guvenliMetin(
-    metin
-  ) {
-
+  function guvenliMetin(metin) {
 
     const div =
       document.createElement(
         "div"
       );
 
-
     div.textContent =
       metin == null
         ? ""
         : String(metin);
-
 
     return div.innerHTML;
 
@@ -2116,12 +1701,11 @@
      BAŞLANGIÇ
   ================================================== */
 
+  yazarlariGetir();
 
   haberleriGetir();
 
 </script>
 
-
 </body>
-
 </html>
