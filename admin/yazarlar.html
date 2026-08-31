@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
 
@@ -33,9 +32,11 @@
     .header-inner {
       max-width: 1100px;
       margin: auto;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 20px;
     }
 
@@ -49,8 +50,11 @@
     .back {
       color: white;
       text-decoration: none;
+
       border: 1px solid #555;
+
       padding: 8px 12px;
+
       font-size: 12px;
     }
 
@@ -131,13 +135,19 @@
     .photo-preview {
       width: 90px;
       height: 90px;
+
       border-radius: 50%;
+
       background: #ddd;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       overflow: hidden;
+
       flex-shrink: 0;
+
       font-size: 30px;
       color: #777;
     }
@@ -158,25 +168,24 @@
       margin-top: 8px;
     }
 
-    .button-row {
+    .button-area {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
 
-    .save-button,
-    .cancel-button {
-      border: none;
-      padding: 13px 20px;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      cursor: pointer;
-    }
-
     .save-button {
       background: #111;
       color: white;
+      border: none;
+
+      padding: 13px 20px;
+
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+
+      cursor: pointer;
     }
 
     .save-button:hover {
@@ -186,6 +195,16 @@
     .cancel-button {
       background: #ddd;
       color: #111;
+
+      border: none;
+
+      padding: 13px 20px;
+
+      font-size: 12px;
+      font-weight: bold;
+
+      cursor: pointer;
+
       display: none;
     }
 
@@ -194,22 +213,30 @@
     }
 
     .message {
-      display: none;
-      padding: 12px 15px;
-      margin-bottom: 20px;
+      padding: 14px 16px;
+      margin-bottom: 25px;
+
       font-size: 13px;
-      border-left: 4px solid #111;
-      background: white;
+
+      display: none;
     }
 
     .message.success {
       display: block;
-      border-left-color: #16803c;
+
+      background: #e7f4e7;
+      color: #246024;
+
+      border-left: 4px solid #2d8a2d;
     }
 
     .message.error {
       display: block;
-      border-left-color: #c40000;
+
+      background: #f7e4e4;
+      color: #8b0000;
+
+      border-left: 4px solid #c40000;
     }
 
     .authors-title {
@@ -220,7 +247,7 @@
 
     .authors {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 18px;
     }
 
@@ -228,25 +255,31 @@
       background: white;
       border: 1px solid #ddd;
       padding: 20px;
-    }
 
-    .author-top {
       display: flex;
       gap: 15px;
-      align-items: center;
+
+      align-items: flex-start;
     }
 
     .author-photo {
-      width: 70px;
-      height: 70px;
+      width: 80px;
+      height: 80px;
+
       border-radius: 50%;
+
       background: #ddd;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       overflow: hidden;
+
       flex-shrink: 0;
-      font-size: 25px;
+
+      font-size: 28px;
+      color: #777;
     }
 
     .author-photo img {
@@ -256,39 +289,43 @@
     }
 
     .author-info {
+      flex: 1;
       min-width: 0;
     }
 
     .author-info h3 {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 19px;
-      margin-bottom: 5px;
+      font-size: 20px;
+      margin-bottom: 6px;
     }
 
     .author-info p {
-      color: #777;
-      font-size: 12px;
-      line-height: 1.4;
+      color: #666;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 7px;
     }
 
     .author-slug {
       color: #999;
       font-size: 11px;
-      margin-top: 5px;
-      word-break: break-all;
+      margin-bottom: 12px;
     }
 
     .author-actions {
       display: flex;
-      gap: 8px;
-      margin-top: 16px;
+      gap: 7px;
+      flex-wrap: wrap;
     }
 
-    .author-actions button {
+    .edit-button,
+    .delete-button {
       border: none;
       padding: 8px 11px;
+
       font-size: 11px;
       font-weight: bold;
+
       cursor: pointer;
     }
 
@@ -298,12 +335,12 @@
     }
 
     .edit-button:hover {
-      background: #555;
+      background: #444;
     }
 
     .delete-button {
       background: #eee;
-      color: #111;
+      color: #a00000;
     }
 
     .delete-button:hover {
@@ -315,16 +352,21 @@
       background: white;
       border: 1px solid #ddd;
       padding: 25px;
-      color: #666;
+
+      color: #777;
       font-size: 14px;
     }
 
     footer {
       margin-top: 60px;
+
       background: #111;
       color: #999;
+
       text-align: center;
+
       padding: 25px;
+
       font-size: 12px;
     }
 
@@ -342,12 +384,12 @@
         padding: 20px;
       }
 
-      .photo-area {
-        align-items: flex-start;
+      .author-card {
+        padding: 16px;
       }
 
-      .author-card {
-        padding: 18px;
+      .photo-area {
+        align-items: flex-start;
       }
 
     }
@@ -356,7 +398,9 @@
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -377,11 +421,14 @@
 
 </header>
 
+
 <main>
+
 
   <h1 class="page-title">
     Yazarlar
   </h1>
+
 
   <p class="page-description">
     KARŞI'da yazacak yazarları buradan yöneteceğiz.
@@ -436,6 +483,7 @@
         FOTOĞRAF
       </label>
 
+
       <div class="photo-area">
 
         <div
@@ -444,6 +492,7 @@
         >
           👤
         </div>
+
 
         <div class="photo-info">
 
@@ -468,7 +517,7 @@
     </div>
 
 
-    <div class="button-row">
+    <div class="button-area">
 
       <button
         class="save-button"
@@ -477,6 +526,7 @@
       >
         YAZARI KAYDET
       </button>
+
 
       <button
         class="cancel-button"
@@ -507,49 +557,46 @@
 
   </section>
 
+
 </main>
 
 
 <footer>
+
   KARŞI — Yönetim Paneli
+
 </footer>
 
 
-<script>
-
-  /*
-   * ==================================================
-   * SUPABASE
-   * ==================================================
-   *
-   * BURADAKİ DEĞERLERİ KENDİ DOSYANDAKİ
-   * MEVCUT DEĞERLERLE DEĞİŞTİR.
-   */
-
-  const SUPABASE_URL =
-    "https://rfqiffvudbmphvklxetf.supabase.co/";
-
-  const SUPABASE_KEY =
-    "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
-
-
-  /*
-   * Supabase kütüphanesi
-   */
-
-</script>
-
+<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <script>
+
+  /* ==================================================
+     SUPABASE
+  ================================================== */
+
+  const SUPABASE_URL =
+    "https://rfqiffvudbmphvklxetf.supabase.co";
+
+
+  const SUPABASE_ANON_KEY =
+    "BURAYA_PUBLISHABLE_ANON_KEY";
+
 
   const supabaseClient =
     window.supabase.createClient(
       SUPABASE_URL,
-      SUPABASE_KEY
+      SUPABASE_ANON_KEY
     );
 
+
+  /* ==================================================
+     ELEMENTLER
+  ================================================== */
 
   const photoInput =
     document.getElementById(
@@ -589,14 +636,90 @@
 
   let duzenlenenYazarId = null;
 
-  let mevcutFotografUrl = null;
+
+  /* ==================================================
+     MESAJ
+  ================================================== */
+
+  function mesajGoster(
+    mesaj,
+    tip
+  ) {
+
+    messageBox.textContent =
+      mesaj;
+
+    messageBox.className =
+      "message " + tip;
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
 
 
-  /*
-   * ==================================================
-   * FOTOĞRAF ÖNİZLEME
-   * ==================================================
-   */
+  /* ==================================================
+     SLUG OLUŞTUR
+  ================================================== */
+
+  function slugOlustur(
+    metin
+  ) {
+
+    return metin
+
+      .toLocaleLowerCase(
+        "tr-TR"
+      )
+
+      .replace(/ğ/g, "g")
+      .replace(/ü/g, "u")
+      .replace(/ş/g, "s")
+      .replace(/ı/g, "i")
+      .replace(/ö/g, "o")
+      .replace(/ç/g, "c")
+
+      .replace(
+        /[^a-z0-9]+/g,
+        "-"
+      )
+
+      .replace(
+        /^-+|-+$/g,
+        ""
+      );
+
+  }
+
+
+  /* ==================================================
+     GÜVENLİ METİN
+  ================================================== */
+
+  function guvenliMetin(
+    metin
+  ) {
+
+    const div =
+      document.createElement(
+        "div"
+      );
+
+    div.textContent =
+      metin == null
+        ? ""
+        : String(metin);
+
+    return div.innerHTML;
+
+  }
+
+
+  /* ==================================================
+     FOTOĞRAF ÖNİZLEME
+  ================================================== */
 
   photoInput.addEventListener(
     "change",
@@ -606,22 +729,6 @@
         this.files[0];
 
       if (!file) {
-        return;
-      }
-
-
-      if (
-        file.type !== "image/jpeg" &&
-        file.type !== "image/png"
-      ) {
-
-        mesajGoster(
-          "Sadece JPG veya PNG fotoğraf kullanabilirsin.",
-          "error"
-        );
-
-        this.value = "";
-
         return;
       }
 
@@ -636,36 +743,199 @@
           photoPreview.innerHTML =
             `<img
               src="${e.target.result}"
-              alt="Fotoğraf önizleme"
+              alt="Yazar fotoğrafı"
             >`;
 
         };
 
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(
+        file
+      );
 
     }
   );
 
 
-  /*
-   * ==================================================
-   * YAZAR KAYDET
-   * ==================================================
-   */
+  /* ==================================================
+     FOTOĞRAF YÜKLE
+  ================================================== */
+
+  async function fotografYukle(
+    file,
+    slug
+  ) {
+
+    const uzanti =
+      file.name
+        .split(".")
+        .pop()
+        .toLowerCase();
+
+
+    const dosyaAdi =
+      slug +
+      "-" +
+      Date.now() +
+      "." +
+      uzanti;
+
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .storage
+        .from(
+          "yazar-fotograflari"
+        )
+        .upload(
+          dosyaAdi,
+          file,
+          {
+            cacheControl:
+              "3600",
+
+            upsert:
+              false
+          }
+        );
+
+
+    if (error) {
+
+      throw error;
+
+    }
+
+
+    const {
+      data
+    } =
+      supabaseClient
+        .storage
+        .from(
+          "yazar-fotograflari"
+        )
+        .getPublicUrl(
+          dosyaAdi
+        );
+
+
+    return {
+      url:
+        data.publicUrl,
+
+      path:
+        dosyaAdi
+
+    };
+
+  }
+
+
+  /* ==================================================
+     FOTOĞRAF YOLUNU BUL
+  ================================================== */
+
+  function fotografYoluBul(
+    url
+  ) {
+
+    if (!url) {
+      return null;
+    }
+
+
+    const marker =
+      "/storage/v1/object/public/yazar-fotograflari/";
+
+
+    const index =
+      url.indexOf(
+        marker
+      );
+
+
+    if (index === -1) {
+      return null;
+    }
+
+
+    return decodeURIComponent(
+      url.substring(
+        index +
+        marker.length
+      )
+    );
+
+  }
+
+
+  /* ==================================================
+     FOTOĞRAF SİL
+  ================================================== */
+
+  async function fotografSil(
+    url
+  ) {
+
+    const path =
+      fotografYoluBul(
+        url
+      );
+
+
+    if (!path) {
+      return;
+    }
+
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .storage
+        .from(
+          "yazar-fotograflari"
+        )
+        .remove([
+          path
+        ]);
+
+
+    if (error) {
+
+      console.warn(
+        "Eski fotoğraf silinemedi:",
+        error
+      );
+
+    }
+
+  }
+
+
+  /* ==================================================
+     YAZAR KAYDET / GÜNCELLE
+  ================================================== */
 
   async function yazarKaydet() {
 
     const name =
       document
-        .getElementById("authorName")
+        .getElementById(
+          "authorName"
+        )
         .value
         .trim();
 
 
     const bio =
       document
-        .getElementById("authorBio")
+        .getElementById(
+          "authorBio"
+        )
         .value
         .trim();
 
@@ -687,166 +957,59 @@
 
 
     const slug =
-      slugOlustur(name);
+      slugOlustur(
+        name
+      );
 
 
-    saveButton.disabled = true;
+    saveButton.disabled =
+      true;
+
 
     saveButton.textContent =
-      "KAYDEDİLİYOR...";
+      duzenlenenYazarId
+        ? "GÜNCELLENİYOR..."
+        : "KAYDEDİLİYOR...";
 
 
     try {
 
-      let fotografUrl =
-        mevcutFotografUrl;
+      /* ==========================================
+         YENİ YAZAR
+      ========================================== */
+
+      if (!duzenlenenYazarId) {
+
+        let fotografUrl =
+          null;
 
 
-      /*
-       * ==========================================
-       * YENİ FOTOĞRAF YÜKLE
-       * ==========================================
-       */
+        if (photoFile) {
 
-      if (photoFile) {
-
-        const uzanti =
-          photoFile.name
-            .split(".")
-            .pop()
-            .toLowerCase();
-
-
-        const dosyaAdi =
-          slug +
-          "-" +
-          Date.now() +
-          "." +
-          uzanti;
-
-
-        const {
-          error: uploadError
-        } =
-          await supabaseClient
-            .storage
-            .from("yazar-fotograflari")
-            .upload(
-              dosyaAdi,
+          const foto =
+            await fotografYukle(
               photoFile,
-              {
-                cacheControl: "3600",
-                upsert: false
-              }
+              slug
             );
 
 
-        if (uploadError) {
-
-          throw uploadError;
+          fotografUrl =
+            foto.url;
 
         }
 
-
-        const {
-          data: publicUrlData
-        } =
-          supabaseClient
-            .storage
-            .from("yazar-fotograflari")
-            .getPublicUrl(
-              dosyaAdi
-            );
-
-
-        fotografUrl =
-          publicUrlData.publicUrl;
-
-      }
-
-
-      /*
-       * ==========================================
-       * DÜZENLEME
-       * ==========================================
-       */
-
-      if (duzenlenenYazarId) {
 
         const {
           error
         } =
           await supabaseClient
-            .from("yazarlar")
-            .update({
-
-              ad_soyad: name,
-
-              biyografi:
-                bio || null,
-
-              fotograf_url:
-                fotografUrl,
-
-              slug:
-                slug
-
-            })
-            .eq(
-              "id",
-              duzenlenenYazarId
-            );
-
-
-        if (error) {
-
-          throw error;
-
-        }
-
-
-        /*
-         * Eski fotoğrafı Storage'dan sil
-         * ancak yeni fotoğraf yüklenmişse.
-         */
-
-        if (
-          photoFile &&
-          mevcutFotografUrl &&
-          mevcutFotografUrl !== fotografUrl
-        ) {
-
-          await eskiFotografiSil(
-            mevcutFotografUrl
-          );
-
-        }
-
-
-        mesajGoster(
-          "Yazar başarıyla güncellendi.",
-          "success"
-        );
-
-      }
-
-
-      /*
-       * ==========================================
-       * YENİ KAYIT
-       * ==========================================
-       */
-
-      else {
-
-        const {
-          error
-        } =
-          await supabaseClient
-            .from("yazarlar")
+            .from(
+              "yazarlar"
+            )
             .insert({
 
-              ad_soyad: name,
+              ad_soyad:
+                name,
 
               biyografi:
                 bio || null,
@@ -875,11 +1038,120 @@
       }
 
 
+      /* ==========================================
+         MEVCUT YAZAR GÜNCELLE
+      ========================================== */
+
+      else {
+
+        const {
+          data: mevcutYazar,
+          error: getError
+        } =
+          await supabaseClient
+            .from(
+              "yazarlar"
+            )
+            .select(
+              "*"
+            )
+            .eq(
+              "id",
+              duzenlenenYazarId
+            )
+            .single();
+
+
+        if (getError) {
+
+          throw getError;
+
+        }
+
+
+        let fotografUrl =
+          mevcutYazar.fotograf_url;
+
+
+        /* Yeni fotoğraf seçildiyse */
+
+        if (photoFile) {
+
+          const yeniFoto =
+            await fotografYukle(
+              photoFile,
+              slug
+            );
+
+
+          fotografUrl =
+            yeniFoto.url;
+
+
+          /* Eski fotoğrafı sil */
+
+          if (
+            mevcutYazar.fotograf_url
+          ) {
+
+            await fotografSil(
+              mevcutYazar.fotograf_url
+            );
+
+          }
+
+        }
+
+
+        const {
+          error: updateError
+        } =
+          await supabaseClient
+            .from(
+              "yazarlar"
+            )
+            .update({
+
+              ad_soyad:
+                name,
+
+              biyografi:
+                bio || null,
+
+              fotograf_url:
+                fotografUrl,
+
+              slug:
+                slug
+
+            })
+            .eq(
+              "id",
+              duzenlenenYazarId
+            );
+
+
+        if (updateError) {
+
+          throw updateError;
+
+        }
+
+
+        mesajGoster(
+          "Yazar başarıyla güncellendi.",
+          "success"
+        );
+
+      }
+
+
       formuTemizle();
 
       await yazarlariGetir();
 
     }
+
 
     catch (error) {
 
@@ -890,16 +1162,19 @@
 
 
       mesajGoster(
-        "Yazar kaydedilemedi: " +
+        "İşlem başarısız: " +
         error.message,
         "error"
       );
 
     }
 
+
     finally {
 
-      saveButton.disabled = false;
+      saveButton.disabled =
+        false;
+
 
       saveButton.textContent =
         "YAZARI KAYDET";
@@ -909,11 +1184,9 @@
   }
 
 
-  /*
-   * ==================================================
-   * YAZARLARI GETİR
-   * ==================================================
-   */
+  /* ==================================================
+     YAZARLARI GETİR
+  ================================================== */
 
   async function yazarlariGetir() {
 
@@ -928,12 +1201,17 @@
       error
     } =
       await supabaseClient
-        .from("yazarlar")
-        .select("*")
+        .from(
+          "yazarlar"
+        )
+        .select(
+          "*"
+        )
         .order(
           "id",
           {
-            ascending: false
+            ascending:
+              false
           }
         );
 
@@ -957,7 +1235,10 @@
     }
 
 
-    if (!data || data.length === 0) {
+    if (
+      !data ||
+      data.length === 0
+    ) {
 
       list.innerHTML =
         `<div class="empty">
@@ -969,7 +1250,8 @@
     }
 
 
-    list.innerHTML = "";
+    list.innerHTML =
+      "";
 
 
     data.forEach(
@@ -1002,75 +1284,64 @@
 
         card.innerHTML = `
 
-          <div class="author-top">
+          <div class="author-photo">
 
-            <div class="author-photo">
-              ${image}
-            </div>
-
-            <div class="author-info">
-
-              <h3>
-                ${guvenliMetin(
-                  author.ad_soyad
-                )}
-              </h3>
-
-              <p>
-                ${guvenliMetin(
-                  author.biyografi ||
-                  "Biyografi eklenmedi."
-                )}
-              </p>
-
-              <div class="author-slug">
-                /${guvenliMetin(
-                  author.slug || ""
-                )}
-              </div>
-
-            </div>
+            ${image}
 
           </div>
 
 
-          <div class="author-actions">
+          <div class="author-info">
 
-            <button
-              class="edit-button"
-              onclick="yazarDuzenle(
-                '${guvenliJavascript(
-                  author.id
-                )}'
-              )"
-            >
-              DÜZENLE
-            </button>
+            <h3>
+              ${guvenliMetin(
+                author.ad_soyad
+              )}
+            </h3>
 
 
-            <button
-              class="delete-button"
-              onclick="yazarSil(
-                '${guvenliJavascript(
-                  author.id
-                )}',
-                '${guvenliJavascript(
-                  author.ad_soyad
-                )}',
-                '${guvenliJavascript(
-                  author.fotograf_url || ""
-                )}'
-              )"
-            >
-              SİL
-            </button>
+            <p>
+              ${guvenliMetin(
+                author.biyografi ||
+                "Biyografi eklenmedi."
+              )}
+            </p>
+
+
+            <div class="author-slug">
+              /${guvenliMetin(
+                author.slug || ""
+              )}
+            </div>
+
+
+            <div class="author-actions">
+
+              <button
+                class="edit-button"
+                onclick="yazarDuzenle(${author.id})"
+              >
+                DÜZENLE
+              </button>
+
+
+              <button
+                class="delete-button"
+                onclick="yazarSil(${author.id})"
+              >
+                SİL
+              </button>
+
+            </div>
 
           </div>
 
         `;
 
 
-        list.appendChild(card);
+        list.appendChild(
+          card
+        );
 
       }
     );
@@ -1078,29 +1349,114 @@
   }
 
 
-  /*
-   * ==================================================
-   * YAZAR DÜZENLE
-   * ==================================================
-   */
+  /* ==================================================
+     YAZAR DÜZENLE
+  ================================================== */
 
-  async function yazarDuzenle(id) {
+  async function yazarDuzenle(
+    id
+  ) {
 
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .from("yazarlar")
-        .select("*")
-        .eq(
-          "id",
-          id
+    try {
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from(
+            "yazarlar"
+          )
+          .select(
+            "*"
+          )
+          .eq(
+            "id",
+            id
+          )
+          .single();
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+
+      duzenlenenYazarId =
+        id;
+
+
+      document
+        .getElementById(
+          "authorName"
         )
-        .single();
+        .value =
+          data.ad_soyad || "";
 
 
-    if (error) {
+      document
+        .getElementById(
+          "authorBio"
+        )
+        .value =
+          data.biyografi || "";
+
+
+      if (
+        data.fotograf_url
+      ) {
+
+        photoPreview.innerHTML =
+          `<img
+            src="${guvenliMetin(
+              data.fotograf_url
+            )}"
+            alt="Yazar fotoğrafı"
+          >`;
+
+      }
+
+      else {
+
+        photoPreview.innerHTML =
+          "👤";
+
+      }
+
+
+      photoInput.value =
+        "";
+
+
+      formTitle.textContent =
+        "Yazarı Düzenle";
+
+
+      saveButton.textContent =
+        "DEĞİŞİKLİKLERİ KAYDET";
+
+
+      cancelButton.style.display =
+        "block";
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    catch (error) {
+
+      console.error(
+        "Yazar düzenleme hatası:",
+        error
+      );
+
 
       mesajGoster(
         "Yazar bilgileri alınamadı: " +
@@ -1108,152 +1464,22 @@
         "error"
       );
 
-      return;
-
     }
 
-
-    duzenlenenYazarId =
-      data.id;
-
-
-    mevcutFotografUrl =
-      data.fotograf_url;
-
-
-    document
-      .getElementById(
-        "authorName"
-      )
-      .value =
-      data.ad_soyad || "";
-
-
-    document
-      .getElementById(
-        "authorBio"
-      )
-      .value =
-      data.biyografi || "";
-
-
-    if (data.fotograf_url) {
-
-      photoPreview.innerHTML =
-        `<img
-          src="${guvenliMetin(
-            data.fotograf_url
-          )}"
-          alt="Mevcut fotoğraf"
-        >`;
-
-    } else {
-
-      photoPreview.innerHTML =
-        "👤";
-
-    }
-
-
-    formTitle.textContent =
-      "Yazarı Düzenle";
-
-
-    saveButton.textContent =
-      "DEĞİŞİKLİKLERİ KAYDET";
-
-
-    cancelButton.style.display =
-      "inline-block";
-
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
   }
 
 
-  /*
-   * ==================================================
-   * DÜZENLEMEYİ İPTAL
-   * ==================================================
-   */
-
-  function duzenlemeyiIptalEt() {
-
-    formuTemizle();
-
-  }
-
-
-  /*
-   * ==================================================
-   * FORMU TEMİZLE
-   * ==================================================
-   */
-
-  function formuTemizle() {
-
-    document
-      .getElementById(
-        "authorName"
-      )
-      .value = "";
-
-
-    document
-      .getElementById(
-        "authorBio"
-      )
-      .value = "";
-
-
-    photoInput.value = "";
-
-
-    photoPreview.innerHTML =
-      "👤";
-
-
-    duzenlenenYazarId =
-      null;
-
-
-    mevcutFotografUrl =
-      null;
-
-
-    formTitle.textContent =
-      "Yeni Yazar Ekle";
-
-
-    saveButton.textContent =
-      "YAZARI KAYDET";
-
-
-    cancelButton.style.display =
-      "none";
-
-  }
-
-
-  /*
-   * ==================================================
-   * YAZAR SİL
-   * ==================================================
-   */
+  /* ==================================================
+     YAZAR SİL
+  ================================================== */
 
   async function yazarSil(
-    id,
-    name,
-    fotografUrl
+    id
   ) {
 
     const onay =
       confirm(
-        `"${name}" adlı yazarı silmek istediğine emin misin?\n\nBu işlem geri alınamaz.`
+        "Bu yazarı silmek istediğine emin misin?\n\nYazar ve profil fotoğrafı silinecek."
       );
 
 
@@ -1264,15 +1490,38 @@
 
     try {
 
-      /*
-       * Önce veritabanından sil.
-       */
-
       const {
-        error
+        data,
+        error: getError
       } =
         await supabaseClient
-          .from("yazarlar")
+          .from(
+            "yazarlar"
+          )
+          .select(
+            "fotograf_url"
+          )
+          .eq(
+            "id",
+            id
+          )
+          .single();
+
+
+      if (getError) {
+
+        throw getError;
+
+      }
+
+
+      const {
+        error: deleteError
+      } =
+        await supabaseClient
+          .from(
+            "yazarlar"
+          )
           .delete()
           .eq(
             "id",
@@ -1280,21 +1529,20 @@
           );
 
 
-      if (error) {
+      if (deleteError) {
 
-        throw error;
+        throw deleteError;
 
       }
 
 
-      /*
-       * Sonra fotoğrafı Storage'dan sil.
-       */
+      if (
+        data &&
+        data.fotograf_url
+      ) {
 
-      if (fotografUrl) {
-
-        await eskiFotografiSil(
-          fotografUrl
+        await fotografSil(
+          data.fotograf_url
         );
 
       }
@@ -1309,6 +1557,7 @@
       await yazarlariGetir();
 
     }
+
 
     catch (error) {
 
@@ -1329,236 +1578,73 @@
   }
 
 
-  /*
-   * ==================================================
-   * STORAGE FOTOĞRAF SİL
-   * ==================================================
-   */
+  /* ==================================================
+     FORM TEMİZLE
+  ================================================== */
 
-  async function eskiFotografiSil(
-    fotografUrl
-  ) {
+  function formuTemizle() {
 
-    try {
-
-      const url =
-        new URL(
-          fotografUrl
-        );
+    duzenlenenYazarId =
+      null;
 
 
-      const marker =
-        "/storage/v1/object/public/yazar-fotograflari/";
+    document
+      .getElementById(
+        "authorName"
+      )
+      .value =
+        "";
 
 
-      const index =
-        url.pathname.indexOf(
-          marker
-        );
+    document
+      .getElementById(
+        "authorBio"
+      )
+      .value =
+        "";
 
 
-      if (index === -1) {
-
-        return;
-
-      }
+    photoInput.value =
+      "";
 
 
-      const dosyaYolu =
-        decodeURIComponent(
-          url.pathname.substring(
-            index + marker.length
-          )
-        );
+    photoPreview.innerHTML =
+      "👤";
 
 
-      await supabaseClient
-        .storage
-        .from("yazar-fotograflari")
-        .remove([
-          dosyaYolu
-        ]);
+    formTitle.textContent =
+      "Yeni Yazar Ekle";
 
-    }
 
-    catch (error) {
+    saveButton.textContent =
+      "YAZARI KAYDET";
 
-      console.error(
-        "Eski fotoğraf silinemedi:",
-        error
-      );
 
-    }
+    cancelButton.style.display =
+      "none";
 
   }
 
 
-  /*
-   * ==================================================
-   * SLUG OLUŞTUR
-   * ==================================================
-   */
+  /* ==================================================
+     DÜZENLEMEYİ İPTAL
+  ================================================== */
 
-  function slugOlustur(
-    metin
-  ) {
+  function duzenlemeyiIptalEt() {
 
-    return metin
-      .toLowerCase()
-      .trim()
-
-      .replace(
-        /ğ/g,
-        "g"
-      )
-
-      .replace(
-        /ü/g,
-        "u"
-      )
-
-      .replace(
-        /ş/g,
-        "s"
-      )
-
-      .replace(
-        /ı/g,
-        "i"
-      )
-
-      .replace(
-        /ö/g,
-        "o"
-      )
-
-      .replace(
-        /ç/g,
-        "c"
-      )
-
-      .replace(
-        /[^a-z0-9]+/g,
-        "-"
-      )
-
-      .replace(
-        /^-+|-+$/g,
-        ""
-      );
+    formuTemizle();
 
   }
 
 
-  /*
-   * ==================================================
-   * GÜVENLİ METİN
-   * ==================================================
-   */
-
-  function guvenliMetin(
-    metin
-  ) {
-
-    const div =
-      document.createElement(
-        "div"
-      );
-
-
-    div.textContent =
-      metin == null
-        ? ""
-        : String(metin);
-
-
-    return div.innerHTML;
-
-  }
-
-
-  /*
-   * ==================================================
-   * JAVASCRIPT İÇİN GÜVENLİ METİN
-   * ==================================================
-   */
-
-  function guvenliJavascript(
-    metin
-  ) {
-
-    return String(
-      metin == null
-        ? ""
-        : metin
-    )
-      .replace(
-        /\\/g,
-        "\\\\"
-      )
-      .replace(
-        /'/g,
-        "\\'"
-      )
-      .replace(
-        /"/g,
-        '\\"'
-      )
-      .replace(
-        /\n/g,
-        "\\n"
-      )
-      .replace(
-        /\r/g,
-        "\\r"
-      );
-
-  }
-
-
-  /*
-   * ==================================================
-   * MESAJ
-   * ==================================================
-   */
-
-  function mesajGoster(
-    mesaj,
-    tip
-  ) {
-
-    messageBox.textContent =
-      mesaj;
-
-
-    messageBox.className =
-      "message " +
-      tip;
-
-
-    setTimeout(
-      function () {
-
-        messageBox.className =
-          "message";
-
-      },
-      5000
-    );
-
-  }
-
-
-  /*
-   * ==================================================
-   * BAŞLANGIÇ
-   * ==================================================
-   */
+  /* ==================================================
+     SAYFA AÇILDIĞINDA
+  ================================================== */
 
   yazarlariGetir();
 
 </script>
 
+
 </body>
 </html>
-```
