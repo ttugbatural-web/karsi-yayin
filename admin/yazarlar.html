@@ -1,13 +1,16 @@
 ```html
 <!DOCTYPE html>
-<html lang="tr">
 
+<html lang="tr">
 <head>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Yazarlar — KARŞI Yönetim</title>
+
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
 
@@ -188,14 +191,14 @@
     .message.success {
       display: block;
       background: #e8f5e9;
-      color: #1b5e20;
+      color: #216b2a;
       border-left: 4px solid #2e7d32;
     }
 
     .message.error {
       display: block;
       background: #ffebee;
-      color: #b71c1c;
+      color: #a40000;
       border-left: 4px solid #c40000;
     }
 
@@ -230,6 +233,8 @@
       justify-content: center;
       overflow: hidden;
       flex-shrink: 0;
+      font-size: 25px;
+      color: #777;
     }
 
     .author-photo img {
@@ -248,6 +253,20 @@
       color: #777;
       font-size: 12px;
       line-height: 1.4;
+      margin-bottom: 5px;
+    }
+
+    .author-slug {
+      color: #aaa;
+      font-size: 10px;
+    }
+
+    .empty {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 25px;
+      color: #777;
+      font-size: 13px;
     }
 
     footer {
@@ -293,13 +312,17 @@
       KARŞI
     </div>
 
-    <a class="back" href="index.html">
+    <a
+      class="back"
+      href="index.html"
+    >
       ← Yönetim Paneli
     </a>
 
   </div>
 
 </header>
+
 
 <main>
 
@@ -311,6 +334,10 @@
     KARŞI'da yazacak yazarları buradan yöneteceğiz.
   </p>
 
+
+  <!-- =========================
+       YENİ YAZAR
+  ========================= -->
 
   <section class="form-box">
 
@@ -394,23 +421,31 @@
       YAZARI KAYDET
     </button>
 
+
     <div
-      class="message"
       id="message"
+      class="message"
     ></div>
 
   </section>
 
 
+  <!-- =========================
+       YAZAR LİSTESİ
+  ========================= -->
+
   <h2 class="authors-title">
     Mevcut Yazarlar
   </h2>
-
 
   <section
     class="authors"
     id="authorsList"
   >
+
+    <div class="empty">
+      Yazarlar yükleniyor...
+    </div>
 
   </section>
 
@@ -424,34 +459,29 @@
 </footer>
 
 
-<!-- SUPABASE -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
 <script>
 
-  /* =====================================
+  /* ==================================================
      SUPABASE AYARLARI
-  ===================================== */
+  ================================================== */
 
   const SUPABASE_URL =
     "https://rfqiffvudbmphvklxetf.supabase.co";
 
-  const SUPABASE_KEY =
+  const SUPABASE_ANON_KEY =
     "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
 
 
   const supabaseClient =
     window.supabase.createClient(
       SUPABASE_URL,
-      SUPABASE_KEY
+      SUPABASE_ANON_KEY
     );
 
 
-  /* =====================================
-     FOTOĞRAF ÖNİZLEME
-  ===================================== */
+  /* ==================================================
+     ELEMENTLER
+  ================================================== */
 
   const photoInput =
     document.getElementById("authorPhoto");
@@ -459,6 +489,16 @@
   const photoPreview =
     document.getElementById("photoPreview");
 
+  const saveButton =
+    document.getElementById("saveButton");
+
+  const message =
+    document.getElementById("message");
+
+
+  /* ==================================================
+     FOTOĞRAF ÖNİZLEME
+  ================================================== */
 
   photoInput.addEventListener(
     "change",
@@ -471,36 +511,16 @@
         return;
       }
 
-      if (
-        file.type !== "image/jpeg" &&
-        file.type !== "image/png"
-      ) {
-
-        alert("Lütfen JPG veya PNG dosyası seç.");
-
-        this.value = "";
-
-        photoPreview.innerHTML = "👤";
-
-        return;
-      }
-
-
       const reader =
         new FileReader();
-
 
       reader.onload =
         function (e) {
 
           photoPreview.innerHTML =
-            `<img
-              src="${e.target.result}"
-              alt="Yazar fotoğrafı"
-            >`;
+            `<img src="${e.target.result}" alt="Yazar fotoğrafı">`;
 
         };
-
 
       reader.readAsDataURL(file);
 
@@ -508,52 +528,46 @@
   );
 
 
-  /* =====================================
+  /* ==================================================
      SLUG OLUŞTUR
-  ===================================== */
+  ================================================== */
 
   function slugOlustur(metin) {
 
     return metin
       .toLowerCase()
-
       .replace(/ğ/g, "g")
       .replace(/ü/g, "u")
       .replace(/ş/g, "s")
       .replace(/ı/g, "i")
       .replace(/ö/g, "o")
       .replace(/ç/g, "c")
-
       .replace(/[^a-z0-9]+/g, "-")
-
       .replace(/^-+|-+$/g, "");
 
   }
 
 
-  /* =====================================
+  /* ==================================================
      MESAJ
-  ===================================== */
+  ================================================== */
 
   function mesajGoster(
-    metin,
-    tip
+    text,
+    type
   ) {
 
-    const message =
-      document.getElementById("message");
-
-    message.textContent = metin;
+    message.textContent = text;
 
     message.className =
-      "message " + tip;
+      "message " + type;
 
   }
 
 
-  /* =====================================
+  /* ==================================================
      YAZAR EKLE
-  ===================================== */
+  ================================================== */
 
   async function yazarEkle() {
 
@@ -572,9 +586,7 @@
 
 
     const photoFile =
-      document
-        .getElementById("authorPhoto")
-        .files[0];
+      photoInput.files[0];
 
 
     if (!name) {
@@ -585,11 +597,12 @@
       );
 
       return;
+
     }
 
 
-    const saveButton =
-      document.getElementById("saveButton");
+    const slug =
+      slugOlustur(name);
 
 
     saveButton.disabled = true;
@@ -600,110 +613,119 @@
 
     try {
 
-      let photoUrl = null;
+      let fotografUrl = null;
 
 
-      /* =================================
+      /* ==========================================
          FOTOĞRAF YÜKLE
-      ================================= */
+      ========================================== */
 
       if (photoFile) {
 
-        const extension =
-          photoFile.type === "image/png"
-          ? "png"
-          : "jpg";
+        const dosyaUzantisi =
+          photoFile.name
+            .split(".")
+            .pop()
+            .toLowerCase();
 
 
-        const slug =
-          slugOlustur(name);
-
-
-        const fileName =
+        const dosyaAdi =
           slug +
           "-" +
           Date.now() +
           "." +
-          extension;
+          dosyaUzantisi;
 
 
-        const filePath =
-          fileName;
+        const dosyaYolu =
+          dosyaAdi;
 
 
-        const uploadResult =
+        const {
+          error: uploadError
+        } =
           await supabaseClient
             .storage
             .from("yazar-fotograflari")
             .upload(
-              filePath,
+              dosyaYolu,
               photoFile,
               {
                 cacheControl: "3600",
-                upsert: false,
-                contentType: photoFile.type
+                upsert: false
               }
             );
 
 
-        if (uploadResult.error) {
+        if (uploadError) {
 
-          throw uploadResult.error;
+          throw uploadError;
 
         }
 
 
-        const publicResult =
+        /* ======================================
+           PUBLIC FOTOĞRAF URL
+        ====================================== */
+
+        const {
+          data: publicUrlData
+        } =
           supabaseClient
             .storage
             .from("yazar-fotograflari")
-            .getPublicUrl(filePath);
+            .getPublicUrl(
+              dosyaYolu
+            );
 
 
-        photoUrl =
-          publicResult.data.publicUrl;
+        fotografUrl =
+          publicUrlData.publicUrl;
 
       }
 
 
-      /* =================================
-         VERİTABANINA KAYDET
-      ================================= */
+      /* ==========================================
+         VERİTABANINA YAZAR KAYDI
+      ========================================== */
 
-      const slug =
-        slugOlustur(name);
-
-
-      const insertResult =
+      const {
+        error: insertError
+      } =
         await supabaseClient
           .from("yazarlar")
-          .insert([
-            {
-              ad_soyad: name,
-              biyografi: bio,
-              fotograf_url: photoUrl,
-              slug: slug
-            }
-          ])
-          .select();
+          .insert({
+
+            ad_soyad: name,
+
+            biyografi:
+              bio || null,
+
+            fotograf_url:
+              fotografUrl,
+
+            slug:
+              slug
+
+          });
 
 
-      if (insertResult.error) {
+      if (insertError) {
 
-        throw insertResult.error;
+        throw insertError;
 
       }
 
+
+      /* ==========================================
+         BAŞARILI
+      ========================================== */
 
       mesajGoster(
         "Yazar başarıyla kaydedildi.",
         "success"
       );
 
-
-      /* =================================
-         FORMU TEMİZLE
-      ================================= */
 
       document
         .getElementById("authorName")
@@ -722,27 +744,26 @@
         "👤";
 
 
-      /* =================================
-         LİSTEYİ YENİLE
-      ================================= */
+      await yazarlariGetir();
 
-      yazarlarYukle();
 
     }
 
-
     catch (error) {
 
-      console.error(error);
+      console.error(
+        "Yazar kaydetme hatası:",
+        error
+      );
+
 
       mesajGoster(
-        "Kayıt sırasında bir hata oluştu: " +
+        "Yazar kaydedilemedi: " +
         error.message,
         "error"
       );
 
     }
-
 
     finally {
 
@@ -756,11 +777,11 @@
   }
 
 
-  /* =====================================
-     YAZARLARI SUPABASE'DEN ÇEK
-  ===================================== */
+  /* ==================================================
+     YAZARLARI GETİR
+  ================================================== */
 
-  async function yazarlarYukle() {
+  async function yazarlariGetir() {
 
     const list =
       document.getElementById(
@@ -768,30 +789,45 @@
       );
 
 
-    list.innerHTML =
-      "<p>Yazarlar yükleniyor...</p>";
-
-
-    const result =
+    const {
+      data,
+      error
+    } =
       await supabaseClient
         .from("yazarlar")
-        .select(
-          "ad_soyad,biyografi,fotograf_url,slug"
-        )
+        .select("*")
         .order(
-          "ad_soyad",
+          "id",
           {
-            ascending: true
+            ascending: false
           }
         );
 
 
-    if (result.error) {
+    if (error) {
 
-      console.error(result.error);
+      console.error(
+        "Yazarları getirme hatası:",
+        error
+      );
+
 
       list.innerHTML =
-        "<p>Yazarlar yüklenirken hata oluştu.</p>";
+        `<div class="empty">
+          Yazarlar yüklenemedi: ${guvenliMetin(error.message)}
+        </div>`;
+
+      return;
+
+    }
+
+
+    if (!data || data.length === 0) {
+
+      list.innerHTML =
+        `<div class="empty">
+          Henüz kayıtlı yazar bulunmuyor.
+        </div>`;
 
       return;
 
@@ -801,17 +837,7 @@
     list.innerHTML = "";
 
 
-    if (!result.data.length) {
-
-      list.innerHTML =
-        "<p>Henüz yazar eklenmemiş.</p>";
-
-      return;
-
-    }
-
-
-    result.data.forEach(
+    data.forEach(
       function (author) {
 
         const card =
@@ -824,29 +850,27 @@
           "author-card";
 
 
-        const photo =
+        const image =
           author.fotograf_url
+
           ? `<img
-              src="${author.fotograf_url}"
-              alt="${guvenliMetin(author.ad_soyad)}"
-            >`
+               src="${guvenliMetin(author.fotograf_url)}"
+               alt="${guvenliMetin(author.ad_soyad)}"
+             >`
+
           : "👤";
 
 
         card.innerHTML = `
 
           <div class="author-photo">
-
-            ${photo}
-
+            ${image}
           </div>
 
           <div class="author-info">
 
             <h3>
-              ${guvenliMetin(
-                author.ad_soyad
-              )}
+              ${guvenliMetin(author.ad_soyad)}
             </h3>
 
             <p>
@@ -855,6 +879,10 @@
                 "Biyografi eklenmedi."
               )}
             </p>
+
+            <div class="author-slug">
+              /${guvenliMetin(author.slug || "")}
+            </div>
 
           </div>
 
@@ -869,11 +897,13 @@
   }
 
 
-  /* =====================================
+  /* ==================================================
      GÜVENLİ METİN
-  ===================================== */
+  ================================================== */
 
-  function guvenliMetin(metin) {
+  function guvenliMetin(
+    metin
+  ) {
 
     const div =
       document.createElement(
@@ -881,18 +911,21 @@
       );
 
     div.textContent =
-      metin || "";
+      metin == null
+        ? ""
+        : String(metin);
 
     return div.innerHTML;
 
   }
 
 
-  /* =====================================
-     SAYFA AÇILINCA YAZARLARI GETİR
-  ===================================== */
+  /* ==================================================
+     SAYFA AÇILDIĞINDA
+     YAZARLARI GETİR
+  ================================================== */
 
-  yazarlarYukle();
+  yazarlariGetir();
 
 </script>
 
