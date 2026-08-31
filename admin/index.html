@@ -42,10 +42,22 @@
     }
 
     .logo {
+      position: relative;
       font-family: Georgia, "Times New Roman", serif;
       font-size: 36px;
       font-weight: bold;
       letter-spacing: -2px;
+    }
+
+    .logo::after {
+      content: "";
+      position: absolute;
+      height: 4px;
+      width: 115%;
+      background: #c40000;
+      left: -7%;
+      top: 53%;
+      transform: rotate(-4deg);
     }
 
     .panel-name {
@@ -88,10 +100,7 @@
 
     .panel-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
@@ -142,6 +151,34 @@
 
 
     /* =========================
+       HAZIR DEĞİL KARTLAR
+    ========================= */
+
+    .panel-card.disabled {
+      opacity: 0.55;
+      cursor: default;
+    }
+
+    .panel-card.disabled:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .coming {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 4px 8px;
+
+      background: #eee;
+      color: #777;
+
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+
+    /* =========================
        DURUM
     ========================= */
 
@@ -156,6 +193,7 @@
       border-left: 4px solid #c40000;
 
       font-size: 13px;
+      line-height: 1.6;
     }
 
     .status strong {
@@ -244,10 +282,12 @@
   <section class="panel-grid">
 
 ```
-<!-- KÖŞE YAZILARI -->
+<!-- =========================
+     KÖŞE YAZILARI
+========================= -->
 
 <a
-  href="#"
+  href="yazilar.html"
   class="panel-card"
 >
 
@@ -267,10 +307,12 @@
 </a>
 
 
-<!-- YAZARLAR -->
+<!-- =========================
+     YAZARLAR
+========================= -->
 
 <a
-  href="#"
+  href="yazarlar.html"
   class="panel-card"
 >
 
@@ -290,10 +332,12 @@
 </a>
 
 
-<!-- HABERLER -->
+<!-- =========================
+     HABERLER
+========================= -->
 
 <a
-  href="#"
+  href="haberler.html"
   class="panel-card"
 >
 
@@ -306,17 +350,19 @@
   </h2>
 
   <p>
-    Haberleri ekle, düzenle ve yayın durumlarını
-    kontrol et.
+    Haberleri ekle, düzenle ve yayın
+    durumlarını kontrol et.
   </p>
 
 </a>
 
 
-<!-- KARŞI GÜNDEM -->
+<!-- =========================
+     KARŞI GÜNDEM
+========================= -->
 
 <a
-  href="#"
+  href="gundem.html"
   class="panel-card"
 >
 
@@ -336,12 +382,11 @@
 </a>
 
 
-<!-- YORUMLAR -->
+<!-- =========================
+     YORUMLAR
+========================= -->
 
-<a
-  href="#"
-  class="panel-card"
->
+<div class="panel-card disabled">
 
   <div class="icon">
     💬
@@ -356,15 +401,18 @@
     onayla veya kaldır.
   </p>
 
-</a>
+  <span class="coming">
+    YAKINDA
+  </span>
+
+</div>
 
 
-<!-- AYARLAR -->
+<!-- =========================
+     AYARLAR
+========================= -->
 
-<a
-  href="#"
-  class="panel-card"
->
+<div class="panel-card disabled">
 
   <div class="icon">
     ⚙️
@@ -379,19 +427,27 @@
     seçeneklerini yönet.
   </p>
 
-</a>
+  <span class="coming">
+    YAKINDA
+  </span>
+
+</div>
 ```
 
   </section>
+
+  <!-- =========================
+       SİSTEM DURUMU
+  ========================= -->
 
   <div class="status">
 
 ```
 <strong>Sistem:</strong>
 
-Yönetim paneli hazırlanıyor.
-İçerik yönetimi ve veritabanı bağlantısını
-bir sonraki aşamada ekleyeceğiz.
+Yönetim paneli aktif.
+İçerik yönetimi ve veritabanı bağlantıları
+aşamalı olarak ekleniyor.
 ```
 
   </div>
@@ -406,4 +462,3 @@ KARŞI — Yönetim Paneli
 
 </body>
 </html>
-
