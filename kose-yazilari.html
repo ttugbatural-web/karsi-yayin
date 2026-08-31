@@ -1,5 +1,5 @@
+```html
 <!DOCTYPE html>
-
 <html lang="tr">
 
 <head>
@@ -24,7 +24,7 @@
     }
 
     /* =========================
-       ÜST BAR
+       HEADER
     ========================= */
 
     header {
@@ -37,48 +37,69 @@
     .top {
       max-width: 1100px;
       margin: auto;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 20px;
     }
 
     .logo {
       position: relative;
+
       display: inline-block;
+
       font-family: Georgia, "Times New Roman", serif;
+
       font-size: 48px;
+
       font-weight: 900;
+
       letter-spacing: -3px;
+
       line-height: 1;
     }
 
     .logo::after {
       content: "";
+
       position: absolute;
+
       height: 5px;
+
       width: 115%;
+
       background: #c40000;
+
       left: -7%;
+
       top: 52%;
+
       transform: rotate(-4deg);
     }
 
     .top-right {
       display: flex;
+
       flex-direction: column;
+
       align-items: flex-end;
+
       gap: 8px;
     }
 
     .languages {
       font-size: 11px;
+
       font-weight: bold;
+
       letter-spacing: 1px;
     }
 
     .languages a {
       color: #aaa;
+
       text-decoration: none;
     }
 
@@ -89,77 +110,103 @@
 
     .languages span {
       color: #555;
+
       margin: 0 4px;
     }
 
     .tagline {
       font-family: Georgia, "Times New Roman", serif;
+
       font-size: 14px;
+
       color: #cfcfcf;
+
       text-align: right;
+
       line-height: 1.4;
     }
 
 
     /* =========================
-       MENÜ
+       NAV
     ========================= */
 
     nav {
       background: white;
+
       border-bottom: 1px solid #d4d4d4;
     }
 
     .nav-inner {
       max-width: 1100px;
+
       margin: auto;
+
       display: flex;
+
       overflow-x: auto;
     }
 
     nav a {
       color: #111;
+
       text-decoration: none;
+
       font-size: 14px;
+
       font-weight: bold;
+
       padding: 15px 18px;
+
       white-space: nowrap;
     }
 
     nav a:hover {
       background: #111;
+
       color: white;
     }
 
 
     /* =========================
-       ANA ALAN
+       MAIN
     ========================= */
 
     main {
       max-width: 1100px;
+
       margin: 35px auto;
+
       padding: 0 18px;
     }
 
     .page-title {
       font-family: Georgia, "Times New Roman", serif;
+
       font-size: 42px;
+
       margin-bottom: 8px;
     }
 
     .page-intro {
       color: #555;
+
       font-size: 15px;
-      margin-bottom: 30px;
+
+      margin-bottom: 20px;
+
       max-width: 650px;
+
       line-height: 1.6;
     }
 
     .title-line {
       width: 70px;
+
       height: 4px;
+
       background: #c40000;
+
       margin-bottom: 30px;
     }
 
@@ -170,17 +217,23 @@
 
     .author-strip {
       background: #111;
+
       color: white;
+
       padding: 18px 22px;
+
       margin-bottom: 30px;
 
       display: flex;
+
       align-items: center;
+
       gap: 16px;
     }
 
     .author-avatar {
       width: 58px;
+
       height: 58px;
 
       border-radius: 50%;
@@ -188,21 +241,27 @@
       background: #333;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       overflow: hidden;
 
-      font-family: Georgia, serif;
-      font-size: 18px;
-      font-weight: bold;
-
       flex-shrink: 0;
+
+      font-family: Georgia, serif;
+
+      font-size: 16px;
+
+      font-weight: bold;
     }
 
     .author-avatar img {
       width: 100%;
+
       height: 100%;
+
       object-fit: cover;
     }
 
@@ -212,21 +271,29 @@
 
     .author-label {
       color: #aaa;
+
       font-size: 10px;
+
       font-weight: bold;
+
       letter-spacing: 1.5px;
+
       margin-bottom: 4px;
     }
 
     .author-name {
       font-family: Georgia, "Times New Roman", serif;
+
       font-size: 20px;
+
       font-weight: bold;
     }
 
     .author-description {
       color: #bbb;
+
       font-size: 12px;
+
       margin-top: 3px;
     }
 
@@ -237,15 +304,19 @@
 
     .articles {
       display: grid;
+
       grid-template-columns: repeat(3, 1fr);
+
       gap: 20px;
     }
 
     .article-card {
       background: white;
+
       border: 1px solid #ddd;
 
       text-decoration: none;
+
       color: #111;
 
       display: block;
@@ -264,43 +335,67 @@
         0 8px 20px rgba(0,0,0,0.08);
     }
 
+
+    /* =========================
+       KAPAK FOTOĞRAFI
+    ========================= */
+
     .article-photo {
       width: 100%;
+
       height: 190px;
+
       background: #ddd;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       overflow: hidden;
 
-      font-size: 45px;
-      color: #777;
+      color: #888;
+
+      font-size: 35px;
     }
 
     .article-photo img {
       width: 100%;
+
       height: 100%;
+
       object-fit: cover;
     }
 
+
+    /* =========================
+       KART İÇİ
+    ========================= */
+
     .article-content {
-      padding: 24px;
+      padding: 22px;
     }
 
     .category {
       color: #c40000;
+
       font-size: 11px;
+
       font-weight: bold;
+
       letter-spacing: 1.5px;
+
       margin-bottom: 12px;
     }
 
     .article-card h2 {
       font-family: Georgia, "Times New Roman", serif;
+
       font-size: 25px;
+
       line-height: 1.2;
+
       margin-bottom: 14px;
     }
 
@@ -318,7 +413,7 @@
 
 
     /* =========================
-       YAZAR SATIRI
+       YAZAR
     ========================= */
 
     .article-author {
@@ -341,89 +436,52 @@
 
 
     /* =========================
-       TARİH
-    ========================= */
-
-    .article-date {
-      color: #999;
-      font-size: 11px;
-      margin-bottom: 14px;
-    }
-
-
-    /* =========================
        OKU
     ========================= */
 
     .read {
       font-size: 11px;
+
       font-weight: bold;
+
       letter-spacing: 1px;
+
       color: #111;
     }
 
     .read::after {
       content: " →";
+
       color: #c40000;
     }
 
 
     /* =========================
-       YÜKLENİYOR
+       DURUM
     ========================= */
 
-    .loading {
-      grid-column: 1 / -1;
-
+    .loading,
+    .empty,
+    .error {
       background: white;
+
       border: 1px solid #ddd;
 
-      padding: 35px;
+      padding: 30px;
 
       text-align: center;
 
-      color: #777;
+      color: #666;
 
       font-size: 14px;
-    }
 
-
-    /* =========================
-       BOŞ
-    ========================= */
-
-    .empty {
       grid-column: 1 / -1;
-
-      background: white;
-      border: 1px solid #ddd;
-
-      padding: 35px;
-
-      text-align: center;
-
-      color: #777;
-
-      font-size: 14px;
     }
-
-
-    /* =========================
-       HATA
-    ========================= */
 
     .error {
-      grid-column: 1 / -1;
-
-      background: #f8e5e5;
-
       border-left: 4px solid #c40000;
 
-      padding: 20px;
-
-      color: #7a0000;
-
-      font-size: 13px;
+      color: #8a0000;
     }
 
 
@@ -433,7 +491,9 @@
 
     footer {
       background: #111;
+
       color: #999;
+
       text-align: center;
 
       padding: 30px 20px;
@@ -507,17 +567,15 @@
         padding: 16px;
       }
 
-      .article-photo {
-        height: 200px;
-      }
-
     }
 
   </style>
 
 </head>
 
+
 <body>
+
 
 <!-- =========================
      HEADER
@@ -527,48 +585,47 @@
 
   <div class="top">
 
-```
-<div class="logo">
-  KARŞI
-</div>
+    <div class="logo">
+      KARŞI
+    </div>
 
 
-<div class="top-right">
+    <div class="top-right">
 
-  <div class="languages">
+      <div class="languages">
 
-    <a href="index.html" class="active">
-      TR
-    </a>
+        <a href="index.html" class="active">
+          TR
+        </a>
 
-    <span>|</span>
+        <span>|</span>
 
-    <a href="#">
-      EN
-    </a>
+        <a href="#">
+          EN
+        </a>
 
-    <span>|</span>
+        <span>|</span>
 
-    <a href="#">
-      FR
-    </a>
+        <a href="#">
+          FR
+        </a>
 
-  </div>
+      </div>
 
 
-  <div class="tagline">
+      <div class="tagline">
 
-    Gücün karşısında,<br>
-    gerçeğin yanında.
+        Gücün karşısında,<br>
+        gerçeğin yanında.
 
-  </div>
+      </div>
 
-</div>
-```
+    </div>
 
   </div>
 
 </header>
+
 
 <!-- =========================
      NAV
@@ -578,39 +635,38 @@
 
   <div class="nav-inner">
 
-```
-<a href="index.html">
-  ANA SAYFA
-</a>
+    <a href="index.html">
+      ANA SAYFA
+    </a>
 
-<a href="kose-yazilari.html">
-  KÖŞE YAZILARI
-</a>
+    <a href="kose-yazilari.html">
+      KÖŞE YAZILARI
+    </a>
 
-<a href="haberler.html">
-  HABERLER
-</a>
+    <a href="haberler.html">
+      HABERLER
+    </a>
 
-<a href="gundem.html">
-  KARŞI GÜNDEM
-</a>
+    <a href="gundem.html">
+      KARŞI GÜNDEM
+    </a>
 
-<a href="#">
-  DÜNYA
-</a>
+    <a href="#">
+      DÜNYA
+    </a>
 
-<a href="#">
-  DOSYALAR
-</a>
+    <a href="#">
+      DOSYALAR
+    </a>
 
-<a href="#">
-  HAKKIMIZDA
-</a>
-```
+    <a href="#">
+      HAKKIMIZDA
+    </a>
 
   </div>
 
 </nav>
+
 
 <!-- =========================
      MAIN
@@ -622,17 +678,18 @@
     Köşe Yazıları
   </h1>
 
+
   <div class="title-line"></div>
+
 
   <p class="page-intro">
 
-```
-Gündeme, siyasete, topluma ve dünyaya dair
-bağımsız düşünceler. Rahatsız edici sorular,
-farklı bakış açıları ve söylenmeyenler.
-```
+    Gündeme, siyasete, topluma ve dünyaya dair
+    bağımsız düşünceler. Rahatsız edici sorular,
+    farklı bakış açıları ve söylenmeyenler.
 
   </p>
+
 
   <!-- =========================
        YAZAR
@@ -644,37 +701,36 @@ farklı bakış açıları ve söylenmeyenler.
     style="display:none;"
   >
 
-```
-<div
-  class="author-avatar"
-  id="authorAvatar"
->
-  ✍️
-</div>
+    <div
+      class="author-avatar"
+      id="authorAvatar"
+    >
+      KARŞI
+    </div>
 
 
-<div class="author-info">
+    <div class="author-info">
 
-  <div class="author-label">
-    KARŞI YAZARI
-  </div>
+      <div class="author-label">
+        KARŞI YAZARI
+      </div>
 
-  <div
-    class="author-name"
-    id="authorName"
-  >
-  </div>
+      <div
+        class="author-name"
+        id="authorName"
+      >
+      </div>
 
-  <div
-    class="author-description"
-    id="authorDescription"
-  >
-  </div>
+      <div
+        class="author-description"
+        id="authorDescription"
+      >
+      </div>
 
-</div>
-```
+    </div>
 
   </div>
+
 
   <!-- =========================
        YAZILAR
@@ -685,15 +741,14 @@ farklı bakış açıları ve söylenmeyenler.
     id="articlesList"
   >
 
-```
-<div class="loading">
-  Köşe yazıları yükleniyor...
-</div>
-```
+    <div class="loading">
+      Yazılar yükleniyor...
+    </div>
 
   </section>
 
 </main>
+
 
 <!-- =========================
      FOOTER
@@ -705,21 +760,23 @@ farklı bakış açıları ve söylenmeyenler.
     KARŞI
   </strong>
 
-<br><br>
+  <br><br>
 
-Bağımsız düşüncenin tarafı.
+  Bağımsız düşüncenin tarafı.
 
-<br><br>
+  <br><br>
 
-© 2026 KARŞI
+  © 2026 KARŞI
 
 </footer>
+
 
 <!-- =========================
      SUPABASE
 ========================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script>
 
@@ -762,132 +819,6 @@ Bağımsız düşüncenin tarafı.
 
 
   /* ==================================================
-     TARİH
-  ================================================== */
-
-  function tarihFormatla(tarih) {
-
-    if (!tarih) {
-      return "";
-    }
-
-    const date =
-      new Date(tarih);
-
-
-    return date.toLocaleDateString(
-      "tr-TR",
-      {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      }
-    );
-
-  }
-
-
-  /* ==================================================
-     YAZAR BİLGİSİ
-  ================================================== */
-
-  async function yazarBilgisiGetir(yazarId) {
-
-    if (!yazarId) {
-      return;
-    }
-
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .from("yazarlar")
-        .select(
-          "ad_soyad, biyografi, fotograf_url"
-        )
-        .eq(
-          "id",
-          yazarId
-        )
-        .single();
-
-
-    if (error || !data) {
-      return;
-    }
-
-
-    const authorStrip =
-      document.getElementById(
-        "authorStrip"
-      );
-
-
-    const authorAvatar =
-      document.getElementById(
-        "authorAvatar"
-      );
-
-
-    const authorName =
-      document.getElementById(
-        "authorName"
-      );
-
-
-    const authorDescription =
-      document.getElementById(
-        "authorDescription"
-      );
-
-
-    authorName.textContent =
-      data.ad_soyad || "";
-
-
-    authorDescription.textContent =
-      data.biyografi ||
-      "Bağımsız yazar · KARŞI";
-
-
-    if (data.fotograf_url) {
-
-      authorAvatar.innerHTML =
-        `<img
-          src="${guvenliMetin(data.fotograf_url)}"
-          alt="${guvenliMetin(data.ad_soyad)}"
-        >`;
-
-    }
-
-    else {
-
-      const initials =
-        (data.ad_soyad || "KARŞI")
-          .split(" ")
-          .map(
-            isim => isim.charAt(0)
-          )
-          .join("")
-          .substring(0, 3)
-          .toUpperCase();
-
-
-      authorAvatar.textContent =
-        initials;
-
-    }
-
-
-    authorStrip.style.display =
-      "flex";
-
-  }
-
-
-  /* ==================================================
      YAZILARI GETİR
   ================================================== */
 
@@ -904,17 +835,16 @@ Bağımsız düşüncenin tarafı.
       error
     } =
       await supabaseClient
+
         .from("kose_yazilari")
+
         .select(`
           id,
           baslik,
           ozet,
-          icerik,
-          yazar_id,
-          kapak_fotografi_url,
-          kategori,
           slug,
-          durum,
+          kategori,
+          kapak_fotografi_url,
           yayin_tarihi,
           yazarlar (
             id,
@@ -923,144 +853,147 @@ Bağımsız düşüncenin tarafı.
             fotograf_url
           )
         `)
+
         .eq(
           "durum",
           "yayinda"
         )
+
         .order(
           "yayin_tarihi",
           {
-            ascending: false
+            ascending: false,
+            nullsFirst: false
           }
         );
 
 
+    /* ==================================================
+       HATA
+    ================================================== */
+
     if (error) {
 
       console.error(
-        "Köşe yazıları yüklenemedi:",
+        "Yazılar yüklenemedi:",
         error
       );
 
 
-      list.innerHTML =
-        `<div class="error">
-          Köşe yazıları yüklenemedi:
+      list.innerHTML = `
+
+        <div class="error">
+
+          Yazılar yüklenemedi.
+
+          <br><br>
+
           ${guvenliMetin(error.message)}
-        </div>`;
+
+        </div>
+
+      `;
 
       return;
 
     }
 
+
+    /* ==================================================
+       YAZI YOK
+    ================================================== */
 
     if (!data || data.length === 0) {
 
-      list.innerHTML =
-        `<div class="empty">
+      list.innerHTML = `
+
+        <div class="empty">
+
           Henüz yayınlanmış köşe yazısı bulunmuyor.
-        </div>`;
+
+        </div>
+
+      `;
 
       return;
 
     }
 
 
-    list.innerHTML = "";
-
-
-    /* ==============================================
-       İLK YAZAR BİLGİSİ
-    ============================================== */
+    /* ==================================================
+       YAZAR ALANI
+       İlk yayınlanan yazının yazarını gösteriyoruz.
+    ================================================== */
 
     const ilkYazi =
       data[0];
 
 
-    if (
-      ilkYazi &&
-      ilkYazi.yazarlar
-    ) {
+    if (ilkYazi.yazarlar) {
 
       const author =
         ilkYazi.yazarlar;
 
 
-      const authorStrip =
-        document.getElementById(
-          "authorStrip"
-        );
+      document
+        .getElementById("authorStrip")
+        .style.display =
+          "flex";
 
 
-      const authorAvatar =
+      document
+        .getElementById("authorName")
+        .textContent =
+          author.ad_soyad || "";
+
+
+      document
+        .getElementById("authorDescription")
+        .textContent =
+          author.biyografi
+          ? author.biyografi
+          : "Bağımsız yazar · KARŞI";
+
+
+      const avatar =
         document.getElementById(
           "authorAvatar"
         );
 
 
-      const authorName =
-        document.getElementById(
-          "authorName"
-        );
-
-
-      const authorDescription =
-        document.getElementById(
-          "authorDescription"
-        );
-
-
-      authorName.textContent =
-        author.ad_soyad || "";
-
-
-      authorDescription.textContent =
-        author.biyografi ||
-        "Bağımsız yazar · KARŞI";
-
-
       if (author.fotograf_url) {
 
-        authorAvatar.innerHTML =
-          `<img
+        avatar.innerHTML = `
+
+          <img
             src="${guvenliMetin(author.fotograf_url)}"
             alt="${guvenliMetin(author.ad_soyad)}"
-          >`;
+          >
+
+        `;
 
       }
 
       else {
 
-        const initials =
-          (author.ad_soyad || "KARŞI")
-            .split(" ")
-            .map(
-              isim =>
-                isim.charAt(0)
-            )
-            .join("")
-            .substring(0, 3)
-            .toUpperCase();
-
-
-        authorAvatar.textContent =
-          initials;
+        avatar.textContent =
+          "KARŞI";
 
       }
-
-
-      authorStrip.style.display =
-        "flex";
 
     }
 
 
-    /* ==============================================
-       YAZI KARTLARI
-    ============================================== */
+    /* ==================================================
+       KARTLARI OLUŞTUR
+    ================================================== */
+
+    list.innerHTML = "";
+
 
     data.forEach(
-      function(article) {
+      function (article) {
+
 
         const card =
           document.createElement(
@@ -1073,192 +1006,123 @@ Bağımsız düşüncenin tarafı.
 
 
         /*
-          Şimdilik yazının kendisini
-          yazi.html üzerinden açacağız.
+          Yazının detay sayfasına
+          slug ile gideceğiz.
         */
 
         card.href =
-          "yazi.html?slug=" +
+          "kose-yazisi.html?slug=" +
           encodeURIComponent(
             article.slug
           );
 
 
-        /* ==========================================
+        /* =========================
            FOTOĞRAF
-        ========================================== */
+        ========================= */
 
-        const photo =
-          document.createElement(
-            "div"
-          );
-
-
-        photo.className =
-          "article-photo";
+        let photoHTML =
+          "📰";
 
 
         if (
           article.kapak_fotografi_url
         ) {
 
-          photo.innerHTML =
-            `<img
+          photoHTML = `
+
+            <img
               src="${guvenliMetin(
                 article.kapak_fotografi_url
               )}"
               alt="${guvenliMetin(
                 article.baslik
               )}"
-            >`;
+            >
 
-        }
-
-        else {
-
-          photo.textContent =
-            "📰";
+          `;
 
         }
 
 
-        /* ==========================================
-           İÇERİK
-        ========================================== */
-
-        const content =
-          document.createElement(
-            "div"
-          );
-
-
-        content.className =
-          "article-content";
-
-
-        const category =
-          document.createElement(
-            "div"
-          );
-
-
-        category.className =
-          "category";
-
-
-        category.textContent =
-          article.kategori ||
-          "KARŞI / YORUM";
-
-
-        const title =
-          document.createElement(
-            "h2"
-          );
-
-
-        title.textContent =
-          article.baslik ||
-          "";
-
-
-        const summary =
-          document.createElement(
-            "p"
-          );
-
-
-        summary.textContent =
-          article.ozet ||
-          "";
-
-
-        const author =
-          document.createElement(
-            "div"
-          );
-
-
-        author.className =
-          "article-author";
-
+        /* =========================
+           YAZAR
+        ========================= */
 
         const authorName =
           article.yazarlar
-            ? article.yazarlar.ad_soyad
-            : "Yazar belirtilmedi";
+          ? article.yazarlar.ad_soyad
+          : "KARŞI";
 
 
-        author.innerHTML =
-          "Yazan: <strong>" +
-          guvenliMetin(
-            authorName
-          ) +
-          "</strong>";
+        /* =========================
+           KART
+        ========================= */
+
+        card.innerHTML = `
+
+          <div class="article-photo">
+
+            ${photoHTML}
+
+          </div>
 
 
-        const date =
-          document.createElement(
-            "div"
-          );
+          <div class="article-content">
+
+            <div class="category">
+
+              ${guvenliMetin(
+                article.kategori ||
+                "KARŞI / YORUM"
+              )}
+
+            </div>
 
 
-        date.className =
-          "article-date";
+            <h2>
+
+              ${guvenliMetin(
+                article.baslik
+              )}
+
+            </h2>
 
 
-        date.textContent =
-          tarihFormatla(
-            article.yayin_tarihi
-          );
+            <p>
+
+              ${guvenliMetin(
+                article.ozet ||
+                "Köşe yazısını okumak için tıklayın."
+              )}
+
+            </p>
 
 
-        const read =
-          document.createElement(
-            "div"
-          );
+            <div class="article-author">
+
+              Yazan:
+
+              <strong>
+
+                ${guvenliMetin(
+                  authorName
+                )}
+
+              </strong>
+
+            </div>
 
 
-        read.className =
-          "read";
+            <div class="read">
 
+              YAZIYI OKU
 
-        read.textContent =
-          "YAZIYI OKU";
+            </div>
 
+          </div>
 
-        content.appendChild(
-          category
-        );
-
-        content.appendChild(
-          title
-        );
-
-        content.appendChild(
-          summary
-        );
-
-        content.appendChild(
-          author
-        );
-
-        content.appendChild(
-          date
-        );
-
-        content.appendChild(
-          read
-        );
-
-
-        card.appendChild(
-          photo
-        );
-
-        card.appendChild(
-          content
-        );
+        `;
 
 
         list.appendChild(
@@ -1279,5 +1143,7 @@ Bağımsız düşüncenin tarafı.
 
 </script>
 
+
 </body>
 </html>
+```
