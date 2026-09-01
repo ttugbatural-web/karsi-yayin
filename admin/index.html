@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="tr">
 
 <head>
@@ -7,9 +6,9 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-   content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
-<title>Yazarlar — KARŞI Yönetim</title>
+<title>KARŞI — Yönetim Paneli</title>
 
 <style>
 
@@ -75,25 +74,37 @@ header {
 .header-right {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+}
+
+.panel-name {
+    color: #aaa;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
 }
 
 .user-email {
-    color: #aaa;
+    color: #ccc;
+
     font-size: 11px;
 
-    max-width: 200px;
+    max-width: 220px;
 
     overflow: hidden;
+
     text-overflow: ellipsis;
+
     white-space: nowrap;
 }
 
-.back,
 .logout-button {
-    color: white;
-
     background: transparent;
+
+    color: white;
 
     border: 1px solid #555;
 
@@ -103,21 +114,14 @@ header {
 
     font-weight: bold;
 
-    text-decoration: none;
-
     cursor: pointer;
-}
-
-.back:hover {
-    background: white;
-    color: #111;
 }
 
 .logout-button:hover {
     background: #c40000;
+
     border-color: #c40000;
 }
-
 
 /* =========================
    MAIN
@@ -131,7 +135,11 @@ main {
     padding: 0 18px;
 }
 
-.page-title {
+.welcome {
+    margin-bottom: 30px;
+}
+
+.welcome h1 {
     font-family: Georgia, "Times New Roman", serif;
 
     font-size: 38px;
@@ -139,430 +147,109 @@ main {
     margin-bottom: 8px;
 }
 
-.page-description {
+.welcome p {
     color: #666;
 
     font-size: 14px;
-
-    margin-bottom: 30px;
 }
-
 
 /* =========================
-   MESAJ
+   PANEL GRID
 ========================= */
 
-.message {
-    padding: 14px 16px;
+.panel-grid {
+    display: grid;
 
-    margin-bottom: 25px;
+    grid-template-columns:
+        repeat(3, 1fr);
 
-    font-size: 13px;
-
-    display: none;
+    gap: 20px;
 }
-
-.message.success {
-    display: block;
-
-    background: #e7f4e7;
-
-    color: #246024;
-
-    border-left: 4px solid #2d8a2d;
-}
-
-.message.error {
-    display: block;
-
-    background: #f7e4e4;
-
-    color: #8b0000;
-
-    border-left: 4px solid #c40000;
-}
-
 
 /* =========================
-   FORM
+   PANEL KARTI
 ========================= */
 
-.form-box {
+.panel-card {
     background: white;
 
     border: 1px solid #ddd;
 
     padding: 25px;
 
-    margin-bottom: 35px;
-}
-
-.form-box h2 {
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 25px;
-
-    margin-bottom: 22px;
-}
-
-.form-group {
-    margin-bottom: 18px;
-}
-
-.form-group label {
-    display: block;
-
-    font-size: 12px;
-
-    font-weight: bold;
-
-    margin-bottom: 7px;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-
-    border: 1px solid #ccc;
-
-    padding: 12px;
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    font-size: 14px;
-
-    outline: none;
-}
-
-.form-group textarea {
-    min-height: 120px;
-
-    resize: vertical;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: #111;
-}
-
-
-/* =========================
-   FOTOĞRAF
-========================= */
-
-.photo-area {
-    display: flex;
-
-    align-items: center;
-
-    gap: 20px;
-
-    margin-bottom: 20px;
-}
-
-.photo-preview {
-    width: 90px;
-    height: 90px;
-
-    border-radius: 50%;
-
-    background: #ddd;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-
-    flex-shrink: 0;
-
-    font-size: 30px;
-
-    color: #777;
-}
-
-.photo-preview img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-}
-
-.photo-info {
-    font-size: 12px;
-
-    color: #666;
-
-    line-height: 1.5;
-}
-
-.photo-info input {
-    margin-top: 8px;
-}
-
-
-/* =========================
-   BUTONLAR
-========================= */
-
-.button-area {
-    display: flex;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
-}
-
-.save-button {
-    background: #111;
-
-    color: white;
-
-    border: none;
-
-    padding: 13px 20px;
-
-    font-size: 12px;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    cursor: pointer;
-}
-
-.save-button:hover {
-    background: #c40000;
-}
-
-.save-button:disabled {
-    opacity: 0.6;
-
-    cursor: wait;
-}
-
-.cancel-button {
-    background: #ddd;
+    text-decoration: none;
 
     color: #111;
 
-    border: none;
+    display: block;
 
-    padding: 13px 20px;
-
-    font-size: 12px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    display: none;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
 }
 
-.cancel-button:hover {
-    background: #bbb;
+.panel-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,0.08);
 }
 
-
-/* =========================
-   YAZARLAR
-========================= */
-
-.authors-title {
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 27px;
+.icon {
+    font-size: 30px;
 
     margin-bottom: 15px;
 }
 
-.authors {
-    display: grid;
+.panel-card h2 {
+    font-family: Georgia,
+        "Times New Roman",
+        serif;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    font-size: 23px;
 
-    gap: 18px;
+    margin-bottom: 8px;
 }
 
-.author-card {
-    background: white;
-
-    border: 1px solid #ddd;
-
-    padding: 20px;
-
-    display: flex;
-
-    gap: 15px;
-
-    align-items: flex-start;
-}
-
-.author-photo {
-    width: 80px;
-    height: 80px;
-
-    border-radius: 50%;
-
-    background: #ddd;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-
-    flex-shrink: 0;
-
-    font-size: 28px;
-
-    color: #777;
-}
-
-.author-photo img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-}
-
-.author-info {
-    flex: 1;
-
-    min-width: 0;
-}
-
-.author-info h3 {
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 20px;
-
-    margin-bottom: 6px;
-}
-
-.author-info p {
+.panel-card p {
     color: #666;
 
     font-size: 13px;
 
     line-height: 1.5;
-
-    margin-bottom: 7px;
 }
 
-.author-slug {
-    color: #999;
+/* =========================
+   DURUM
+========================= */
 
-    font-size: 11px;
+.status {
+    margin-top: 30px;
 
-    margin-bottom: 12px;
-}
-
-.author-actions {
-    display: flex;
-
-    gap: 7px;
-
-    flex-wrap: wrap;
-}
-
-.edit-button,
-.delete-button,
-.toggle-button {
-    border: none;
-
-    padding: 8px 11px;
-
-    font-size: 11px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.edit-button {
     background: #111;
 
+    color: #ddd;
+
+    padding: 18px;
+
+    border-left:
+        4px solid #c40000;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.status strong {
     color: white;
 }
 
-.edit-button:hover {
-    background: #444;
+#userStatus {
+    color: #aaa;
+
+    margin-top: 5px;
 }
-
-.delete-button {
-    background: #eee;
-
-    color: #a00000;
-}
-
-.delete-button:hover {
-    background: #c40000;
-
-    color: white;
-}
-
-.toggle-button {
-    background: #eee;
-
-    color: #333;
-}
-
-.toggle-button:hover {
-    background: #ddd;
-}
-
-
-/* =========================
-   DURUM ETİKETİ
-========================= */
-
-.author-status {
-    display: inline-block;
-
-    margin-bottom: 10px;
-
-    padding: 4px 7px;
-
-    font-size: 10px;
-
-    font-weight: bold;
-
-    letter-spacing: 0.5px;
-}
-
-.author-status.active {
-    background: #e7f4e7;
-
-    color: #246024;
-}
-
-.author-status.passive {
-    background: #eee;
-
-    color: #777;
-}
-
-
-/* =========================
-   BOŞ
-========================= */
-
-.empty {
-    background: white;
-
-    border: 1px solid #ddd;
-
-    padding: 25px;
-
-    color: #777;
-
-    font-size: 14px;
-}
-
 
 /* =========================
    FOOTER
@@ -577,11 +264,10 @@ footer {
 
     text-align: center;
 
-    padding: 25px;
+    padding: 25px 20px;
 
     font-size: 12px;
 }
-
 
 /* =========================
    MOBİL
@@ -589,32 +275,28 @@ footer {
 
 @media (max-width: 750px) {
 
-    .authors {
+    .panel-grid {
         grid-template-columns: 1fr;
     }
 
-    .page-title {
-        font-size: 32px;
+    .welcome h1 {
+        font-size: 31px;
     }
 
-    .form-box {
-        padding: 20px;
-    }
-
-    .author-card {
-        padding: 16px;
-    }
-
-    .photo-area {
-        align-items: flex-start;
-    }
-
-    .user-email {
-        display: none;
+    .panel-card {
+        padding: 22px;
     }
 
     .header-right {
-        gap: 6px;
+        gap: 8px;
+    }
+
+    .panel-name {
+        display: none;
+    }
+
+    .user-email {
+        max-width: 130px;
     }
 
 }
@@ -627,201 +309,235 @@ footer {
 
 <header>
 
-```
-<div class="header-inner">
+    <div class="header-inner">
 
-    <div class="logo">
-        KARŞI
-    </div>
-
-
-    <div class="header-right">
-
-        <div
-            class="user-email"
-            id="userEmail"
-        >
-            Kontrol ediliyor...
+        <div class="logo">
+            KARŞI
         </div>
 
+        <div class="header-right">
 
-        <a
-            class="back"
-            href="index.html"
-        >
-            ← PANEL
-        </a>
+            <div
+                class="user-email"
+                id="userEmail"
+            >
+                Kontrol ediliyor...
+            </div>
 
+            <div class="panel-name">
+                Yönetim Paneli
+            </div>
 
-        <button
-            class="logout-button"
-            onclick="cikisYap()"
-        >
-            ÇIKIŞ
-        </button>
+            <button
+                class="logout-button"
+                onclick="cikisYap()"
+            >
+                ÇIKIŞ
+            </button>
+
+        </div>
 
     </div>
-
-</div>
-```
 
 </header>
 
+
 <main>
 
-```
-<h1 class="page-title">
-    Yazarlar
-</h1>
+    <section class="welcome">
+
+        <h1>
+            Yönetim Paneli
+        </h1>
+
+        <p>
+            KARŞI yayın sistemini buradan yöneteceğiz.
+        </p>
+
+    </section>
 
 
-<p class="page-description">
-    KARŞI'da yazacak yazarları buradan yöneteceğiz.
-</p>
+    <section class="panel-grid">
 
 
-<div
-    id="message"
-    class="message"
-></div>
+        <!-- =========================
+             KÖŞE YAZILARI
+        ========================= -->
 
-
-<!-- =========================
-     YAZAR FORMU
-========================= -->
-
-<section class="form-box">
-
-    <h2 id="formTitle">
-        Yeni Yazar Ekle
-    </h2>
-
-
-    <div class="form-group">
-
-        <label for="authorName">
-            AD SOYAD
-        </label>
-
-        <input
-            type="text"
-            id="authorName"
-            placeholder="Örn. Taylan Özgür Tural"
+        <a
+            href="kose-yazilari.html"
+            class="panel-card"
         >
 
-    </div>
+            <div class="icon">
+                ✍️
+            </div>
+
+            <h2>
+                Köşe Yazıları
+            </h2>
+
+            <p>
+                Yeni yazı oluştur, mevcut yazıları
+                düzenle veya taslakları yönet.
+            </p>
+
+        </a>
 
 
-    <div class="form-group">
+        <!-- =========================
+             YAZARLAR
+        ========================= -->
 
-        <label for="authorBio">
-            KISA BİYOGRAFİ
-        </label>
+        <a
+            href="yazarlar.html"
+            class="panel-card"
+        >
 
-        <textarea
-            id="authorBio"
-            placeholder="Yazar hakkında kısa bilgi..."
-        ></textarea>
-
-    </div>
-
-
-    <div class="form-group">
-
-        <label for="authorPhoto">
-            FOTOĞRAF
-        </label>
-
-
-        <div class="photo-area">
-
-            <div
-                class="photo-preview"
-                id="photoPreview"
-            >
+            <div class="icon">
                 👤
             </div>
 
+            <h2>
+                Yazarlar
+            </h2>
 
-            <div class="photo-info">
+            <p>
+                Yazar ekle, yazar bilgilerini düzenle
+                ve profil fotoğraflarını yönet.
+            </p>
 
-                Profil fotoğrafını seç.
+        </a>
 
-                <br>
 
-                JPG veya PNG kullanabilirsin.
+        <!-- =========================
+             HABERLER
+        ========================= -->
 
-                <br>
+        <a
+            href="haberler.html"
+            class="panel-card"
+        >
 
-                <input
-                    type="file"
-                    id="authorPhoto"
-                    accept="image/jpeg,image/png"
-                >
-
+            <div class="icon">
+                📰
             </div>
 
+            <h2>
+                Haberler
+            </h2>
+
+            <p>
+                Haberleri ekle, düzenle ve yayın
+                durumlarını kontrol et.
+            </p>
+
+        </a>
+
+
+        <!-- =========================
+             KARŞI GÜNDEM
+        ========================= -->
+
+        <a
+            href="gundem.html"
+            class="panel-card"
+        >
+
+            <div class="icon">
+                ⚡
+            </div>
+
+            <h2>
+                Karşı Gündem
+            </h2>
+
+            <p>
+                Güncel gelişmeleri yorumla ve
+                KARŞI'nın gündemini oluştur.
+            </p>
+
+        </a>
+
+
+        <!-- =========================
+             YORUMLAR
+        ========================= -->
+
+        <a
+            href="yorumlar.html"
+            class="panel-card"
+        >
+
+            <div class="icon">
+                💬
+            </div>
+
+            <h2>
+                Yorumlar
+            </h2>
+
+            <p>
+                Okuyucu yorumlarını incele,
+                onayla veya kaldır.
+            </p>
+
+        </a>
+
+
+        <!-- =========================
+             AYARLAR
+        ========================= -->
+
+        <a
+            href="ayarlar.html"
+            class="panel-card"
+        >
+
+            <div class="icon">
+                ⚙️
+            </div>
+
+            <h2>
+                Ayarlar
+            </h2>
+
+            <p>
+                Yayın ayarlarını ve yönetim paneli
+                seçeneklerini yönet.
+            </p>
+
+        </a>
+
+
+    </section>
+
+
+    <!-- =========================
+         SİSTEM DURUMU
+    ========================= -->
+
+    <div class="status">
+
+        <strong>Sistem:</strong>
+
+        Yönetim paneli aktif.
+
+        <div id="userStatus">
+            Yönetici oturumu doğrulanıyor...
         </div>
 
     </div>
 
-
-    <div class="button-area">
-
-        <button
-            type="button"
-            class="save-button"
-            id="saveButton"
-            onclick="yazarKaydet()"
-        >
-            YAZARI KAYDET
-        </button>
-
-
-        <button
-            type="button"
-            class="cancel-button"
-            id="cancelButton"
-            onclick="duzenlemeyiIptalEt()"
-        >
-            İPTAL
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     MEVCUT YAZARLAR
-========================= -->
-
-<h2 class="authors-title">
-    Mevcut Yazarlar
-</h2>
-
-
-<section
-    class="authors"
-    id="authorsList"
->
-
-    <div class="empty">
-        Yazarlar yükleniyor...
-    </div>
-
-</section>
-```
-
 </main>
+
 
 <footer>
 
-```
-KARŞI — Yönetim Paneli
-```
+    KARŞI — Yönetim Paneli
 
 </footer>
+
 
 <!-- ==================================================
      SUPABASE
@@ -829,1201 +545,21 @@ KARŞI — Yönetim Paneli
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <!-- ==================================================
-     ORTAK AUTH
+     ORTAK AUTH SİSTEMİ
 ================================================== -->
 
 <script src="auth.js"></script>
 
+
 <script>
 
 /* ==================================================
-   ELEMENTLER
+   YÖNETİCİ OTURUMUNU KONTROL ET
 ================================================== */
 
-const photoInput =
-    document.getElementById(
-        "authorPhoto"
-    );
-
-const photoPreview =
-    document.getElementById(
-        "photoPreview"
-    );
-
-const saveButton =
-    document.getElementById(
-        "saveButton"
-    );
-
-const cancelButton =
-    document.getElementById(
-        "cancelButton"
-    );
-
-const formTitle =
-    document.getElementById(
-        "formTitle"
-    );
-
-const messageBox =
-    document.getElementById(
-        "message"
-    );
-
-const userEmail =
-    document.getElementById(
-        "userEmail"
-    );
-
-const authorsList =
-    document.getElementById(
-        "authorsList"
-    );
-
-
-let duzenlenenYazarId = null;
-
-
-/* ==================================================
-   MESAJ
-================================================== */
-
-function mesajGoster(
-    mesaj,
-    tip
-) {
-
-    messageBox.textContent =
-        mesaj;
-
-    messageBox.className =
-        "message " + tip;
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-}
-
-
-/* ==================================================
-   SLUG
-================================================== */
-
-function slugOlustur(
-    metin
-) {
-
-    return metin
-
-        .toLocaleLowerCase(
-            "tr-TR"
-        )
-
-        .replace(/ğ/g, "g")
-        .replace(/ü/g, "u")
-        .replace(/ş/g, "s")
-        .replace(/ı/g, "i")
-        .replace(/ö/g, "o")
-        .replace(/ç/g, "c")
-
-        .replace(
-            /[^a-z0-9]+/g,
-            "-"
-        )
-
-        .replace(
-            /^-+|-+$/g,
-            ""
-        );
-
-}
-
-
-/* ==================================================
-   GÜVENLİ HTML
-================================================== */
-
-function guvenliMetin(
-    metin
-) {
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-    div.textContent =
-        metin == null
-            ? ""
-            : String(metin);
-
-    return div.innerHTML;
-
-}
-
-
-/* ==================================================
-   FOTOĞRAF ÖNİZLEME
-================================================== */
-
-photoInput.addEventListener(
-    "change",
-    function () {
-
-        const file =
-            this.files[0];
-
-        if (!file) {
-            return;
-        }
-
-
-        if (
-            file.type !== "image/jpeg" &&
-            file.type !== "image/png"
-        ) {
-
-            mesajGoster(
-                "Sadece JPG veya PNG fotoğraf yükleyebilirsin.",
-                "error"
-            );
-
-            this.value = "";
-
-            return;
-
-        }
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function (e) {
-
-                photoPreview.innerHTML =
-                    `<img
-                        src="${e.target.result}"
-                        alt="Yazar fotoğrafı"
-                    >`;
-
-            };
-
-
-        reader.readAsDataURL(
-            file
-        );
-
-    }
-);
-
-
-/* ==================================================
-   FOTOĞRAF YÜKLE
-================================================== */
-
-async function fotografYukle(
-    file,
-    slug
-) {
-
-    const uzanti =
-        file.name
-            .split(".")
-            .pop()
-            .toLowerCase();
-
-
-    const dosyaAdi =
-        slug +
-        "-" +
-        Date.now() +
-        "." +
-        uzanti;
-
-
-    const {
-        error
-    } =
-        await supabaseClient
-            .storage
-            .from(
-                "yazar-fotograflari"
-            )
-            .upload(
-                dosyaAdi,
-                file,
-                {
-                    cacheControl:
-                        "3600",
-
-                    upsert:
-                        false,
-
-                    contentType:
-                        file.type
-                }
-            );
-
-
-    if (error) {
-
-        throw error;
-
-    }
-
-
-    const {
-        data
-    } =
-        supabaseClient
-            .storage
-            .from(
-                "yazar-fotograflari"
-            )
-            .getPublicUrl(
-                dosyaAdi
-            );
-
-
-    return {
-        url:
-            data.publicUrl,
-
-        path:
-            dosyaAdi
-    };
-
-}
-
-
-/* ==================================================
-   FOTOĞRAF YOLU
-================================================== */
-
-function fotografYoluBul(
-    url
-) {
-
-    if (!url) {
-        return null;
-    }
-
-
-    const marker =
-        "/storage/v1/object/public/yazar-fotograflari/";
-
-
-    const index =
-        url.indexOf(
-            marker
-        );
-
-
-    if (index === -1) {
-        return null;
-    }
-
-
-    return decodeURIComponent(
-        url.substring(
-            index +
-            marker.length
-        )
-    );
-
-}
-
-
-/* ==================================================
-   FOTOĞRAF SİL
-================================================== */
-
-async function fotografSil(
-    url
-) {
-
-    const path =
-        fotografYoluBul(
-            url
-        );
-
-
-    if (!path) {
-        return;
-    }
-
-
-    const {
-        error
-    } =
-        await supabaseClient
-            .storage
-            .from(
-                "yazar-fotograflari"
-            )
-            .remove([
-                path
-            ]);
-
-
-    if (error) {
-
-        console.warn(
-            "Eski fotoğraf silinemedi:",
-            error
-        );
-
-    }
-
-}
-
-
-/* ==================================================
-   YAZAR KAYDET
-================================================== */
-
-async function yazarKaydet() {
-
-    const name =
-        document
-            .getElementById(
-                "authorName"
-            )
-            .value
-            .trim();
-
-
-    const bio =
-        document
-            .getElementById(
-                "authorBio"
-            )
-            .value
-            .trim();
-
-
-    const photoFile =
-        photoInput.files[0];
-
-
-    if (!name) {
-
-        mesajGoster(
-            "Lütfen yazarın adını yaz.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const slug =
-        slugOlustur(
-            name
-        );
-
-
-    if (!slug) {
-
-        mesajGoster(
-            "Yazar adı geçerli bir slug oluşturamadı.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    saveButton.disabled =
-        true;
-
-
-    saveButton.textContent =
-        duzenlenenYazarId
-            ? "GÜNCELLENİYOR..."
-            : "KAYDEDİLİYOR...";
-
-
-    try {
-
-        /* ==========================================
-           YENİ YAZAR
-        ========================================== */
-
-        if (!duzenlenenYazarId) {
-
-            let fotografUrl =
-                null;
-
-
-            if (photoFile) {
-
-                const foto =
-                    await fotografYukle(
-                        photoFile,
-                        slug
-                    );
-
-
-                fotografUrl =
-                    foto.url;
-
-            }
-
-
-            const {
-                error
-            } =
-                await supabaseClient
-                    .from(
-                        "yazarlar"
-                    )
-                    .insert({
-
-                        ad_soyad:
-                            name,
-
-                        biyografi:
-                            bio || null,
-
-                        fotograf_url:
-                            fotografUrl,
-
-                        slug:
-                            slug,
-
-                        aktif:
-                            true
-
-                    });
-
-
-            if (error) {
-
-                throw error;
-
-            }
-
-
-            mesajGoster(
-                "Yazar başarıyla kaydedildi.",
-                "success"
-            );
-
-        }
-
-
-        /* ==========================================
-           MEVCUT YAZAR GÜNCELLE
-        ========================================== */
-
-        else {
-
-            const {
-                data: mevcutYazar,
-                error: getError
-            } =
-                await supabaseClient
-                    .from(
-                        "yazarlar"
-                    )
-                    .select(
-                        "*"
-                    )
-                    .eq(
-                        "id",
-                        duzenlenenYazarId
-                    )
-                    .single();
-
-
-            if (getError) {
-
-                throw getError;
-
-            }
-
-
-            let fotografUrl =
-                mevcutYazar.fotograf_url;
-
-
-            if (photoFile) {
-
-                const yeniFoto =
-                    await fotografYukle(
-                        photoFile,
-                        slug
-                    );
-
-
-                fotografUrl =
-                    yeniFoto.url;
-
-
-                if (
-                    mevcutYazar.fotograf_url
-                ) {
-
-                    await fotografSil(
-                        mevcutYazar.fotograf_url
-                    );
-
-                }
-
-            }
-
-
-            const {
-                error: updateError
-            } =
-                await supabaseClient
-                    .from(
-                        "yazarlar"
-                    )
-                    .update({
-
-                        ad_soyad:
-                            name,
-
-                        biyografi:
-                            bio || null,
-
-                        fotograf_url:
-                            fotografUrl,
-
-                        slug:
-                            slug
-
-                    })
-                    .eq(
-                        "id",
-                        duzenlenenYazarId
-                    );
-
-
-            if (updateError) {
-
-                throw updateError;
-
-            }
-
-
-            mesajGoster(
-                "Yazar başarıyla güncellendi.",
-                "success"
-            );
-
-        }
-
-
-        formuTemizle();
-
-        await yazarlariGetir();
-
-    }
-
-
-    catch (error) {
-
-        console.error(
-            "Yazar kaydetme hatası:",
-            error
-        );
-
-
-        mesajGoster(
-            "İşlem başarısız: " +
-            (error.message ||
-                "Bilinmeyen hata."),
-            "error"
-        );
-
-    }
-
-
-    finally {
-
-        saveButton.disabled =
-            false;
-
-        saveButton.textContent =
-            "YAZARI KAYDET";
-
-    }
-
-}
-
-
-/* ==================================================
-   YAZARLARI GETİR
-================================================== */
-
-async function yazarlariGetir() {
-
-    authorsList.innerHTML =
-        `<div class="empty">
-            Yazarlar yükleniyor...
-        </div>`;
-
-
-    const {
-        data,
-        error
-    } =
-        await supabaseClient
-            .from(
-                "yazarlar"
-            )
-            .select(
-                "*"
-            )
-            .order(
-                "id",
-                {
-                    ascending:
-                        false
-                }
-            );
-
-
-    if (error) {
-
-        console.error(
-            "Yazarları getirme hatası:",
-            error
-        );
-
-
-        authorsList.innerHTML =
-            `<div class="empty">
-                Yazarlar yüklenemedi:<br><br>
-                ${guvenliMetin(
-                    error.message
-                )}
-            </div>`;
-
-        return;
-
-    }
-
-
-    if (
-        !data ||
-        data.length === 0
-    ) {
-
-        authorsList.innerHTML =
-            `<div class="empty">
-                Henüz kayıtlı yazar bulunmuyor.
-            </div>`;
-
-        return;
-
-    }
-
-
-    authorsList.innerHTML =
-        "";
-
-
-    data.forEach(
-        function (author) {
-
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-
-            card.className =
-                "author-card";
-
-
-            const image =
-                author.fotograf_url
-
-                    ? `<img
-                        src="${guvenliMetin(
-                            author.fotograf_url
-                        )}"
-                        alt="${guvenliMetin(
-                            author.ad_soyad
-                        )}"
-                      >`
-
-                    : "👤";
-
-
-            const aktif =
-                author.aktif !== false;
-
-
-            const durumEtiketi =
-                aktif
-
-                    ? `
-                        <div class="author-status active">
-                            AKTİF
-                        </div>
-                      `
-
-                    : `
-                        <div class="author-status passive">
-                            PASİF
-                        </div>
-                      `;
-
-
-            card.innerHTML = `
-
-                <div class="author-photo">
-                    ${image}
-                </div>
-
-
-                <div class="author-info">
-
-                    <h3>
-                        ${guvenliMetin(
-                            author.ad_soyad
-                        )}
-                    </h3>
-
-
-                    ${durumEtiketi}
-
-
-                    <p>
-                        ${guvenliMetin(
-                            author.biyografi ||
-                            "Biyografi eklenmedi."
-                        )}
-                    </p>
-
-
-                    <div class="author-slug">
-                        /${guvenliMetin(
-                            author.slug || ""
-                        )}
-                    </div>
-
-
-                    <div class="author-actions">
-
-                        <button
-                            class="edit-button"
-                            onclick="yazarDuzenle(${author.id})"
-                        >
-                            DÜZENLE
-                        </button>
-
-
-                        <button
-                            class="toggle-button"
-                            onclick="yazarAktiflikDegistir(
-                                ${author.id},
-                                ${aktif}
-                            )"
-                        >
-                            ${aktif ? "PASİF YAP" : "AKTİF YAP"}
-                        </button>
-
-
-                        <button
-                            class="delete-button"
-                            onclick="yazarSil(${author.id})"
-                        >
-                            SİL
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-
-            authorsList.appendChild(
-                card
-            );
-
-        }
-    );
-
-}
-
-
-/* ==================================================
-   YAZAR AKTİFLİĞİ
-================================================== */
-
-async function yazarAktiflikDegistir(
-    id,
-    mevcutDurum
-) {
-
-    const yeniDurum =
-        !mevcutDurum;
-
-
-    const {
-        error
-    } =
-        await supabaseClient
-            .from(
-                "yazarlar"
-            )
-            .update({
-
-                aktif:
-                    yeniDurum
-
-            })
-            .eq(
-                "id",
-                id
-            );
-
-
-    if (error) {
-
-        console.error(
-            "Yazar aktiflik hatası:",
-            error
-        );
-
-
-        mesajGoster(
-            "Yazarın durumu değiştirilemedi: " +
-            error.message,
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    mesajGoster(
-        yeniDurum
-            ? "Yazar aktif hale getirildi."
-            : "Yazar pasif hale getirildi.",
-        "success"
-    );
-
-
-    await yazarlariGetir();
-
-}
-
-
-/* ==================================================
-   YAZAR DÜZENLE
-================================================== */
-
-async function yazarDuzenle(
-    id
-) {
-
-    try {
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .from(
-                    "yazarlar"
-                )
-                .select(
-                    "*"
-                )
-                .eq(
-                    "id",
-                    id
-                )
-                .single();
-
-
-        if (error) {
-
-            throw error;
-
-        }
-
-
-        duzenlenenYazarId =
-            id;
-
-
-        document
-            .getElementById(
-                "authorName"
-            )
-            .value =
-                data.ad_soyad || "";
-
-
-        document
-            .getElementById(
-                "authorBio"
-            )
-            .value =
-                data.biyografi || "";
-
-
-        if (
-            data.fotograf_url
-        ) {
-
-            photoPreview.innerHTML =
-                `<img
-                    src="${guvenliMetin(
-                        data.fotograf_url
-                    )}"
-                    alt="Yazar fotoğrafı"
-                >`;
-
-        }
-
-        else {
-
-            photoPreview.innerHTML =
-                "👤";
-
-        }
-
-
-        photoInput.value =
-            "";
-
-
-        formTitle.textContent =
-            "Yazarı Düzenle";
-
-
-        saveButton.textContent =
-            "DEĞİŞİKLİKLERİ KAYDET";
-
-
-        cancelButton.style.display =
-            "block";
-
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    }
-
-
-    catch (error) {
-
-        console.error(
-            "Yazar düzenleme hatası:",
-            error
-        );
-
-
-        mesajGoster(
-            "Yazar bilgileri alınamadı: " +
-            error.message,
-            "error"
-        );
-
-    }
-
-}
-
-
-/* ==================================================
-   YAZAR SİL
-================================================== */
-
-async function yazarSil(
-    id
-) {
-
-    const onay =
-        confirm(
-            "Bu yazarı kalıcı olarak silmek istediğine emin misin?\n\nYazar ve profil fotoğrafı silinecek."
-        );
-
-
-    if (!onay) {
-        return;
-    }
-
-
-    try {
-
-        const {
-            data,
-            error: getError
-        } =
-            await supabaseClient
-                .from(
-                    "yazarlar"
-                )
-                .select(
-                    "fotograf_url"
-                )
-                .eq(
-                    "id",
-                    id
-                )
-                .single();
-
-
-        if (getError) {
-
-            throw getError;
-
-        }
-
-
-        const {
-            error: deleteError
-        } =
-            await supabaseClient
-                .from(
-                    "yazarlar"
-                )
-                .delete()
-                .eq(
-                    "id",
-                    id
-                );
-
-
-        if (deleteError) {
-
-            throw deleteError;
-
-        }
-
-
-        if (
-            data &&
-            data.fotograf_url
-        ) {
-
-            await fotografSil(
-                data.fotograf_url
-            );
-
-        }
-
-
-        mesajGoster(
-            "Yazar başarıyla silindi.",
-            "success"
-        );
-
-
-        await yazarlariGetir();
-
-    }
-
-
-    catch (error) {
-
-        console.error(
-            "Yazar silme hatası:",
-            error
-        );
-
-
-        mesajGoster(
-            "Yazar silinemedi: " +
-            error.message,
-            "error"
-        );
-
-    }
-
-}
-
-
-/* ==================================================
-   FORM TEMİZLE
-================================================== */
-
-function formuTemizle() {
-
-    duzenlenenYazarId =
-        null;
-
-
-    document
-        .getElementById(
-            "authorName"
-        )
-        .value =
-            "";
-
-
-    document
-        .getElementById(
-            "authorBio"
-        )
-        .value =
-            "";
-
-
-    photoInput.value =
-        "";
-
-
-    photoPreview.innerHTML =
-        "👤";
-
-
-    formTitle.textContent =
-        "Yeni Yazar Ekle";
-
-
-    saveButton.textContent =
-        "YAZARI KAYDET";
-
-
-    cancelButton.style.display =
-        "none";
-
-}
-
-
-/* ==================================================
-   DÜZENLEMEYİ İPTAL
-================================================== */
-
-function duzenlemeyiIptalEt() {
-
-    formuTemizle();
-
-}
-
-
-/* ==================================================
-   SAYFAYI BAŞLAT
-================================================== */
-
-async function sayfaBaslat() {
-
-    /*
-       Önce ortak auth.js çalışır.
-       Oturum yoksa kullanıcı otomatik
-       olarak giris.html sayfasına gönderilir.
-    */
+async function panelBaslat() {
 
     const session =
         await yoneticiOturumuKontrolEt();
@@ -2036,28 +572,53 @@ async function sayfaBaslat() {
     }
 
 
+    const user =
+        session.user;
+
+
     /* =========================
-       KULLANICI E-POSTASI
+       E-POSTA
     ========================= */
+
+    const userEmail =
+        document.getElementById(
+            "userEmail"
+        );
+
 
     if (userEmail) {
 
         userEmail.textContent =
-            session.user.email ||
-            "Yönetici";
+            user.email || "Yönetici";
 
     }
 
 
     /* =========================
-       YAZARLARI GETİR
+       DURUM
     ========================= */
 
-    await yazarlariGetir();
+    const userStatus =
+        document.getElementById(
+            "userStatus"
+        );
+
+
+    if (userStatus) {
+
+        userStatus.textContent =
+            "Oturum aktif — Yönetici olarak giriş yaptın.";
+
+    }
 
 
     console.log(
-        "KARŞI: Yazar yönetimi açıldı."
+        "KARŞI: Yönetim paneli açıldı."
+    );
+
+    console.log(
+        "Yönetici:",
+        user.email
     );
 
 }
@@ -2067,7 +628,7 @@ async function sayfaBaslat() {
    BAŞLAT
 ================================================== */
 
-sayfaBaslat();
+panelBaslat();
 
 </script>
 
