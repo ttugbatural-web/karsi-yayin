@@ -1,243 +1,313 @@
-```javascript
 /* ==================================================
    KARŞI — ADMIN AUTH
    Yönetim paneli ortak oturum sistemi
 ================================================== */
 
+(function () {
 
-/* ==================================================
-   SUPABASE AYARLARI
-================================================== */
-
-const SUPABASE_URL =
-    "https://rfqiffvudbmphvklxetf.supabase.co";
-
-const SUPABASE_ANON_KEY =
-    "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+    "use strict";
 
 
-/* ==================================================
-   SUPABASE CLIENT
-================================================== */
+    /* ==================================================
+       SUPABASE AYARLARI
+    ================================================== */
 
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-    );
+    const SUPABASE_URL =
+        "https://rfqiffvudbmphvklxetf.supabase.co";
 
-
-/* ==================================================
-   YÖNETİCİ OTURUMU KONTROL
-================================================== */
-
-async function yoneticiOturumuKontrolEt() {
-
-    try {
-
-        console.log(
-            "KARŞI: Yönetici oturumu kontrol ediliyor..."
-        );
+    const SUPABASE_ANON_KEY =
+        "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
 
 
-        const {
-            data,
-            error
-        } =
-            await supabaseClient.auth.getSession();
+    /* ==================================================
+       SUPABASE KÜTÜPHANESİ KONTROLÜ
+    ================================================== */
 
-
-        /* =========================
-           HATA
-        ========================= */
-
-        if (error) {
-
-            console.error(
-                "KARŞI: Oturum kontrol hatası:",
-                error
-            );
-
-            window.location.href =
-                "giris.html";
-
-            return null;
-        }
-
-
-        /* =========================
-           OTURUM YOK
-        ========================= */
-
-        if (
-            !data ||
-            !data.session
-        ) {
-
-            console.warn(
-                "KARŞI: Aktif yönetici oturumu bulunamadı."
-            );
-
-            window.location.href =
-                "giris.html";
-
-            return null;
-        }
-
-
-        /* =========================
-           OTURUM VAR
-        ========================= */
-
-        console.log(
-            "KARŞI: Yönetici oturumu aktif:",
-            data.session.user.email
-        );
-
-
-        return data.session;
-
-    }
-
-    catch (error) {
+    if (
+        !window.supabase ||
+        typeof window.supabase.createClient !== "function"
+    ) {
 
         console.error(
-            "KARŞI: Oturum kontrolünde beklenmeyen hata:",
-            error
+            "KARŞI AUTH: Supabase kütüphanesi yüklenemedi."
         );
 
+        alert(
+            "Yönetim sistemi başlatılamadı. " +
+            "Supabase bağlantısı yüklenemedi."
+        );
 
-        window.location.href =
-            "giris.html";
-
-
-        return null;
+        return;
     }
 
-}
 
+    /* ==================================================
+       SUPABASE CLIENT
+    ================================================== */
 
-/* ==================================================
-   ÇIKIŞ YAP
-================================================== */
-
-async function cikisYap() {
-
-    try {
-
-        console.log(
-            "KARŞI: Yönetici çıkışı yapılıyor..."
+    const client =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_ANON_KEY
         );
 
 
-        const {
-            error
-        } =
-            await supabaseClient.auth.signOut();
+    /* ==================================================
+       GLOBAL CLIENT
+       
+       Diğer admin sayfaları bunu kullanabilir.
+       auth.js dışında aynı isimle const oluşturulmamalı.
+    ================================================== */
+
+    window.supabaseClient =
+        client;
 
 
-        if (error) {
+    /* ==================================================
+       YÖNETİCİ OTURUMU KONTROL
+    ================================================== */
+
+    async function yoneticiOturumuKontrolEt() {
+
+        console.log(
+            "KARŞI AUTH: Yönetici oturumu kontrol ediliyor..."
+        );
+
+
+        try {
+
+            const {
+                data,
+                error
+            } =
+                await client.auth.getSession();
+
+
+            /* =========================
+               SUPABASE HATASI
+            ========================= */
+
+            if (error) {
+
+                console.error(
+                    "KARŞI AUTH: Oturum kontrol hatası:",
+                    error
+                );
+
+                window.location.href =
+                    "giris.html";
+
+                return null;
+            }
+
+
+            /* =========================
+               OTURUM YOK
+            ========================= */
+
+            if (
+                !data ||
+                !data.session
+            ) {
+
+                console.warn(
+                    "KARŞI AUTH: Aktif yönetici oturumu bulunamadı."
+                );
+
+                window.location.href =
+                    "giris.html";
+
+                return null;
+            }
+
+
+            /* =========================
+               OTURUM VAR
+            ========================= */
+
+            console.log(
+                "KARŞI AUTH: Yönetici oturumu aktif:",
+                data.session.user.email
+            );
+
+
+            return data.session;
+
+        }
+
+        catch (error) {
 
             console.error(
-                "KARŞI: Çıkış yapılamadı:",
+                "KARŞI AUTH: Oturum kontrolünde beklenmeyen hata:",
                 error
             );
 
+
+            window.location.href =
+                "giris.html";
+
+
+            return null;
+        }
+
+    }
+
+
+    /* ==================================================
+       ÇIKIŞ YAP
+    ================================================== */
+
+    async function cikisYap() {
+
+        console.log(
+            "KARŞI AUTH: Yönetici çıkışı başlatılıyor..."
+        );
+
+
+        try {
+
+            const {
+                error
+            } =
+                await client.auth.signOut();
+
+
+            /* =========================
+               ÇIKIŞ HATASI
+            ========================= */
+
+            if (error) {
+
+                console.error(
+                    "KARŞI AUTH: Çıkış yapılamadı:",
+                    error
+                );
+
+
+                alert(
+                    "Çıkış yapılamadı:\n\n" +
+                    (
+                        error.message ||
+                        "Bilinmeyen hata."
+                    )
+                );
+
+
+                return false;
+            }
+
+
+            /* =========================
+               BAŞARILI
+            ========================= */
+
+            console.log(
+                "KARŞI AUTH: Yönetici çıkışı başarılı."
+            );
+
+
+            window.location.href =
+                "giris.html";
+
+
+            return true;
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "KARŞI AUTH: Çıkış sırasında beklenmeyen hata:",
+                error
+            );
+
+
             alert(
-                "Çıkış yapılamadı: " +
+                "Çıkış sırasında bir hata oluştu:\n\n" +
                 (
                     error.message ||
                     "Bilinmeyen hata."
                 )
             );
 
-            return;
+
+            return false;
         }
 
-
-        console.log(
-            "KARŞI: Yönetici çıkışı başarılı."
-        );
-
-
-        window.location.href =
-            "giris.html";
-
     }
 
-    catch (error) {
 
-        console.error(
-            "KARŞI: Çıkış sırasında beklenmeyen hata:",
-            error
-        );
+    /* ==================================================
+       AUTH DURUMU DEĞİŞİKLİĞİ
+    ================================================== */
 
+    client.auth.onAuthStateChange(
+        function (event, session) {
 
-        alert(
-            "Çıkış sırasında bir hata oluştu."
-        );
-    }
-
-}
+            console.log(
+                "KARŞI AUTH: Auth durumu değişti:",
+                event
+            );
 
 
-/* ==================================================
-   AUTH DURUMU DEĞİŞİNCE
-================================================== */
-
-supabaseClient.auth.onAuthStateChange(
-    function(event, session) {
-
-        console.log(
-            "KARŞI: Auth durumu:",
-            event
-        );
-
-
-        if (
-            event === "SIGNED_OUT"
-        ) {
-
-            /*
-             * Zaten giriş sayfasındaysak
-             * tekrar yönlendirme yapma.
-             */
+            /* =========================
+               ÇIKIŞ YAPILDI
+            ========================= */
 
             if (
-                !window.location.pathname.endsWith(
-                    "giris.html"
-                )
+                event === "SIGNED_OUT"
             ) {
 
-                window.location.href =
-                    "giris.html";
+                const mevcutSayfa =
+                    window.location.pathname
+                        .split("/")
+                        .pop();
+
+
+                /*
+                 * Zaten giriş sayfasındaysak
+                 * tekrar yönlendirme yapma.
+                 */
+
+                if (
+                    mevcutSayfa !== "giris.html"
+                ) {
+
+                    window.location.href =
+                        "giris.html";
+                }
+
             }
 
         }
-
-    }
-);
+    );
 
 
-/* ==================================================
-   GLOBAL ERİŞİM
-================================================== */
+    /* ==================================================
+       GLOBAL FONKSİYONLAR
+       
+       HTML onclick ve diğer admin
+       sayfalarının erişebilmesi için.
+    ================================================== */
 
-window.supabaseClient =
-    supabaseClient;
-
-window.yoneticiOturumuKontrolEt =
-    yoneticiOturumuKontrolEt;
-
-window.cikisYap =
-    cikisYap;
+    window.yoneticiOturumuKontrolEt =
+        yoneticiOturumuKontrolEt;
 
 
-/* ==================================================
-   HAZIR
-================================================== */
+    window.cikisYap =
+        cikisYap;
 
-console.log(
-    "KARŞI: auth.js başarıyla yüklendi."
-);
-```
+
+    /* ==================================================
+       AUTH HAZIR
+    ================================================== */
+
+    console.log(
+        "KARŞI AUTH: auth.js başarıyla yüklendi."
+    );
+
+    console.log(
+        "KARŞI AUTH: supabaseClient hazır."
+    );
+
+})();
