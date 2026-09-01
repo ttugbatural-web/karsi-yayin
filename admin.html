@@ -1,0 +1,2601 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KARŞI — Yönetim Paneli</title>
+
+<style>
+
+/* =========================
+   TEMEL
+========================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f2f2f0;
+  color: #111;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+  background: #111;
+  color: white;
+  border-bottom: 4px solid #c40000;
+  padding: 18px 20px;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.logo {
+  position: relative;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 42px;
+  font-weight: 900;
+
+  letter-spacing: -3px;
+}
+
+.logo::after {
+  content: "";
+
+  position: absolute;
+
+  width: 115%;
+  height: 4px;
+
+  background: #c40000;
+
+  left: -7%;
+  top: 52%;
+
+  transform: rotate(-4deg);
+}
+
+.header-right {
+  text-align: right;
+}
+
+.header-right strong {
+  display: block;
+  font-size: 13px;
+}
+
+.header-right span {
+  color: #aaa;
+  font-size: 11px;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+  max-width: 1100px;
+  margin: 35px auto;
+  padding: 0 18px;
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+.login-box {
+  max-width: 420px;
+  margin: 70px auto;
+
+  background: white;
+  border: 1px solid #ddd;
+
+  padding: 30px;
+}
+
+.login-box h1 {
+  font-family: Georgia, serif;
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.login-box p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+
+  font-size: 11px;
+  font-weight: bold;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 7px;
+}
+
+input,
+textarea,
+select {
+
+  width: 100%;
+
+  border: 1px solid #ccc;
+
+  background: white;
+
+  padding: 12px;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 14px;
+
+  color: #111;
+
+  border-radius: 0;
+
+}
+
+textarea {
+  min-height: 220px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #111;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+  border: none;
+
+  background: #111;
+  color: white;
+
+  padding: 12px 18px;
+
+  font-size: 12px;
+  font-weight: bold;
+
+  letter-spacing: .5px;
+
+  cursor: pointer;
+}
+
+button:hover {
+  background: #c40000;
+}
+
+button.red {
+  background: #c40000;
+}
+
+button.gray {
+  background: #777;
+}
+
+button.danger {
+  background: #8b0000;
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+  display: none;
+}
+
+.dashboard.active {
+  display: block;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.page-title {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+}
+
+.page-title h1 {
+  font-family: Georgia, serif;
+  font-size: 34px;
+}
+
+
+/* =========================
+   TABS
+========================= */
+
+.tabs {
+
+  display: flex;
+
+  border-bottom: 2px solid #111;
+
+  margin-bottom: 25px;
+
+  overflow-x: auto;
+}
+
+.tab {
+
+  padding: 13px 18px;
+
+  background: transparent;
+
+  color: #111;
+
+  border: none;
+
+  white-space: nowrap;
+}
+
+.tab.active {
+
+  background: #111;
+
+  color: white;
+}
+
+
+/* =========================
+   PANELS
+========================= */
+
+.panel {
+
+  background: white;
+
+  border: 1px solid #ddd;
+
+  padding: 25px;
+
+  margin-bottom: 25px;
+}
+
+.panel h2 {
+
+  font-family: Georgia, serif;
+
+  font-size: 22px;
+
+  margin-bottom: 20px;
+
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.form-grid {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 18px;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status-options {
+
+  display: flex;
+
+  gap: 20px;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+}
+
+.status-options label {
+
+  font-size: 13px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+
+/* =========================
+   CONTENT LIST
+========================= */
+
+.content-list {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.content-item {
+
+  border: 1px solid #ddd;
+
+  background: #fafafa;
+
+  padding: 15px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+.content-info {
+  min-width: 0;
+}
+
+.content-info h3 {
+
+  font-family: Georgia, serif;
+
+  font-size: 18px;
+
+  margin-bottom: 6px;
+}
+
+.content-meta {
+
+  color: #777;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+.content-actions {
+
+  display: flex;
+
+  gap: 7px;
+
+  flex-shrink: 0;
+}
+
+.content-actions button {
+
+  padding: 9px 12px;
+
+  font-size: 10px;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+
+  padding: 15px;
+
+  background: #f5f5f5;
+
+  border-left: 4px solid #111;
+
+  font-size: 13px;
+
+  color: #555;
+
+  margin-bottom: 18px;
+}
+
+.message.error {
+
+  border-left-color: #c40000;
+
+  color: #8b0000;
+}
+
+.message.success {
+
+  border-left-color: #168000;
+
+  color: #168000;
+}
+
+
+/* =========================
+   LOGIN ERROR
+========================= */
+
+#loginError {
+
+  display: none;
+
+  color: #8b0000;
+
+  background: #fff0f0;
+
+  border-left: 4px solid #c40000;
+
+  padding: 12px;
+
+  margin-bottom: 18px;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   HIDDEN
+========================= */
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+  background: #111;
+
+  color: #999;
+
+  text-align: center;
+
+  padding: 25px;
+
+  margin-top: 60px;
+
+  font-size: 12px;
+}
+
+
+/* =========================
+   MOBİL
+========================= */
+
+@media (max-width: 700px) {
+
+  .header-inner {
+    align-items: flex-start;
+  }
+
+  .logo {
+    font-size: 36px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full {
+    grid-column: auto;
+  }
+
+  .page-title {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .content-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .content-actions {
+    width: 100%;
+  }
+
+  .content-actions button {
+    flex: 1;
+  }
+
+  .panel {
+    padding: 18px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+  <div class="header-inner">
+
+    <div class="logo">
+      KARŞI
+    </div>
+
+    <div class="header-right">
+
+      <strong>YÖNETİM PANELİ</strong>
+
+      <span>Bağımsız yayın sistemi</span>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main>
+
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<section id="loginSection">
+
+  <div class="login-box">
+
+    <h1>Yönetim Paneli</h1>
+
+    <p>
+      KARŞI yayın sistemine giriş yapın.
+    </p>
+
+    <div id="loginError"></div>
+
+
+    <div class="form-group">
+
+      <label>
+        E-POSTA
+      </label>
+
+      <input
+        type="email"
+        id="loginEmail"
+        placeholder="E-posta adresiniz"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        ŞİFRE
+      </label>
+
+      <input
+        type="password"
+        id="loginPassword"
+        placeholder="Şifreniz"
+      >
+
+    </div>
+
+
+    <button
+      id="loginButton"
+      onclick="girisYap()"
+    >
+      GİRİŞ YAP
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section
+  id="dashboard"
+  class="dashboard"
+>
+
+
+  <div class="page-title">
+
+    <h1>
+      KARŞI Yönetim
+    </h1>
+
+    <button
+      class="gray"
+      onclick="cikisYap()"
+    >
+      ÇIKIŞ YAP
+    </button>
+
+  </div>
+
+
+  <div id="globalMessage"></div>
+
+
+  <!-- =========================
+       TABS
+  ========================= -->
+
+  <div class="tabs">
+
+    <button
+      class="tab active"
+      id="tabYazi"
+      onclick="sekmeAc('yazi')"
+    >
+      YENİ KÖŞE YAZISI
+    </button>
+
+    <button
+      class="tab"
+      id="tabHaber"
+      onclick="sekmeAc('haber')"
+    >
+      YENİ HABER
+    </button>
+
+    <button
+      class="tab"
+      id="tabListe"
+      onclick="sekmeAc('liste')"
+    >
+      İÇERİKLER
+    </button>
+
+  </div>
+
+
+
+  <!-- =========================
+       YAZI FORMU
+  ========================= -->
+
+  <section
+    id="yaziPanel"
+    class="panel"
+  >
+
+    <h2>
+      Yeni Köşe Yazısı
+    </h2>
+
+
+    <input
+      type="hidden"
+      id="yaziId"
+    >
+
+
+    <div class="form-grid">
+
+
+      <div class="form-group full">
+
+        <label>
+          BAŞLIK
+        </label>
+
+        <input
+          type="text"
+          id="yaziBaslik"
+          placeholder="Yazının başlığı"
+        >
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          ÖZET
+        </label>
+
+        <input
+          type="text"
+          id="yaziOzet"
+          placeholder="Kısa özet"
+        >
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          İÇERİK
+        </label>
+
+        <textarea
+          id="yaziIcerik"
+          placeholder="Yazınızı buraya yazın..."
+        ></textarea>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          KATEGORİ
+        </label>
+
+        <input
+          type="text"
+          id="yaziKategori"
+          value="KARŞI / YORUM"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          YAZAR
+        </label>
+
+        <select id="yaziYazar">
+          <option value="">
+            Yazar seçin
+          </option>
+        </select>
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          KAPAK FOTOĞRAFI URL
+        </label>
+
+        <input
+          type="url"
+          id="yaziFoto"
+          placeholder="https://..."
+        >
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          DURUM
+        </label>
+
+        <div class="status-options">
+
+          <label>
+
+            <input
+              type="radio"
+              name="yaziDurum"
+              value="taslak"
+            >
+
+            Taslak
+
+          </label>
+
+
+          <label>
+
+            <input
+              type="radio"
+              name="yaziDurum"
+              value="yayinda"
+              checked
+            >
+
+            Yayında
+
+          </label>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div style="display:flex; gap:10px; margin-top:10px;">
+
+      <button
+        class="red"
+        onclick="yaziKaydet()"
+      >
+        YAZIYI YAYINLA
+      </button>
+
+      <button
+        class="gray"
+        onclick="yaziFormTemizle()"
+      >
+        TEMİZLE
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       HABER FORMU
+  ========================= -->
+
+  <section
+    id="haberPanel"
+    class="panel hidden"
+  >
+
+    <h2>
+      Yeni Haber
+    </h2>
+
+
+    <input
+      type="hidden"
+      id="haberId"
+    >
+
+
+    <div class="form-grid">
+
+
+      <div class="form-group full">
+
+        <label>
+          BAŞLIK
+        </label>
+
+        <input
+          type="text"
+          id="haberBaslik"
+          placeholder="Haber başlığı"
+        >
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          SPOT
+        </label>
+
+        <input
+          type="text"
+          id="haberSpot"
+          placeholder="Haberin kısa spotu"
+        >
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          İÇERİK
+        </label>
+
+        <textarea
+          id="haberIcerik"
+          placeholder="Haber metni..."
+        ></textarea>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          KATEGORİ
+        </label>
+
+        <input
+          type="text"
+          id="haberKategori"
+          value="Gündem"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          YAZAR
+        </label>
+
+        <select id="haberYazar">
+
+          <option value="">
+            Yazar seçin
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          KAPAK FOTOĞRAFI URL
+        </label>
+
+        <input
+          type="url"
+          id="haberFoto"
+          placeholder="https://..."
+        >
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          DURUM
+        </label>
+
+        <div class="status-options">
+
+          <label>
+
+            <input
+              type="radio"
+              name="haberDurum"
+              value="taslak"
+            >
+
+            Taslak
+
+          </label>
+
+
+          <label>
+
+            <input
+              type="radio"
+              name="haberDurum"
+              value="yayinda"
+              checked
+            >
+
+            Yayında
+
+          </label>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div style="display:flex; gap:10px; margin-top:10px;">
+
+      <button
+        class="red"
+        onclick="haberKaydet()"
+      >
+        HABERİ YAYINLA
+      </button>
+
+      <button
+        class="gray"
+        onclick="haberFormTemizle()"
+      >
+        TEMİZLE
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       İÇERİK LİSTESİ
+  ========================= -->
+
+  <section
+    id="listePanel"
+    class="panel hidden"
+  >
+
+    <h2>
+      Mevcut İçerikler
+    </h2>
+
+
+    <div class="tabs">
+
+      <button
+        class="tab active"
+        id="listeYaziTab"
+        onclick="listeYaziAc()"
+      >
+        KÖŞE YAZILARI
+      </button>
+
+      <button
+        class="tab"
+        id="listeHaberTab"
+        onclick="listeHaberAc()"
+      >
+        HABERLER
+      </button>
+
+    </div>
+
+
+    <div
+      id="contentList"
+      class="content-list"
+    >
+
+      İçerikler yükleniyor...
+
+    </div>
+
+  </section>
+
+
+</section>
+
+</main>
+
+
+<footer>
+
+  KARŞI Yönetim Paneli · 2026
+
+</footer>
+
+
+<!-- =========================
+     SUPABASE
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+/* ==================================================
+   SUPABASE
+================================================== */
+
+const SUPABASE_URL =
+  "https://rfqiffvudbmphvklxetf.supabase.co";
+
+const SUPABASE_ANON_KEY =
+  "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+
+
+/* ==================================================
+   GENEL MESAJ
+================================================== */
+
+function mesajGoster(text, type = "") {
+
+  const box =
+    document.getElementById(
+      "globalMessage"
+    );
+
+  box.innerHTML =
+    `
+    <div class="message ${type}">
+      ${guvenliMetin(text)}
+    </div>
+    `;
+
+  setTimeout(
+    function() {
+      box.innerHTML = "";
+    },
+    5000
+  );
+
+}
+
+
+/* ==================================================
+   GÜVENLİ METİN
+================================================== */
+
+function guvenliMetin(metin) {
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    metin == null
+      ? ""
+      : String(metin);
+
+  return div.innerHTML;
+
+}
+
+
+/* ==================================================
+   SLUG
+================================================== */
+
+function slugOlustur(metin) {
+
+  return String(metin || "")
+    .toLowerCase()
+
+    .replace(/ğ/g, "g")
+    .replace(/ü/g, "u")
+    .replace(/ş/g, "s")
+    .replace(/ı/g, "i")
+    .replace(/ö/g, "o")
+    .replace(/ç/g, "c")
+
+    .replace(/[^a-z0-9\s-]/g, "")
+
+    .trim()
+
+    .replace(/\s+/g, "-")
+
+    .replace(/-+/g, "-");
+
+}
+
+
+/* ==================================================
+   TARİH
+================================================== */
+
+function tarihFormatla(tarih) {
+
+  if (!tarih) {
+    return "";
+  }
+
+  return new Date(tarih)
+    .toLocaleDateString(
+      "tr-TR",
+      {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      }
+    );
+
+}
+
+
+/* ==================================================
+   LOGIN
+================================================== */
+
+async function girisYap() {
+
+  const email =
+    document.getElementById(
+      "loginEmail"
+    ).value.trim();
+
+  const password =
+    document.getElementById(
+      "loginPassword"
+    ).value;
+
+
+  const errorBox =
+    document.getElementById(
+      "loginError"
+    );
+
+
+  errorBox.style.display =
+    "none";
+
+
+  if (!email || !password) {
+
+    errorBox.textContent =
+      "E-posta ve şifre girin.";
+
+    errorBox.style.display =
+      "block";
+
+    return;
+
+  }
+
+
+  const button =
+    document.getElementById(
+      "loginButton"
+    );
+
+  button.disabled = true;
+
+  button.textContent =
+    "GİRİŞ YAPILIYOR...";
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient.auth.signInWithPassword(
+      {
+        email: email,
+        password: password
+      }
+    );
+
+
+  button.disabled = false;
+
+  button.textContent =
+    "GİRİŞ YAP";
+
+
+  if (error) {
+
+    errorBox.textContent =
+      error.message;
+
+    errorBox.style.display =
+      "block";
+
+    return;
+
+  }
+
+
+  paneliAc();
+
+}
+
+
+/* ==================================================
+   LOGOUT
+================================================== */
+
+async function cikisYap() {
+
+  await supabaseClient.auth.signOut();
+
+  document
+    .getElementById("dashboard")
+    .classList.remove("active");
+
+  document
+    .getElementById("loginSection")
+    .style.display = "block";
+
+}
+
+
+/* ==================================================
+   OTURUM KONTROL
+================================================== */
+
+async function oturumKontrol() {
+
+  const {
+    data
+  } =
+    await supabaseClient.auth.getSession();
+
+
+  if (
+    data &&
+    data.session
+  ) {
+
+    paneliAc();
+
+  }
+
+}
+
+
+/* ==================================================
+   PANELİ AÇ
+================================================== */
+
+async function paneliAc() {
+
+  document
+    .getElementById("loginSection")
+    .style.display =
+    "none";
+
+
+  document
+    .getElementById("dashboard")
+    .classList.add("active");
+
+
+  await yazarlarıGetir();
+
+}
+
+
+/* ==================================================
+   YAZARLARI GETİR
+================================================== */
+
+async function yazarlarıGetir() {
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("yazarlar")
+      .select(
+        "id, ad_soyad"
+      )
+      .order(
+        "ad_soyad",
+        {
+          ascending: true
+        }
+      );
+
+
+  if (error) {
+
+    console.error(
+      "Yazarlar alınamadı:",
+      error
+    );
+
+    return;
+
+  }
+
+
+  const selects = [
+
+    document.getElementById(
+      "yaziYazar"
+    ),
+
+    document.getElementById(
+      "haberYazar"
+    )
+
+  ];
+
+
+  selects.forEach(
+    function(select) {
+
+      select.innerHTML =
+        `
+        <option value="">
+          Yazar seçin
+        </option>
+        `;
+
+
+      data.forEach(
+        function(yazar) {
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+          option.value =
+            yazar.id;
+
+          option.textContent =
+            yazar.ad_soyad;
+
+          select.appendChild(
+            option
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+/* ==================================================
+   SEKME
+================================================== */
+
+function sekmeAc(sekme) {
+
+  document
+    .getElementById(
+      "yaziPanel"
+    )
+    .classList.add("hidden");
+
+  document
+    .getElementById(
+      "haberPanel"
+    )
+    .classList.add("hidden");
+
+  document
+    .getElementById(
+      "listePanel"
+    )
+    .classList.add("hidden");
+
+
+  document
+    .getElementById(
+      "tabYazi"
+    )
+    .classList.remove("active");
+
+  document
+    .getElementById(
+      "tabHaber"
+    )
+    .classList.remove("active");
+
+  document
+    .getElementById(
+      "tabListe"
+    )
+    .classList.remove("active");
+
+
+  if (sekme === "yazi") {
+
+    document
+      .getElementById(
+        "yaziPanel"
+      )
+      .classList.remove("hidden");
+
+    document
+      .getElementById(
+        "tabYazi"
+      )
+      .classList.add("active");
+
+  }
+
+
+  if (sekme === "haber") {
+
+    document
+      .getElementById(
+        "haberPanel"
+      )
+      .classList.remove("hidden");
+
+    document
+      .getElementById(
+        "tabHaber"
+      )
+      .classList.add("active");
+
+  }
+
+
+  if (sekme === "liste") {
+
+    document
+      .getElementById(
+        "listePanel"
+      )
+      .classList.remove("hidden");
+
+    document
+      .getElementById(
+        "tabListe"
+      )
+      .classList.add("active");
+
+    listeYaziAc();
+
+  }
+
+}
+
+
+/* ==================================================
+   YAZI KAYDET
+================================================== */
+
+async function yaziKaydet() {
+
+  const id =
+    document.getElementById(
+      "yaziId"
+    ).value;
+
+
+  const baslik =
+    document.getElementById(
+      "yaziBaslik"
+    ).value.trim();
+
+  const ozet =
+    document.getElementById(
+      "yaziOzet"
+    ).value.trim();
+
+  const icerik =
+    document.getElementById(
+      "yaziIcerik"
+    ).value.trim();
+
+  const kategori =
+    document.getElementById(
+      "yaziKategori"
+    ).value.trim();
+
+  const yazarId =
+    document.getElementById(
+      "yaziYazar"
+    ).value || null;
+
+  const foto =
+    document.getElementById(
+      "yaziFoto"
+    ).value.trim();
+
+  const durum =
+    document.querySelector(
+      'input[name="yaziDurum"]:checked'
+    ).value;
+
+
+  if (!baslik || !icerik) {
+
+    mesajGoster(
+      "Başlık ve içerik zorunludur.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const veri = {
+
+    baslik: baslik,
+
+    ozet: ozet,
+
+    icerik: icerik,
+
+    kategori:
+      kategori || "KARŞI / YORUM",
+
+    yazar_id:
+      yazarId,
+
+    kapak_fotografi_url:
+      foto || null,
+
+    durum:
+      durum,
+
+    yayin_tarihi:
+      durum === "yayinda"
+        ? new Date().toISOString()
+        : null,
+
+    updated_at:
+      new Date().toISOString()
+
+  };
+
+
+  if (!id) {
+
+    veri.slug =
+      slugOlustur(baslik);
+
+    veri.created_at =
+      new Date().toISOString();
+
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .from("kose_yazilari")
+        .insert(veri);
+
+
+    if (error) {
+
+      console.error(error);
+
+      mesajGoster(
+        error.message,
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    mesajGoster(
+      "Köşe yazısı başarıyla kaydedildi.",
+      "success"
+    );
+
+  }
+
+  else {
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .from("kose_yazilari")
+        .update(veri)
+        .eq(
+          "id",
+          id
+        );
+
+
+    if (error) {
+
+      mesajGoster(
+        error.message,
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    mesajGoster(
+      "Köşe yazısı güncellendi.",
+      "success"
+    );
+
+  }
+
+
+  yaziFormTemizle();
+
+}
+
+
+/* ==================================================
+   HABER KAYDET
+================================================== */
+
+async function haberKaydet() {
+
+  const id =
+    document.getElementById(
+      "haberId"
+    ).value;
+
+
+  const baslik =
+    document.getElementById(
+      "haberBaslik"
+    ).value.trim();
+
+  const spot =
+    document.getElementById(
+      "haberSpot"
+    ).value.trim();
+
+  const icerik =
+    document.getElementById(
+      "haberIcerik"
+    ).value.trim();
+
+  const kategori =
+    document.getElementById(
+      "haberKategori"
+    ).value.trim();
+
+  const yazarId =
+    document.getElementById(
+      "haberYazar"
+    ).value || null;
+
+  const foto =
+    document.getElementById(
+      "haberFoto"
+    ).value.trim();
+
+  const durum =
+    document.querySelector(
+      'input[name="haberDurum"]:checked'
+    ).value;
+
+
+  if (!baslik || !icerik) {
+
+    mesajGoster(
+      "Başlık ve içerik zorunludur.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const veri = {
+
+    baslik: baslik,
+
+    spot: spot,
+
+    icerik: icerik,
+
+    kategori:
+      kategori || "Gündem",
+
+    yazar_id:
+      yazarId,
+
+    kapak_fotografi_url:
+      foto || null,
+
+    durum:
+      durum,
+
+    yayin_tarihi:
+      durum === "yayinda"
+        ? new Date().toISOString()
+        : null,
+
+    updated_at:
+      new Date().toISOString()
+
+  };
+
+
+  if (!id) {
+
+    veri.slug =
+      slugOlustur(baslik);
+
+    veri.created_at =
+      new Date().toISOString();
+
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .from("haberler")
+        .insert(veri);
+
+
+    if (error) {
+
+      console.error(error);
+
+      mesajGoster(
+        error.message,
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    mesajGoster(
+      "Haber başarıyla kaydedildi.",
+      "success"
+    );
+
+  }
+
+  else {
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .from("haberler")
+        .update(veri)
+        .eq(
+          "id",
+          id
+        );
+
+
+    if (error) {
+
+      mesajGoster(
+        error.message,
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    mesajGoster(
+      "Haber güncellendi.",
+      "success"
+    );
+
+  }
+
+
+  haberFormTemizle();
+
+}
+
+
+/* ==================================================
+   YAZI FORM TEMİZLE
+================================================== */
+
+function yaziFormTemizle() {
+
+  document.getElementById(
+    "yaziId"
+  ).value = "";
+
+  document.getElementById(
+    "yaziBaslik"
+  ).value = "";
+
+  document.getElementById(
+    "yaziOzet"
+  ).value = "";
+
+  document.getElementById(
+    "yaziIcerik"
+  ).value = "";
+
+  document.getElementById(
+    "yaziFoto"
+  ).value = "";
+
+  document.getElementById(
+    "yaziKategori"
+  ).value =
+    "KARŞI / YORUM";
+
+  document.getElementById(
+    "yaziYazar"
+  ).value = "";
+
+  document.querySelector(
+    'input[name="yaziDurum"][value="yayinda"]'
+  ).checked = true;
+
+}
+
+
+/* ==================================================
+   HABER FORM TEMİZLE
+================================================== */
+
+function haberFormTemizle() {
+
+  document.getElementById(
+    "haberId"
+  ).value = "";
+
+  document.getElementById(
+    "haberBaslik"
+  ).value = "";
+
+  document.getElementById(
+    "haberSpot"
+  ).value = "";
+
+  document.getElementById(
+    "haberIcerik"
+  ).value = "";
+
+  document.getElementById(
+    "haberFoto"
+  ).value = "";
+
+  document.getElementById(
+    "haberKategori"
+  ).value =
+    "Gündem";
+
+  document.getElementById(
+    "haberYazar"
+  ).value = "";
+
+  document.querySelector(
+    'input[name="haberDurum"][value="yayinda"]'
+  ).checked = true;
+
+}
+
+
+/* ==================================================
+   KÖŞE YAZILARINI LİSTELE
+================================================== */
+
+async function listeYaziAc() {
+
+  document
+    .getElementById(
+      "listeYaziTab"
+    )
+    .classList.add("active");
+
+  document
+    .getElementById(
+      "listeHaberTab"
+    )
+    .classList.remove("active");
+
+
+  const list =
+    document.getElementById(
+      "contentList"
+    );
+
+
+  list.innerHTML =
+    "Yazılar yükleniyor...";
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("kose_yazilari")
+      .select(
+        "id, baslik, kategori, durum, yayin_tarihi, created_at"
+      )
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+
+  if (error) {
+
+    list.innerHTML =
+      `
+      <div class="message error">
+        ${guvenliMetin(error.message)}
+      </div>
+      `;
+
+    return;
+
+  }
+
+
+  if (!data || data.length === 0) {
+
+    list.innerHTML =
+      `
+      <div class="message">
+        Henüz köşe yazısı bulunmuyor.
+      </div>
+      `;
+
+    return;
+
+  }
+
+
+  list.innerHTML = "";
+
+
+  data.forEach(
+    function(item) {
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+      div.className =
+        "content-item";
+
+
+      div.innerHTML =
+        `
+        <div class="content-info">
+
+          <h3>
+            ${guvenliMetin(item.baslik)}
+          </h3>
+
+          <div class="content-meta">
+
+            ${guvenliMetin(item.kategori || "")}
+
+            ·
+
+            ${guvenliMetin(item.durum || "")}
+
+            ${
+              item.yayin_tarihi
+                ? " · " +
+                  guvenliMetin(
+                    tarihFormatla(
+                      item.yayin_tarihi
+                    )
+                  )
+                : ""
+            }
+
+          </div>
+
+        </div>
+
+
+        <div class="content-actions">
+
+          <button
+            onclick="yaziDuzenle(${item.id})"
+          >
+            DÜZENLE
+          </button>
+
+          <button
+            class="danger"
+            onclick="yaziSil(${item.id})"
+          >
+            SİL
+          </button>
+
+        </div>
+        `;
+
+
+      list.appendChild(div);
+
+    }
+  );
+
+}
+
+
+/* ==================================================
+   HABERLERİ LİSTELE
+================================================== */
+
+async function listeHaberAc() {
+
+  document
+    .getElementById(
+      "listeHaberTab"
+    )
+    .classList.add("active");
+
+  document
+    .getElementById(
+      "listeYaziTab"
+    )
+    .classList.remove("active");
+
+
+  const list =
+    document.getElementById(
+      "contentList"
+    );
+
+
+  list.innerHTML =
+    "Haberler yükleniyor...";
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("haberler")
+      .select(
+        "id, baslik, kategori, durum, yayin_tarihi, created_at"
+      )
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+
+  if (error) {
+
+    list.innerHTML =
+      `
+      <div class="message error">
+        ${guvenliMetin(error.message)}
+      </div>
+      `;
+
+    return;
+
+  }
+
+
+  if (!data || data.length === 0) {
+
+    list.innerHTML =
+      `
+      <div class="message">
+        Henüz haber bulunmuyor.
+      </div>
+      `;
+
+    return;
+
+  }
+
+
+  list.innerHTML = "";
+
+
+  data.forEach(
+    function(item) {
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+      div.className =
+        "content-item";
+
+
+      div.innerHTML =
+        `
+        <div class="content-info">
+
+          <h3>
+            ${guvenliMetin(item.baslik)}
+          </h3>
+
+          <div class="content-meta">
+
+            ${guvenliMetin(item.kategori || "")}
+
+            ·
+
+            ${guvenliMetin(item.durum || "")}
+
+            ${
+              item.yayin_tarihi
+                ? " · " +
+                  guvenliMetin(
+                    tarihFormatla(
+                      item.yayin_tarihi
+                    )
+                  )
+                : ""
+            }
+
+          </div>
+
+        </div>
+
+
+        <div class="content-actions">
+
+          <button
+            onclick="haberDuzenle(${item.id})"
+          >
+            DÜZENLE
+          </button>
+
+          <button
+            class="danger"
+            onclick="haberSil(${item.id})"
+          >
+            SİL
+          </button>
+
+        </div>
+        `;
+
+
+      list.appendChild(div);
+
+    }
+  );
+
+}
+
+
+/* ==================================================
+   YAZI DÜZENLE
+================================================== */
+
+async function yaziDuzenle(id) {
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("kose_yazilari")
+      .select("*")
+      .eq(
+        "id",
+        id
+      )
+      .single();
+
+
+  if (error) {
+
+    mesajGoster(
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "yaziId"
+  ).value =
+    data.id;
+
+  document.getElementById(
+    "yaziBaslik"
+  ).value =
+    data.baslik || "";
+
+  document.getElementById(
+    "yaziOzet"
+  ).value =
+    data.ozet || "";
+
+  document.getElementById(
+    "yaziIcerik"
+  ).value =
+    data.icerik || "";
+
+  document.getElementById(
+    "yaziKategori"
+  ).value =
+    data.kategori || "";
+
+  document.getElementById(
+    "yaziYazar"
+  ).value =
+    data.yazar_id || "";
+
+  document.getElementById(
+    "yaziFoto"
+  ).value =
+    data.kapak_fotografi_url || "";
+
+
+  const radio =
+    document.querySelector(
+      `input[name="yaziDurum"][value="${data.durum}"]`
+    );
+
+  if (radio) {
+    radio.checked = true;
+  }
+
+
+  sekmeAc("yazi");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* ==================================================
+   HABER DÜZENLE
+================================================== */
+
+async function haberDuzenle(id) {
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("haberler")
+      .select("*")
+      .eq(
+        "id",
+        id
+      )
+      .single();
+
+
+  if (error) {
+
+    mesajGoster(
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "haberId"
+  ).value =
+    data.id;
+
+  document.getElementById(
+    "haberBaslik"
+  ).value =
+    data.baslik || "";
+
+  document.getElementById(
+    "haberSpot"
+  ).value =
+    data.spot || "";
+
+  document.getElementById(
+    "haberIcerik"
+  ).value =
+    data.icerik || "";
+
+  document.getElementById(
+    "haberKategori"
+  ).value =
+    data.kategori || "";
+
+  document.getElementById(
+    "haberYazar"
+  ).value =
+    data.yazar_id || "";
+
+  document.getElementById(
+    "haberFoto"
+  ).value =
+    data.kapak_fotografi_url || "";
+
+
+  const radio =
+    document.querySelector(
+      `input[name="haberDurum"][value="${data.durum}"]`
+    );
+
+  if (radio) {
+    radio.checked = true;
+  }
+
+
+  sekmeAc("haber");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* ==================================================
+   YAZI SİL
+================================================== */
+
+async function yaziSil(id) {
+
+  if (
+    !confirm(
+      "Bu köşe yazısını silmek istediğinizden emin misiniz?"
+    )
+  ) {
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("kose_yazilari")
+      .delete()
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (error) {
+
+    mesajGoster(
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  mesajGoster(
+    "Köşe yazısı silindi.",
+    "success"
+  );
+
+
+  listeYaziAc();
+
+}
+
+
+/* ==================================================
+   HABER SİL
+================================================== */
+
+async function haberSil(id) {
+
+  if (
+    !confirm(
+      "Bu haberi silmek istediğinizden emin misiniz?"
+    )
+  ) {
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("haberler")
+      .delete()
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (error) {
+
+    mesajGoster(
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  mesajGoster(
+    "Haber silindi.",
+    "success"
+  );
+
+
+  listeHaberAc();
+
+}
+
+
+/* ==================================================
+   BAŞLAT
+================================================== */
+
+oturumKontrol();
+
+
+</script>
+
+</body>
+
+</html>
