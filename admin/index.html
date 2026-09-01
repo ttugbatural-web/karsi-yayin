@@ -1,5 +1,5 @@
-```html
 <!DOCTYPE html>
+
 <html lang="tr">
 
 <head>
@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+   content="width=device-width, initial-scale=1.0">
 
 <title>KARŞI — Yönetim Paneli</title>
 
@@ -310,261 +310,264 @@ footer {
 
 <header>
 
-    <div class="header-inner">
+```
+<div class="header-inner">
 
-        <div class="logo">
-            KARŞI
+    <div class="logo">
+        KARŞI
+    </div>
+
+    <div class="header-right">
+
+        <div
+            class="user-email"
+            id="userEmail"
+        >
+            Kontrol ediliyor...
         </div>
 
-        <div class="header-right">
-
-            <div
-                class="user-email"
-                id="userEmail"
-            >
-                Kontrol ediliyor...
-            </div>
-
-            <div class="panel-name">
-                Yönetim Paneli
-            </div>
-
-            <button
-                class="logout-button"
-                onclick="cikisYap()"
-            >
-                ÇIKIŞ
-            </button>
-
+        <div class="panel-name">
+            Yönetim Paneli
         </div>
+
+        <button
+            class="logout-button"
+            onclick="cikisYap()"
+        >
+            ÇIKIŞ
+        </button>
 
     </div>
+
+</div>
+```
 
 </header>
 
-
 <main>
 
-    <section class="welcome">
+```
+<section class="welcome">
 
-        <h1>
-            Yönetim Paneli
-        </h1>
+    <h1>
+        Yönetim Paneli
+    </h1>
 
-        <p>
-            KARŞI yayın sistemini buradan yöneteceğiz.
-        </p>
+    <p>
+        KARŞI yayın sistemini buradan yöneteceğiz.
+    </p>
 
-    </section>
-
-
-    <section class="panel-grid">
+</section>
 
 
-        <!-- =========================
-             KÖŞE YAZILARI
-        ========================= -->
-
-        <a
-            href="kose-yazilari.html"
-            class="panel-card"
-        >
-
-            <div class="icon">
-                ✍️
-            </div>
-
-            <h2>
-                Köşe Yazıları
-            </h2>
-
-            <p>
-                Yeni yazı oluştur, mevcut yazıları
-                düzenle veya taslakları yönet.
-            </p>
-
-        </a>
-
-
-        <!-- =========================
-             YAZARLAR
-        ========================= -->
-
-        <a
-            href="yazarlar.html"
-            class="panel-card"
-        >
-
-            <div class="icon">
-                👤
-            </div>
-
-            <h2>
-                Yazarlar
-            </h2>
-
-            <p>
-                Yazar ekle, yazar bilgilerini düzenle
-                ve profil fotoğraflarını yönet.
-            </p>
-
-        </a>
-
-
-        <!-- =========================
-             HABERLER
-        ========================= -->
-
-        <a
-            href="haberler.html"
-            class="panel-card"
-        >
-
-            <div class="icon">
-                📰
-            </div>
-
-            <h2>
-                Haberler
-            </h2>
-
-            <p>
-                Haberleri ekle, düzenle ve yayın
-                durumlarını kontrol et.
-            </p>
-
-        </a>
-
-
-        <!-- =========================
-             KARŞI GÜNDEM
-        ========================= -->
-
-        <a
-            href="gundem.html"
-            class="panel-card"
-        >
-
-            <div class="icon">
-                ⚡
-            </div>
-
-            <h2>
-                Karşı Gündem
-            </h2>
-
-            <p>
-                Güncel gelişmeleri yorumla ve
-                KARŞI'nın gündemini oluştur.
-            </p>
-
-        </a>
-
-
-        <!-- =========================
-             DÜNYA
-        ========================= -->
-
-        <a
-            href="dunya.html"
-            class="panel-card"
-        >
-
-            <div class="icon">
-                🌍
-            </div>
-
-            <h2>
-                Dünya
-            </h2>
-
-            <p>
-                Dünyadan önemli gelişmeleri,
-                otomatik haberleri ve dünya gündemini
-                buradan yönet.
-            </p>
-
-        </a>
-
-
-        <!-- =========================
-             YORUMLAR
-        ========================= -->
-
-        <a
-            href="yorumlar.html"
-            class="panel-card"
-        >
-
-            <div class="icon">
-                💬
-            </div>
-
-            <h2>
-                Yorumlar
-            </h2>
-
-            <p>
-                Okuyucu yorumlarını incele,
-                onayla veya kaldır.
-            </p>
-
-        </a>
-
-
-        <!-- =========================
-             AYARLAR
-        ========================= -->
-
-        <a
-            href="ayarlar.html"
-            class="panel-card"
-        >
-
-            <div class="icon">
-                ⚙️
-            </div>
-
-            <h2>
-                Ayarlar
-            </h2>
-
-            <p>
-                Yayın ayarlarını ve yönetim paneli
-                seçeneklerini yönet.
-            </p>
-
-        </a>
-
-
-    </section>
+<section class="panel-grid">
 
 
     <!-- =========================
-         SİSTEM DURUMU
+         KÖŞE YAZILARI
     ========================= -->
 
-    <div class="status">
+    <a
+        href="kose-yazilari.html"
+        class="panel-card"
+    >
 
-        <strong>Sistem:</strong>
-
-        Yönetim paneli aktif.
-
-        <div id="userStatus">
-            Yönetici oturumu doğrulanıyor...
+        <div class="icon">
+            ✍️
         </div>
 
+        <h2>
+            Köşe Yazıları
+        </h2>
+
+        <p>
+            Yeni yazı oluştur, mevcut yazıları
+            düzenle veya taslakları yönet.
+        </p>
+
+    </a>
+
+
+    <!-- =========================
+         YAZARLAR
+    ========================= -->
+
+    <a
+        href="yazarlar.html"
+        class="panel-card"
+    >
+
+        <div class="icon">
+            👤
+        </div>
+
+        <h2>
+            Yazarlar
+        </h2>
+
+        <p>
+            Yazar ekle, yazar bilgilerini düzenle
+            ve profil fotoğraflarını yönet.
+        </p>
+
+    </a>
+
+
+    <!-- =========================
+         HABERLER
+    ========================= -->
+
+    <a
+        href="haberler.html"
+        class="panel-card"
+    >
+
+        <div class="icon">
+            📰
+        </div>
+
+        <h2>
+            Haberler
+        </h2>
+
+        <p>
+            Haberleri ekle, düzenle ve yayın
+            durumlarını kontrol et.
+        </p>
+
+    </a>
+
+
+    <!-- =========================
+         KARŞI GÜNDEM
+    ========================= -->
+
+    <a
+        href="haberler.html"
+        class="panel-card"
+    >
+
+        <div class="icon">
+            ⚡
+        </div>
+
+        <h2>
+            Karşı Gündem
+        </h2>
+
+        <p>
+            Güncel gelişmeleri yorumla ve
+            KARŞI'nın gündemini oluştur.
+        </p>
+
+    </a>
+
+
+    <!-- =========================
+         DÜNYA
+    ========================= -->
+
+    <a
+        href="dunya.html"
+        class="panel-card"
+    >
+
+        <div class="icon">
+            🌍
+        </div>
+
+        <h2>
+            Dünya
+        </h2>
+
+        <p>
+            Dünyadan önemli gelişmeleri,
+            otomatik haberleri ve dünya gündemini
+            buradan yönet.
+        </p>
+
+    </a>
+
+
+    <!-- =========================
+         YORUMLAR
+    ========================= -->
+
+    <a
+        href="yorumlar.html"
+        class="panel-card"
+    >
+
+        <div class="icon">
+            💬
+        </div>
+
+        <h2>
+            Yorumlar
+        </h2>
+
+        <p>
+            Okuyucu yorumlarını incele,
+            onayla veya kaldır.
+        </p>
+
+    </a>
+
+
+    <!-- =========================
+         AYARLAR
+    ========================= -->
+
+    <a
+        href="ayarlar.html"
+        class="panel-card"
+    >
+
+        <div class="icon">
+            ⚙️
+        </div>
+
+        <h2>
+            Ayarlar
+        </h2>
+
+        <p>
+            Yayın ayarlarını ve yönetim paneli
+            seçeneklerini yönet.
+        </p>
+
+    </a>
+
+
+</section>
+
+
+<!-- =========================
+     SİSTEM DURUMU
+========================= -->
+
+<div class="status">
+
+    <strong>Sistem:</strong>
+
+    Yönetim paneli aktif.
+
+    <div id="userStatus">
+        Yönetici oturumu doğrulanıyor...
     </div>
+
+</div>
+```
 
 </main>
 
-
 <footer>
 
-    KARŞI — Yönetim Paneli
+```
+KARŞI — Yönetim Paneli
+```
 
 </footer>
-
 
 <!-- ==================================================
      SUPABASE
@@ -572,13 +575,11 @@ footer {
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <!-- ==================================================
      ORTAK AUTH SİSTEMİ
 ================================================== -->
 
 <script src="auth.js"></script>
-
 
 <script>
 
@@ -662,4 +663,3 @@ panelBaslat();
 </body>
 
 </html>
-```
