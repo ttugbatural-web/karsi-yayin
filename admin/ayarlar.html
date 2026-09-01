@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ayarlar — KARŞI Yönetim</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f2f2f0;
+    color: #111;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    background: #111;
+    color: white;
+    border-bottom: 4px solid #c40000;
+    padding: 18px 20px;
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.logo {
+    position: relative;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: -2px;
+}
+
+.logo::after {
+    content: "";
+
+    position: absolute;
+
+    height: 4px;
+    width: 115%;
+
+    background: #c40000;
+
+    left: -7%;
+    top: 53%;
+
+    transform: rotate(-4deg);
+}
+
+.back {
+    color: white;
+    text-decoration: none;
+
+    border: 1px solid #555;
+
+    padding: 8px 12px;
+
+    font-size: 12px;
+}
+
+.back:hover {
+    background: white;
+    color: #111;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    max-width: 1100px;
+    margin: 35px auto;
+    padding: 0 18px;
+}
+
+.page-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 38px;
+    margin-bottom: 8px;
+}
+
+.page-description {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   MESAJ
+========================= */
+
+.message {
+    display: none;
+
+    padding: 14px 16px;
+
+    margin-bottom: 25px;
+
+    font-size: 13px;
+}
+
+.message.success {
+    display: block;
+
+    background: #e7f4e7;
+    color: #246024;
+
+    border-left: 4px solid #2d8a2d;
+}
+
+.message.error {
+    display: block;
+
+    background: #f7e4e4;
+    color: #8b0000;
+
+    border-left: 4px solid #c40000;
+}
+
+/* =========================
+   AYAR KUTUSU
+========================= */
+
+.settings-box {
+    background: white;
+
+    border: 1px solid #ddd;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+}
+
+.settings-box h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 25px;
+
+    margin-bottom: 8px;
+}
+
+.settings-description {
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin-bottom: 24px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+
+    border: 1px solid #ccc;
+
+    padding: 12px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+.form-group textarea {
+    min-height: 110px;
+
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #111;
+}
+
+/* =========================
+   TOGGLE AYARLAR
+========================= */
+
+.toggle-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+.toggle {
+    border: 1px solid #ddd;
+
+    padding: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.toggle-info {
+    flex: 1;
+}
+
+.toggle-title {
+    font-size: 13px;
+
+    font-weight: bold;
+
+    margin-bottom: 4px;
+}
+
+.toggle-description {
+    color: #777;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+}
+
+/* =========================
+   SWITCH
+========================= */
+
+.switch {
+    position: relative;
+
+    width: 48px;
+    height: 26px;
+
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+
+    cursor: pointer;
+
+    inset: 0;
+
+    background: #ccc;
+
+    transition: 0.2s;
+
+    border-radius: 30px;
+}
+
+.slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 20px;
+    height: 20px;
+
+    left: 3px;
+    top: 3px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    transition: 0.2s;
+}
+
+.switch input:checked + .slider {
+    background: #111;
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(22px);
+}
+
+.switch input:focus + .slider {
+    box-shadow: 0 0 0 2px #ddd;
+}
+
+/* =========================
+   BUTON
+========================= */
+
+.button-area {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.save-button {
+    background: #111;
+
+    color: white;
+
+    border: none;
+
+    padding: 13px 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background: #c40000;
+}
+
+.save-button:disabled {
+    opacity: 0.6;
+
+    cursor: wait;
+}
+
+.reset-button {
+    background: #ddd;
+
+    color: #111;
+
+    border: none;
+
+    padding: 13px 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    background: #bbb;
+}
+
+/* =========================
+   BAKIM UYARISI
+========================= */
+
+.maintenance-warning {
+    display: none;
+
+    background: #fff4df;
+
+    color: #795400;
+
+    border-left: 4px solid #c58a00;
+
+    padding: 15px;
+
+    margin-top: 20px;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+.maintenance-warning.active {
+    display: block;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    margin-top: 60px;
+
+    background: #111;
+
+    color: #999;
+
+    text-align: center;
+
+    padding: 25px;
+
+    font-size: 12px;
+}
+
+/* =========================
+   MOBİL
+========================= */
+
+@media (max-width: 750px) {
+
+    .page-title {
+        font-size: 32px;
+    }
+
+    .settings-box {
+        padding: 20px;
+    }
+
+    .toggle {
+        align-items: flex-start;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="header-inner">
+
+<div class="logo">
+KARŞI
+</div>
+
+<a
+class="back"
+href="index.html"
+
+>
+
+← Yönetim Paneli </a>
+
+</div>
+
+</header>
+
+<main>
+
+<h1 class="page-title">
+Ayarlar
+</h1>
+
+<p class="page-description">
+KARŞI yayın sitesinin temel ayarlarını buradan yönet.
+</p>
+
+<div
+    id="message"
+    class="message"
+></div>
+
+<!-- =========================
+     SİTE BİLGİLERİ
+========================= -->
+
+<section class="settings-box">
+
+<h2>
+Site Bilgileri
+</h2>
+
+<p class="settings-description">
+Sitenin başlık, slogan ve genel tanıtım bilgilerini buradan değiştirebilirsin.
+</p>
+
+<div class="form-group">
+
+<label for="siteAdi">
+SİTE ADI
+</label>
+
+<input
+type="text"
+id="siteAdi"
+placeholder="KARŞI"
+
+>
+
+</div>
+
+<div class="form-group">
+
+<label for="slogan">
+SLOGAN
+</label>
+
+<input
+type="text"
+id="slogan"
+placeholder="Gücün karşısında, gerçeğin yanında."
+
+>
+
+</div>
+
+<div class="form-group">
+
+<label for="siteAciklama">
+SİTE AÇIKLAMASI
+</label>
+
+<textarea
+    id="siteAciklama"
+    placeholder="Site hakkında kısa açıklama..."
+></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label for="footerYazisi">
+FOOTER YAZISI
+</label>
+
+<input
+type="text"
+id="footerYazisi"
+placeholder="Bağımsız düşüncenin tarafı."
+
+>
+
+</div>
+
+</section>
+
+<!-- =========================
+     YORUM AYARLARI
+========================= -->
+
+<section class="settings-box">
+
+<h2>
+Yorum Ayarları
+</h2>
+
+<p class="settings-description">
+Okuyucu yorumlarının nasıl yönetileceğini buradan belirleyebilirsin.
+</p>
+
+<div class="toggle-list">
+
+<div class="toggle">
+
+<div class="toggle-info">
+
+<div class="toggle-title">
+Yorumlar Açık
+</div>
+
+<div class="toggle-description">
+Okuyucular haber ve köşe yazılarına yorum bırakabilir.
+</div>
+
+</div>
+
+<label class="switch">
+
+<input
+type="checkbox"
+id="yorumlarAcik"
+
+>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+<div class="toggle">
+
+<div class="toggle-info">
+
+<div class="toggle-title">
+Yorumları Otomatik Onayla
+</div>
+
+<div class="toggle-description">
+Yeni yorumlar yönetici onayı beklemeden doğrudan yayınlanır.
+</div>
+
+</div>
+
+<label class="switch">
+
+<input
+type="checkbox"
+id="yorumlarOtomatikOnay"
+
+>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     SİSTEM
+========================= -->
+
+<section class="settings-box">
+
+<h2>
+Sistem
+</h2>
+
+<p class="settings-description">
+Siteyi geçici olarak bakım moduna alabilirsin.
+</p>
+
+<div class="toggle">
+
+<div class="toggle-info">
+
+<div class="toggle-title">
+Bakım Modu
+</div>
+
+<div class="toggle-description">
+Site ziyaretçilere geçici bakım mesajı gösterecek şekilde ayarlanabilir.
+</div>
+
+</div>
+
+<label class="switch">
+
+<input
+type="checkbox"
+id="bakimModu"
+
+>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+<div
+    id="maintenanceWarning"
+    class="maintenance-warning"
+>
+
+<strong>Dikkat:</strong>
+
+Bakım modu açık. Bu ayarın yayın sitesinde uygulanması için
+yayın sayfalarının da bu ayarı kontrol edecek şekilde bağlanması gerekir.
+
+</div>
+
+</section>
+
+<!-- =========================
+     BUTONLAR
+========================= -->
+
+<section class="settings-box">
+
+<div class="button-area">
+
+<button
+class="save-button"
+id="saveButton"
+onclick="ayarlariKaydet()"
+
+>
+
+AYARLARI KAYDET </button>
+
+<button
+class="reset-button"
+onclick="ayarlariYukle()"
+
+>
+
+YENİDEN YÜKLE </button>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+KARŞI — Yönetim Paneli
+
+</footer>
+
+<!-- =========================
+     SUPABASE
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+/* ==================================================
+   SUPABASE
+================================================== */
+
+const SUPABASE_URL =
+    "https://rfqiffvudbmphvklxetf.supabase.co";
+
+
+const SUPABASE_ANON_KEY =
+    "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+
+/* ==================================================
+   ELEMENTLER
+================================================== */
+
+const messageBox =
+    document.getElementById(
+        "message"
+    );
+
+
+const saveButton =
+    document.getElementById(
+        "saveButton"
+    );
+
+
+const maintenanceWarning =
+    document.getElementById(
+        "maintenanceWarning"
+    );
+
+
+/* ==================================================
+   MESAJ
+================================================== */
+
+function mesajGoster(
+    mesaj,
+    tip
+) {
+
+    messageBox.textContent =
+        mesaj;
+
+    messageBox.className =
+        "message " + tip;
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* ==================================================
+   BAKIM UYARISI
+================================================== */
+
+document
+    .getElementById(
+        "bakimModu"
+    )
+    .addEventListener(
+        "change",
+        function() {
+
+            maintenanceWarning.classList.toggle(
+                "active",
+                this.checked
+            );
+
+        }
+    );
+
+
+/* ==================================================
+   AYARLARI GETİR
+================================================== */
+
+async function ayarlariYukle() {
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .from("ayarlar")
+            .select("*")
+            .limit(1)
+            .single();
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        document
+            .getElementById("siteAdi")
+            .value =
+                data.site_adi || "";
+
+
+        document
+            .getElementById("slogan")
+            .value =
+                data.slogan || "";
+
+
+        document
+            .getElementById("siteAciklama")
+            .value =
+                data.site_aciklama || "";
+
+
+        document
+            .getElementById("footerYazisi")
+            .value =
+                data.footer_yazisi || "";
+
+
+        document
+            .getElementById("yorumlarAcik")
+            .checked =
+                Boolean(
+                    data.yorumlar_acik
+                );
+
+
+        document
+            .getElementById("yorumlarOtomatikOnay")
+            .checked =
+                Boolean(
+                    data.yorumlar_otomatik_onay
+                );
+
+
+        document
+            .getElementById("bakimModu")
+            .checked =
+                Boolean(
+                    data.bakim_modu
+                );
+
+
+        maintenanceWarning.classList.toggle(
+            "active",
+            Boolean(
+                data.bakim_modu
+            )
+        );
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Ayarları yükleme hatası:",
+            error
+        );
+
+
+        mesajGoster(
+            "Ayarlar yüklenemedi: " +
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   AYARLARI KAYDET
+================================================== */
+
+async function ayarlariKaydet() {
+
+    const siteAdi =
+        document
+            .getElementById("siteAdi")
+            .value
+            .trim();
+
+
+    const slogan =
+        document
+            .getElementById("slogan")
+            .value
+            .trim();
+
+
+    const siteAciklama =
+        document
+            .getElementById("siteAciklama")
+            .value
+            .trim();
+
+
+    const footerYazisi =
+        document
+            .getElementById("footerYazisi")
+            .value
+            .trim();
+
+
+    const yorumlarAcik =
+        document
+            .getElementById("yorumlarAcik")
+            .checked;
+
+
+    const yorumlarOtomatikOnay =
+        document
+            .getElementById("yorumlarOtomatikOnay")
+            .checked;
+
+
+    const bakimModu =
+        document
+            .getElementById("bakimModu")
+            .checked;
+
+
+    if (!siteAdi) {
+
+        mesajGoster(
+            "Site adı boş bırakılamaz.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    saveButton.disabled =
+        true;
+
+
+    saveButton.textContent =
+        "KAYDEDİLİYOR...";
+
+
+    try {
+
+        /*
+         * Önce mevcut ayar kaydının ID'sini bul.
+         */
+
+        const {
+            data: mevcutAyar,
+            error: getError
+        } =
+        await supabaseClient
+            .from("ayarlar")
+            .select("id")
+            .limit(1)
+            .single();
+
+
+        if (getError) {
+
+            throw getError;
+
+        }
+
+
+        /*
+         * Ayarları güncelle.
+         */
+
+        const {
+            error: updateError
+        } =
+        await supabaseClient
+            .from("ayarlar")
+            .update({
+
+                site_adi:
+                    siteAdi,
+
+                slogan:
+                    slogan || null,
+
+                site_aciklama:
+                    siteAciklama || null,
+
+                footer_yazisi:
+                    footerYazisi || null,
+
+                yorumlar_acik:
+                    yorumlarAcik,
+
+                yorumlar_otomatik_onay:
+                    yorumlarOtomatikOnay,
+
+                bakim_modu:
+                    bakimModu,
+
+                updated_at:
+                    new Date().toISOString()
+
+            })
+            .eq(
+                "id",
+                mevcutAyar.id
+            );
+
+
+        if (updateError) {
+
+            throw updateError;
+
+        }
+
+
+        mesajGoster(
+            "Ayarlar başarıyla kaydedildi.",
+            "success"
+        );
+
+
+        maintenanceWarning.classList.toggle(
+            "active",
+            bakimModu
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Ayar kaydetme hatası:",
+            error
+        );
+
+
+        mesajGoster(
+            "Ayarlar kaydedilemedi: " +
+            error.message,
+            "error"
+        );
+
+    }
+
+    finally {
+
+        saveButton.disabled =
+            false;
+
+        saveButton.textContent =
+            "AYARLARI KAYDET";
+
+    }
+
+}
+
+
+/* ==================================================
+   SAYFA AÇILDIĞINDA
+================================================== */
+
+ayarlariYukle();
+
+</script>
+
+</body>
+
+</html>
