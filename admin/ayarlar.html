@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 
 <html lang="tr">
@@ -7,7 +8,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-   content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
 <title>Ayarlar — KARŞI Yönetim</title>
 
@@ -461,12 +462,11 @@ KARŞI
 </div>
 
 <a
-class="back"
-href="index.html"
-
+    class="back"
+    href="index.html"
 >
-
-← Yönetim Paneli </a>
+← Yönetim Paneli
+</a>
 
 </div>
 
@@ -493,6 +493,10 @@ KARŞI yayın sitesinin genel ayarlarını buradan yönetebilirsin.
 Site Ayarları
 </h2>
 
+<!-- =========================
+     SITE ADI
+========================= -->
+
 <div class="form-group">
 
 <label for="siteAdi">
@@ -500,13 +504,16 @@ SİTE ADI
 </label>
 
 <input
-type="text"
-id="siteAdi"
-placeholder="KARŞI"
-
+    type="text"
+    id="siteAdi"
+    placeholder="KARŞI"
 >
 
 </div>
+
+<!-- =========================
+     SLOGAN
+========================= -->
 
 <div class="form-group">
 
@@ -515,13 +522,16 @@ SLOGAN
 </label>
 
 <input
-type="text"
-id="slogan"
-placeholder="Gücün karşısında, gerçeğin yanında."
-
+    type="text"
+    id="slogan"
+    placeholder="Gücün karşısında, gerçeğin yanında."
 >
 
 </div>
+
+<!-- =========================
+     SITE AÇIKLAMASI
+========================= -->
 
 <div class="form-group">
 
@@ -536,6 +546,10 @@ SİTE AÇIKLAMASI
 
 </div>
 
+<!-- =========================
+     FOOTER
+========================= -->
+
 <div class="form-group">
 
 <label for="footerYazisi">
@@ -543,15 +557,20 @@ FOOTER YAZISI
 </label>
 
 <input
-type="text"
-id="footerYazisi"
-placeholder="Bağımsız düşüncenin tarafı."
-
+    type="text"
+    id="footerYazisi"
+    placeholder="Bağımsız düşüncenin tarafı."
 >
 
 </div>
 
+<!-- =========================
+     TOGGLELAR
+========================= -->
+
 <div class="toggle-box">
+
+<!-- YORUMLAR -->
 
 <div class="toggle-row">
 
@@ -570,9 +589,8 @@ Okuyucuların haber ve yazılara yorum yapmasına izin ver.
 <label class="switch">
 
 <input
-type="checkbox"
-id="yorumlarAcik"
-
+    type="checkbox"
+    id="yorumlarAcik"
 >
 
 <span class="slider"></span>
@@ -580,6 +598,8 @@ id="yorumlarAcik"
 </label>
 
 </div>
+
+<!-- OTOMATİK ONAY -->
 
 <div class="toggle-row">
 
@@ -598,9 +618,8 @@ Açık olduğunda yeni yorumlar yönetici onayı beklemeden yayınlanır.
 <label class="switch">
 
 <input
-type="checkbox"
-id="yorumlarOtomatikOnay"
-
+    type="checkbox"
+    id="yorumlarOtomatikOnay"
 >
 
 <span class="slider"></span>
@@ -608,6 +627,8 @@ id="yorumlarOtomatikOnay"
 </label>
 
 </div>
+
+<!-- BAKIM MODU -->
 
 <div class="toggle-row">
 
@@ -626,9 +647,8 @@ Açık olduğunda ziyaretçilere bakım modu sayfası gösterilebilir.
 <label class="switch">
 
 <input
-type="checkbox"
-id="bakimModu"
-
+    type="checkbox"
+    id="bakimModu"
 >
 
 <span class="slider"></span>
@@ -639,24 +659,28 @@ id="bakimModu"
 
 </div>
 
+<!-- =========================
+     BUTONLAR
+========================= -->
+
 <div class="button-area">
 
 <button
-class="save-button"
-id="saveButton"
-onclick="ayarlariKaydet()"
-
+    type="button"
+    class="save-button"
+    id="saveButton"
+    onclick="ayarlariKaydet()"
 >
-
-AYARLARI KAYDET </button>
+AYARLARI KAYDET
+</button>
 
 <button
-class="cancel-button"
-onclick="ayarlariGetir()"
-
+    type="button"
+    class="cancel-button"
+    onclick="ayarlariGetir()"
 >
-
-DEĞİŞİKLİKLERİ GERİ AL </button>
+DEĞİŞİKLİKLERİ GERİ AL
+</button>
 
 </div>
 
@@ -680,6 +704,10 @@ KARŞI — Yönetim Paneli
 
 </footer>
 
+<!-- ==================================================
+     SUPABASE
+================================================== -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -691,96 +719,14 @@ KARŞI — Yönetim Paneli
 const SUPABASE_URL =
     "https://rfqiffvudbmphvklxetf.supabase.co";
 
-
 const SUPABASE_ANON_KEY =
     "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
-
 
 const supabaseClient =
     window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_ANON_KEY
     );
-
-
-/* ==================================================
-   SUPABASE OTURUM TESTİ
-================================================== */
-
-async function oturumKontrolEt() {
-
-    try {
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient.auth.getSession();
-
-
-        console.log(
-            "===================================="
-        );
-
-        console.log(
-            "SUPABASE OTURUM TESTİ"
-        );
-
-        console.log(
-            "Session:",
-            data.session
-        );
-
-        if (data.session) {
-
-            console.log(
-                "Kullanıcı ID:",
-                data.session.user.id
-            );
-
-            console.log(
-                "Kullanıcı:",
-                data.session.user.email
-            );
-
-            console.log(
-                "Auth rolü:",
-                data.session.user.role
-            );
-
-        } else {
-
-            console.warn(
-                "SUPABASE OTURUMU YOK!"
-            );
-
-        }
-
-        if (error) {
-
-            console.error(
-                "Oturum kontrol hatası:",
-                error
-            );
-
-        }
-
-        console.log(
-            "===================================="
-        );
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Oturum kontrolü başarısız:",
-            error
-        );
-
-    }
-
-}
 
 
 /* ==================================================
@@ -791,7 +737,6 @@ const messageBox =
     document.getElementById(
         "message"
     );
-
 
 const saveButton =
     document.getElementById(
@@ -864,6 +809,10 @@ async function ayarlariGetir() {
         }
 
 
+        /* =========================
+           FORMU DOLDUR
+        ========================= */
+
         document.getElementById(
             "siteAdi"
         ).value =
@@ -907,17 +856,16 @@ async function ayarlariGetir() {
 
 
         console.log(
-            "Ayarlar başarıyla yüklendi:",
+            "KARŞI: Ayarlar başarıyla yüklendi:",
             data
         );
 
     }
 
-
     catch (error) {
 
         console.error(
-            "Ayarlar yüklenemedi:",
+            "KARŞI: Ayarlar yüklenemedi:",
             error
         );
 
@@ -938,6 +886,11 @@ async function ayarlariGetir() {
 ================================================== */
 
 async function ayarlariKaydet() {
+
+    console.log(
+        "KARŞI: Kaydetme işlemi başladı."
+    );
+
 
     const siteAdi =
         document.getElementById(
@@ -977,9 +930,13 @@ async function ayarlariKaydet() {
 
     const bakimModu =
         document.getElementById(
-            "bakimModu
+            "bakimModu"
         ).checked;
 
+
+    /* =========================
+       BOŞ SITE ADI
+    ========================= */
 
     if (!siteAdi) {
 
@@ -996,12 +953,16 @@ async function ayarlariKaydet() {
     saveButton.disabled =
         true;
 
-
     saveButton.textContent =
         "KAYDEDİLİYOR...";
 
 
     try {
+
+        console.log(
+            "KARŞI: Supabase UPDATE gönderiliyor..."
+        );
+
 
         const {
             data,
@@ -1048,12 +1009,25 @@ async function ayarlariKaydet() {
                 .single();
 
 
+        /* =========================
+           SUPABASE HATASI
+        ========================= */
+
         if (error) {
+
+            console.error(
+                "KARŞI: Supabase UPDATE hatası:",
+                error
+            );
 
             throw error;
 
         }
 
+
+        /* =========================
+           GERÇEKTEN GÜNCELLENDİ Mİ?
+        ========================= */
 
         if (!data) {
 
@@ -1065,10 +1039,14 @@ async function ayarlariKaydet() {
 
 
         console.log(
-            "AYARLAR GÜNCELLENDİ:",
+            "KARŞI: AYARLAR BAŞARIYLA GÜNCELLENDİ:",
             data
         );
 
+
+        /* =========================
+           BAŞARI MESAJI
+        ========================= */
 
         mesajGoster(
             "Ayarlar başarıyla kaydedildi.",
@@ -1076,20 +1054,18 @@ async function ayarlariKaydet() {
         );
 
 
-        /*
-         * Veritabanından tekrar okuyarak
-         * gerçekten kaydedilen değerleri forma getiriyoruz.
-         */
+        /* =========================
+           VERİTABANINDAN TEKRAR OKU
+        ========================= */
 
         await ayarlariGetir();
 
     }
 
-
     catch (error) {
 
         console.error(
-            "Ayar kaydetme hatası:",
+            "KARŞI: Ayar kaydetme hatası:",
             error
         );
 
@@ -1101,7 +1077,6 @@ async function ayarlariKaydet() {
         );
 
     }
-
 
     finally {
 
@@ -1120,7 +1095,9 @@ async function ayarlariKaydet() {
    BAŞLAT
 ================================================== */
 
-oturumKontrolEt();
+console.log(
+    "KARŞI: Ayarlar sayfası başlatılıyor..."
+);
 
 ayarlariGetir();
 
@@ -1129,3 +1106,4 @@ ayarlariGetir();
 </body>
 
 </html>
+```
