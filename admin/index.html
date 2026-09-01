@@ -1,245 +1,307 @@
 <!DOCTYPE html>
-
 <html lang="tr">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>KARŞI — Yönetim Paneli</title>
+<meta charset="UTF-8">
 
-  <style>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<title>KARŞI — Yönetim Paneli</title>
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f2f2f0;
-      color: #111;
-    }
+<style>
 
-    /* =========================
-       HEADER
-    ========================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    header {
-      background: #111;
-      color: white;
-      border-bottom: 4px solid #c40000;
-      padding: 18px 20px;
-    }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f2f2f0;
+    color: #111;
+}
 
-    .header-inner {
-      max-width: 1100px;
-      margin: auto;
+/* =========================
+   HEADER
+========================= */
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+header {
+    background: #111;
+    color: white;
+    border-bottom: 4px solid #c40000;
+    padding: 18px 20px;
+}
 
-    .logo {
-      position: relative;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 36px;
-      font-weight: bold;
-      letter-spacing: -2px;
-    }
+.header-inner {
+    max-width: 1100px;
+    margin: auto;
 
-    .logo::after {
-      content: "";
-      position: absolute;
-      height: 4px;
-      width: 115%;
-      background: #c40000;
-      left: -7%;
-      top: 53%;
-      transform: rotate(-4deg);
-    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    .panel-name {
-      color: #aaa;
-      font-size: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
+    gap: 20px;
+}
 
+.logo {
+    position: relative;
 
-    /* =========================
-       MAIN
-    ========================= */
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: -2px;
+}
 
-    main {
-      max-width: 1100px;
-      margin: 35px auto;
-      padding: 0 18px;
-    }
+.logo::after {
+    content: "";
 
-    .welcome {
-      margin-bottom: 30px;
+    position: absolute;
+
+    height: 4px;
+    width: 115%;
+
+    background: #c40000;
+
+    left: -7%;
+    top: 53%;
+
+    transform: rotate(-4deg);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.panel-name {
+    color: #aaa;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.user-email {
+    color: #ccc;
+
+    font-size: 11px;
+
+    max-width: 220px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.logout-button {
+    background: transparent;
+
+    color: white;
+
+    border: 1px solid #555;
+
+    padding: 8px 12px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background: #c40000;
+
+    border-color: #c40000;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    max-width: 1100px;
+
+    margin: 35px auto;
+
+    padding: 0 18px;
+}
+
+.welcome {
+    margin-bottom: 30px;
+}
+
+.welcome h1 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 38px;
+
+    margin-bottom: 8px;
+}
+
+.welcome p {
+    color: #666;
+
+    font-size: 14px;
+}
+
+/* =========================
+   PANEL GRID
+========================= */
+
+.panel-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+/* =========================
+   PANEL KARTI
+========================= */
+
+.panel-card {
+    background: white;
+
+    border: 1px solid #ddd;
+
+    padding: 25px;
+
+    text-decoration: none;
+
+    color: #111;
+
+    display: block;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.panel-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,0.08);
+}
+
+.icon {
+    font-size: 30px;
+
+    margin-bottom: 15px;
+}
+
+.panel-card h2 {
+    font-family: Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 23px;
+
+    margin-bottom: 8px;
+}
+
+.panel-card p {
+    color: #666;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+/* =========================
+   DURUM
+========================= */
+
+.status {
+    margin-top: 30px;
+
+    background: #111;
+
+    color: #ddd;
+
+    padding: 18px;
+
+    border-left:
+        4px solid #c40000;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.status strong {
+    color: white;
+}
+
+#userStatus {
+    color: #aaa;
+
+    margin-top: 5px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    margin-top: 60px;
+
+    background: #111;
+
+    color: #999;
+
+    text-align: center;
+
+    padding: 25px 20px;
+
+    font-size: 12px;
+}
+
+/* =========================
+   MOBİL
+========================= */
+
+@media (max-width: 750px) {
+
+    .panel-grid {
+        grid-template-columns: 1fr;
     }
 
     .welcome h1 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 38px;
-      margin-bottom: 8px;
+        font-size: 31px;
     }
-
-    .welcome p {
-      color: #666;
-      font-size: 14px;
-    }
-
-
-    /* =========================
-       PANEL GRID
-    ========================= */
-
-    .panel-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-
-    /* =========================
-       PANEL KARTI
-    ========================= */
 
     .panel-card {
-      background: white;
-      border: 1px solid #ddd;
-
-      padding: 25px;
-
-      text-decoration: none;
-      color: #111;
-
-      display: block;
-
-      transition:
-        transform 0.2s,
-        box-shadow 0.2s;
-    }
-
-    .panel-card:hover {
-      transform: translateY(-3px);
-
-      box-shadow:
-        0 8px 20px rgba(0,0,0,0.08);
-    }
-
-    .icon {
-      font-size: 30px;
-      margin-bottom: 15px;
-    }
-
-    .panel-card h2 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 23px;
-      margin-bottom: 8px;
-    }
-
-    .panel-card p {
-      color: #666;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-
-    /* =========================
-       HAZIR DEĞİL KARTLAR
-    ========================= */
-
-    .panel-card.disabled {
-      opacity: 0.55;
-      cursor: default;
-    }
-
-    .panel-card.disabled:hover {
-      transform: none;
-      box-shadow: none;
-    }
-
-    .coming {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 4px 8px;
-
-      background: #eee;
-      color: #777;
-
-      font-size: 10px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-
-    /* =========================
-       DURUM
-    ========================= */
-
-    .status {
-      margin-top: 30px;
-
-      background: #111;
-      color: #ddd;
-
-      padding: 18px;
-
-      border-left: 4px solid #c40000;
-
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .status strong {
-      color: white;
-    }
-
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      margin-top: 60px;
-
-      background: #111;
-      color: #999;
-
-      text-align: center;
-
-      padding: 25px 20px;
-
-      font-size: 12px;
-    }
-
-
-    /* =========================
-       MOBİL
-    ========================= */
-
-    @media (max-width: 750px) {
-
-      .panel-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .welcome h1 {
-        font-size: 31px;
-      }
-
-      .panel-card {
         padding: 22px;
-      }
-
     }
 
-  </style>
+    .header-right {
+        gap: 8px;
+    }
+
+    .panel-name {
+        display: none;
+    }
+
+    .user-email {
+        max-width: 130px;
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -247,213 +309,329 @@
 
 <header>
 
-  <div class="header-inner">
+    <div class="header-inner">
 
-```
-<div class="logo">
-  KARŞI
-</div>
+        <div class="logo">
+            KARŞI
+        </div>
 
-<div class="panel-name">
-  Yönetim Paneli
-</div>
-```
+        <div class="header-right">
 
-  </div>
+            <div
+                class="user-email"
+                id="userEmail"
+            >
+                Kontrol ediliyor...
+            </div>
+
+            <div class="panel-name">
+                Yönetim Paneli
+            </div>
+
+            <button
+                class="logout-button"
+                onclick="cikisYap()"
+            >
+                ÇIKIŞ
+            </button>
+
+        </div>
+
+    </div>
 
 </header>
 
+
 <main>
 
-  <section class="welcome">
+    <section class="welcome">
 
-```
-<h1>
-  Yönetim Paneli
-</h1>
+        <h1>
+            Yönetim Paneli
+        </h1>
 
-<p>
-  KARŞI yayın sistemini buradan yöneteceğiz.
-</p>
-```
+        <p>
+            KARŞI yayın sistemini buradan yöneteceğiz.
+        </p>
 
-  </section>
-
-  <section class="panel-grid">
-
-```
-<!-- =========================
-     KÖŞE YAZILARI
-========================= -->
-
-<a
-  href="kose-yazilari.html"
-  class="panel-card"
->
-
-  <div class="icon">
-    ✍️
-  </div>
-
-  <h2>
-    Köşe Yazıları
-  </h2>
-
-  <p>
-    Yeni yazı oluştur, mevcut yazıları
-    düzenle veya taslakları yönet.
-  </p>
-
-</a>
+    </section>
 
 
-<!-- =========================
-     YAZARLAR
-========================= -->
-
-<a
-  href="yazarlar.html"
-  class="panel-card"
->
-
-  <div class="icon">
-    👤
-  </div>
-
-  <h2>
-    Yazarlar
-  </h2>
-
-  <p>
-    Yazar ekle, yazar bilgilerini düzenle
-    ve profil fotoğraflarını yönet.
-  </p>
-
-</a>
+    <section class="panel-grid">
 
 
-<!-- =========================
-     HABERLER
-========================= -->
+        <!-- =========================
+             KÖŞE YAZILARI
+        ========================= -->
 
-<a
-  href="haberler.html"
-  class="panel-card"
->
+        <a
+            href="kose-yazilari.html"
+            class="panel-card"
+        >
 
-  <div class="icon">
-    📰
-  </div>
+            <div class="icon">
+                ✍️
+            </div>
 
-  <h2>
-    Haberler
-  </h2>
+            <h2>
+                Köşe Yazıları
+            </h2>
 
-  <p>
-    Haberleri ekle, düzenle ve yayın
-    durumlarını kontrol et.
-  </p>
+            <p>
+                Yeni yazı oluştur, mevcut yazıları
+                düzenle veya taslakları yönet.
+            </p>
 
-</a>
-
-
-<!-- =========================
-     KARŞI GÜNDEM
-========================= -->
-
-<a
-  href="gundem.html"
-  class="panel-card"
->
-
-  <div class="icon">
-    ⚡
-  </div>
-
-  <h2>
-    Karşı Gündem
-  </h2>
-
-  <p>
-    Güncel gelişmeleri yorumla ve
-    KARŞI'nın gündemini oluştur.
-  </p>
-
-</a>
+        </a>
 
 
-<!-- =========================
-     YORUMLAR
-========================= -->
+        <!-- =========================
+             YAZARLAR
+        ========================= -->
 
-<a
-  href="yorumlar.html"
-  class="panel-card"
->
+        <a
+            href="yazarlar.html"
+            class="panel-card"
+        >
 
-  <div class="icon">
-    💬
-  </div>
+            <div class="icon">
+                👤
+            </div>
 
-  <h2>
-    Yorumlar
-  </h2>
+            <h2>
+                Yazarlar
+            </h2>
 
-  <p>
-    Okuyucu yorumlarını incele,
-    onayla veya kaldır.
-  </p>
+            <p>
+                Yazar ekle, yazar bilgilerini düzenle
+                ve profil fotoğraflarını yönet.
+            </p>
 
-</a>
+        </a>
 
 
-<!-- =========================
-     AYARLAR
-========================= -->
+        <!-- =========================
+             HABERLER
+        ========================= -->
 
-<a
-  href="ayarlar.html"
-  class="panel-card"
->
+        <a
+            href="haberler.html"
+            class="panel-card"
+        >
 
-  <div class="icon">
-    ⚙️
-  </div>
+            <div class="icon">
+                📰
+            </div>
 
-  <h2>
-    Ayarlar
-  </h2>
+            <h2>
+                Haberler
+            </h2>
 
-  <p>
-    Yayın ayarlarını ve yönetim paneli
-    seçeneklerini yönet.
-  </p>
+            <p>
+                Haberleri ekle, düzenle ve yayın
+                durumlarını kontrol et.
+            </p>
 
-</a>
-    
-  <!-- =========================
-       SİSTEM DURUMU
-  ========================= -->
+        </a>
 
-  <div class="status">
 
-```
-<strong>Sistem:</strong>
+        <!-- =========================
+             KARŞI GÜNDEM
+        ========================= -->
 
-Yönetim paneli aktif.
-İçerik yönetimi ve veritabanı bağlantıları
-aşamalı olarak ekleniyor.
-```
+        <a
+            href="gundem.html"
+            class="panel-card"
+        >
 
-  </div>
+            <div class="icon">
+                ⚡
+            </div>
+
+            <h2>
+                Karşı Gündem
+            </h2>
+
+            <p>
+                Güncel gelişmeleri yorumla ve
+                KARŞI'nın gündemini oluştur.
+            </p>
+
+        </a>
+
+
+        <!-- =========================
+             YORUMLAR
+        ========================= -->
+
+        <a
+            href="yorumlar.html"
+            class="panel-card"
+        >
+
+            <div class="icon">
+                💬
+            </div>
+
+            <h2>
+                Yorumlar
+            </h2>
+
+            <p>
+                Okuyucu yorumlarını incele,
+                onayla veya kaldır.
+            </p>
+
+        </a>
+
+
+        <!-- =========================
+             AYARLAR
+        ========================= -->
+
+        <a
+            href="ayarlar.html"
+            class="panel-card"
+        >
+
+            <div class="icon">
+                ⚙️
+            </div>
+
+            <h2>
+                Ayarlar
+            </h2>
+
+            <p>
+                Yayın ayarlarını ve yönetim paneli
+                seçeneklerini yönet.
+            </p>
+
+        </a>
+
+
+    </section>
+
+
+    <!-- =========================
+         SİSTEM DURUMU
+    ========================= -->
+
+    <div class="status">
+
+        <strong>Sistem:</strong>
+
+        Yönetim paneli aktif.
+
+        <div id="userStatus">
+            Yönetici oturumu doğrulanıyor...
+        </div>
+
+    </div>
 
 </main>
 
+
 <footer>
 
-KARŞI — Yönetim Paneli
+    KARŞI — Yönetim Paneli
 
 </footer>
 
+
+<!-- ==================================================
+     SUPABASE
+================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- ==================================================
+     ORTAK AUTH SİSTEMİ
+================================================== -->
+
+<script src="auth.js"></script>
+
+
+<script>
+
+/* ==================================================
+   YÖNETİCİ OTURUMUNU KONTROL ET
+================================================== */
+
+async function panelBaslat() {
+
+    const session =
+        await yoneticiOturumuKontrolEt();
+
+
+    if (!session) {
+
+        return;
+
+    }
+
+
+    const user =
+        session.user;
+
+
+    /* =========================
+       E-POSTA
+    ========================= */
+
+    const userEmail =
+        document.getElementById(
+            "userEmail"
+        );
+
+
+    if (userEmail) {
+
+        userEmail.textContent =
+            user.email || "Yönetici";
+
+    }
+
+
+    /* =========================
+       DURUM
+    ========================= */
+
+    const userStatus =
+        document.getElementById(
+            "userStatus"
+        );
+
+
+    if (userStatus) {
+
+        userStatus.textContent =
+            "Oturum aktif — Yönetici olarak giriş yaptın.";
+
+    }
+
+
+    console.log(
+        "KARŞI: Yönetim paneli açıldı."
+    );
+
+    console.log(
+        "Yönetici:",
+        user.email
+    );
+
+}
+
+
+/* ==================================================
+   BAŞLAT
+================================================== */
+
+panelBaslat();
+
+</script>
+
 </body>
+
 </html>
