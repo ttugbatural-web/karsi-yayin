@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="tr">
 
@@ -12,10 +13,6 @@
 
 <style>
 
-/* ==================================================
-   TEMEL
-================================================== */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -28,29 +25,23 @@ body {
     color: #111;
 }
 
-
-/* ==================================================
+/* =========================
    HEADER
-================================================== */
+========================= */
 
 header {
     background: #111;
     color: white;
-
     border-bottom: 4px solid #c40000;
-
     padding: 18px 20px;
 }
 
 .header-inner {
     max-width: 1100px;
-
     margin: auto;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     gap: 20px;
@@ -60,11 +51,8 @@ header {
     position: relative;
 
     font-family: Georgia, "Times New Roman", serif;
-
     font-size: 36px;
-
     font-weight: bold;
-
     letter-spacing: -2px;
 }
 
@@ -74,13 +62,11 @@ header {
     position: absolute;
 
     height: 4px;
-
     width: 115%;
 
     background: #c40000;
 
     left: -7%;
-
     top: 53%;
 
     transform: rotate(-4deg);
@@ -88,7 +74,6 @@ header {
 
 .back {
     color: white;
-
     text-decoration: none;
 
     border: 1px solid #555;
@@ -100,14 +85,12 @@ header {
 
 .back:hover {
     background: white;
-
     color: #111;
 }
 
-
-/* ==================================================
+/* =========================
    MAIN
-================================================== */
+========================= */
 
 main {
     max-width: 1100px;
@@ -133,10 +116,9 @@ main {
     margin-bottom: 30px;
 }
 
-
-/* ==================================================
+/* =========================
    MESAJ
-================================================== */
+========================= */
 
 .message {
     padding: 14px 16px;
@@ -152,7 +134,6 @@ main {
     display: block;
 
     background: #e7f4e7;
-
     color: #246024;
 
     border-left: 4px solid #2d8a2d;
@@ -162,16 +143,23 @@ main {
     display: block;
 
     background: #f7e4e4;
-
     color: #8b0000;
 
     border-left: 4px solid #c40000;
 }
 
+.message.info {
+    display: block;
 
-/* ==================================================
+    background: #e8eef7;
+    color: #24466f;
+
+    border-left: 4px solid #24466f;
+}
+
+/* =========================
    AYAR KUTUSU
-================================================== */
+========================= */
 
 .settings-box {
     background: white;
@@ -231,10 +219,9 @@ main {
     border-color: #111;
 }
 
-
-/* ==================================================
+/* =========================
    TOGGLE
-================================================== */
+========================= */
 
 .toggle-box {
     border-top: 1px solid #e5e5e5;
@@ -284,16 +271,14 @@ main {
     line-height: 1.5;
 }
 
-
-/* ==================================================
+/* =========================
    SWITCH
-================================================== */
+========================= */
 
 .switch {
     position: relative;
 
     width: 52px;
-
     height: 28px;
 
     flex-shrink: 0;
@@ -303,7 +288,6 @@ main {
     opacity: 0;
 
     width: 0;
-
     height: 0;
 }
 
@@ -327,11 +311,9 @@ main {
     position: absolute;
 
     width: 22px;
-
     height: 22px;
 
     left: 3px;
-
     top: 3px;
 
     background: white;
@@ -340,8 +322,7 @@ main {
 
     border-radius: 50%;
 
-    box-shadow:
-        0 1px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .switch input:checked + .slider {
@@ -352,10 +333,9 @@ main {
     transform: translateX(24px);
 }
 
-
-/* ==================================================
-   BUTONLAR
-================================================== */
+/* =========================
+   BUTON
+========================= */
 
 .button-area {
     display: flex;
@@ -415,10 +395,9 @@ main {
     background: #bbb;
 }
 
-
-/* ==================================================
+/* =========================
    BİLGİ
-================================================== */
+========================= */
 
 .info-box {
     background: #111;
@@ -438,10 +417,9 @@ main {
     color: white;
 }
 
-
-/* ==================================================
+/* =========================
    FOOTER
-================================================== */
+========================= */
 
 footer {
     margin-top: 60px;
@@ -457,10 +435,9 @@ footer {
     font-size: 12px;
 }
 
-
-/* ==================================================
+/* =========================
    MOBİL
-================================================== */
+========================= */
 
 @media (max-width: 700px) {
 
@@ -482,52 +459,41 @@ footer {
 
 </head>
 
-
 <body>
 
-
-<!-- ==================================================
-     HEADER
-================================================== -->
 
 <header>
 
 <div class="header-inner">
 
-    <div class="logo">
-        KARŞI
-    </div>
+<div class="logo">
+KARŞI
+</div>
 
-    <a
-        class="back"
-        href="index.html"
-    >
-        ← Yönetim Paneli
-    </a>
+<a
+    class="back"
+    href="index.html"
+>
+← Yönetim Paneli
+</a>
 
 </div>
 
 </header>
 
 
-<!-- ==================================================
-     MAIN
-================================================== -->
-
 <main>
 
 
 <h1 class="page-title">
-    Ayarlar
+Ayarlar
 </h1>
 
 
 <p class="page-description">
-    KARŞI yayın sitesinin genel ayarlarını buradan yönetebilirsin.
+KARŞI yayın sitesinin genel ayarlarını buradan yönetebilirsin.
 </p>
 
-
-<!-- MESAJ -->
 
 <div
     id="message"
@@ -535,26 +501,22 @@ footer {
 ></div>
 
 
-<!-- ==================================================
-     AYARLAR
-================================================== -->
-
 <section class="settings-box">
 
 
 <h2>
-    Site Ayarları
+Site Ayarları
 </h2>
 
 
-<!-- ==================================================
+<!-- =========================
      SITE ADI
-================================================== -->
+========================= -->
 
 <div class="form-group">
 
 <label for="siteAdi">
-    SİTE ADI
+SİTE ADI
 </label>
 
 <input
@@ -566,14 +528,14 @@ footer {
 </div>
 
 
-<!-- ==================================================
+<!-- =========================
      SLOGAN
-================================================== -->
+========================= -->
 
 <div class="form-group">
 
 <label for="slogan">
-    SLOGAN
+SLOGAN
 </label>
 
 <input
@@ -585,14 +547,14 @@ footer {
 </div>
 
 
-<!-- ==================================================
+<!-- =========================
      SITE AÇIKLAMASI
-================================================== -->
+========================= -->
 
 <div class="form-group">
 
 <label for="siteAciklama">
-    SİTE AÇIKLAMASI
+SİTE AÇIKLAMASI
 </label>
 
 <textarea
@@ -603,14 +565,14 @@ footer {
 </div>
 
 
-<!-- ==================================================
+<!-- =========================
      FOOTER
-================================================== -->
+========================= -->
 
 <div class="form-group">
 
 <label for="footerYazisi">
-    FOOTER YAZISI
+FOOTER YAZISI
 </label>
 
 <input
@@ -622,9 +584,9 @@ footer {
 </div>
 
 
-<!-- ==================================================
+<!-- =========================
      TOGGLELAR
-================================================== -->
+========================= -->
 
 <div class="toggle-box">
 
@@ -636,11 +598,11 @@ footer {
 <div class="toggle-info">
 
 <strong>
-    Yorumlar
+Yorumlar
 </strong>
 
 <span>
-    Okuyucuların haber ve yazılara yorum yapmasına izin ver.
+Okuyucuların haber ve yazılara yorum yapmasına izin ver.
 </span>
 
 </div>
@@ -667,11 +629,11 @@ footer {
 <div class="toggle-info">
 
 <strong>
-    Yorumları otomatik onayla
+Yorumları otomatik onayla
 </strong>
 
 <span>
-    Açık olduğunda yeni yorumlar yönetici onayı beklemeden yayınlanır.
+Açık olduğunda yeni yorumlar yönetici onayı beklemeden yayınlanır.
 </span>
 
 </div>
@@ -698,11 +660,11 @@ footer {
 <div class="toggle-info">
 
 <strong>
-    Bakım modu
+Bakım modu
 </strong>
 
 <span>
-    Açık olduğunda ziyaretçilere bakım modu sayfası gösterilir.
+Açık olduğunda ziyaretçilere bakım modu sayfası gösterilebilir.
 </span>
 
 </div>
@@ -725,9 +687,9 @@ footer {
 </div>
 
 
-<!-- ==================================================
+<!-- =========================
      BUTONLAR
-================================================== -->
+========================= -->
 
 <div class="button-area">
 
@@ -737,7 +699,7 @@ footer {
     id="saveButton"
     onclick="ayarlariKaydet()"
 >
-    AYARLARI KAYDET
+AYARLARI KAYDET
 </button>
 
 
@@ -746,7 +708,7 @@ footer {
     class="cancel-button"
     onclick="ayarlariGetir()"
 >
-    DEĞİŞİKLİKLERİ GERİ AL
+DEĞİŞİKLİKLERİ GERİ AL
 </button>
 
 </div>
@@ -754,10 +716,6 @@ footer {
 
 </section>
 
-
-<!-- ==================================================
-     BİLGİ
-================================================== -->
 
 <div class="info-box">
 
@@ -772,10 +730,6 @@ yeni bir ayar satırı oluşturulmaz.
 
 </main>
 
-
-<!-- ==================================================
-     FOOTER
-================================================== -->
 
 <footer>
 
@@ -794,7 +748,7 @@ KARŞI — Yönetim Paneli
 <script>
 
 /* ==================================================
-   SUPABASE BAĞLANTISI
+   SUPABASE
 ================================================== */
 
 const SUPABASE_URL =
@@ -849,63 +803,62 @@ function mesajGoster(mesaj, tip) {
 
 async function oturumKontrolEt() {
 
-    try {
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient.auth.getSession();
+    const {
+        data,
+        error
+    } = await supabaseClient.auth.getSession();
 
 
-        if (error) {
-
-            console.error(
-                "Oturum kontrol hatası:",
-                error
-            );
-
-            return;
-
-        }
-
-
-        if (data && data.session) {
-
-            console.log(
-                "KARŞI: Yönetici oturumu aktif."
-            );
-
-            console.log(
-                "Kullanıcı:",
-                data.session.user.email
-            );
-
-            console.log(
-                "Kullanıcı ID:",
-                data.session.user.id
-            );
-
-        }
-
-        else {
-
-            console.warn(
-                "KARŞI: Aktif Supabase oturumu bulunamadı."
-            );
-
-        }
-
-    }
-
-    catch (error) {
+    if (error) {
 
         console.error(
-            "Oturum kontrolü başarısız:",
+            "Oturum kontrol hatası:",
             error
         );
 
+        mesajGoster(
+            "Supabase oturumu kontrol edilemedi.",
+            "error"
+        );
+
+        return false;
+
     }
+
+
+    if (!data.session) {
+
+        console.warn(
+            "Aktif Supabase oturumu bulunamadı."
+        );
+
+        mesajGoster(
+            "Yönetici oturumu bulunamadı. Lütfen yönetim paneline tekrar giriş yap.",
+            "error"
+        );
+
+        return false;
+
+    }
+
+
+    console.log(
+        "Aktif kullanıcı:",
+        data.session.user.email
+    );
+
+    console.log(
+        "Kullanıcı ID:",
+        data.session.user.id
+    );
+
+    console.log(
+        "Auth rolü:",
+        data.session.user.role
+    );
+
+
+    return true;
 
 }
 
@@ -918,35 +871,27 @@ async function ayarlariGetir() {
 
     try {
 
-        console.log(
-            "KARŞI: Ayarlar yükleniyor..."
-        );
-
-
         const {
             data,
             error
-        } =
-            await supabaseClient
+        } = await supabaseClient
 
-                .from("ayarlar")
+            .from("ayarlar")
 
-                .select(`
-                    id,
-                    site_adi,
-                    slogan,
-                    site_aciklama,
-                    footer_yazisi,
-                    yorumlar_acik,
-                    yorumlar_otomatik_onay,
-                    bakim_modu
-                `)
+            .select(`
+                id,
+                site_adi,
+                slogan,
+                site_aciklama,
+                footer_yazisi,
+                yorumlar_acik,
+                yorumlar_otomatik_onay,
+                bakim_modu
+            `)
 
-                .eq("id", 1)
+            .eq("id", 1)
 
-                .limit(1)
-
-                .maybeSingle();
+            .maybeSingle();
 
 
         if (error) {
@@ -959,21 +904,15 @@ async function ayarlariGetir() {
         if (!data) {
 
             throw new Error(
-                "ayarlar tablosunda ID 1 olan kayıt bulunamadı."
+                "Ayarlar tablosunda id=1 olan kayıt bulunamadı."
             );
 
         }
 
 
-        console.log(
-            "KARŞI: Veritabanındaki ayarlar:",
-            data
-        );
-
-
-        /* ==================================================
-           FORM
-        ================================================== */
+        /* =========================
+           FORMU DOLDUR
+        ========================= */
 
         document.getElementById(
             "siteAdi"
@@ -1018,16 +957,19 @@ async function ayarlariGetir() {
 
 
         console.log(
-            "KARŞI: Ayarlar forma aktarıldı."
+            "Ayarlar başarıyla yüklendi:",
+            data
         );
 
-    }
 
+        return data;
+
+    }
 
     catch (error) {
 
         console.error(
-            "KARŞI: Ayarlar yüklenemedi:",
+            "Ayarlar yüklenemedi:",
             error
         );
 
@@ -1037,6 +979,9 @@ async function ayarlariGetir() {
             error.message,
             "error"
         );
+
+
+        return null;
 
     }
 
@@ -1050,13 +995,72 @@ async function ayarlariGetir() {
 async function ayarlariKaydet() {
 
     console.log(
-        "KARŞI: Kaydetme işlemi başlatıldı."
+        "===================================="
+    );
+
+    console.log(
+        "AYARLAR KAYDET BAŞLADI"
     );
 
 
-    /* ==================================================
+    /* =========================
+       OTURUM
+    ========================= */
+
+    const {
+        data: sessionData,
+        error: sessionError
+    } = await supabaseClient.auth.getSession();
+
+
+    if (sessionError) {
+
+        console.error(
+            "Session hatası:",
+            sessionError
+        );
+
+        mesajGoster(
+            "Oturum kontrol edilemedi: " +
+            sessionError.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!sessionData.session) {
+
+        console.error(
+            "Aktif kullanıcı oturumu yok."
+        );
+
+        mesajGoster(
+            "Aktif yönetici oturumu yok. Lütfen yeniden giriş yap.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    console.log(
+        "Giriş yapan kullanıcı:",
+        sessionData.session.user.email
+    );
+
+    console.log(
+        "Kullanıcı ID:",
+        sessionData.session.user.id
+    );
+
+
+    /* =========================
        FORM DEĞERLERİ
-    ================================================== */
+    ========================= */
 
     const siteAdi =
         document.getElementById(
@@ -1100,9 +1104,9 @@ async function ayarlariKaydet() {
         ).checked;
 
 
-    /* ==================================================
-       SITE ADI KONTROLÜ
-    ================================================== */
+    /* =========================
+       BOŞ SİTE ADI
+    ========================= */
 
     if (!siteAdi) {
 
@@ -1116,9 +1120,9 @@ async function ayarlariKaydet() {
     }
 
 
-    /* ==================================================
-       BUTONU KİLİTLE
-    ================================================== */
+    /* =========================
+       BUTON
+    ========================= */
 
     saveButton.disabled = true;
 
@@ -1127,10 +1131,6 @@ async function ayarlariKaydet() {
 
 
     try {
-
-        /* ==================================================
-           GÖNDERİLECEK VERİ
-        ================================================== */
 
         const yeniAyarlar = {
 
@@ -1162,34 +1162,24 @@ async function ayarlariKaydet() {
 
 
         console.log(
-            "KARŞI: Supabase'e gönderilecek veri:",
+            "Veritabanına gönderilecek:",
             yeniAyarlar
         );
 
 
         /* ==================================================
            UPDATE
-           
-           ÖNEMLİ:
-           Burada .select() veya .single()
-           kullanmıyoruz.
         ================================================== */
 
         const {
             error: updateError
-        } =
-            await supabaseClient
+        } = await supabaseClient
 
-                .from("ayarlar")
+            .from("ayarlar")
 
-                .update(
-                    yeniAyarlar
-                )
+            .update(yeniAyarlar)
 
-                .eq(
-                    "id",
-                    1
-                );
+            .eq("id", 1);
 
 
         /* ==================================================
@@ -1199,64 +1189,62 @@ async function ayarlariKaydet() {
         if (updateError) {
 
             console.error(
-                "KARŞI: Supabase UPDATE hatası:",
+                "Supabase UPDATE hatası:",
                 updateError
             );
 
-            throw updateError;
+            throw new Error(
+                "Veritabanı güncelleme hatası: " +
+                updateError.message
+            );
 
         }
 
 
         console.log(
-            "KARŞI: UPDATE isteği başarılı."
+            "UPDATE isteği hata vermeden tamamlandı."
         );
 
 
         /* ==================================================
-           KAYDI TEKRAR OKU
-           
-           Böylece gerçekten değişip değişmediğini
-           kontrol ediyoruz.
+           ŞİMDİ VERİTABANINDAN TEKRAR OKU
         ================================================== */
 
         const {
             data: kontrolData,
             error: kontrolError
-        } =
-            await supabaseClient
+        } = await supabaseClient
 
-                .from("ayarlar")
+            .from("ayarlar")
 
-                .select(`
-                    id,
-                    site_adi,
-                    slogan,
-                    site_aciklama,
-                    footer_yazisi,
-                    yorumlar_acik,
-                    yorumlar_otomatik_onay,
-                    bakim_modu
-                `)
+            .select(`
+                id,
+                site_adi,
+                slogan,
+                site_aciklama,
+                footer_yazisi,
+                yorumlar_acik,
+                yorumlar_otomatik_onay,
+                bakim_modu,
+                updated_at
+            `)
 
-                .eq(
-                    "id",
-                    1
-                )
+            .eq("id", 1)
 
-                .limit(1)
-
-                .maybeSingle();
+            .maybeSingle();
 
 
         if (kontrolError) {
 
             console.error(
-                "KARŞI: Kaydetme sonrası okuma hatası:",
+                "Kaydetme sonrası kontrol hatası:",
                 kontrolError
             );
 
-            throw kontrolError;
+            throw new Error(
+                "Kaydetme sonrası veritabanı kontrol edilemedi: " +
+                kontrolError.message
+            );
 
         }
 
@@ -1264,51 +1252,44 @@ async function ayarlariKaydet() {
         if (!kontrolData) {
 
             throw new Error(
-                "Ayar kaydı bulunamadı."
+                "Ayar kaydı bulunamadı. RLS politikasını ve id=1 kaydını kontrol et."
             );
 
         }
 
 
         console.log(
-            "KARŞI: Kaydetme sonrası veritabanı:",
+            "Kaydetme sonrası veritabanındaki kayıt:",
             kontrolData
         );
 
 
         /* ==================================================
-           GERÇEKTEN KAYDEDİLDİ Mİ?
+           GERÇEKTEN DEĞİŞMİŞ Mİ?
         ================================================== */
 
-        const kayitDogru =
-            kontrolData.site_adi === siteAdi &&
-            kontrolData.slogan === (slogan || null) &&
-            kontrolData.site_aciklama === (siteAciklama || null) &&
-            kontrolData.footer_yazisi === (footerYazisi || null) &&
-            kontrolData.yorumlar_acik === yorumlarAcik &&
-            kontrolData.yorumlar_otomatik_onay === yorumlarOtomatikOnay &&
-            kontrolData.bakim_modu === bakimModu;
-
-
-        if (!kayitDogru) {
+        if (
+            kontrolData.site_adi !== siteAdi ||
+            kontrolData.slogan !== (slogan || null) ||
+            kontrolData.site_aciklama !== (siteAciklama || null) ||
+            kontrolData.footer_yazisi !== (footerYazisi || null) ||
+            kontrolData.yorumlar_acik !== yorumlarAcik ||
+            kontrolData.yorumlar_otomatik_onay !== yorumlarOtomatikOnay ||
+            kontrolData.bakim_modu !== bakimModu
+        ) {
 
             console.error(
-                "KARŞI: Veritabanındaki değerler beklenen değerlerle uyuşmuyor."
-            );
-
-            console.log(
-                "Gönderilen:",
+                "GÖNDERİLEN DEĞERLER:",
                 yeniAyarlar
             );
 
-            console.log(
-                "Veritabanı:",
+            console.error(
+                "VERİTABANINDAN OKUNAN:",
                 kontrolData
             );
 
-
             throw new Error(
-                "Değişiklik veritabanına doğru şekilde yazılamadı."
+                "Değişiklik veritabanına doğru şekilde yazılamadı. UPDATE yetkisini/RLS politikasını kontrol et."
             );
 
         }
@@ -1319,7 +1300,15 @@ async function ayarlariKaydet() {
         ================================================== */
 
         console.log(
-            "KARŞI: AYARLAR BAŞARIYLA KAYDEDİLDİ."
+            "===================================="
+        );
+
+        console.log(
+            "AYARLAR BAŞARIYLA KAYDEDİLDİ"
+        );
+
+        console.log(
+            "===================================="
         );
 
 
@@ -1329,9 +1318,7 @@ async function ayarlariKaydet() {
         );
 
 
-        /* ==================================================
-           FORMU SON VERİYLE YENİLE
-        ================================================== */
+        /* Formu veritabanındaki son değerlerle yenile */
 
         await ayarlariGetir();
 
@@ -1341,8 +1328,16 @@ async function ayarlariKaydet() {
     catch (error) {
 
         console.error(
-            "KARŞI: AYAR KAYDETME HATASI:",
+            "===================================="
+        );
+
+        console.error(
+            "AYAR KAYDETME HATASI:",
             error
+        );
+
+        console.error(
+            "===================================="
         );
 
 
@@ -1372,9 +1367,30 @@ async function ayarlariKaydet() {
    SAYFA BAŞLANGICI
 ================================================== */
 
-oturumKontrolEt();
+async function baslat() {
 
-ayarlariGetir();
+    console.log(
+        "KARŞI Ayarlar sayfası başlatılıyor..."
+    );
+
+
+    const oturumVar =
+        await oturumKontrolEt();
+
+
+    if (!oturumVar) {
+
+        return;
+
+    }
+
+
+    await ayarlariGetir();
+
+}
+
+
+baslat();
 
 </script>
 
@@ -1382,3 +1398,4 @@ ayarlariGetir();
 </body>
 
 </html>
+```
