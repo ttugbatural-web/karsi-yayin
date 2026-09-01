@@ -392,19 +392,16 @@
     düzenleyebilir ve yayınlayabilirsin.
   </p>
 
-
   <div
     id="message"
     class="message"
   ></div>
-
 
   <section class="form-box">
 
     <h2 id="formTitle">
       Yeni Köşe Yazısı
     </h2>
-
 
     <div class="form-group">
 
@@ -420,7 +417,6 @@
 
     </div>
 
-
     <div class="form-group">
 
       <label>
@@ -433,7 +429,6 @@
       ></textarea>
 
     </div>
-
 
     <div class="form-group">
 
@@ -451,7 +446,6 @@
 
     </div>
 
-
     <div class="form-group">
 
       <label>
@@ -466,7 +460,6 @@
 
     </div>
 
-
     <div class="form-group">
 
       <label>
@@ -480,7 +473,6 @@
       ></textarea>
 
     </div>
-
 
     <div class="form-group">
 
@@ -519,7 +511,6 @@
 
     </div>
 
-
     <div class="form-group">
 
       <label>
@@ -537,7 +528,6 @@
       </div>
 
     </div>
-
 
     <div class="form-group">
 
@@ -558,7 +548,6 @@
       </select>
 
     </div>
-
 
     <div class="buttons">
 
@@ -583,11 +572,9 @@
 
   </section>
 
-
   <h2 class="articles-title">
     Mevcut Köşe Yazıları
   </h2>
-
 
   <section
     class="articles"
@@ -602,7 +589,6 @@
 
 </main>
 
-
 <footer>
 
   KARŞI — Yönetim Paneli
@@ -610,992 +596,1069 @@
 </footer>
 
 
+<!-- ==================================================
+     SUPABASE
+================================================== -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- ==================================================
+     ORTAK AUTH
+================================================== -->
+
+<script src="auth.js"></script>
+
 
 <script>
 
-  /* ==================================================
-     SUPABASE
-  ================================================== */
+/* ==================================================
+   DEĞİŞKENLER
+================================================== */
 
-  const SUPABASE_URL =
-    "https://rfqiffvudbmphvklxetf.supabase.co";
+let duzenlenenYaziId = null;
 
-  const SUPABASE_ANON_KEY =
-    "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+let mevcutFotografUrl = null;
 
 
-  const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_ANON_KEY
-    );
+const photoInput =
+  document.getElementById("articlePhoto");
+
+const photoPreview =
+  document.getElementById("photoPreview");
+
+const saveButton =
+  document.getElementById("saveButton");
 
 
-  /* ==================================================
-     DEĞİŞKENLER
-  ================================================== */
+/* ==================================================
+   SLUG
+================================================== */
 
-  let duzenlenenYaziId = null;
+function slugOlustur(metin) {
 
-  let mevcutFotografUrl = null;
+  return metin
 
+    .toLocaleLowerCase("tr-TR")
 
-  const photoInput =
-    document.getElementById("articlePhoto");
+    .replace(/ğ/g, "g")
+    .replace(/ü/g, "u")
+    .replace(/ş/g, "s")
+    .replace(/ı/g, "i")
+    .replace(/ö/g, "o")
+    .replace(/ç/g, "c")
 
-  const photoPreview =
-    document.getElementById("photoPreview");
+    .replace(/[^a-z0-9\s-]/g, "")
 
-  const saveButton =
-    document.getElementById("saveButton");
+    .trim()
 
+    .replace(/\s+/g, "-")
 
-  /* ==================================================
-     SLUG
-  ================================================== */
+    .replace(/-+/g, "-");
 
-  function slugOlustur(metin) {
-
-    return metin
-
-      .toLowerCase()
-
-      .replace(/ğ/g, "g")
-      .replace(/ü/g, "u")
-      .replace(/ş/g, "s")
-      .replace(/ı/g, "i")
-      .replace(/ö/g, "o")
-      .replace(/ç/g, "c")
-
-      .replace(/[^a-z0-9\s-]/g, "")
-
-      .trim()
-
-      .replace(/\s+/g, "-")
-
-      .replace(/-+/g, "-");
-
-  }
+}
 
 
-  document
-    .getElementById("articleTitle")
-    .addEventListener(
-      "input",
-      function () {
+document
+  .getElementById("articleTitle")
+  .addEventListener(
+    "input",
+    function () {
 
-        if (!duzenlenenYaziId) {
-
-          const slug =
-            slugOlustur(this.value);
-
-          document
-            .getElementById("articleSlug")
-            .value = slug;
-
-          document
-            .getElementById("slugPreview")
-            .textContent = slug;
-
-        }
-
-      }
-    );
-
-
-  document
-    .getElementById("articleSlug")
-    .addEventListener(
-      "input",
-      function () {
+      if (!duzenlenenYaziId) {
 
         const slug =
           slugOlustur(this.value);
 
-        this.value = slug;
+        document
+          .getElementById("articleSlug")
+          .value = slug;
 
         document
           .getElementById("slugPreview")
           .textContent = slug;
 
       }
-    );
-
-
-  /* ==================================================
-     FOTOĞRAF ÖNİZLEME
-  ================================================== */
-
-  photoInput.addEventListener(
-    "change",
-    function () {
-
-      const file =
-        this.files[0];
-
-      if (!file) {
-        return;
-      }
-
-      const reader =
-        new FileReader();
-
-      reader.onload =
-        function (e) {
-
-          photoPreview.innerHTML =
-            `<img src="${e.target.result}" alt="Kapak fotoğrafı">`;
-
-        };
-
-      reader.readAsDataURL(file);
 
     }
   );
 
 
-  /* ==================================================
-     MESAJ
-  ================================================== */
+document
+  .getElementById("articleSlug")
+  .addEventListener(
+    "input",
+    function () {
 
-  function mesajGoster(
-    text,
-    type
-  ) {
+      const slug =
+        slugOlustur(this.value);
 
-    const message =
-      document.getElementById("message");
+      this.value = slug;
 
-    message.textContent = text;
-
-    message.className =
-      "message " + type;
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  }
-
-
-  /* ==================================================
-     YAZARLARI GETİR
-  ================================================== */
-
-  async function yazarlariGetir() {
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .from("yazarlar")
-        .select("id, ad_soyad")
-        .order(
-          "ad_soyad",
-          {
-            ascending: true
-          }
-        );
-
-
-    if (error) {
-
-      mesajGoster(
-        "Yazarlar yüklenemedi: " +
-        error.message,
-        "error"
-      );
-
-      return;
+      document
+        .getElementById("slugPreview")
+        .textContent = slug;
 
     }
+  );
 
 
-    const select =
-      document.getElementById(
-        "articleAuthor"
+/* ==================================================
+   FOTOĞRAF ÖNİZLEME
+================================================== */
+
+photoInput.addEventListener(
+  "change",
+  function () {
+
+    const file =
+      this.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader =
+      new FileReader();
+
+    reader.onload =
+      function (e) {
+
+        photoPreview.innerHTML =
+          `<img
+            src="${e.target.result}"
+            alt="Kapak fotoğrafı"
+          >`;
+
+      };
+
+    reader.readAsDataURL(file);
+
+  }
+);
+
+
+/* ==================================================
+   MESAJ
+================================================== */
+
+function mesajGoster(
+  text,
+  type
+) {
+
+  const message =
+    document.getElementById("message");
+
+  message.textContent =
+    text;
+
+  message.className =
+    "message " + type;
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* ==================================================
+   YAZARLARI GETİR
+================================================== */
+
+async function yazarlariGetir() {
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("yazarlar")
+      .select("id, ad_soyad")
+      .eq("aktif", true)
+      .order(
+        "ad_soyad",
+        {
+          ascending: true
+        }
       );
 
 
-    data.forEach(
-      function (author) {
+  if (error) {
 
-        const option =
-          document.createElement(
-            "option"
-          );
-
-        option.value =
-          author.id;
-
-        option.textContent =
-          author.ad_soyad;
-
-        select.appendChild(
-          option
-        );
-
-      }
+    mesajGoster(
+      "Yazarlar yüklenemedi: " +
+      error.message,
+      "error"
     );
 
-  }
-
-
-  /* ==================================================
-     YAZI KAYDET
-  ================================================== */
-
-  async function yaziKaydet() {
-
-    const title =
-      document
-        .getElementById("articleTitle")
-        .value
-        .trim();
-
-
-    const summary =
-      document
-        .getElementById("articleSummary")
-        .value
-        .trim();
-
-
-    const authorId =
-      document
-        .getElementById("articleAuthor")
-        .value;
-
-
-    const category =
-      document
-        .getElementById("articleCategory")
-        .value
-        .trim();
-
-
-    const content =
-      document
-        .getElementById("articleContent")
-        .value
-        .trim();
-
-
-    const slug =
-      document
-        .getElementById("articleSlug")
-        .value
-        .trim();
-
-
-    const status =
-      document
-        .getElementById("articleStatus")
-        .value;
-
-
-    const photoFile =
-      photoInput.files[0];
-
-
-    if (!title) {
-
-      mesajGoster(
-        "Lütfen yazının başlığını yaz.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    if (!content) {
-
-      mesajGoster(
-        "Lütfen yazının içeriğini yaz.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    if (!slug) {
-
-      mesajGoster(
-        "Lütfen slug oluştur.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    saveButton.disabled = true;
-
-    saveButton.textContent =
-      "KAYDEDİLİYOR...";
-
-
-    try {
-
-      let fotografUrl =
-        mevcutFotografUrl;
-
-
-      /* ==========================================
-         FOTOĞRAF YÜKLE
-      ========================================== */
-
-      if (photoFile) {
-
-        const uzanti =
-          photoFile.name
-            .split(".")
-            .pop()
-            .toLowerCase();
-
-
-        const dosyaAdi =
-          slug +
-          "-" +
-          Date.now() +
-          "." +
-          uzanti;
-
-
-        const {
-          error: uploadError
-        } =
-          await supabaseClient
-            .storage
-            .from("kose-yazilari")
-            .upload(
-              dosyaAdi,
-              photoFile,
-              {
-                cacheControl: "3600",
-                upsert: false
-              }
-            );
-
-
-        if (uploadError) {
-
-          throw uploadError;
-
-        }
-
-
-        const {
-          data: publicUrlData
-        } =
-          supabaseClient
-            .storage
-            .from("kose-yazilari")
-            .getPublicUrl(
-              dosyaAdi
-            );
-
-
-        fotografUrl =
-          publicUrlData.publicUrl;
-
-      }
-
-
-      /* ==========================================
-         YENİ YAZI
-      ========================================== */
-
-      if (!duzenlenenYaziId) {
-
-        const {
-          error
-        } =
-          await supabaseClient
-            .from("kose_yazilari")
-            .insert({
-
-              baslik: title,
-
-              ozet:
-                summary || null,
-
-              icerik:
-                content,
-
-              yazar_id:
-                authorId
-                ? Number(authorId)
-                : null,
-
-              kapak_fotografi_url:
-                fotografUrl,
-
-              kategori:
-                category || "Köşe Yazısı",
-
-              slug:
-                slug,
-
-              durum:
-                status,
-
-              yayin_tarihi:
-                status === "yayinda"
-                  ? new Date().toISOString()
-                  : null
-
-            });
-
-
-        if (error) {
-
-          throw error;
-
-        }
-
-      }
-
-
-      /* ==========================================
-         MEVCUT YAZIYI GÜNCELLE
-      ========================================== */
-
-      else {
-
-        const {
-          error
-        } =
-          await supabaseClient
-            .from("kose_yazilari")
-            .update({
-
-              baslik: title,
-
-              ozet:
-                summary || null,
-
-              icerik:
-                content,
-
-              yazar_id:
-                authorId
-                ? Number(authorId)
-                : null,
-
-              kapak_fotografi_url:
-                fotografUrl,
-
-              kategori:
-                category || "Köşe Yazısı",
-
-              slug:
-                slug,
-
-              durum:
-                status,
-
-              yayin_tarihi:
-                status === "yayinda"
-                  ? new Date().toISOString()
-                  : null
-
-            })
-            .eq(
-              "id",
-              duzenlenenYaziId
-            );
-
-
-        if (error) {
-
-          throw error;
-
-        }
-
-      }
-
-
-      mesajGoster(
-        duzenlenenYaziId
-          ? "Yazı başarıyla güncellendi."
-          : "Yazı başarıyla kaydedildi.",
-        "success"
-      );
-
-
-      formTemizle();
-
-      await yazilariGetir();
-
-    }
-
-    catch (error) {
-
-      console.error(
-        "Yazı kaydetme hatası:",
-        error
-      );
-
-      mesajGoster(
-        "Yazı kaydedilemedi: " +
-        error.message,
-        "error"
-      );
-
-    }
-
-    finally {
-
-      saveButton.disabled = false;
-
-      saveButton.textContent =
-        "YAZIYI KAYDET";
-
-    }
+    return;
 
   }
 
 
-  /* ==================================================
-     YAZILARI GETİR
-  ================================================== */
-
-  async function yazilariGetir() {
-
-    const list =
-      document.getElementById(
-        "articlesList"
-      );
-
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .from("kose_yazilari")
-        .select(`
-          *,
-          yazarlar (
-            ad_soyad
-          )
-        `)
-        .order(
-          "id",
-          {
-            ascending: false
-          }
-        );
-
-
-    if (error) {
-
-      list.innerHTML =
-        `<div class="empty">
-          Yazılar yüklenemedi:
-          ${guvenliMetin(error.message)}
-        </div>`;
-
-      return;
-
-    }
-
-
-    if (!data || data.length === 0) {
-
-      list.innerHTML =
-        `<div class="empty">
-          Henüz kayıtlı köşe yazısı bulunmuyor.
-        </div>`;
-
-      return;
-
-    }
-
-
-    list.innerHTML = "";
-
-
-    data.forEach(
-      function (article) {
-
-        const card =
-          document.createElement(
-            "div"
-          );
-
-        card.className =
-          "article-card";
-
-
-        const statusClass =
-          article.durum === "yayinda"
-            ? "status-yayinda"
-            : "status-taslak";
-
-
-        const statusText =
-          article.durum === "yayinda"
-            ? "YAYINDA"
-            : "TASLAK";
-
-
-        const authorName =
-          article.yazarlar
-            ? article.yazarlar.ad_soyad
-            : "Yazar belirtilmedi";
-
-
-        card.innerHTML = `
-
-          <div class="status-badge ${statusClass}">
-            ${statusText}
-          </div>
-
-          <h3>
-            ${guvenliMetin(article.baslik)}
-          </h3>
-
-          <div class="article-meta">
-            ${guvenliMetin(authorName)}
-          </div>
-
-          <div class="article-summary">
-            ${guvenliMetin(
-              article.ozet || "Özet eklenmedi."
-            )}
-          </div>
-
-          <div class="article-meta">
-            /kose-yazilari/${guvenliMetin(article.slug)}
-          </div>
-
-          <div class="card-buttons">
-
-            <button
-              class="card-button"
-              onclick="yaziDuzenle(${article.id})"
-            >
-              DÜZENLE
-            </button>
-
-            <button
-              class="card-button delete-button"
-              onclick="yaziSil(${article.id})"
-            >
-              SİL
-            </button>
-
-          </div>
-
-        `;
-
-
-        list.appendChild(card);
-
-      }
+  const select =
+    document.getElementById(
+      "articleAuthor"
     );
 
-  }
+
+  select.innerHTML =
+    `<option value="">
+      Yazar seç
+    </option>`;
 
 
-  /* ==================================================
-     YAZI DÜZENLE
-  ================================================== */
+  data.forEach(
+    function (author) {
 
-  async function yaziDuzenle(id) {
+      const option =
+        document.createElement(
+          "option"
+        );
 
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .from("kose_yazilari")
-        .select("*")
-        .eq("id", id)
-        .single();
+      option.value =
+        author.id;
 
+      option.textContent =
+        author.ad_soyad;
 
-    if (error) {
-
-      mesajGoster(
-        "Yazı yüklenemedi: " +
-        error.message,
-        "error"
+      select.appendChild(
+        option
       );
 
-      return;
-
     }
+  );
+
+}
 
 
-    duzenlenenYaziId =
-      data.id;
+/* ==================================================
+   YAZI KAYDET
+================================================== */
 
+async function yaziKaydet() {
 
-    mevcutFotografUrl =
-      data.kapak_fotografi_url;
-
-
+  const title =
     document
       .getElementById("articleTitle")
-      .value =
-        data.baslik || "";
+      .value
+      .trim();
 
 
+  const summary =
     document
       .getElementById("articleSummary")
-      .value =
-        data.ozet || "";
+      .value
+      .trim();
 
 
+  const authorId =
     document
       .getElementById("articleAuthor")
-      .value =
-        data.yazar_id || "";
+      .value;
 
 
+  const category =
     document
       .getElementById("articleCategory")
-      .value =
-        data.kategori || "Köşe Yazısı";
+      .value
+      .trim();
 
 
+  const content =
     document
       .getElementById("articleContent")
-      .value =
-        data.icerik || "";
+      .value
+      .trim();
 
 
+  const slug =
     document
       .getElementById("articleSlug")
-      .value =
-        data.slug || "";
+      .value
+      .trim();
 
 
-    document
-      .getElementById("slugPreview")
-      .textContent =
-        data.slug || "";
-
-
+  const status =
     document
       .getElementById("articleStatus")
-      .value =
-        data.durum || "taslak";
+      .value;
 
 
-    if (data.kapak_fotografi_url) {
+  const photoFile =
+    photoInput.files[0];
 
-      photoPreview.innerHTML =
-        `<img
-          src="${guvenliMetin(data.kapak_fotografi_url)}"
-          alt="Kapak fotoğrafı"
-        >`;
+
+  if (!title) {
+
+    mesajGoster(
+      "Lütfen yazının başlığını yaz.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if (!content) {
+
+    mesajGoster(
+      "Lütfen yazının içeriğini yaz.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if (!slug) {
+
+    mesajGoster(
+      "Lütfen slug oluştur.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  saveButton.disabled =
+    true;
+
+  saveButton.textContent =
+    duzenlenenYaziId
+      ? "GÜNCELLENİYOR..."
+      : "KAYDEDİLİYOR...";
+
+
+  try {
+
+    let fotografUrl =
+      mevcutFotografUrl;
+
+
+    /* ==========================================
+       YENİ FOTOĞRAF YÜKLE
+    ========================================== */
+
+    if (photoFile) {
+
+      const uzanti =
+        photoFile.name
+          .split(".")
+          .pop()
+          .toLowerCase();
+
+
+      const dosyaAdi =
+        slug +
+        "-" +
+        Date.now() +
+        "." +
+        uzanti;
+
+
+      const {
+        error: uploadError
+      } =
+        await supabaseClient
+          .storage
+          .from("kose-yazilari")
+          .upload(
+            dosyaAdi,
+            photoFile,
+            {
+              cacheControl: "3600",
+              upsert: false
+            }
+          );
+
+
+      if (uploadError) {
+
+        throw uploadError;
+
+      }
+
+
+      const {
+        data: publicUrlData
+      } =
+        supabaseClient
+          .storage
+          .from("kose-yazilari")
+          .getPublicUrl(
+            dosyaAdi
+          );
+
+
+      fotografUrl =
+        publicUrlData.publicUrl;
 
     }
+
+
+    /* ==========================================
+       YENİ YAZI
+    ========================================== */
+
+    if (!duzenlenenYaziId) {
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .from("kose_yazilari")
+          .insert({
+
+            baslik:
+              title,
+
+            ozet:
+              summary || null,
+
+            icerik:
+              content,
+
+            yazar_id:
+              authorId
+                ? Number(authorId)
+                : null,
+
+            kapak_fotografi_url:
+              fotografUrl,
+
+            kategori:
+              category ||
+              "Köşe Yazısı",
+
+            slug:
+              slug,
+
+            durum:
+              status,
+
+            yayin_tarihi:
+              status === "yayinda"
+                ? new Date().toISOString()
+                : null
+
+          });
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+    }
+
+
+    /* ==========================================
+       MEVCUT YAZIYI GÜNCELLE
+    ========================================== */
 
     else {
 
-      photoPreview.innerHTML =
-        "📰";
+      const {
+        error
+      } =
+        await supabaseClient
+          .from("kose_yazilari")
+          .update({
 
-    }
+            baslik:
+              title,
 
+            ozet:
+              summary || null,
 
-    document
-      .getElementById("formTitle")
-      .textContent =
-        "Köşe Yazısını Düzenle";
+            icerik:
+              content,
 
+            yazar_id:
+              authorId
+                ? Number(authorId)
+                : null,
 
-    saveButton.textContent =
-      "DEĞİŞİKLİKLERİ KAYDET";
+            kapak_fotografi_url:
+              fotografUrl,
 
+            kategori:
+              category ||
+              "Köşe Yazısı",
 
-    document
-      .getElementById("cancelButton")
-      .style.display =
-        "inline-block";
+            slug:
+              slug,
 
+            durum:
+              status,
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+            yayin_tarihi:
+              status === "yayinda"
+                ? new Date().toISOString()
+                : null
 
-  }
-
-
-  /* ==================================================
-     YAZI SİL
-  ================================================== */
-
-  async function yaziSil(id) {
-
-    const onay =
-      confirm(
-        "Bu köşe yazısını silmek istediğine emin misin?"
-      );
-
-
-    if (!onay) {
-      return;
-    }
-
-
-    const {
-      error
-    } =
-      await supabaseClient
-        .from("kose_yazilari")
-        .delete()
-        .eq(
-          "id",
-          id
-        );
+          })
+          .eq(
+            "id",
+            duzenlenenYaziId
+          );
 
 
-    if (error) {
+      if (error) {
 
-      mesajGoster(
-        "Yazı silinemedi: " +
-        error.message,
-        "error"
-      );
+        throw error;
 
-      return;
+      }
 
     }
 
 
     mesajGoster(
-      "Yazı başarıyla silindi.",
+      duzenlenenYaziId
+        ? "Yazı başarıyla güncellendi."
+        : "Yazı başarıyla kaydedildi.",
       "success"
     );
 
+
+    formTemizle();
 
     await yazilariGetir();
 
   }
 
+  catch (error) {
 
-  /* ==================================================
-     FORM TEMİZLE
-  ================================================== */
+    console.error(
+      "Yazı kaydetme hatası:",
+      error
+    );
 
-  function formTemizle() {
+    mesajGoster(
+      "Yazı kaydedilemedi: " +
+      error.message,
+      "error"
+    );
 
-    duzenlenenYaziId =
-      null;
+  }
 
-    mevcutFotografUrl =
-      null;
+  finally {
 
-
-    document
-      .getElementById("articleTitle")
-      .value = "";
-
-
-    document
-      .getElementById("articleSummary")
-      .value = "";
-
-
-    document
-      .getElementById("articleAuthor")
-      .value = "";
-
-
-    document
-      .getElementById("articleCategory")
-      .value =
-        "Köşe Yazısı";
-
-
-    document
-      .getElementById("articleContent")
-      .value = "";
-
-
-    document
-      .getElementById("articleSlug")
-      .value = "";
-
-
-    document
-      .getElementById("slugPreview")
-      .textContent = "";
-
-
-    document
-      .getElementById("articleStatus")
-      .value =
-        "taslak";
-
-
-    photoInput.value = "";
-
-    photoPreview.innerHTML =
-      "📰";
-
-
-    document
-      .getElementById("formTitle")
-      .textContent =
-        "Yeni Köşe Yazısı";
-
+    saveButton.disabled =
+      false;
 
     saveButton.textContent =
       "YAZIYI KAYDET";
 
+  }
 
-    document
-      .getElementById("cancelButton")
-      .style.display =
-        "none";
+}
+
+
+/* ==================================================
+   YAZILARI GETİR
+================================================== */
+
+async function yazilariGetir() {
+
+  const list =
+    document.getElementById(
+      "articlesList"
+    );
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("kose_yazilari")
+      .select(`
+        *,
+        yazarlar (
+          ad_soyad
+        )
+      `)
+      .order(
+        "id",
+        {
+          ascending: false
+        }
+      );
+
+
+  if (error) {
+
+    list.innerHTML =
+      `<div class="empty">
+        Yazılar yüklenemedi:
+        ${guvenliMetin(error.message)}
+      </div>`;
+
+    return;
 
   }
 
 
-  /* ==================================================
-     GÜVENLİ METİN
-  ================================================== */
+  if (
+    !data ||
+    data.length === 0
+  ) {
 
-  function guvenliMetin(metin) {
+    list.innerHTML =
+      `<div class="empty">
+        Henüz kayıtlı köşe yazısı bulunmuyor.
+      </div>`;
 
-    const div =
-      document.createElement("div");
-
-    div.textContent =
-      metin == null
-        ? ""
-        : String(metin);
-
-    return div.innerHTML;
+    return;
 
   }
 
 
-  /* ==================================================
-     BAŞLANGIÇ
-  ================================================== */
+  list.innerHTML =
+    "";
 
-  yazarlariGetir();
 
-  yazilariGetir();
+  data.forEach(
+    function (article) {
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      card.className =
+        "article-card";
+
+
+      const statusClass =
+        article.durum === "yayinda"
+          ? "status-yayinda"
+          : "status-taslak";
+
+
+      const statusText =
+        article.durum === "yayinda"
+          ? "YAYINDA"
+          : "TASLAK";
+
+
+      const authorName =
+        article.yazarlar
+          ? article.yazarlar.ad_soyad
+          : "Yazar belirtilmedi";
+
+
+      card.innerHTML = `
+
+        <div class="status-badge ${statusClass}">
+          ${statusText}
+        </div>
+
+        <h3>
+          ${guvenliMetin(article.baslik)}
+        </h3>
+
+        <div class="article-meta">
+          ${guvenliMetin(authorName)}
+        </div>
+
+        <div class="article-summary">
+          ${guvenliMetin(
+            article.ozet ||
+            "Özet eklenmedi."
+          )}
+        </div>
+
+        <div class="article-meta">
+          /kose-yazilari/${guvenliMetin(
+            article.slug
+          )}
+        </div>
+
+        <div class="card-buttons">
+
+          <button
+            class="card-button"
+            onclick="yaziDuzenle(${article.id})"
+          >
+            DÜZENLE
+          </button>
+
+          <button
+            class="card-button delete-button"
+            onclick="yaziSil(${article.id})"
+          >
+            SİL
+          </button>
+
+        </div>
+
+      `;
+
+
+      list.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+
+/* ==================================================
+   YAZI DÜZENLE
+================================================== */
+
+async function yaziDuzenle(
+  id
+) {
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("kose_yazilari")
+      .select("*")
+      .eq(
+        "id",
+        id
+      )
+      .single();
+
+
+  if (error) {
+
+    mesajGoster(
+      "Yazı yüklenemedi: " +
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  duzenlenenYaziId =
+    data.id;
+
+
+  mevcutFotografUrl =
+    data.kapak_fotografi_url;
+
+
+  document
+    .getElementById("articleTitle")
+    .value =
+      data.baslik || "";
+
+
+  document
+    .getElementById("articleSummary")
+    .value =
+      data.ozet || "";
+
+
+  document
+    .getElementById("articleAuthor")
+    .value =
+      data.yazar_id || "";
+
+
+  document
+    .getElementById("articleCategory")
+    .value =
+      data.kategori ||
+      "Köşe Yazısı";
+
+
+  document
+    .getElementById("articleContent")
+    .value =
+      data.icerik || "";
+
+
+  document
+    .getElementById("articleSlug")
+    .value =
+      data.slug || "";
+
+
+  document
+    .getElementById("slugPreview")
+    .textContent =
+      data.slug || "";
+
+
+  document
+    .getElementById("articleStatus")
+    .value =
+      data.durum || "taslak";
+
+
+  if (
+    data.kapak_fotografi_url
+  ) {
+
+    photoPreview.innerHTML =
+      `<img
+        src="${guvenliMetin(
+          data.kapak_fotografi_url
+        )}"
+        alt="Kapak fotoğrafı"
+      >`;
+
+  }
+
+  else {
+
+    photoPreview.innerHTML =
+      "📰";
+
+  }
+
+
+  document
+    .getElementById("formTitle")
+    .textContent =
+      "Köşe Yazısını Düzenle";
+
+
+  saveButton.textContent =
+    "DEĞİŞİKLİKLERİ KAYDET";
+
+
+  document
+    .getElementById("cancelButton")
+    .style.display =
+      "inline-block";
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* ==================================================
+   YAZI SİL
+================================================== */
+
+async function yaziSil(
+  id
+) {
+
+  const onay =
+    confirm(
+      "Bu köşe yazısını silmek istediğine emin misin?"
+    );
+
+
+  if (!onay) {
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("kose_yazilari")
+      .delete()
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (error) {
+
+    mesajGoster(
+      "Yazı silinemedi: " +
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  mesajGoster(
+    "Yazı başarıyla silindi.",
+    "success"
+  );
+
+
+  await yazilariGetir();
+
+}
+
+
+/* ==================================================
+   FORM TEMİZLE
+================================================== */
+
+function formTemizle() {
+
+  duzenlenenYaziId =
+    null;
+
+  mevcutFotografUrl =
+    null;
+
+
+  document
+    .getElementById("articleTitle")
+    .value =
+      "";
+
+
+  document
+    .getElementById("articleSummary")
+    .value =
+      "";
+
+
+  document
+    .getElementById("articleAuthor")
+    .value =
+      "";
+
+
+  document
+    .getElementById("articleCategory")
+    .value =
+      "Köşe Yazısı";
+
+
+  document
+    .getElementById("articleContent")
+    .value =
+      "";
+
+
+  document
+    .getElementById("articleSlug")
+    .value =
+      "";
+
+
+  document
+    .getElementById("slugPreview")
+    .textContent =
+      "";
+
+
+  document
+    .getElementById("articleStatus")
+    .value =
+      "taslak";
+
+
+  photoInput.value =
+    "";
+
+
+  photoPreview.innerHTML =
+    "📰";
+
+
+  document
+    .getElementById("formTitle")
+    .textContent =
+      "Yeni Köşe Yazısı";
+
+
+  saveButton.textContent =
+    "YAZIYI KAYDET";
+
+
+  document
+    .getElementById("cancelButton")
+    .style.display =
+      "none";
+
+}
+
+
+/* ==================================================
+   GÜVENLİ METİN
+================================================== */
+
+function guvenliMetin(
+  metin
+) {
+
+  const div =
+    document.createElement(
+      "div"
+    );
+
+  div.textContent =
+    metin == null
+      ? ""
+      : String(metin);
+
+  return div.innerHTML;
+
+}
+
+
+/* ==================================================
+   SAYFAYI BAŞLAT
+================================================== */
+
+async function sayfayiBaslat() {
+
+  const session =
+    await yoneticiOturumuKontrolEt();
+
+
+  if (!session) {
+
+    return;
+
+  }
+
+
+  console.log(
+    "KARŞI: Köşe Yazıları yönetim sayfası açıldı."
+  );
+
+
+  await yazarlariGetir();
+
+  await yazilariGetir();
+
+}
+
+
+/* ==================================================
+   BAŞLAT
+================================================== */
+
+sayfayiBaslat();
 
 </script>
 
 </body>
+
 </html>
