@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
 
@@ -743,10 +742,8 @@ KARŞI — Yönetim Paneli
 const SUPABASE_URL =
     "https://rfqiffvudbmphvklxetf.supabase.co";
 
-
 const SUPABASE_ANON_KEY =
     "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
-
 
 const supabaseClient =
     window.supabase.createClient(
@@ -760,25 +757,17 @@ const supabaseClient =
 ================================================== */
 
 const messageBox =
-    document.getElementById(
-        "message"
-    );
-
+    document.getElementById("message");
 
 const saveButton =
-    document.getElementById(
-        "saveButton"
-    );
+    document.getElementById("saveButton");
 
 
 /* ==================================================
    MESAJ
 ================================================== */
 
-function mesajGoster(
-    mesaj,
-    tip
-) {
+function mesajGoster(mesaj, tip) {
 
     messageBox.textContent =
         mesaj;
@@ -807,9 +796,7 @@ async function ayarlariGetir() {
             error
         } =
             await supabaseClient
-
                 .from("ayarlar")
-
                 .select(`
                     id,
                     site_adi,
@@ -820,18 +807,20 @@ async function ayarlariGetir() {
                     yorumlar_otomatik_onay,
                     bakim_modu
                 `)
-
-                .eq(
-                    "id",
-                    1
-                )
-
+                .eq("id", 1)
                 .single();
 
 
         if (error) {
-
             throw error;
+        }
+
+
+        if (!data) {
+
+            throw new Error(
+                "Ayar kaydı bulunamadı."
+            );
 
         }
 
@@ -843,25 +832,25 @@ async function ayarlariGetir() {
         document.getElementById(
             "siteAdi"
         ).value =
-            data.site_adi || "";
+            data.site_adi ?? "";
 
 
         document.getElementById(
             "slogan"
         ).value =
-            data.slogan || "";
+            data.slogan ?? "";
 
 
         document.getElementById(
             "siteAciklama"
         ).value =
-            data.site_aciklama || "";
+            data.site_aciklama ?? "";
 
 
         document.getElementById(
             "footerYazisi"
         ).value =
-            data.footer_yazisi || "";
+            data.footer_yazisi ?? "";
 
 
         document.getElementById(
@@ -883,12 +872,11 @@ async function ayarlariGetir() {
 
 
         console.log(
-            "Ayarlar başarıyla yüklendi:",
+            "AYARLAR VERİTABANINDAN OKUNDU:",
             data
         );
 
     }
-
 
     catch (error) {
 
@@ -896,7 +884,6 @@ async function ayarlariGetir() {
             "Ayarlar yüklenemedi:",
             error
         );
-
 
         mesajGoster(
             "Ayarlar yüklenemedi: " +
@@ -957,6 +944,10 @@ async function ayarlariKaydet() {
         ).checked;
 
 
+    /* =========================
+       KONTROL
+    ========================= */
+
     if (!siteAdi) {
 
         mesajGoster(
@@ -972,68 +963,184 @@ async function ayarlariKaydet() {
     saveButton.disabled =
         true;
 
-
     saveButton.textContent =
         "KAYDEDİLİYOR...";
 
 
     try {
 
+        /* =========================
+           GÜNCELLENECEK VERİ
+        ========================= */
+
+        const yeniAyarlar = {
+
+            site_adi:
+                siteAdi,
+
+            slogan:
+                slogan,
+
+            site_aciklama:
+                siteAciklama,
+
+            footer_yazisi:
+                footerYazisi,
+
+            yorumlar_acik:
+                yorumlarAcik,
+
+            yorumlar_otomatik_onay:
+                yorumlarOtomatikOnay,
+
+            bakim_modu:
+                bakimModu,
+
+            updated_at:
+                new Date().toISOString()
+
+        };
+
+
+        console.log(
+            "SUPABASE'A GÖNDERİLEN AYARLAR:",
+            yeniAyarlar
+        );
+
+
+        /* =========================
+           UPDATE + GERİ DÖNEN SATIR
+        ========================= */
+
         const {
+            data,
             error
         } =
             await supabaseClient
 
                 .from("ayarlar")
 
-                .update({
-
-                    site_adi:
-                        siteAdi,
-
-                    slogan:
-                        slogan || null,
-
-                    site_aciklama:
-                        siteAciklama || null,
-
-                    footer_yazisi:
-                        footerYazisi || null,
-
-                    yorumlar_acik:
-                        yorumlarAcik,
-
-                    yorumlar_otomatik_onay:
-                        yorumlarOtomatikOnay,
-
-                    bakim_modu:
-                        bakimModu,
-
-                    updated_at:
-                        new Date().toISOString()
-
-                })
+                .update(
+                    yeniAyarlar
+                )
 
                 .eq(
                     "id",
                     1
-                );
+                )
 
+                .select(`
+                    id,
+                    site_adi,
+                    slogan,
+                    site_aciklama,
+                    footer_yazisi,
+                    yorumlar_acik,
+                    yorumlar_otomatik_onay,
+                    bakim_modu,
+                    updated_at
+                `);
+
+
+        /* =========================
+           SUPABASE HATASI
+        ========================= */
 
         if (error) {
+
+            console.error(
+                "SUPABASE UPDATE HATASI:",
+                error
+            );
 
             throw error;
 
         }
 
 
+        /* =========================
+           ÇOK ÖNEMLİ:
+           UPDATE 0 SATIR ETKİLEDİYSE
+           ARTIK BAŞARILI DEMEYECEĞİZ
+        ========================= */
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            throw new Error(
+                "Ayar kaydı güncellenmedi. Supabase RLS/UPDATE politikasını kontrol et."
+            );
+
+        }
+
+
+        const kaydedilenAyarlar =
+            data[0];
+
+
+        console.log(
+            "SUPABASE'IN GERİ DÖNDÜRDÜĞÜ KAYIT:",
+            kaydedilenAyarlar
+        );
+
+
+        /* =========================
+           FORMU GERÇEK KAYITLA
+           TEKRAR DOLDUR
+        ========================= */
+
+        document.getElementById(
+            "siteAdi"
+        ).value =
+            kaydedilenAyarlar.site_adi ?? "";
+
+
+        document.getElementById(
+            "slogan"
+        ).value =
+            kaydedilenAyarlar.slogan ?? "";
+
+
+        document.getElementById(
+            "siteAciklama"
+        ).value =
+            kaydedilenAyarlar.site_aciklama ?? "";
+
+
+        document.getElementById(
+            "footerYazisi"
+        ).value =
+            kaydedilenAyarlar.footer_yazisi ?? "";
+
+
+        document.getElementById(
+            "yorumlarAcik"
+        ).checked =
+            kaydedilenAyarlar.yorumlar_acik === true;
+
+
+        document.getElementById(
+            "yorumlarOtomatikOnay"
+        ).checked =
+            kaydedilenAyarlar.yorumlar_otomatik_onay === true;
+
+
+        document.getElementById(
+            "bakimModu"
+        ).checked =
+            kaydedilenAyarlar.bakim_modu === true;
+
+
+        /* =========================
+           BAŞARILI
+        ========================= */
+
         mesajGoster(
             "Ayarlar başarıyla kaydedildi.",
             "success"
         );
-
-
-        await ayarlariGetir();
 
     }
 
@@ -1041,7 +1148,7 @@ async function ayarlariKaydet() {
     catch (error) {
 
         console.error(
-            "Ayar kaydetme hatası:",
+            "AYAR KAYDETME HATASI:",
             error
         );
 
@@ -1080,4 +1187,3 @@ ayarlariGetir();
 </body>
 
 </html>
-```
