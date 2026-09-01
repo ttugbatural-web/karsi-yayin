@@ -1,11 +1,13 @@
+```html
 <!DOCTYPE html>
-
 <html lang="tr">
 
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>KARŞI — Bağımsız Yayın</title>
 
@@ -229,7 +231,7 @@ main {
 }
 
 .headline::before {
-  content: "KARŞI";
+  content: attr(data-site-name);
 
   position: absolute;
 
@@ -246,6 +248,8 @@ main {
   transform: rotate(-8deg);
 
   pointer-events: none;
+
+  white-space: nowrap;
 }
 
 .headline-content {
@@ -446,6 +450,10 @@ footer strong {
   font-size: 18px;
 }
 
+.footer-yazi {
+  display: inline-block;
+}
+
 
 /* =========================
    TABLET
@@ -503,6 +511,12 @@ footer strong {
     font-size: 14px;
   }
 
+  .headline::before {
+    font-size: 90px;
+    right: -15px;
+    bottom: -25px;
+  }
+
   .cards {
     grid-template-columns: 1fr;
 
@@ -548,6 +562,7 @@ footer strong {
 
 <body>
 
+
 <!-- =========================
      HEADER
 ========================= -->
@@ -556,44 +571,43 @@ footer strong {
 
   <div class="top">
 
-```
-<div class="logo">
-  KARŞI
-</div>
+    <div class="logo">
+      KARŞI
+    </div>
 
-<div class="top-right">
+    <div class="top-right">
 
-  <div class="languages">
+      <div class="languages">
 
-    <a href="index.html" class="active">
-      TR
-    </a>
+        <a href="index.html" class="active">
+          TR
+        </a>
 
-    <span>|</span>
+        <span>|</span>
 
-    <a href="#">
-      EN
-    </a>
+        <a href="#">
+          EN
+        </a>
 
-    <span>|</span>
+        <span>|</span>
 
-    <a href="#">
-      FR
-    </a>
+        <a href="#">
+          FR
+        </a>
 
-  </div>
+      </div>
 
-  <div class="tagline">
-    Gücün karşısında,<br>
-    gerçeğin yanında.
-  </div>
+      <div class="tagline">
+        Gücün karşısında,<br>
+        gerçeğin yanında.
+      </div>
 
-</div>
-```
+    </div>
 
   </div>
 
 </header>
+
 
 <!-- =========================
      NAV
@@ -603,39 +617,38 @@ footer strong {
 
   <div class="nav-inner">
 
-```
-<a href="index.html">
-  ANA SAYFA
-</a>
+    <a href="index.html">
+      ANA SAYFA
+    </a>
 
-<a href="kose-yazilari.html">
-  KÖŞE YAZILARI
-</a>
+    <a href="kose-yazilari.html">
+      KÖŞE YAZILARI
+    </a>
 
-<a href="haberler.html">
-  HABERLER
-</a>
+    <a href="haberler.html">
+      HABERLER
+    </a>
 
-<a href="gundem.html">
-  KARŞI GÜNDEM
-</a>
+    <a href="gundem.html">
+      KARŞI GÜNDEM
+    </a>
 
-<a href="#">
-  DÜNYA
-</a>
+    <a href="#">
+      DÜNYA
+    </a>
 
-<a href="#">
-  DOSYALAR
-</a>
+    <a href="#">
+      DOSYALAR
+    </a>
 
-<a href="#">
-  HAKKIMIZDA
-</a>
-```
+    <a href="#">
+      HAKKIMIZDA
+    </a>
 
   </div>
 
 </nav>
+
 
 <!-- =========================
      MAIN
@@ -643,31 +656,35 @@ footer strong {
 
 <main>
 
+
   <!-- BÜYÜK BANNER -->
 
-  <section class="headline">
+  <section
+      class="headline"
+      id="headline"
+      data-site-name="KARŞI"
+  >
 
-```
-<div class="headline-content">
+    <div class="headline-content">
 
-  <div class="label">
-    KARŞI'DAN
-  </div>
+      <div class="label">
+        KARŞI'DAN
+      </div>
 
-  <h1>
-    Söylenmeyeni söylemek,
-    sorulmayanı sormak için.
-  </h1>
+      <h1>
+        Söylenmeyeni söylemek,
+        sorulmayanı sormak için.
+      </h1>
 
-  <p>
-    Bağımsız düşünce, özgür söz ve güç karşısında
-    susmayan bir yayın.
-  </p>
+      <p id="siteAciklama">
+        Bağımsız düşünce, özgür söz ve güç karşısında
+        susmayan bir yayın.
+      </p>
 
-</div>
-```
+    </div>
 
   </section>
+
 
   <!-- KÖŞE YAZILARI -->
 
@@ -675,76 +692,78 @@ footer strong {
     Köşe Yazıları
   </h2>
 
+
   <section class="cards">
 
-```
-<!-- KART 1 -->
 
-<a
-  class="card"
-  href="diktator-olmadan-once-herkes-halkcidir.html"
->
+    <!-- KART 1 -->
 
-  <div class="card-category">
-    KARŞI / YORUM
-  </div>
+    <a
+      class="card"
+      href="diktator-olmadan-once-herkes-halkcidir.html"
+    >
 
-  <div class="card-title">
-    Diktatör Olmadan Önce Herkes Halkçıdır
-  </div>
+      <div class="card-category">
+        KARŞI / YORUM
+      </div>
 
-  <div class="card-text">
-    İktidara giden yolun ilk taşları genellikle
-    halkın sofrasından döşenir. Sonra bir gün
-    sofranın sahibi değişir.
-  </div>
+      <div class="card-title">
+        Diktatör Olmadan Önce Herkes Halkçıdır
+      </div>
 
-</a>
+      <div class="card-text">
+        İktidara giden yolun ilk taşları genellikle
+        halkın sofrasından döşenir. Sonra bir gün
+        sofranın sahibi değişir.
+      </div>
 
-
-<!-- KART 2 -->
-
-<div class="card">
-
-  <div class="card-category">
-    GÜNDEM
-  </div>
-
-  <div class="card-title">
-    Burada gündemi konuşacağız
-  </div>
-
-  <div class="card-text">
-    Türkiye'den ve dünyadan önemli gelişmeleri
-    sade ve anlaşılır şekilde aktaracağız.
-  </div>
-
-</div>
+    </a>
 
 
-<!-- KART 3 -->
+    <!-- KART 2 -->
 
-<div class="card">
+    <div class="card">
 
-  <div class="card-category">
-    DOSYA
-  </div>
+      <div class="card-category">
+        GÜNDEM
+      </div>
 
-  <div class="card-title">
-    Görünmeyenin peşinde
-  </div>
+      <div class="card-title">
+        Burada gündemi konuşacağız
+      </div>
 
-  <div class="card-text">
-    Üzerine fazla konuşulmayan konular,
-    araştırmalar ve özel dosyalar.
-  </div>
+      <div class="card-text">
+        Türkiye'den ve dünyadan önemli gelişmeleri
+        sade ve anlaşılır şekilde aktaracağız.
+      </div>
 
-</div>
-```
+    </div>
+
+
+    <!-- KART 3 -->
+
+    <div class="card">
+
+      <div class="card-category">
+        DOSYA
+      </div>
+
+      <div class="card-title">
+        Görünmeyenin peşinde
+      </div>
+
+      <div class="card-text">
+        Üzerine fazla konuşulmayan konular,
+        araştırmalar ve özel dosyalar.
+      </div>
+
+    </div>
+
 
   </section>
 
 </main>
+
 
 <!-- =========================
      FOOTER
@@ -752,20 +771,365 @@ footer strong {
 
 <footer>
 
-  <strong>
+  <strong id="footerSiteAdi">
     KARŞI
   </strong>
 
-<br><br>
+  <br><br>
 
-Bağımsız düşüncenin tarafı.
+  <span class="footer-yazi">
+    Bağımsız düşüncenin tarafı.
+  </span>
 
-<br><br>
+  <br><br>
 
-© 2026 KARŞI
+  © 2026 <span id="footerYilSiteAdi">KARŞI</span>
 
 </footer>
+
+
+<!-- =========================
+     SUPABASE
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+/* ==================================================
+   SUPABASE
+================================================== */
+
+const SUPABASE_URL =
+    "https://rfqiffvudbmphvklxetf.supabase.co";
+
+const SUPABASE_ANON_KEY =
+    "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+
+/* ==================================================
+   GÜVENLİ METİN
+================================================== */
+
+function guvenliMetin(metin) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        metin == null
+            ? ""
+            : String(metin);
+
+    return div.innerHTML;
+
+}
+
+
+/* ==================================================
+   AYARLARI GETİR
+================================================== */
+
+async function ayarlariGetir() {
+
+    console.log(
+        "KARŞI: Site ayarları yükleniyor..."
+    );
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+
+            .from("ayarlar")
+
+            .select(`
+                id,
+                site_adi,
+                slogan,
+                site_aciklama,
+                footer_yazisi,
+                yorumlar_acik,
+                yorumlar_otomatik_onay,
+                bakim_modu
+            `)
+
+            .limit(1)
+            .maybeSingle();
+
+
+    /* ==================================================
+       HATA
+    ================================================== */
+
+    if (error) {
+
+        console.error(
+            "KARŞI: Ayarlar yüklenemedi:",
+            error
+        );
+
+        return;
+
+    }
+
+
+    /* ==================================================
+       KAYIT YOK
+    ================================================== */
+
+    if (!data) {
+
+        console.warn(
+            "KARŞI: Ayarlar tablosunda kayıt bulunamadı."
+        );
+
+        return;
+
+    }
+
+
+    console.log(
+        "KARŞI: Ayarlar başarıyla yüklendi:",
+        data
+    );
+
+
+    /* ==================================================
+       DEĞERLER
+    ================================================== */
+
+    const siteAdi =
+        data.site_adi ||
+        "KARŞI";
+
+    const slogan =
+        data.slogan ||
+        "Gücün karşısında, gerçeğin yanında.";
+
+    const siteAciklama =
+        data.site_aciklama ||
+        "Bağımsız düşünce, özgür söz ve güç karşısında susmayan bir yayın.";
+
+    const footerYazisi =
+        data.footer_yazisi ||
+        "Bağımsız düşüncenin tarafı.";
+
+
+    /* ==================================================
+       BAKIM MODU
+    ================================================== */
+
+    if (data.bakim_modu === true) {
+
+        document.body.innerHTML = `
+
+            <div style="
+                min-height:100vh;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                background:#111;
+                color:white;
+                text-align:center;
+                padding:30px;
+                font-family:Arial,Helvetica,sans-serif;
+            ">
+
+                <div>
+
+                    <div style="
+                        position:relative;
+                        display:inline-block;
+                        font-family:Georgia,serif;
+                        font-size:52px;
+                        font-weight:bold;
+                        margin-bottom:25px;
+                    ">
+
+                        ${guvenliMetin(siteAdi)}
+
+                    </div>
+
+                    <div style="
+                        color:#aaa;
+                        font-size:15px;
+                        line-height:1.6;
+                    ">
+
+                        Site şu anda bakımda.
+
+                        <br>
+
+                        Lütfen daha sonra tekrar deneyin.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* ==================================================
+       TARAYICI BAŞLIĞI
+    ================================================== */
+
+    document.title =
+        siteAdi +
+        " — Bağımsız Yayın";
+
+
+    /* ==================================================
+       LOGO
+    ================================================== */
+
+    const logo =
+        document.querySelector(".logo");
+
+    if (logo) {
+
+        logo.textContent =
+            siteAdi;
+
+    }
+
+
+    /* ==================================================
+       BÜYÜK ARKA PLAN YAZISI
+    ================================================== */
+
+    const headline =
+        document.getElementById(
+            "headline"
+        );
+
+    if (headline) {
+
+        headline.setAttribute(
+            "data-site-name",
+            siteAdi
+        );
+
+    }
+
+
+    /* ==================================================
+       SLOGAN
+    ================================================== */
+
+    const tagline =
+        document.querySelector(
+            ".tagline"
+        );
+
+    if (tagline) {
+
+        tagline.textContent =
+            slogan;
+
+    }
+
+
+    /* ==================================================
+       SITE AÇIKLAMASI
+    ================================================== */
+
+    const aciklama =
+        document.getElementById(
+            "siteAciklama"
+        );
+
+    if (aciklama) {
+
+        aciklama.textContent =
+            siteAciklama;
+
+    }
+
+
+    /* ==================================================
+       FOOTER SITE ADI
+    ================================================== */
+
+    const footerSiteAdi =
+        document.getElementById(
+            "footerSiteAdi"
+        );
+
+    if (footerSiteAdi) {
+
+        footerSiteAdi.textContent =
+            siteAdi;
+
+    }
+
+
+    /* ==================================================
+       FOOTER YAZISI
+    ================================================== */
+
+    const footerYazi =
+        document.querySelector(
+            ".footer-yazi"
+        );
+
+    if (footerYazi) {
+
+        footerYazi.textContent =
+            footerYazisi;
+
+    }
+
+
+    /* ==================================================
+       FOOTER SITE ADI
+    ================================================== */
+
+    const footerYilSiteAdi =
+        document.getElementById(
+            "footerYilSiteAdi"
+        );
+
+    if (footerYilSiteAdi) {
+
+        footerYilSiteAdi.textContent =
+            siteAdi;
+
+    }
+
+
+    console.log(
+        "KARŞI: Site ayarları uygulandı."
+    );
+
+}
+
+
+/* ==================================================
+   BAŞLAT
+================================================== */
+
+ayarlariGetir();
+
+</script>
+
 
 </body>
 
 </html>
+```
