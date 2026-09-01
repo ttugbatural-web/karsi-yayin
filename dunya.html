@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+   content="width=device-width, initial-scale=1.0">
+
+<title>Dünya — KARŞI</title>
+
+<style>
+
+/* ==================================================
+   TEMEL
+================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f2f2f0;
+    color: #111;
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+header {
+    width: 100%;
+    background: #111;
+    color: white;
+    border-bottom: 4px solid #c40000;
+    padding: 18px 20px 22px;
+}
+
+.top {
+    width: 100%;
+    max-width: 1100px;
+    min-height: 62px;
+    margin: 0 auto;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+/* ==================================================
+   LOGO
+================================================== */
+
+.logo {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    display: inline-block;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 48px;
+    font-weight: 900;
+
+    letter-spacing: -3px;
+    line-height: 1;
+
+    z-index: 5;
+}
+
+.logo::after {
+    content: "";
+
+    position: absolute;
+
+    height: 5px;
+    width: 115%;
+
+    background: #c40000;
+
+    left: -7%;
+    top: 52%;
+
+    transform: rotate(-4deg);
+}
+
+
+/* ==================================================
+   SAĞ ÜST
+================================================== */
+
+.top-right {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 8px;
+
+    position: relative;
+
+    z-index: 6;
+}
+
+.languages {
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.languages a {
+    color: #aaa;
+
+    text-decoration: none;
+}
+
+.languages a:hover,
+.languages .active {
+    color: white;
+}
+
+.languages span {
+    color: #555;
+
+    margin: 0 4px;
+}
+
+.tagline {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 14px;
+
+    color: #cfcfcf;
+
+    text-align: right;
+
+    line-height: 1.4;
+}
+
+
+/* ==================================================
+   NAV
+================================================== */
+
+nav {
+    width: 100%;
+
+    background: white;
+
+    border-bottom:
+        1px solid #d4d4d4;
+}
+
+.nav-inner {
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    overflow-x: auto;
+}
+
+.nav-inner a {
+    color: #111;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    padding: 15px 18px;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
+}
+
+.nav-inner a:hover {
+    background: #111;
+
+    color: white;
+}
+
+.nav-inner a.active {
+    background: #111;
+
+    color: white;
+}
+
+
+/* ==================================================
+   ANA ALAN
+================================================== */
+
+main {
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 30px auto;
+
+    padding: 0 18px;
+}
+
+
+/* ==================================================
+   SAYFA BAŞLIĞI
+================================================== */
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 42px;
+
+    line-height: 1.1;
+
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: #666;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* ==================================================
+   YÜKLENİYOR
+================================================== */
+
+.loading {
+    background: white;
+
+    border:
+        1px solid #ddd;
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* ==================================================
+   HATA
+================================================== */
+
+.error-box {
+    background: #f8e5e5;
+
+    border-left:
+        4px solid #c40000;
+
+    padding: 18px;
+
+    color: #7a0000;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* ==================================================
+   HABER GRID
+================================================== */
+
+.news-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/* ==================================================
+   HABER KARTI
+================================================== */
+
+.news-card {
+    background: white;
+
+    border:
+        1px solid #d9d9d9;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    text-decoration: none;
+
+    color: #111;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.news-card:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 8px 22px
+        rgba(0,0,0,0.08);
+}
+
+
+/* ==================================================
+   KAPAK FOTOĞRAFI
+================================================== */
+
+.news-image {
+    width: 100%;
+
+    height: 230px;
+
+    background: #e5e5e3;
+
+    overflow: hidden;
+}
+
+.news-image img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* ==================================================
+   FOTOĞRAF YOK
+================================================== */
+
+.no-image {
+    width: 100%;
+
+    height: 230px;
+
+    background: #111;
+
+    color: #444;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 55px;
+
+    font-weight: bold;
+}
+
+
+/* ==================================================
+   HABER İÇERİĞİ
+================================================== */
+
+.news-content {
+    padding: 21px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+}
+
+
+/* ==================================================
+   META
+================================================== */
+
+.news-meta {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+}
+
+.category {
+    display: inline-block;
+
+    background: #c40000;
+
+    color: white;
+
+    padding: 5px 8px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.country {
+    color: #777;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+}
+
+
+/* ==================================================
+   BAŞLIK
+================================================== */
+
+.news-title {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 26px;
+
+    line-height: 1.18;
+
+    margin-bottom: 11px;
+}
+
+
+/* ==================================================
+   ÖZET
+================================================== */
+
+.news-summary {
+    color: #555;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    margin-bottom: 16px;
+}
+
+
+/* ==================================================
+   ALT BİLGİ
+================================================== */
+
+.news-footer {
+    margin-top: auto;
+
+    padding-top: 13px;
+
+    border-top:
+        1px solid #eee;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.news-date {
+    color: #888;
+
+    font-size: 11px;
+}
+
+.news-source {
+    color: #666;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+
+/* ==================================================
+   AI İŞARETİ
+================================================== */
+
+.ai-label {
+    display: inline-block;
+
+    background: #eee5f5;
+
+    color: #633d78;
+
+    padding: 4px 7px;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.8px;
+
+    margin-left: 4px;
+}
+
+
+/* ==================================================
+   BOŞ DURUM
+================================================== */
+
+.empty {
+    background: white;
+
+    border:
+        1px solid #ddd;
+
+    padding: 40px 25px;
+
+    text-align: center;
+
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+footer {
+    width: 100%;
+
+    background: #111;
+
+    color: #999;
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    margin-top: 55px;
+
+    font-size: 13px;
+}
+
+footer strong {
+    color: white;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 18px;
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 800px) {
+
+    .news-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+/* ==================================================
+   MOBİL
+================================================== */
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 16px;
+    }
+
+    .top {
+        min-height: 52px;
+    }
+
+    .logo {
+        font-size: 38px;
+    }
+
+    .tagline {
+        display: none;
+    }
+
+    .languages {
+        margin-top: 4px;
+    }
+
+    main {
+        margin-top: 25px;
+    }
+
+    .page-header h1 {
+        font-size: 34px;
+    }
+
+    .page-header p {
+        font-size: 14px;
+    }
+
+    .news-image,
+    .no-image {
+        height: 210px;
+    }
+
+    .news-content {
+        padding: 18px;
+    }
+
+    .news-title {
+        font-size: 23px;
+    }
+
+    .news-summary {
+        font-size: 14px;
+    }
+
+}
+
+
+/* ==================================================
+   ÇOK KÜÇÜK EKRAN
+================================================== */
+
+@media (max-width: 380px) {
+
+    .logo {
+        font-size: 34px;
+    }
+
+    .page-header h1 {
+        font-size: 30px;
+    }
+
+    .news-title {
+        font-size: 21px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header>
+
+```
+<div class="top">
+
+    <div class="logo">
+        KARŞI
+    </div>
+
+
+    <div class="top-right">
+
+        <div class="languages">
+
+            <a
+                href="index.html"
+                class="active"
+            >
+                TR
+            </a>
+
+            <span>|</span>
+
+            <a href="#">
+                EN
+            </a>
+
+            <span>|</span>
+
+            <a href="#">
+                FR
+            </a>
+
+        </div>
+
+
+        <div class="tagline">
+            Gücün karşısında,<br>
+            gerçeğin yanında.
+        </div>
+
+    </div>
+
+</div>
+```
+
+</header>
+
+<!-- ==================================================
+     NAV
+================================================== -->
+
+<nav>
+
+```
+<div class="nav-inner">
+
+    <a href="index.html">
+        ANA SAYFA
+    </a>
+
+    <a href="kose-yazilari.html">
+        KÖŞE YAZILARI
+    </a>
+
+    <a href="haberler.html">
+        HABERLER
+    </a>
+
+    <a href="gundem.html">
+        KARŞI GÜNDEM
+    </a>
+
+    <a
+        href="dunya.html"
+        class="active"
+    >
+        DÜNYA
+    </a>
+
+    <a href="#">
+        DOSYALAR
+    </a>
+
+    <a href="#">
+        HAKKIMIZDA
+    </a>
+
+</div>
+```
+
+</nav>
+
+<!-- ==================================================
+     MAIN
+================================================== -->
+
+<main>
+
+```
+<section class="page-header">
+
+    <h1>
+        Dünya
+    </h1>
+
+    <p>
+        Dünyada olup bitenleri takip ediyor,
+        önemli gelişmeleri sade ve anlaşılır
+        biçimde aktarıyoruz.
+    </p>
+
+</section>
+
+
+<section
+    id="newsContainer"
+    class="news-grid"
+>
+
+    <div class="loading">
+        Dünya haberleri yükleniyor...
+    </div>
+
+</section>
+```
+
+</main>
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer>
+
+```
+<strong id="footerSiteAdi">
+    KARŞI
+</strong>
+
+<br><br>
+
+<span id="footerText">
+    Bağımsız düşüncenin tarafı.
+</span>
+
+<br><br>
+
+© 2026 KARŞI
+```
+
+</footer>
+
+<!-- ==================================================
+     SUPABASE
+================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+/* ==================================================
+   SUPABASE
+================================================== */
+
+const SUPABASE_URL =
+    "https://rfqiffvudbmphvklxetf.supabase.co";
+
+const SUPABASE_ANON_KEY =
+    "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+
+/* ==================================================
+   GÜVENLİ METİN
+================================================== */
+
+function guvenliMetin(metin) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        metin == null
+            ? ""
+            : String(metin);
+
+    return div.innerHTML;
+
+}
+
+
+/* ==================================================
+   GÜVENLİ URL
+================================================== */
+
+function guvenliUrl(url) {
+
+    if (!url) {
+        return "";
+    }
+
+    try {
+
+        const parsed =
+            new URL(
+                String(url),
+                window.location.origin
+            );
+
+        if (
+            parsed.protocol === "http:" ||
+            parsed.protocol === "https:"
+        ) {
+
+            return parsed.href;
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Geçersiz URL:",
+            url
+        );
+
+    }
+
+    return "";
+
+}
+
+
+/* ==================================================
+   TARİH
+================================================== */
+
+function tarihFormatla(tarih) {
+
+    if (!tarih) {
+
+        return "";
+
+    }
+
+
+    const date =
+        new Date(tarih);
+
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return "";
+
+    }
+
+
+    return new Intl.DateTimeFormat(
+        "tr-TR",
+        {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    ).format(date);
+
+}
+
+
+/* ==================================================
+   HABERLERİ GETİR
+================================================== */
+
+async function dunyaHaberleriniGetir() {
+
+    const container =
+        document.getElementById(
+            "newsContainer"
+        );
+
+
+    if (!container) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+
+                .from(
+                    "dunya_haberleri"
+                )
+
+                .select(`
+                    id,
+                    baslik,
+                    ozet,
+                    icerik,
+                    slug,
+                    kategori,
+                    ulke,
+                    kaynak_adi,
+                    kaynak_url,
+                    kapak_fotografi_url,
+                    durum,
+                    ai_uretti,
+                    yayin_tarihi,
+                    created_at
+                `)
+
+                .eq(
+                    "durum",
+                    "yayinda"
+                )
+
+                .order(
+                    "yayin_tarihi",
+                    {
+                        ascending: false,
+                        nullsFirst: false
+                    }
+                );
+
+
+        /* =========================
+           HATA
+        ========================= */
+
+        if (error) {
+
+            console.error(
+                "Dünya haberleri alınamadı:",
+                error
+            );
+
+            container.innerHTML = `
+
+                <div class="error-box">
+
+                    Dünya haberleri şu anda
+                    yüklenemiyor.
+
+                    <br>
+
+                    Lütfen daha sonra tekrar deneyin.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        /* =========================
+           HABER YOK
+        ========================= */
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            container.innerHTML = `
+
+                <div class="empty">
+
+                    Henüz yayınlanmış
+                    dünya haberi bulunmuyor.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        /* =========================
+           KARTLARI OLUŞTUR
+        ========================= */
+
+        container.innerHTML = "";
+
+
+        data.forEach(
+            function(haber) {
+
+                const card =
+                    document.createElement(
+                        "article"
+                    );
+
+                card.className =
+                    "news-card";
+
+
+                /* =========================
+                   GÖRSEL
+                ========================= */
+
+                const imageUrl =
+                    guvenliUrl(
+                        haber.kapak_fotografi_url
+                    );
+
+
+                let imageHTML = "";
+
+
+                if (imageUrl) {
+
+                    imageHTML = `
+
+                        <div class="news-image">
+
+                            <img
+                                src="${guvenliMetin(imageUrl)}"
+                                alt="${guvenliMetin(haber.baslik)}"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                    `;
+
+                }
+
+                else {
+
+                    imageHTML = `
+
+                        <div class="no-image">
+                            K
+                        </div>
+
+                    `;
+
+                }
+
+
+                /* =========================
+                   KATEGORİ
+                ========================= */
+
+                const kategori =
+                    guvenliMetin(
+                        haber.kategori ||
+                        "Dünya"
+                    );
+
+
+                /* =========================
+                   ÜLKE
+                ========================= */
+
+                const ulke =
+                    haber.ulke
+                        ? `
+                            <span class="country">
+                                ${guvenliMetin(haber.ulke)}
+                            </span>
+                          `
+                        : "";
+
+
+                /* =========================
+                   AI
+                ========================= */
+
+                const ai =
+                    haber.ai_uretti
+                        ? `
+                            <span class="ai-label">
+                                🤖 KARŞI AI
+                            </span>
+                          `
+                        : "";
+
+
+                /* =========================
+                   TARİH
+                ========================= */
+
+                const tarih =
+                    tarihFormatla(
+                        haber.yayin_tarihi ||
+                        haber.created_at
+                    );
+
+
+                /* =========================
+                   KAYNAK
+                ========================= */
+
+                const kaynak =
+                    haber.kaynak_adi
+                        ? guvenliMetin(
+                            haber.kaynak_adi
+                          )
+                        : "KARŞI";
+
+
+                /* =========================
+                   KART
+                ========================= */
+
+                card.innerHTML = `
+
+                    ${imageHTML}
+
+
+                    <div class="news-content">
+
+
+                        <div class="news-meta">
+
+                            <span class="category">
+                                ${kategori}
+                            </span>
+
+                            ${ulke}
+
+                            ${ai}
+
+                        </div>
+
+
+                        <h2 class="news-title">
+
+                            ${guvenliMetin(
+                                haber.baslik
+                            )}
+
+                        </h2>
+
+
+                        <div class="news-summary">
+
+                            ${guvenliMetin(
+                                haber.ozet ||
+                                "Bu haber için özet bulunmuyor."
+                            )}
+
+                        </div>
+
+
+                        <div class="news-footer">
+
+                            <span class="news-date">
+
+                                ${guvenliMetin(
+                                    tarih
+                                )}
+
+                            </span>
+
+
+                            <span class="news-source">
+
+                                ${kaynak}
+
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+
+                /*
+                 * Şimdilik kartı tıklanabilir
+                 * yapmıyoruz.
+                 *
+                 * Haber detay sayfasını
+                 * bir sonraki aşamada
+                 * oluşturacağız.
+                 */
+
+
+                container.appendChild(
+                    card
+                );
+
+            }
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Dünya sayfası hatası:",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="error-box">
+
+                Beklenmeyen bir hata oluştu.
+                Lütfen daha sonra tekrar deneyin.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* ==================================================
+   SİTE AYARLARINI GETİR
+================================================== */
+
+async function siteAyarlariGetir() {
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+
+                .from("ayarlar")
+
+                .select(`
+                    site_adi,
+                    slogan,
+                    footer_yazisi
+                `)
+
+                .eq(
+                    "id",
+                    1
+                )
+
+                .single();
+
+
+        if (error || !data) {
+
+            return;
+
+        }
+
+
+        const siteAdi =
+            data.site_adi ||
+            "KARŞI";
+
+
+        const slogan =
+            data.slogan ||
+            "Gücün karşısında, gerçeğin yanında.";
+
+
+        const footerYazisi =
+            data.footer_yazisi ||
+            "Bağımsız düşüncenin tarafı.";
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        document.title =
+            siteAdi +
+            " — Dünya";
+
+
+        /* =========================
+           LOGO
+        ========================= */
+
+        const logo =
+            document.querySelector(
+                ".logo"
+            );
+
+        if (logo) {
+
+            logo.textContent =
+                siteAdi;
+
+        }
+
+
+        /* =========================
+           SLOGAN
+        ========================= */
+
+        const tagline =
+            document.querySelector(
+                ".tagline"
+            );
+
+        if (tagline) {
+
+            tagline.textContent =
+                slogan;
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        const footerSiteAdi =
+            document.getElementById(
+                "footerSiteAdi"
+            );
+
+        if (footerSiteAdi) {
+
+            footerSiteAdi.textContent =
+                siteAdi;
+
+        }
+
+
+        const footerText =
+            document.getElementById(
+                "footerText"
+            );
+
+        if (footerText) {
+
+            footerText.textContent =
+                footerYazisi;
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Site ayarları alınamadı:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   BAŞLAT
+================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        siteAyarlariGetir();
+
+        dunyaHaberleriniGetir();
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
