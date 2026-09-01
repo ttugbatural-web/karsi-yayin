@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>KARŞI — Yönetici Girişi</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f2f2f0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #111;
+
+    padding: 20px;
+}
+
+
+/* =========================
+   LOGIN KUTUSU
+========================= */
+
+.login-box {
+
+    width: 100%;
+    max-width: 430px;
+
+    background: white;
+
+    border: 1px solid #ddd;
+
+    padding: 35px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.06);
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+
+    position: relative;
+
+    display: inline-block;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 48px;
+
+    font-weight: 900;
+
+    letter-spacing: -3px;
+
+    line-height: 1;
+
+    margin-bottom: 25px;
+}
+
+.logo::after {
+
+    content: "";
+
+    position: absolute;
+
+    height: 5px;
+
+    width: 115%;
+
+    background: #c40000;
+
+    left: -7%;
+
+    top: 52%;
+
+    transform: rotate(-4deg);
+}
+
+
+/* =========================
+   BAŞLIK
+========================= */
+
+h1 {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+.description {
+
+    color: #666;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin-bottom: 28px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+
+    margin-bottom: 18px;
+}
+
+.form-group label {
+
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+
+    margin-bottom: 7px;
+}
+
+.form-group input {
+
+    width: 100%;
+
+    border: 1px solid #ccc;
+
+    padding: 13px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+.form-group input:focus {
+
+    border-color: #111;
+}
+
+
+/* =========================
+   BUTON
+========================= */
+
+.login-button {
+
+    width: 100%;
+
+    background: #111;
+
+    color: white;
+
+    border: none;
+
+    padding: 14px;
+
+    margin-top: 5px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+}
+
+.login-button:hover {
+
+    background: #c40000;
+}
+
+.login-button:disabled {
+
+    opacity: 0.6;
+
+    cursor: wait;
+}
+
+
+/* =========================
+   MESAJ
+========================= */
+
+.message {
+
+    display: none;
+
+    padding: 12px 14px;
+
+    margin-bottom: 20px;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+.message.error {
+
+    display: block;
+
+    background: #f7e4e4;
+
+    color: #8b0000;
+
+    border-left:
+        4px solid #c40000;
+}
+
+.message.success {
+
+    display: block;
+
+    background: #e7f4e7;
+
+    color: #246024;
+
+    border-left:
+        4px solid #2d8a2d;
+}
+
+
+/* =========================
+   ALT
+========================= */
+
+.back-link {
+
+    display: block;
+
+    text-align: center;
+
+    margin-top: 22px;
+
+    color: #777;
+
+    text-decoration: none;
+
+    font-size: 12px;
+}
+
+.back-link:hover {
+
+    color: #111;
+}
+
+
+/* =========================
+   MOBİL
+========================= */
+
+@media (max-width: 500px) {
+
+    .login-box {
+
+        padding: 25px;
+    }
+
+    .logo {
+
+        font-size: 42px;
+    }
+
+    h1 {
+
+        font-size: 27px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="login-box">
+
+
+    <div class="logo">
+        KARŞI
+    </div>
+
+
+    <h1>
+        Yönetici Girişi
+    </h1>
+
+
+    <p class="description">
+        KARŞI yönetim paneline erişmek için
+        hesabınla giriş yap.
+    </p>
+
+
+    <div
+        id="message"
+        class="message"
+    ></div>
+
+
+    <form
+        id="loginForm"
+    >
+
+
+        <!-- =========================
+             E-POSTA
+        ========================= -->
+
+        <div class="form-group">
+
+            <label for="email">
+                E-POSTA
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                autocomplete="email"
+                placeholder="Yönetici e-posta adresin"
+                required
+            >
+
+        </div>
+
+
+        <!-- =========================
+             ŞİFRE
+        ========================= -->
+
+        <div class="form-group">
+
+            <label for="password">
+                ŞİFRE
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                autocomplete="current-password"
+                placeholder="Şifren"
+                required
+            >
+
+        </div>
+
+
+        <!-- =========================
+             GİRİŞ
+        ========================= -->
+
+        <button
+            type="submit"
+            class="login-button"
+            id="loginButton"
+        >
+            YÖNETİM PANELİNE GİR
+        </button>
+
+
+    </form>
+
+
+    <a
+        href="index.html"
+        class="back-link"
+    >
+        ← Siteye dön
+    </a>
+
+
+</div>
+
+
+<!-- ==================================================
+     SUPABASE
+================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+/* ==================================================
+   SUPABASE
+================================================== */
+
+const SUPABASE_URL =
+    "https://rfqiffvudbmphvklxetf.supabase.co";
+
+
+const SUPABASE_ANON_KEY =
+    "sb_publishable_FZQzfS0NBm0wZCSz6Vdyvg_7mNUW-65";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+
+/* ==================================================
+   ELEMENTLER
+================================================== */
+
+const loginForm =
+    document.getElementById(
+        "loginForm"
+    );
+
+
+const emailInput =
+    document.getElementById(
+        "email"
+    );
+
+
+const passwordInput =
+    document.getElementById(
+        "password"
+    );
+
+
+const loginButton =
+    document.getElementById(
+        "loginButton"
+    );
+
+
+const messageBox =
+    document.getElementById(
+        "message"
+    );
+
+
+/* ==================================================
+   MESAJ
+================================================== */
+
+function mesajGoster(
+    mesaj,
+    tip
+) {
+
+    messageBox.textContent =
+        mesaj;
+
+    messageBox.className =
+        "message " + tip;
+
+}
+
+
+/* ==================================================
+   ZATEN GİRİŞ YAPILMIŞ MI?
+================================================== */
+
+async function mevcutOturumuKontrolEt() {
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .auth
+                .getSession();
+
+
+        if (error) {
+
+            console.error(
+                "Oturum kontrol hatası:",
+                error
+            );
+
+            return;
+
+        }
+
+
+        if (data.session) {
+
+            console.log(
+                "Zaten giriş yapılmış.",
+                data.session.user.email
+            );
+
+
+            window.location.href =
+                "index.html";
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Oturum kontrolü başarısız:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   GİRİŞ
+================================================== */
+
+loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            emailInput.value.trim();
+
+
+        const password =
+            passwordInput.value;
+
+
+        if (!email || !password) {
+
+            mesajGoster(
+                "E-posta ve şifre alanlarını doldur.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        loginButton.disabled =
+            true;
+
+        loginButton.textContent =
+            "GİRİŞ YAPILIYOR...";
+
+
+        messageBox.className =
+            "message";
+
+
+        try {
+
+            console.log(
+                "KARŞI: Giriş deneniyor..."
+            );
+
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .auth
+                    .signInWithPassword({
+
+                        email:
+                            email,
+
+                        password:
+                            password
+
+                    });
+
+
+            if (error) {
+
+                console.error(
+                    "Supabase giriş hatası:",
+                    error
+                );
+
+                throw error;
+
+            }
+
+
+            if (!data.session) {
+
+                throw new Error(
+                    "Giriş yapıldı ancak oturum oluşturulamadı."
+                );
+
+            }
+
+
+            console.log(
+                "KARŞI: Giriş başarılı."
+            );
+
+            console.log(
+                "Kullanıcı:",
+                data.user.email
+            );
+
+            console.log(
+                "Kullanıcı ID:",
+                data.user.id
+            );
+
+
+            mesajGoster(
+                "Giriş başarılı. Yönetim paneli açılıyor...",
+                "success"
+            );
+
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "index.html";
+
+                },
+                700
+            );
+
+        }
+
+
+        catch (error) {
+
+            console.error(
+                "KARŞI: Giriş hatası:",
+                error
+            );
+
+
+            let hataMesaji =
+                "Giriş yapılamadı.";
+
+
+            if (
+                error.message &&
+                error.message.toLowerCase().includes(
+                    "invalid login credentials"
+                )
+            ) {
+
+                hataMesaji =
+                    "E-posta veya şifre hatalı.";
+
+            }
+
+            else if (
+                error.message
+            ) {
+
+                hataMesaji =
+                    error.message;
+
+            }
+
+
+            mesajGoster(
+                hataMesaji,
+                "error"
+            );
+
+        }
+
+
+        finally {
+
+            loginButton.disabled =
+                false;
+
+            loginButton.textContent =
+                "YÖNETİM PANELİNE GİR";
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   BAŞLAT
+================================================== */
+
+mevcutOturumuKontrolEt();
+
+</script>
+
+
+</body>
+
+</html>
