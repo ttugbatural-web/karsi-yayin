@@ -1,220 +1,233 @@
 <!DOCTYPE html>
-
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>Hakkımızda — KARŞI</title>
+    <title>Hakkımızda — KARŞI</title>
 
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-        background: #ffffff;
-        color: #111111;
-        line-height: 1.7;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #111111;
+            line-height: 1.7;
+        }
 
-    /* HEADER */
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    header {
-        background: #111111;
-        color: #ffffff;
-        padding: 28px 20px 24px;
-        border-bottom: 4px solid #d71920;
-    }
+        /* HEADER */
 
-    .header-inner {
-        max-width: 1100px;
-        margin: 0 auto;
-    }
+        header {
+            background: #111111;
+            color: #ffffff;
+            padding: 28px 20px 24px;
+            border-bottom: 4px solid #d71920;
+        }
 
-    .logo {
-        font-size: 42px;
-        font-weight: 900;
-        letter-spacing: -2px;
-    }
-
-    .slogan {
-        margin-top: 5px;
-        color: #cccccc;
-        font-size: 14px;
-        letter-spacing: 1px;
-    }
-
-    /* NAV */
-
-    nav {
-        background: #ffffff;
-        border-bottom: 1px solid #dddddd;
-    }
-
-    .nav-inner {
-        max-width: 1100px;
-        margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .nav-inner a {
-        padding: 14px 15px;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: .3px;
-    }
-
-    .nav-inner a:hover {
-        background: #111111;
-        color: #ffffff;
-    }
-
-    .nav-inner a.active {
-        background: #d71920;
-        color: #ffffff;
-    }
-
-    /* MAIN */
-
-    main {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 55px 20px 80px;
-    }
-
-    .page-label {
-        color: #d71920;
-        font-size: 13px;
-        font-weight: 800;
-        letter-spacing: 2px;
-        margin-bottom: 12px;
-    }
-
-    h1 {
-        font-size: 48px;
-        line-height: 1.05;
-        margin-bottom: 35px;
-        letter-spacing: -1.5px;
-    }
-
-    .intro {
-        font-size: 23px;
-        line-height: 1.55;
-        font-weight: 600;
-        border-left: 5px solid #d71920;
-        padding-left: 22px;
-        margin-bottom: 55px;
-    }
-
-    .section {
-        border-top: 1px solid #dddddd;
-        padding: 35px 0;
-    }
-
-    .section h2 {
-        font-size: 25px;
-        margin-bottom: 15px;
-        letter-spacing: -.5px;
-    }
-
-    .section h2::before {
-        content: "— ";
-        color: #d71920;
-    }
-
-    .section p {
-        font-size: 17px;
-        color: #333333;
-        margin-bottom: 15px;
-    }
-
-    .quote {
-        margin: 45px 0;
-        padding: 35px;
-        background: #111111;
-        color: #ffffff;
-        font-size: 26px;
-        line-height: 1.4;
-        font-weight: 700;
-    }
-
-    .quote span {
-        display: block;
-        margin-top: 15px;
-        color: #d71920;
-        font-size: 13px;
-        letter-spacing: 1.5px;
-        font-weight: 800;
-    }
-
-    /* FOOTER */
-
-    footer {
-        background: #111111;
-        color: #aaaaaa;
-        text-align: center;
-        padding: 30px 20px;
-        font-size: 13px;
-        border-top: 4px solid #d71920;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 700px) {
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
 
         .logo {
-            font-size: 34px;
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .slogan {
+            margin-top: 5px;
+            color: #cccccc;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* NAV */
+
+        nav {
+            background: #ffffff;
+            border-bottom: 1px solid #dddddd;
         }
 
         .nav-inner {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
         }
 
         .nav-inner a {
-            text-align: center;
-            border-bottom: 1px solid #eeeeee;
+            padding: 14px 15px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: .3px;
         }
 
+        .nav-inner a:hover {
+            background: #111111;
+            color: #ffffff;
+        }
+
+        .nav-inner a.active {
+            background: #d71920;
+            color: #ffffff;
+        }
+
+        /* MAIN */
+
         main {
-            padding: 40px 18px 60px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 55px 20px 80px;
+        }
+
+        .page-label {
+            color: #d71920;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
         }
 
         h1 {
-            font-size: 38px;
+            font-size: 48px;
+            line-height: 1.05;
+            margin-bottom: 35px;
+            letter-spacing: -1.5px;
         }
 
         .intro {
-            font-size: 20px;
+            font-size: 23px;
+            line-height: 1.55;
+            font-weight: 600;
+            border-left: 5px solid #d71920;
+            padding-left: 22px;
+            margin-bottom: 55px;
+        }
+
+        .section {
+            border-top: 1px solid #dddddd;
+            padding: 35px 0;
         }
 
         .section h2 {
-            font-size: 22px;
+            font-size: 25px;
+            margin-bottom: 15px;
+            letter-spacing: -.5px;
+        }
+
+        .section h2::before {
+            content: "— ";
+            color: #d71920;
         }
 
         .section p {
-            font-size: 16px;
+            font-size: 17px;
+            color: #333333;
+            margin-bottom: 15px;
+            white-space: pre-line;
         }
 
         .quote {
-            font-size: 21px;
-            padding: 25px;
+            margin: 45px 0;
+            padding: 35px;
+            background: #111111;
+            color: #ffffff;
+            font-size: 26px;
+            line-height: 1.4;
+            font-weight: 700;
+            white-space: pre-line;
         }
-    }
-</style>
-```
 
+        .quote span {
+            display: block;
+            margin-top: 15px;
+            color: #d71920;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #111111;
+            color: #aaaaaa;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 13px;
+            border-top: 4px solid #d71920;
+        }
+
+        /* ERROR */
+
+        .error-message {
+            display: none;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fdeaea;
+            border: 1px solid #e5aaaa;
+            color: #a31313;
+            font-weight: 700;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .logo {
+                font-size: 34px;
+            }
+
+            .nav-inner {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-inner a {
+                text-align: center;
+                border-bottom: 1px solid #eeeeee;
+            }
+
+            main {
+                padding: 40px 18px 60px;
+            }
+
+            h1 {
+                font-size: 38px;
+            }
+
+            .intro {
+                font-size: 20px;
+            }
+
+            .section h2 {
+                font-size: 22px;
+            }
+
+            .section p {
+                font-size: 16px;
+            }
+
+            .quote {
+                font-size: 21px;
+                padding: 25px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -238,79 +251,187 @@
     </div>
 </nav>
 
-<main>
-
-```
-<div class="page-label">KARŞI / HAKKIMIZDA</div>
-
-<h1>Biz Kimiz?</h1>
-
-<div class="intro">
-    Buraya KARŞI'nın neden var olduğunu anlatan güçlü giriş metnimizi yazacağız.
+<div id="hataMesaji" class="error-message">
+    Hakkımızda bilgileri yüklenemedi.
 </div>
 
-<section class="section">
-    <h2>Neden KARŞI?</h2>
+<main id="icerik" style="display: none;">
 
-    <p>
-        Buraya KARŞI'nın kuruluş amacını anlatan metin gelecek.
-    </p>
+    <div class="page-label">KARŞI / HAKKIMIZDA</div>
 
-    <p>
-        Bu bölümü birlikte yazacağız.
-    </p>
-</section>
+    <h1 id="baslik">Biz Kimiz?</h1>
 
-<section class="section">
-    <h2>Yayın Anlayışımız</h2>
+    <div class="intro" id="girisMetni"></div>
 
-    <p>
-        Buraya haber, köşe yazısı ve dosyalara yaklaşımımızı anlatan metin gelecek.
-    </p>
+    <section class="section">
+        <h2>Neden KARŞI?</h2>
 
-    <p>
-        KARŞI'nın gazetecilik ve yayıncılık anlayışını burada açıkça ortaya koyacağız.
-    </p>
-</section>
+        <p id="nedenKarsi"></p>
+    </section>
 
-<div class="quote">
-    Buraya KARŞI'nın ruhunu anlatan cümlemizi birlikte yazacağız.
-    <span>KARŞI</span>
-</div>
+    <section class="section">
+        <h2>Yayın Anlayışımız</h2>
 
-<section class="section">
-    <h2>Neye Karşıyız?</h2>
+        <p id="yayinAnlayisimiz"></p>
+    </section>
 
-    <p>
-        Buraya değiştirmek, sorgulamak ve karşı çıkmak istediğimiz düzeni anlatan
-        metnimiz gelecek.
-    </p>
-</section>
+    <div class="quote">
+        <div id="kapanisSozu"></div>
+        <span>KARŞI</span>
+    </div>
 
-<section class="section">
-    <h2>Neyi Savunuyoruz?</h2>
+    <section class="section">
+        <h2>Neye Karşıyız?</h2>
 
-    <p>
-        Buraya özgürlük, adalet, eşitlik, insan onuru ve benzeri değerlerimizi
-        anlatan metnimiz gelecek.
-    </p>
-</section>
+        <p id="neyeKarsiyiz"></p>
+    </section>
 
-<section class="section">
-    <h2>Künye</h2>
+    <section class="section">
+        <h2>Neyi Savunuyoruz?</h2>
 
-    <p>
-        KARŞI hakkında resmi bilgiler, yayıncı bilgileri ve iletişim bilgileri
-        burada yer alacak.
-    </p>
-</section>
-```
+        <p id="neyiSavunuyoruz"></p>
+    </section>
+
+    <section class="section">
+        <h2>Künye</h2>
+
+        <p id="kunye"></p>
+    </section>
 
 </main>
 
 <footer>
     © 2026 KARŞI — Yaşıyorum. Yazıyorum. Karşı Çıkıyorum.
 </footer>
+
+
+<script>
+
+    /* SUPABASE */
+
+    const SUPABASE_URL =
+        "https://rfqiffvudbmphvklxetf.supabase.co";
+
+    const SUPABASE_ANON_KEY =
+        "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+
+    const db = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+
+    /* METİN GÜVENLİĞİ */
+
+    function guvenliMetin(value) {
+
+        return value || "";
+
+    }
+
+
+    /* HAKKIMIZDA BİLGİLERİNİ GETİR */
+
+    async function hakkimizdaGetir() {
+
+        try {
+
+            const { data, error } = await db
+                .from("hakkimizda")
+                .select("*")
+                .eq("aktif", true)
+                .order("id", { ascending: true })
+                .limit(1)
+                .maybeSingle();
+
+
+            if (error) {
+
+                throw error;
+
+            }
+
+
+            if (!data) {
+
+                document.getElementById("hataMesaji").style.display =
+                    "block";
+
+                document.getElementById("hataMesaji").textContent =
+                    "Hakkımızda sayfası şu anda yayında değil.";
+
+                return;
+
+            }
+
+
+            /* VERİLERİ SAYFAYA YERLEŞTİR */
+
+            document.getElementById("baslik").textContent =
+                guvenliMetin(data.baslik) || "Biz Kimiz?";
+
+
+            document.getElementById("girisMetni").textContent =
+                guvenliMetin(data.giris_metni);
+
+
+            document.getElementById("nedenKarsi").textContent =
+                guvenliMetin(data.neden_karsi);
+
+
+            document.getElementById("yayinAnlayisimiz").textContent =
+                guvenliMetin(data.yayin_anlayisimiz);
+
+
+            document.getElementById("neyeKarsiyiz").textContent =
+                guvenliMetin(data.neye_karsiyiz);
+
+
+            document.getElementById("neyiSavunuyoruz").textContent =
+                guvenliMetin(data.neyi_savunuyoruz);
+
+
+            document.getElementById("kapanisSozu").textContent =
+                guvenliMetin(data.kapanis_sozu);
+
+
+            document.getElementById("kunye").textContent =
+                guvenliMetin(data.kunye);
+
+
+            /* İÇERİĞİ GÖSTER */
+
+            document.getElementById("icerik").style.display =
+                "block";
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Hakkımızda yükleme hatası:",
+                error
+            );
+
+            document.getElementById("hataMesaji").style.display =
+                "block";
+
+            document.getElementById("hataMesaji").textContent =
+                "Hakkımızda bilgileri yüklenirken bir hata oluştu.";
+
+        }
+
+    }
+
+
+    /* SAYFA AÇILDIĞINDA ÇALIŞTIR */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        hakkimizdaGetir
+    );
+
+</script>
 
 </body>
 </html>
