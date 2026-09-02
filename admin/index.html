@@ -1,5 +1,5 @@
+```html
 <!DOCTYPE html>
-
 <html lang="tr">
 
 <head>
@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-   content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
 <title>KARŞI — Yönetim Paneli</title>
 
@@ -306,47 +306,51 @@ footer {
 
 </head>
 
+
 <body>
+
 
 <header>
 
-```
-<div class="header-inner">
+    <div class="header-inner">
 
-    <div class="logo">
-        KARŞI
-    </div>
-
-    <div class="header-right">
-
-        <div
-            class="user-email"
-            id="userEmail"
-        >
-            Kontrol ediliyor...
+        <div class="logo">
+            KARŞI
         </div>
 
-        <div class="panel-name">
-            Yönetim Paneli
+
+        <div class="header-right">
+
+            <div
+                class="user-email"
+                id="userEmail"
+            >
+                Kontrol ediliyor...
+            </div>
+
+
+            <div class="panel-name">
+                Yönetim Paneli
+            </div>
+
+
+            <button
+                class="logout-button"
+                onclick="cikisYap()"
+            >
+                ÇIKIŞ
+            </button>
+
         </div>
 
-        <button
-            class="logout-button"
-            onclick="cikisYap()"
-        >
-            ÇIKIŞ
-        </button>
-
     </div>
-
-</div>
-```
 
 </header>
 
+
 <main>
 
-```
+
 <section class="welcome">
 
     <h1>
@@ -490,6 +494,31 @@ footer {
 
 
     <!-- =========================
+         DOSYALAR
+    ========================= -->
+
+    <a
+        href="dosyalar.html"
+        class="panel-card"
+    >
+
+        <div class="icon">
+            📁
+        </div>
+
+        <h2>
+            Dosyalar
+        </h2>
+
+        <p>
+            Araştırmaları, incelemeleri ve özel
+            dosyaları oluştur, düzenle ve yayınla.
+        </p>
+
+    </a>
+
+
+    <!-- =========================
          YORUMLAR
     ========================= -->
 
@@ -557,17 +586,17 @@ footer {
     </div>
 
 </div>
-```
+
 
 </main>
 
+
 <footer>
 
-```
-KARŞI — Yönetim Paneli
-```
+    KARŞI — Yönetim Paneli
 
 </footer>
+
 
 <!-- ==================================================
      SUPABASE
@@ -575,11 +604,13 @@ KARŞI — Yönetim Paneli
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <!-- ==================================================
      ORTAK AUTH SİSTEMİ
 ================================================== -->
 
 <script src="auth.js"></script>
+
 
 <script>
 
@@ -660,6 +691,8 @@ panelBaslat();
 
 </script>
 
+
 </body>
 
 </html>
+```
