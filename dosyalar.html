@@ -1,0 +1,579 @@
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dosyalar — KARŞI</title>
+
+    <meta
+        name="description"
+        content="KARŞI Dosyalar — araştırmalar, incelemeler ve özel dosyalar."
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            color: #111;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #050505;
+            color: white;
+            border-bottom: 4px solid #e00000;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 22px 20px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            position: relative;
+            display: inline-block;
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: -3px;
+        }
+
+        .logo::after {
+            content: "";
+            position: absolute;
+            left: -4px;
+            right: -4px;
+            top: 50%;
+            height: 5px;
+            background: #e00000;
+            transform: rotate(-8deg);
+        }
+
+        .header-right {
+            text-align: right;
+        }
+
+        .languages {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+
+        .slogan {
+            color: #bbb;
+            font-size: 12px;
+        }
+
+        /* NAV */
+
+        nav {
+            background: #111;
+            border-top: 1px solid #292929;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #ddd;
+            padding: 15px 14px;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: .4px;
+            transition: .2s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: white;
+            background: #e00000;
+        }
+
+        /* MAIN */
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 45px 20px 70px;
+        }
+
+        .page-title {
+            margin-bottom: 35px;
+            border-bottom: 2px solid #111;
+            padding-bottom: 15px;
+        }
+
+        .page-title h1 {
+            margin: 0;
+            font-size: 34px;
+            letter-spacing: -1px;
+        }
+
+        .page-title p {
+            margin: 10px 0 0;
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* DOSYA LİSTESİ */
+
+        #dosyalarListesi {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dosya {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 25px;
+            padding: 25px 0;
+            border-bottom: 1px solid #d5d5d5;
+        }
+
+        .dosya:first-child {
+            padding-top: 0;
+        }
+
+        .dosya-foto {
+            width: 220px;
+            height: 135px;
+            overflow: hidden;
+            background: #ddd;
+        }
+
+        .dosya-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .dosya-icerik {
+            min-width: 0;
+        }
+
+        .kategori {
+            display: inline-block;
+            color: #e00000;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .dosya h2 {
+            margin: 0 0 9px;
+            font-size: 24px;
+            line-height: 1.2;
+        }
+
+        .dosya h2 a:hover {
+            color: #e00000;
+        }
+
+        .dosya-ozet {
+            margin: 0 0 12px;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .tarih {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .oku {
+            display: inline-block;
+            margin-top: 13px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #111;
+            border-bottom: 2px solid #e00000;
+            padding-bottom: 3px;
+        }
+
+        .oku:hover {
+            color: #e00000;
+        }
+
+        /* BOŞ DURUM */
+
+        .bos {
+            padding: 45px 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+            background: white;
+            color: #666;
+        }
+
+        .bos strong {
+            display: block;
+            color: #111;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        /* YÜKLENİYOR */
+
+        .yukleniyor {
+            color: #777;
+            padding: 20px 0;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #050505;
+            color: #aaa;
+            margin-top: 30px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 25px 20px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* MOBİL */
+
+        @media (max-width: 700px) {
+
+            .header-inner {
+                padding: 18px 15px;
+            }
+
+            .logo {
+                font-size: 34px;
+            }
+
+            .header-right {
+                display: none;
+            }
+
+            .nav-inner {
+                padding: 0 10px;
+            }
+
+            nav a {
+                padding: 12px 9px;
+                font-size: 11px;
+            }
+
+            main {
+                padding: 30px 15px 50px;
+            }
+
+            .page-title {
+                margin-bottom: 25px;
+            }
+
+            .page-title h1 {
+                font-size: 28px;
+            }
+
+            .dosya {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .dosya-foto {
+                width: 100%;
+                height: 190px;
+            }
+
+            .dosya h2 {
+                font-size: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+
+        <a href="index.html" class="logo">KARŞI</a>
+
+        <div class="header-right">
+            <div class="languages">TR &nbsp; EN &nbsp; FR</div>
+            <div class="slogan">yaşıyorum, yazıyorum, karşı çıkıyorum</div>
+        </div>
+
+    </div>
+
+    <nav>
+        <div class="nav-inner">
+
+            <a href="index.html">ANA SAYFA</a>
+            <a href="kose-yazilari.html">KÖŞE YAZILARI</a>
+            <a href="haberler.html">HABERLER</a>
+            <a href="gundem.html">KARŞI GÜNDEM</a>
+            <a href="dunya.html">DÜNYA</a>
+            <a href="dosyalar.html" class="active">DOSYALAR</a>
+            <a href="hakkimizda.html">HAKKIMIZDA</a>
+
+        </div>
+    </nav>
+</header>
+
+
+<main>
+
+    <div class="page-title">
+        <h1>KARŞI DOSYALAR</h1>
+        <p>Araştırmalar, incelemeler ve özel dosyalar.</p>
+    </div>
+
+
+    <div id="dosyalarListesi">
+        <div class="yukleniyor">Dosyalar yükleniyor...</div>
+    </div>
+
+</main>
+
+
+<footer>
+    <div class="footer-inner">
+        © KARŞI — Yaşıyorum, yazıyorum, karşı çıkıyorum.
+    </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+    /* ==========================================
+       SUPABASE
+    ========================================== */
+
+    const SUPABASE_URL = "BURAYA_SUPABASE_URL";
+    const SUPABASE_ANON_KEY = "BURAYA_SUPABASE_ANON_KEY";
+
+    const db = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+
+    /* ==========================================
+       YARDIMCI FONKSİYONLAR
+    ========================================== */
+
+    function escapeHtml(metin) {
+
+        if (metin === null || metin === undefined) {
+            return "";
+        }
+
+        return String(metin)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+
+    function escapeAttribute(metin) {
+
+        return escapeHtml(metin);
+    }
+
+
+    function tarihFormatla(tarih) {
+
+        if (!tarih) {
+            return "";
+        }
+
+        const d = new Date(tarih);
+
+        if (Number.isNaN(d.getTime())) {
+            return "";
+        }
+
+        return d.toLocaleDateString("tr-TR", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        });
+    }
+
+
+    function slugdanSayfaOlustur(slug) {
+
+        return "dosya-" + encodeURIComponent(slug) + ".html";
+    }
+
+
+    /* ==========================================
+       DOSYALARI GETİR
+    ========================================== */
+
+    async function dosyalariGetir() {
+
+        const liste = document.getElementById("dosyalarListesi");
+
+        const { data, error } = await db
+            .from("dosyalar")
+            .select("*")
+            .eq("durum", "yayinda")
+            .order("yayin_tarihi", {
+                ascending: false,
+                nullsFirst: false
+            })
+            .order("created_at", {
+                ascending: false
+            });
+
+
+        if (error) {
+
+            console.error("Dosyalar yüklenemedi:", error);
+
+            liste.innerHTML = `
+                <div class="bos">
+                    <strong>Dosyalar yüklenemedi.</strong>
+                    Lütfen daha sonra tekrar deneyin.
+                </div>
+            `;
+
+            return;
+        }
+
+
+        if (!data || data.length === 0) {
+
+            liste.innerHTML = `
+                <div class="bos">
+                    <strong>Henüz yayınlanmış dosya bulunmuyor.</strong>
+                    KARŞI'nın araştırma ve özel dosyaları burada yayınlanacak.
+                </div>
+            `;
+
+            return;
+        }
+
+
+        liste.innerHTML = data.map(dosya => {
+
+            const baslik = escapeHtml(dosya.baslik);
+            const ozet = escapeHtml(dosya.ozet || "");
+            const kategori = escapeHtml(dosya.kategori || "Dosya");
+
+            const tarih = tarihFormatla(
+                dosya.yayin_tarihi || dosya.created_at
+            );
+
+            const slug = dosya.slug || dosya.id;
+
+            const sayfa = slugdanSayfaOlustur(slug);
+
+
+            let fotograf = "";
+
+            if (dosya.kapak_fotografi_url) {
+
+                const url = escapeAttribute(
+                    dosya.kapak_fotografi_url
+                );
+
+                fotograf = `
+                    <div class="dosya-foto">
+                        <img
+                            src="${url}"
+                            alt="${escapeAttribute(dosya.baslik)}"
+                            loading="lazy"
+                        >
+                    </div>
+                `;
+
+            }
+
+
+            return `
+                <article class="dosya">
+
+                    ${fotograf}
+
+                    <div class="dosya-icerik">
+
+                        <div class="kategori">
+                            ${kategori}
+                        </div>
+
+                        <h2>
+                            <a href="${sayfa}">
+                                ${baslik}
+                            </a>
+                        </h2>
+
+                        ${
+                            ozet
+                            ? `<p class="dosya-ozet">${ozet}</p>`
+                            : ""
+                        }
+
+                        ${
+                            tarih
+                            ? `<div class="tarih">${tarih}</div>`
+                            : ""
+                        }
+
+                        <a
+                            class="oku"
+                            href="${sayfa}"
+                        >
+                            DOSYAYI OKU →
+                        </a>
+
+                    </div>
+
+                </article>
+            `;
+
+        }).join("");
+
+    }
+
+
+    /* ==========================================
+       BAŞLAT
+    ========================================== */
+
+    dosyalariGetir();
+
+</script>
+
+</body>
+</html>
+```
