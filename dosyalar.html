@@ -5,12 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dosyalar — KARŞI</title>
-
-    <meta
-        name="description"
-        content="KARŞI Dosyalar — araştırmalar, incelemeler ve özel dosyalar."
-    >
+    <title>Dosyalar | KARŞI</title>
 
     <style>
         * {
@@ -19,9 +14,9 @@
 
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
             background: #f5f5f5;
             color: #111;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         a {
@@ -29,18 +24,19 @@
             text-decoration: none;
         }
 
-        /* HEADER */
+        .container {
+            width: min(1100px, calc(100% - 32px));
+            margin: 0 auto;
+        }
 
         header {
-            background: #050505;
-            color: white;
-            border-bottom: 4px solid #e00000;
+            background: #111;
+            color: #fff;
+            border-bottom: 4px solid #c40000;
         }
 
         .header-inner {
-            max-width: 1200px;
-            margin: auto;
-            padding: 22px 20px 18px;
+            min-height: 78px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -48,267 +44,196 @@
         }
 
         .logo {
-            position: relative;
-            display: inline-block;
-            font-size: 42px;
+            font-size: 34px;
             font-weight: 900;
-            letter-spacing: -3px;
+            letter-spacing: -1px;
         }
 
-        .logo::after {
-            content: "";
-            position: absolute;
-            left: -4px;
-            right: -4px;
-            top: 50%;
-            height: 5px;
-            background: #e00000;
-            transform: rotate(-8deg);
+        .logo span {
+            color: #c40000;
         }
-
-        .header-right {
-            text-align: right;
-        }
-
-        .languages {
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-        }
-
-        .slogan {
-            color: #bbb;
-            font-size: 12px;
-        }
-
-        /* NAV */
 
         nav {
-            background: #111;
-            border-top: 1px solid #292929;
-        }
-
-        .nav-inner {
-            max-width: 1200px;
-            margin: auto;
-            padding: 0 20px;
             display: flex;
+            gap: 22px;
             flex-wrap: wrap;
         }
 
         nav a {
-            color: #ddd;
-            padding: 15px 14px;
-            font-size: 13px;
-            font-weight: bold;
-            letter-spacing: .4px;
-            transition: .2s;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            opacity: .9;
         }
 
-        nav a:hover,
-        nav a.active {
-            color: white;
-            background: #e00000;
+        nav a:hover {
+            color: #c40000;
         }
-
-        /* MAIN */
 
         main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 45px 20px 70px;
+            padding: 42px 0 70px;
         }
 
         .page-title {
-            margin-bottom: 35px;
-            border-bottom: 2px solid #111;
-            padding-bottom: 15px;
+            max-width: 900px;
+            margin: 0 auto 35px;
         }
 
         .page-title h1 {
-            margin: 0;
-            font-size: 34px;
-            letter-spacing: -1px;
+            margin: 0 0 10px;
+            font-size: clamp(34px, 5vw, 52px);
+            letter-spacing: -1.5px;
         }
 
         .page-title p {
-            margin: 10px 0 0;
+            margin: 0;
             color: #666;
-            font-size: 15px;
+            font-size: 17px;
+            line-height: 1.6;
         }
 
-        /* DOSYA LİSTESİ */
-
-        #dosyalarListesi {
-            display: flex;
-            flex-direction: column;
+        .dosyalar {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .dosya {
-            display: grid;
-            grid-template-columns: 220px 1fr;
-            gap: 25px;
-            padding: 25px 0;
-            border-bottom: 1px solid #d5d5d5;
+            background: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 18px;
+            display: flex;
+            min-height: 150px;
+            transition: border-color .2s, transform .2s;
         }
 
-        .dosya:first-child {
-            padding-top: 0;
+        .dosya:hover {
+            border-color: #aaa;
+            transform: translateY(-2px);
         }
 
-        .dosya-foto {
+        .dosya-image {
             width: 220px;
-            height: 135px;
-            overflow: hidden;
+            min-width: 220px;
             background: #ddd;
+            overflow: hidden;
         }
 
-        .dosya-foto img {
+        .dosya-image img {
             width: 100%;
             height: 100%;
+            min-height: 150px;
             object-fit: cover;
             display: block;
         }
 
-        .dosya-icerik {
-            min-width: 0;
+        .dosya-content {
+            padding: 22px 25px;
+            flex: 1;
         }
 
-        .kategori {
+        .category {
             display: inline-block;
-            color: #e00000;
             font-size: 11px;
-            font-weight: bold;
+            font-weight: 800;
+            letter-spacing: .5px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #c40000;
             margin-bottom: 8px;
         }
 
-        .dosya h2 {
+        .dosya-content h2 {
             margin: 0 0 9px;
             font-size: 24px;
             line-height: 1.2;
         }
 
-        .dosya h2 a:hover {
-            color: #e00000;
+        .dosya-content p {
+            margin: 0 0 14px;
+            color: #555;
+            line-height: 1.55;
+            font-size: 15px;
         }
 
-        .dosya-ozet {
-            margin: 0 0 12px;
-            color: #555;
-            font-size: 14px;
+        .date {
+            color: #888;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .read {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 800;
+            color: #111;
+        }
+
+        .dosya:hover .read {
+            color: #c40000;
+        }
+
+        .message {
+            max-width: 700px;
+            margin: 60px auto;
+            text-align: center;
+            padding: 35px 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+
+        .message h2 {
+            margin: 0 0 10px;
+        }
+
+        .message p {
+            margin: 0;
+            color: #666;
             line-height: 1.6;
         }
 
-        .tarih {
-            color: #888;
-            font-size: 12px;
-        }
-
-        .oku {
-            display: inline-block;
-            margin-top: 13px;
-            font-size: 12px;
-            font-weight: bold;
-            color: #111;
-            border-bottom: 2px solid #e00000;
-            padding-bottom: 3px;
-        }
-
-        .oku:hover {
-            color: #e00000;
-        }
-
-        /* BOŞ DURUM */
-
-        .bos {
-            padding: 45px 20px;
-            text-align: center;
-            border: 1px solid #ddd;
-            background: white;
-            color: #666;
-        }
-
-        .bos strong {
-            display: block;
-            color: #111;
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        /* YÜKLENİYOR */
-
-        .yukleniyor {
-            color: #777;
-            padding: 20px 0;
-        }
-
-        /* FOOTER */
-
         footer {
-            background: #050505;
+            background: #111;
             color: #aaa;
-            margin-top: 30px;
-        }
-
-        .footer-inner {
-            max-width: 1200px;
-            margin: auto;
-            padding: 25px 20px;
-            font-size: 12px;
             text-align: center;
+            padding: 25px 15px;
+            font-size: 13px;
         }
-
-        /* MOBİL */
 
         @media (max-width: 700px) {
 
             .header-inner {
-                padding: 18px 15px;
+                padding: 18px 0;
+                align-items: flex-start;
+                flex-direction: column;
             }
 
-            .logo {
-                font-size: 34px;
-            }
-
-            .header-right {
-                display: none;
-            }
-
-            .nav-inner {
-                padding: 0 10px;
-            }
-
-            nav a {
-                padding: 12px 9px;
-                font-size: 11px;
+            nav {
+                gap: 14px;
             }
 
             main {
-                padding: 30px 15px 50px;
-            }
-
-            .page-title {
-                margin-bottom: 25px;
-            }
-
-            .page-title h1 {
-                font-size: 28px;
+                padding: 28px 0 50px;
             }
 
             .dosya {
-                grid-template-columns: 1fr;
-                gap: 15px;
+                display: block;
             }
 
-            .dosya-foto {
+            .dosya-image {
                 width: 100%;
-                height: 190px;
+                min-width: 100%;
+                height: 210px;
             }
 
-            .dosya h2 {
+            .dosya-image img {
+                height: 210px;
+                min-height: 210px;
+            }
+
+            .dosya-content {
+                padding: 20px;
+            }
+
+            .dosya-content h2 {
                 font-size: 21px;
             }
         }
@@ -318,52 +243,69 @@
 <body>
 
 <header>
-    <div class="header-inner">
+    <div class="container header-inner">
 
-        <a href="index.html" class="logo">KARŞI</a>
+        <a href="index.html" class="logo">
+            KAR<span>Ş</span>I
+        </a>
 
-        <div class="header-right">
-            <div class="languages">TR &nbsp; EN &nbsp; FR</div>
-            <div class="slogan">yaşıyorum, yazıyorum, karşı çıkıyorum</div>
-        </div>
+        <nav>
+            <a href="index.html">Ana Sayfa</a>
+            <a href="gundem.html">Gündem</a>
+            <a href="dosyalar.html">Dosyalar</a>
+            <a href="hakkimizda.html">Hakkımızda</a>
+        </nav>
 
     </div>
-
-    <nav>
-        <div class="nav-inner">
-
-            <a href="index.html">ANA SAYFA</a>
-            <a href="kose-yazilari.html">KÖŞE YAZILARI</a>
-            <a href="haberler.html">HABERLER</a>
-            <a href="gundem.html">KARŞI GÜNDEM</a>
-            <a href="dunya.html">DÜNYA</a>
-            <a href="dosyalar.html" class="active">DOSYALAR</a>
-            <a href="hakkimizda.html">HAKKIMIZDA</a>
-
-        </div>
-    </nav>
 </header>
 
 
 <main>
 
-    <div class="page-title">
-        <h1>KARŞI DOSYALAR</h1>
-        <p>Araştırmalar, incelemeler ve özel dosyalar.</p>
-    </div>
+    <div class="container">
+
+        <div class="page-title">
+            <h1>Dosyalar</h1>
+            <p>
+                Araştırmalar, incelemeler, özel dosyalar ve
+                gündemin arka planına ışık tutan çalışmalar.
+            </p>
+        </div>
 
 
-    <div id="dosyalarListesi">
-        <div class="yukleniyor">Dosyalar yükleniyor...</div>
+        <div id="loading" class="message">
+            <h2>Dosyalar yükleniyor...</h2>
+            <p>Lütfen bekleyin.</p>
+        </div>
+
+
+        <div id="error" class="message" style="display:none;">
+            <h2>Bir sorun oluştu</h2>
+            <p>
+                Dosyalar yüklenirken bir hata oluştu.
+                Lütfen daha sonra tekrar deneyin.
+            </p>
+        </div>
+
+
+        <div id="empty" class="message" style="display:none;">
+            <h2>Henüz yayınlanmış dosya yok</h2>
+            <p>
+                Burada araştırmalarımızı, özel dosyalarımızı
+                ve kapsamlı incelemelerimizi bulabileceksiniz.
+            </p>
+        </div>
+
+
+        <div id="dosyalar" class="dosyalar"></div>
+
     </div>
 
 </main>
 
 
 <footer>
-    <div class="footer-inner">
-        © KARŞI — Yaşıyorum, yazıyorum, karşı çıkıyorum.
-    </div>
+    © KARŞI — Yaşıyorum, yazıyorum, karşı çıkıyorum.
 </footer>
 
 
@@ -371,12 +313,9 @@
 
 <script>
 
-    /* ==========================================
-       SUPABASE
-    ========================================== */
-
     const SUPABASE_URL = "https://rfqiffvudbmphvklxetf.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+
 
     const db = window.supabase.createClient(
         SUPABASE_URL,
@@ -384,66 +323,55 @@
     );
 
 
-    /* ==========================================
-       YARDIMCI FONKSİYONLAR
-    ========================================== */
+    function escapeHtml(value) {
 
-    function escapeHtml(metin) {
-
-        if (metin === null || metin === undefined) {
-            return "";
-        }
-
-        return String(metin)
+        return String(value ?? "")
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
+
     }
 
 
-    function escapeAttribute(metin) {
+    function escapeAttribute(value) {
 
-        return escapeHtml(metin);
+        return escapeHtml(value);
+
     }
 
 
-    function tarihFormatla(tarih) {
+    function formatDate(value) {
 
-        if (!tarih) {
+        if (!value) {
             return "";
         }
 
-        const d = new Date(tarih);
+        const date = new Date(value);
 
-        if (Number.isNaN(d.getTime())) {
+        if (Number.isNaN(date.getTime())) {
             return "";
         }
 
-        return d.toLocaleDateString("tr-TR", {
+        return date.toLocaleDateString("tr-TR", {
             day: "2-digit",
             month: "long",
             year: "numeric"
         });
+
     }
 
-
-    function slugdanSayfaOlustur(slug) {
-
-        return "dosya-" + encodeURIComponent(slug) + ".html";
-    }
-
-
-    /* ==========================================
-       DOSYALARI GETİR
-    ========================================== */
 
     async function dosyalariGetir() {
 
-        const liste = document.getElementById("dosyalarListesi");
+        const loading = document.getElementById("loading");
+        const error = document.getElementById("error");
+        const empty = document.getElementById("empty");
+        const container = document.getElementById("dosyalar");
 
-        const { data, error } = await db
+
+        const { data, error: dbError } = await db
             .from("dosyalar")
             .select("*")
             .eq("durum", "yayinda")
@@ -456,16 +384,14 @@
             });
 
 
-        if (error) {
+        loading.style.display = "none";
 
-            console.error("Dosyalar yüklenemedi:", error);
 
-            liste.innerHTML = `
-                <div class="bos">
-                    <strong>Dosyalar yüklenemedi.</strong>
-                    Lütfen daha sonra tekrar deneyin.
-                </div>
-            `;
+        if (dbError) {
+
+            console.error("Dosyalar alınamadı:", dbError);
+
+            error.style.display = "block";
 
             return;
         }
@@ -473,46 +399,40 @@
 
         if (!data || data.length === 0) {
 
-            liste.innerHTML = `
-                <div class="bos">
-                    <strong>Henüz yayınlanmış dosya bulunmuyor.</strong>
-                    KARŞI'nın araştırma ve özel dosyaları burada yayınlanacak.
-                </div>
-            `;
+            empty.style.display = "block";
 
             return;
         }
 
 
-        liste.innerHTML = data.map(dosya => {
-
-            const baslik = escapeHtml(dosya.baslik);
-            const ozet = escapeHtml(dosya.ozet || "");
-            const kategori = escapeHtml(dosya.kategori || "Dosya");
-
-            const tarih = tarihFormatla(
-                dosya.yayin_tarihi || dosya.created_at
-            );
-
-            const slug = dosya.slug || dosya.id;
-
-            const sayfa = slugdanSayfaOlustur(slug);
+        container.innerHTML = "";
 
 
-            let fotograf = "";
+        data.forEach(dosya => {
+
+            const article = document.createElement("article");
+
+            article.className = "dosya";
+
+
+            const slug = dosya.slug || "";
+
+
+            const link = `dosya.html?slug=${encodeURIComponent(slug)}`;
+
+
+            let imageHtml = "";
+
 
             if (dosya.kapak_fotografi_url) {
 
-                const url = escapeAttribute(
-                    dosya.kapak_fotografi_url
-                );
-
-                fotograf = `
-                    <div class="dosya-foto">
+                imageHtml = `
+                    <div class="dosya-image">
                         <img
-                            src="${url}"
-                            alt="${escapeAttribute(dosya.baslik)}"
+                            src="${escapeAttribute(dosya.kapak_fotografi_url)}"
+                            alt="${escapeAttribute(dosya.baslik || "KARŞI Dosya")}"
                             loading="lazy"
+                            onerror="this.parentElement.style.display='none';"
                         >
                     </div>
                 `;
@@ -520,55 +440,51 @@
             }
 
 
-            return `
-                <article class="dosya">
+            article.innerHTML = `
 
-                    ${fotograf}
+                ${imageHtml}
 
-                    <div class="dosya-icerik">
+                <div class="dosya-content">
 
-                        <div class="kategori">
-                            ${kategori}
-                        </div>
-
-                        <h2>
-                            <a href="${sayfa}">
-                                ${baslik}
-                            </a>
-                        </h2>
-
-                        ${
-                            ozet
-                            ? `<p class="dosya-ozet">${ozet}</p>`
-                            : ""
-                        }
-
-                        ${
-                            tarih
-                            ? `<div class="tarih">${tarih}</div>`
-                            : ""
-                        }
-
-                        <a
-                            class="oku"
-                            href="${sayfa}"
-                        >
-                            DOSYAYI OKU →
-                        </a>
-
+                    <div class="category">
+                        ${escapeHtml(dosya.kategori || "Dosya")}
                     </div>
 
-                </article>
+                    <h2>
+                        ${escapeHtml(dosya.baslik || "Başlıksız Dosya")}
+                    </h2>
+
+                    ${
+                        dosya.ozet
+                        ? `<p>${escapeHtml(dosya.ozet)}</p>`
+                        : ""
+                    }
+
+                    <div class="date">
+                        ${
+                            dosya.yayin_tarihi
+                            ? formatDate(dosya.yayin_tarihi)
+                            : formatDate(dosya.created_at)
+                        }
+                    </div>
+
+                    <a
+                        href="${escapeAttribute(link)}"
+                        class="read"
+                    >
+                        DOSYAYI OKU →
+                    </a>
+
+                </div>
             `;
 
-        }).join("");
+
+            container.appendChild(article);
+
+        });
 
     }
 
-
-    /* ==========================================
-       BAŞLAT
-    ========================================== */
 
     dosyalariGetir();
 
