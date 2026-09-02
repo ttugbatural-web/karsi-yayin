@@ -1,1881 +1,489 @@
 <!DOCTYPE html>
+
 <html lang="tr">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+```
+<title>Dünya Haberleri — KARŞI Yönetim</title>
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>Dünya — KARŞI Yönetim</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
 
 <style>
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f2f2f0;
-    color: #111;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-header {
-    background: #111;
-    color: white;
-    border-bottom: 4px solid #c40000;
-    padding: 18px 20px;
-}
-
-.header-inner {
-    max-width: 1100px;
-    margin: auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 20px;
-}
-
-.logo {
-    position: relative;
-
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 36px;
-    font-weight: bold;
-
-    letter-spacing: -2px;
-}
-
-.logo::after {
-    content: "";
-
-    position: absolute;
-
-    height: 4px;
-    width: 115%;
-
-    background: #c40000;
-
-    left: -7%;
-    top: 53%;
-
-    transform: rotate(-4deg);
-}
-
-.back {
-    color: white;
-
-    text-decoration: none;
-
-    border: 1px solid #555;
-
-    padding: 8px 12px;
-
-    font-size: 12px;
-}
-
-.back:hover {
-    background: white;
-    color: #111;
-}
-
-/* =========================
-   MAIN
-========================= */
-
-main {
-    max-width: 1100px;
-
-    margin: 35px auto;
-
-    padding: 0 18px;
-}
-
-.page-title {
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 38px;
-
-    margin-bottom: 8px;
-}
-
-.page-description {
-    color: #666;
-
-    font-size: 14px;
-
-    margin-bottom: 30px;
-}
-
-/* =========================
-   MESAJ
-========================= */
-
-.message {
-    padding: 14px;
-
-    margin-bottom: 20px;
-
-    font-size: 13px;
-
-    display: none;
-}
-
-.message.success {
-    display: block;
-
-    background: #e6f4e6;
-
-    border-left: 4px solid #228b22;
-
-    color: #145214;
-}
-
-.message.error {
-    display: block;
-
-    background: #f8e5e5;
-
-    border-left: 4px solid #c40000;
-
-    color: #7a0000;
-}
-
-.message.info {
-    display: block;
-
-    background: #eeeeee;
-
-    border-left: 4px solid #555;
-
-    color: #333;
-}
-
-/* =========================
-   AI MERKEZİ
-========================= */
-
-.ai-box {
-    background: #111;
-
-    color: white;
-
-    padding: 28px;
-
-    margin-bottom: 35px;
-
-    border-left: 5px solid #c40000;
-}
-
-.ai-header {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: flex-start;
-
-    gap: 20px;
-
-    margin-bottom: 20px;
-}
-
-.ai-title {
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 28px;
-
-    margin-bottom: 7px;
-}
-
-.ai-description {
-    color: #bbb;
-
-    font-size: 13px;
-
-    line-height: 1.6;
-
-    max-width: 700px;
-}
-
-.ai-badge-large {
-    background: #eee5f5;
-
-    color: #633d78;
-
-    padding: 8px 11px;
-
-    font-size: 10px;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    white-space: nowrap;
-}
-
-.ai-controls {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    align-items: center;
-
-    gap: 12px;
-
-    padding-top: 18px;
-
-    border-top: 1px solid #333;
-}
-
-.ai-button {
-    border: none;
-
-    background: #c40000;
-
-    color: white;
-
-    padding: 13px 20px;
-
-    font-size: 12px;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    cursor: pointer;
-}
-
-.ai-button:hover {
-    background: #e00000;
-}
-
-.ai-button:disabled {
-    background: #555;
-
-    cursor: not-allowed;
-}
-
-.ai-secondary-button {
-    border: 1px solid #555;
-
-    background: transparent;
-
-    color: white;
-
-    padding: 12px 18px;
-
-    font-size: 11px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.ai-secondary-button:hover {
-    background: #222;
-}
-
-.ai-status {
-    color: #999;
-
-    font-size: 12px;
-
-    margin-left: auto;
-}
-
-/* =========================
-   AI BİLGİ
-========================= */
-
-.ai-info {
-    margin-top: 18px;
-
-    color: #888;
-
-    font-size: 11px;
-
-    line-height: 1.6;
-}
-
-/* =========================
-   FORM
-========================= */
-
-.form-box {
-    background: white;
-
-    border: 1px solid #ddd;
-
-    padding: 25px;
-
-    margin-bottom: 35px;
-}
-
-.form-box h2 {
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 25px;
-
-    margin-bottom: 22px;
-}
-
-.form-group {
-    margin-bottom: 18px;
-}
-
-.form-group label {
-    display: block;
-
-    font-size: 12px;
-
-    font-weight: bold;
-
-    margin-bottom: 7px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-
-    border: 1px solid #ccc;
-
-    padding: 12px;
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    font-size: 14px;
-
-    outline: none;
-}
-
-.form-group textarea {
-    min-height: 120px;
-
-    resize: vertical;
-}
-
-.form-group textarea.icerik {
-    min-height: 400px;
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    line-height: 1.7;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-    border-color: #111;
-}
-
-/* =========================
-   SLUG
-========================= */
-
-.slug-preview {
-    margin-top: 7px;
-
-    color: #777;
-
-    font-size: 12px;
-}
-
-/* =========================
-   BUTONLAR
-========================= */
-
-.buttons {
-    display: flex;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
-
-    margin-top: 25px;
-}
-
-.button {
-    border: none;
-
-    padding: 13px 20px;
-
-    font-size: 12px;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    cursor: pointer;
-}
-
-.save-button {
-    background: #111;
-
-    color: white;
-}
-
-.save-button:hover {
-    background: #c40000;
-}
-
-.save-button:disabled {
-    background: #777;
-
-    cursor: not-allowed;
-}
-
-.cancel-button {
-    background: white;
-
-    border: 1px solid #ccc;
-
-    color: #555;
-}
-
-.cancel-button:hover {
-    background: #eee;
-}
-
-/* =========================
-   HABERLER
-========================= */
-
-.articles-title {
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 27px;
-
-    margin-bottom: 15px;
-}
-
-.articles {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 18px;
-}
-
-.article-card {
-    background: white;
-
-    border: 1px solid #ddd;
-
-    padding: 20px;
-}
-
-.article-card.ai-article {
-    border-top: 3px solid #633d78;
-}
-
-.article-card h3 {
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 22px;
-
-    line-height: 1.25;
-
-    margin-bottom: 8px;
-}
-
-.article-meta {
-    color: #777;
-
-    font-size: 12px;
-
-    margin-bottom: 10px;
-}
-
-.article-summary {
-    color: #555;
-
-    font-size: 13px;
-
-    line-height: 1.5;
-
-    margin-bottom: 12px;
-}
-
-.status-badge {
-    display: inline-block;
-
-    padding: 5px 8px;
-
-    font-size: 10px;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    margin-bottom: 12px;
-}
-
-.status-yayinda {
-    background: #e3f2e3;
-
-    color: #287028;
-}
-
-.status-taslak {
-    background: #eee;
-
-    color: #666;
-}
-
-.ai-badge {
-    display: inline-block;
-
-    padding: 5px 8px;
-
-    font-size: 10px;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    margin-bottom: 12px;
-
-    background: #eee5f5;
-
-    color: #633d78;
-}
-
-.source {
-    font-size: 12px;
-
-    margin-top: 10px;
-
-    padding-top: 10px;
-
-    border-top: 1px solid #eee;
-}
-
-.source a {
-    color: #555;
-
-    word-break: break-all;
-}
-
-.card-buttons {
-    display: flex;
-
-    gap: 8px;
-
-    margin-top: 15px;
-}
-
-.card-button {
-    border: 1px solid #ccc;
-
-    background: white;
-
-    padding: 8px 12px;
-
-    cursor: pointer;
-
-    font-size: 11px;
-}
-
-.card-button:hover {
-    background: #eee;
-}
-
-.delete-button {
-    color: #a00000;
-}
-
-.empty {
-    background: white;
-
-    border: 1px solid #ddd;
-
-    padding: 25px;
-
-    color: #777;
-
-    font-size: 14px;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    margin-top: 60px;
-
-    background: #111;
-
-    color: #999;
-
-    text-align: center;
-
-    padding: 25px;
-
-    font-size: 12px;
-}
-
-/* =========================
-   MOBİL
-========================= */
-
-@media (max-width: 750px) {
-
-    .page-title {
-        font-size: 32px;
+    * {
+        box-sizing: border-box;
     }
 
-    .form-box {
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f4f4;
+        color: #222;
+    }
+
+    header {
+        background: #111;
+        color: #fff;
+        padding: 18px 20px;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 24px;
+    }
+
+    header p {
+        margin: 6px 0 0;
+        color: #bbb;
+        font-size: 14px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+
+    .toolbar {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    button {
+        border: 0;
+        padding: 12px 18px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    #taraBtn {
+        background: #111;
+        color: #fff;
+    }
+
+    #taraBtn:hover {
+        background: #333;
+    }
+
+    #yenileBtn {
+        background: #ddd;
+        color: #111;
+    }
+
+    #cikisBtn {
+        background: #b00020;
+        color: #fff;
+        margin-left: auto;
+    }
+
+    button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .durum {
+        background: #fff;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+    }
+
+    .durum strong {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .istatistik {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .istatistik-kutu {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 18px;
+        min-width: 160px;
+        flex: 1;
+    }
+
+    .istatistik-kutu span {
+        display: block;
+        color: #777;
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+
+    .istatistik-kutu strong {
+        font-size: 24px;
+    }
+
+    .haberler {
+        display: grid;
+        gap: 15px;
+    }
+
+    .haber {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
         padding: 20px;
     }
 
-    .articles {
-        grid-template-columns: 1fr;
+    .haber h2 {
+        margin: 0 0 10px;
+        font-size: 19px;
+        line-height: 1.35;
     }
 
-    .article-card {
-        padding: 18px;
+    .haber-meta {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
     }
 
-    .ai-box {
-        padding: 22px 18px;
+    .etiket {
+        background: #eee;
+        border-radius: 4px;
+        padding: 5px 8px;
+        font-size: 12px;
     }
 
-    .ai-header {
-        flex-direction: column;
+    .haber-ozet {
+        color: #555;
+        line-height: 1.5;
+        margin-bottom: 12px;
     }
 
-    .ai-status {
-        margin-left: 0;
-        width: 100%;
+    .haber-kaynak {
+        font-size: 13px;
+        color: #777;
+        word-break: break-word;
     }
 
-    .ai-button,
-    .ai-secondary-button {
-        width: 100%;
+    .haber-kaynak a {
+        color: #111;
     }
 
-}
+    .bos {
+        background: #fff;
+        border: 1px dashed #bbb;
+        border-radius: 8px;
+        padding: 35px;
+        text-align: center;
+        color: #777;
+    }
 
+    .hata {
+        color: #b00020;
+    }
+
+    .basarili {
+        color: #176b32;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            padding: 0 12px;
+            margin-top: 20px;
+        }
+
+        #cikisBtn {
+            margin-left: 0;
+        }
+
+        .toolbar {
+            flex-direction: column;
+        }
+
+        button {
+            width: 100%;
+        }
+    }
 </style>
+```
 
 </head>
 
-
 <body>
 
-
 <header>
-
-    <div class="header-inner">
-
-        <div class="logo">
-            KARŞI
-        </div>
-
-        <a
-            class="back"
-            href="index.html"
-        >
-            ← Yönetim Paneli
-        </a>
-
-    </div>
-
+    <h1>KARŞI — Dünya Haberleri</h1>
+    <p>RSS kaynaklarından otomatik haber toplama paneli</p>
 </header>
 
-
-<main>
-
-
-    <h1 class="page-title">
-        Dünya
-    </h1>
-
-    <p class="page-description">
-        Dünya gündemini yönet, haberleri düzenle ve
-        KARŞI'nın yapay zekâ destekli dünya editörünü çalıştır.
-    </p>
-
-
-    <div
-        id="message"
-        class="message"
-    ></div>
-
-
-    <!-- ==================================================
-         AI DÜNYA EDİTÖRÜ
-    ================================================== -->
-
-    <section class="ai-box">
-
-        <div class="ai-header">
-
-            <div>
-
-                <div class="ai-title">
-                    🤖 KARŞI Dünya Editörü
-                </div>
-
-                <div class="ai-description">
-
-                    Yapay zekâ destekli dünya gündemi sistemi.
-                    Güncel gelişmeleri tarayacak, önemli konuları
-                    belirleyecek ve KARŞI için haber taslakları
-                    oluşturacak.
-
-                </div>
-
-            </div>
-
-
-            <div class="ai-badge-large">
-                AI EDITOR
-            </div>
-
-        </div>
-
-
-        <div class="ai-controls">
-
-            <button
-                class="ai-button"
-                id="aiScanButton"
-                onclick="dunyayiTara()"
-            >
-                🌍 DÜNYAYI TARA
-            </button>
-
-
-            <button
-                class="ai-secondary-button"
-                onclick="aiTestMesaji()"
-            >
-                AI SİSTEM DURUMU
-            </button>
-
-
-            <div
-                class="ai-status"
-                id="aiStatus"
-            >
-                Hazır — Henüz tarama yapılmadı.
-            </div>
-
-        </div>
-
-
-        <div class="ai-info">
-
-            İlk aşamada AI tarafından oluşturulan haberler
-            otomatik olarak <strong>TASLAK</strong> durumunda
-            oluşturulacaktır. Yayın kararını editör verecek.
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================================
-         FORM
-    ================================================== -->
-
-    <section class="form-box">
-
-        <h2 id="formTitle">
-            Yeni Dünya Haberi
-        </h2>
-
-
-        <div class="form-group">
-
-            <label>
-                BAŞLIK
-            </label>
-
-            <input
-                type="text"
-                id="articleTitle"
-                placeholder="Haber başlığı..."
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                ÖZET
-            </label>
-
-            <textarea
-                id="articleSummary"
-                placeholder="Haberin kısa özeti..."
-            ></textarea>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                HABER İÇERİĞİ
-            </label>
-
-            <textarea
-                id="articleContent"
-                class="icerik"
-                placeholder="Haber metni..."
-            ></textarea>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                KATEGORİ
-            </label>
-
-            <select id="articleCategory">
-
-                <option value="Dünya">
-                    Dünya
-                </option>
-
-                <option value="Siyaset">
-                    Siyaset
-                </option>
-
-                <option value="Savaş ve Çatışma">
-                    Savaş ve Çatışma
-                </option>
-
-                <option value="Ekonomi">
-                    Ekonomi
-                </option>
-
-                <option value="Bilim ve Teknoloji">
-                    Bilim ve Teknoloji
-                </option>
-
-                <option value="İklim ve Çevre">
-                    İklim ve Çevre
-                </option>
-
-                <option value="Diğer">
-                    Diğer
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                ÜLKE / BÖLGE
-            </label>
-
-            <input
-                type="text"
-                id="articleCountry"
-                placeholder="Örn. Ukrayna, ABD, Avrupa..."
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                KAYNAK ADI
-            </label>
-
-            <input
-                type="text"
-                id="articleSource"
-                placeholder="Örn. Reuters"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                KAYNAK URL
-            </label>
-
-            <input
-                type="url"
-                id="articleSourceUrl"
-                placeholder="https://..."
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                KAPAK FOTOĞRAFI URL
-            </label>
-
-            <input
-                type="url"
-                id="articleImage"
-                placeholder="https://..."
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                SLUG
-            </label>
-
-            <input
-                type="text"
-                id="articleSlug"
-                placeholder="ornek-dunya-haberi"
-            >
-
-            <div class="slug-preview">
-                URL: /dunya/<span id="slugPreview"></span>
-            </div>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                DURUM
-            </label>
-
-            <select id="articleStatus">
-
-                <option value="taslak">
-                    Taslak
-                </option>
-
-                <option value="yayinda">
-                    Yayında
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                AI TARAFINDAN OLUŞTURULDU
-            </label>
-
-            <select id="articleAI">
-
-                <option value="false">
-                    Hayır
-                </option>
-
-                <option value="true">
-                    Evet
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="buttons">
-
-            <button
-                class="button save-button"
-                id="saveButton"
-                onclick="haberKaydet()"
-            >
-                HABERİ KAYDET
-            </button>
-
-
-            <button
-                class="button cancel-button"
-                id="cancelButton"
-                onclick="formTemizle()"
-                style="display:none;"
-            >
-                DÜZENLEMEYİ İPTAL ET
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================================
-         HABER LİSTESİ
-    ================================================== -->
-
-    <h2 class="articles-title">
-        Dünya Haberleri
-    </h2>
-
-
-    <section
-        class="articles"
-        id="articlesList"
-    >
-
-        <div class="empty">
-            Haberler yükleniyor...
-        </div>
-
-    </section>
-
+<main class="container">
+
+```
+<div class="toolbar">
+    <button id="taraBtn">
+        🌍 Dünyayı Tara
+    </button>
+
+    <button id="yenileBtn">
+        ↻ Haberleri Yenile
+    </button>
+
+    <button id="cikisBtn">
+        Çıkış Yap
+    </button>
+</div>
+
+<div class="durum" id="durum">
+    <strong>Durum</strong>
+    <span>Haberler yükleniyor...</span>
+</div>
+
+<div class="istatistik">
+
+    <div class="istatistik-kutu">
+        <span>Toplam Haber</span>
+        <strong id="toplamHaber">0</strong>
+    </div>
+
+    <div class="istatistik-kutu">
+        <span>Yayında</span>
+        <strong id="yayindaHaber">0</strong>
+    </div>
+
+    <div class="istatistik-kutu">
+        <span>Taslak</span>
+        <strong id="taslakHaber">0</strong>
+    </div>
+
+</div>
+
+<section id="haberler" class="haberler"></section>
+```
 
 </main>
 
-
-<footer>
-
-    KARŞI — Yönetim Paneli
-
-</footer>
-
-
-<!-- ==================================================
-     SUPABASE
-================================================== -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="auth.js"></script>
-
-
 <script>
+    /*
+     * ==================================================
+     * KARŞI — DÜNYA HABERLERİ YÖNETİM PANELİ
+     * RSS tabanlı sistem
+     * AI YOK
+     * ==================================================
+     */
 
-/* ==================================================
-   SUPABASE
-================================================== */
+    const db = window.supabaseClient;
 
-const SUPABASE_URL =
-    "https://rfqiffvudbmphvklxetf.supabase.co";
+    const durumEl =
+        document.getElementById("durum");
 
+    const haberlerEl =
+        document.getElementById("haberler");
 
-const SUPABASE_ANON_KEY =
-    "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+    const toplamHaberEl =
+        document.getElementById("toplamHaber");
 
+    const yayindaHaberEl =
+        document.getElementById("yayindaHaber");
 
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-    );
+    const taslakHaberEl =
+        document.getElementById("taslakHaber");
 
+    const taraBtn =
+        document.getElementById("taraBtn");
 
-/* ==================================================
-   DEĞİŞKENLER
-================================================== */
+    const yenileBtn =
+        document.getElementById("yenileBtn");
 
-let duzenlenenHaberId = null;
-
-
-/* ==================================================
-   ELEMENTLER
-================================================== */
-
-const saveButton =
-    document.getElementById(
-        "saveButton"
-    );
+    const cikisBtn =
+        document.getElementById("cikisBtn");
 
 
-const aiScanButton =
-    document.getElementById(
-        "aiScanButton"
-    );
+    /*
+     * ==================================================
+     * DURUM MESAJI
+     * ==================================================
+     */
+
+    function durumGoster(
+        mesaj,
+        tip = ""
+    ) {
+        durumEl.innerHTML =
+            `<strong>Durum</strong>
+             <span class="${tip}">${mesaj}</span>`;
+    }
 
 
-const aiStatus =
-    document.getElementById(
-        "aiStatus"
-    );
+    /*
+     * ==================================================
+     * HABERLERİ GETİR
+     * ==================================================
+     */
 
+    async function haberleriGetir() {
 
-/* ==================================================
-   SLUG
-================================================== */
+        try {
 
-function slugOlustur(metin) {
+            durumGoster(
+                "Haberler yükleniyor..."
+            );
 
-    return metin
-        .toLowerCase()
-        .replace(/ğ/g, "g")
-        .replace(/ü/g, "u")
-        .replace(/ş/g, "s")
-        .replace(/ı/g, "i")
-        .replace(/ö/g, "o")
-        .replace(/ç/g, "c")
-        .replace(/[^a-z0-9\s-]/g, "")
-        .trim()
-        .replace(/\s+/g, "-")
-        .replace(/-+/g, "-");
-
-}
-
-
-document
-    .getElementById("articleTitle")
-    .addEventListener(
-        "input",
-        function() {
-
-            if (!duzenlenenHaberId) {
-
-                const slug =
-                    slugOlustur(
-                        this.value
-                    );
-
-
-                document
-                    .getElementById(
-                        "articleSlug"
-                    )
-                    .value =
-                    slug;
-
-
-                document
-                    .getElementById(
-                        "slugPreview"
-                    )
-                    .textContent =
-                    slug;
-
-            }
-
-        }
-    );
-
-
-document
-    .getElementById("articleSlug")
-    .addEventListener(
-        "input",
-        function() {
-
-            const slug =
-                slugOlustur(
-                    this.value
+            const {
+                data,
+                error
+            } = await db
+                .from("dunya_haberleri")
+                .select(`
+                    id,
+                    baslik,
+                    ozet,
+                    icerik,
+                    slug,
+                    kategori,
+                    ulke,
+                    kaynak_adi,
+                    kaynak_url,
+                    kapak_fotografi_url,
+                    durum,
+                    yayin_tarihi,
+                    ai_uretti,
+                    ai_model,
+                    ai_ozet,
+                    created_at,
+                    updated_at
+                `)
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
                 );
 
+            if (error) {
+                throw error;
+            }
 
-            this.value =
-                slug;
+            const haberler =
+                data || [];
 
-
-            document
-                .getElementById(
-                    "slugPreview"
-                )
-                .textContent =
-                slug;
-
-        }
-    );
-
-
-/* ==================================================
-   MESAJ
-================================================== */
-
-function mesajGoster(
-    text,
-    type
-) {
-
-    const message =
-        document.getElementById(
-            "message"
-        );
-
-
-    message.textContent =
-        text;
-
-
-    message.className =
-        "message " +
-        type;
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-}
-
-
-/* ==================================================
-   AI SİSTEM DURUMU
-================================================== */
-
-function aiTestMesaji() {
-
-    mesajGoster(
-        "AI Dünya Editörü arayüzü hazır. Bir sonraki aşamada güvenli Supabase Edge Function üzerinden gerçek haber taraması bağlanacak.",
-        "info"
-    );
-
-}
-
-
-/* ==================================================
-   DÜNYAYI TARA
-================================================== */
-
-async function dunyayiTara() {
-
-    const onay =
-        confirm(
-            "Dünya gündemi taransın mı?\n\nAI önemli gelişmeleri belirleyip haber taslakları oluşturacak."
-        );
-
-
-    if (!onay) {
-
-        return;
-
-    }
-
-
-    aiScanButton.disabled =
-        true;
-
-
-    aiScanButton.textContent =
-        "🌍 DÜNYA TARANIYOR...";
-
-
-    aiStatus.textContent =
-        "AI editörü hazırlanıyor...";
-
-
-    try {
-
-        /*
-         * BURASI BİLEREK GÜVENLİ BIRAKILDI.
-         *
-         * API anahtarını HTML içine koymuyoruz.
-         *
-         * Bir sonraki aşamada:
-         *
-         * Supabase Edge Function:
-         *
-         * dunya-haberlerini-tara
-         *
-         * çağrılacak.
-         */
-
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient.functions.invoke(
-                "dunya-haberlerini-tara",
-                {
-                    body: {
-                        kaynak: "KARSI",
-                        dil: "tr",
-                        durum: "taslak"
-                    }
-                }
+            istatistikleriGuncelle(
+                haberler
             );
 
-
-        if (error) {
-
-            throw error;
-
-        }
-
-
-        console.log(
-            "AI Dünya Editörü sonucu:",
-            data
-        );
-
-
-        aiStatus.textContent =
-            "Tarama tamamlandı.";
-
-
-        mesajGoster(
-            "Dünya taraması tamamlandı. Oluşturulan haber taslakları aşağıdaki listede görünecek.",
-            "success"
-        );
-
-
-        await haberleriGetir();
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "AI Dünya Editörü hatası:",
-            error
-        );
-
-
-        aiStatus.textContent =
-            "Tarama başarısız.";
-
-
-        /*
-         * Edge Function henüz oluşturulmadıysa
-         * kullanıcıya anlaşılır mesaj veriyoruz.
-         */
-
-        mesajGoster(
-            "AI Dünya Editörü henüz sunucu tarafına bağlanmadı. Arayüz hazır; şimdi Supabase Edge Function'ı oluşturacağız.",
-            "info"
-        );
-
-    }
-
-    finally {
-
-        aiScanButton.disabled =
-            false;
-
-
-        aiScanButton.textContent =
-            "🌍 DÜNYAYI TARA";
-
-    }
-
-}
-
-
-/* ==================================================
-   HABER KAYDET
-================================================== */
-
-async function haberKaydet() {
-
-    const title =
-        document
-            .getElementById(
-                "articleTitle"
-            )
-            .value
-            .trim();
-
-
-    const summary =
-        document
-            .getElementById(
-                "articleSummary"
-            )
-            .value
-            .trim();
-
-
-    const content =
-        document
-            .getElementById(
-                "articleContent"
-            )
-            .value
-            .trim();
-
-
-    const category =
-        document
-            .getElementById(
-                "articleCategory"
-            )
-            .value
-            .trim();
-
-
-    const country =
-        document
-            .getElementById(
-                "articleCountry"
-            )
-            .value
-            .trim();
-
-
-    const source =
-        document
-            .getElementById(
-                "articleSource"
-            )
-            .value
-            .trim();
-
-
-    const sourceUrl =
-        document
-            .getElementById(
-                "articleSourceUrl"
-            )
-            .value
-            .trim();
-
-
-    const imageUrl =
-        document
-            .getElementById(
-                "articleImage"
-            )
-            .value
-            .trim();
-
-
-    const slug =
-        document
-            .getElementById(
-                "articleSlug"
-            )
-            .value
-            .trim();
-
-
-    const status =
-        document
-            .getElementById(
-                "articleStatus"
-            )
-            .value;
-
-
-    const aiUretti =
-        document
-            .getElementById(
-                "articleAI"
-            )
-            .value === "true";
-
-
-    /* =========================
-       KONTROLLER
-    ========================= */
-
-    if (!title) {
-
-        mesajGoster(
-            "Lütfen haber başlığını yaz.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (!content) {
-
-        mesajGoster(
-            "Lütfen haber içeriğini yaz.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (!slug) {
-
-        mesajGoster(
-            "Lütfen slug oluştur.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    saveButton.disabled =
-        true;
-
-
-    saveButton.textContent =
-        "KAYDEDİLİYOR...";
-
-
-    try {
-
-        const haberVerisi = {
-
-            baslik:
-                title,
-
-            ozet:
-                summary || null,
-
-            icerik:
-                content,
-
-            slug:
-                slug,
-
-            kategori:
-                category || "Dünya",
-
-            ulke:
-                country || null,
-
-            kaynak_adi:
-                source || null,
-
-            kaynak_url:
-                sourceUrl || null,
-
-            kapak_fotografi_url:
-                imageUrl || null,
-
-            durum:
-                status,
-
-            ai_uretti:
-                aiUretti
-
-        };
-
-
-        /* =========================
-           YENİ HABER
-        ========================= */
-
-        if (!duzenlenenHaberId) {
-
-            if (status === "yayinda") {
-
-                haberVerisi.yayin_tarihi =
-                    new Date().toISOString();
-
-            }
-
-
-            const {
-                error
-            } =
-                await supabaseClient
-                    .from(
-                        "dunya_haberleri"
-                    )
-                    .insert(
-                        haberVerisi
-                    );
-
-
-            if (error) {
-
-                throw error;
-
-            }
-
-        }
-
-
-        /* =========================
-           GÜNCELLE
-        ========================= */
-
-        else {
-
-            if (status === "yayinda") {
-
-                haberVerisi.yayin_tarihi =
-                    new Date().toISOString();
-
-            }
-
-            else {
-
-                haberVerisi.yayin_tarihi =
-                    null;
-
-            }
-
-
-            const {
-                error
-            } =
-                await supabaseClient
-                    .from(
-                        "dunya_haberleri"
-                    )
-                    .update(
-                        haberVerisi
-                    )
-                    .eq(
-                        "id",
-                        duzenlenenHaberId
-                    );
-
-
-            if (error) {
-
-                throw error;
-
-            }
-
-        }
-
-
-        const mesaj =
-            duzenlenenHaberId
-                ? "Haber başarıyla güncellendi."
-                : "Haber başarıyla kaydedildi.";
-
-
-        mesajGoster(
-            mesaj,
-            "success"
-        );
-
-
-        formTemizle();
-
-
-        await haberleriGetir();
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Haber kaydetme hatası:",
-            error
-        );
-
-
-        mesajGoster(
-            "Haber kaydedilemedi: " +
-            error.message,
-            "error"
-        );
-
-    }
-
-    finally {
-
-        saveButton.disabled =
-            false;
-
-
-        saveButton.textContent =
-            "HABERİ KAYDET";
-
-    }
-
-}
-
-
-/* ==================================================
-   HABERLERİ GETİR
-================================================== */
-
-async function haberleriGetir() {
-
-    const list =
-        document.getElementById(
-            "articlesList"
-        );
-
-
-    const {
-        data,
-        error
-    } =
-        await supabaseClient
-            .from(
-                "dunya_haberleri"
-            )
-            .select("*")
-            .order(
-                "id",
-                {
-                    ascending: false
-                }
+            haberleriEkranaBas(
+                haberler
             );
 
+            durumGoster(
+                `${haberler.length} haber başarıyla yüklendi.`,
+                "basarili"
+            );
 
-    if (error) {
+        } catch (error) {
 
-        list.innerHTML =
-            `
-            <div class="empty">
+            console.error(
+                "Haberler alınamadı:",
+                error
+            );
 
-                Haberler yüklenemedi:
+            durumGoster(
+                "Haberler alınırken hata oluştu: " +
+                (error.message || error),
+                "hata"
+            );
 
-                ${guvenliMetin(
-                    error.message
-                )}
-
-            </div>
+            haberlerEl.innerHTML = `
+                <div class="bos hata">
+                    Haberler yüklenemedi.
+                    <br><br>
+                    Tarayıcı konsolunu kontrol edin.
+                </div>
             `;
-
-        return;
-
+        }
     }
 
 
-    if (
-        !data ||
-        data.length === 0
+    /*
+     * ==================================================
+     * İSTATİSTİKLER
+     * ==================================================
+     */
+
+    function istatistikleriGuncelle(
+        haberler
     ) {
 
-        list.innerHTML =
-            `
-            <div class="empty">
+        const toplam =
+            haberler.length;
 
-                Henüz kayıtlı dünya haberi bulunmuyor.
+        const yayinda =
+            haberler.filter(
+                haber =>
+                    haber.durum === "yayinda"
+            ).length;
 
-            </div>
-            `;
+        const taslak =
+            haberler.filter(
+                haber =>
+                    haber.durum === "taslak"
+            ).length;
 
-        return;
+        toplamHaberEl.textContent =
+            toplam;
 
+        yayindaHaberEl.textContent =
+            yayinda;
+
+        taslakHaberEl.textContent =
+            taslak;
     }
 
 
-    list.innerHTML =
-        "";
+    /*
+     * ==================================================
+     * HABERLERİ EKRANA BAS
+     * ==================================================
+     */
 
+    function haberleriEkranaBas(
+        haberler
+    ) {
 
-    data.forEach(
-        function(haber) {
+        if (!haberler.length) {
 
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-
-            card.className =
-                "article-card" +
-                (
-                    haber.ai_uretti
-                        ? " ai-article"
-                        : ""
-                );
-
-
-            const statusClass =
-                haber.durum === "yayinda"
-                    ? "status-yayinda"
-                    : "status-taslak";
-
-
-            const statusText =
-                haber.durum === "yayinda"
-                    ? "YAYINDA"
-                    : "TASLAK";
-
-
-            card.innerHTML = `
-
-                <div
-                    class="status-badge ${statusClass}"
-                >
-                    ${statusText}
+            haberlerEl.innerHTML = `
+                <div class="bos">
+                    Henüz Dünya haberi bulunmuyor.
                 </div>
+            `;
 
+            return;
+        }
 
-                ${
-                    haber.ai_uretti
-                        ? `
-                            <div class="ai-badge">
-                                🤖 AI TARAFINDAN OLUŞTURULDU
-                            </div>
-                          `
-                        : ""
-                }
+        haberlerEl.innerHTML =
+            haberler.map(
+                haber => {
 
+                    const tarih =
+                        haber.created_at
+                            ? new Date(
+                                haber.created_at
+                            ).toLocaleString(
+                                "tr-TR"
+                            )
+                            : "Tarih yok";
 
-                <h3>
-                    ${guvenliMetin(
-                        haber.baslik
-                    )}
-                </h3>
-
-
-                <div class="article-meta">
-
-                    ${guvenliMetin(
-                        haber.kategori ||
-                        "Dünya"
-                    )}
-
-                    ${
-                        haber.ulke
-                            ? " · " +
-                              guvenliMetin(
-                                  haber.ulke
-                              )
-                            : ""
-                    }
-
-                </div>
-
-
-                <div class="article-summary">
-
-                    ${guvenliMetin(
-                        haber.ozet ||
-                        "Özet eklenmedi."
-                    )}
-
-                </div>
-
-
-                <div class="source">
-
-                    <strong>
-                        Kaynak:
-                    </strong>
-
-                    ${guvenliMetin(
-                        haber.kaynak_adi ||
-                        "Belirtilmedi"
-                    )}
-
-                    ${
+                    const kaynak =
                         haber.kaynak_url
                             ? `
-                                <br>
-
                                 <a
-                                    href="${guvenliMetin(
+                                    href="${guvenliHtml(
                                         haber.kaynak_url
                                     )}"
                                     target="_blank"
@@ -1884,479 +492,240 @@ async function haberleriGetir() {
                                     Kaynağı aç
                                 </a>
                               `
-                            : ""
-                    }
+                            : "Kaynak bağlantısı yok";
 
-                </div>
+                    return `
+                        <article class="haber">
+
+                            <h2>
+                                ${guvenliHtml(
+                                    haber.baslik ||
+                                    "Başlıksız haber"
+                                )}
+                            </h2>
+
+                            <div class="haber-meta">
+
+                                <span class="etiket">
+                                    ${guvenliHtml(
+                                        haber.kategori ||
+                                        "Dünya"
+                                    )}
+                                </span>
+
+                                <span class="etiket">
+                                    ${guvenliHtml(
+                                        haber.ulke ||
+                                        "Dünya"
+                                    )}
+                                </span>
+
+                                <span class="etiket">
+                                    ${guvenliHtml(
+                                        haber.durum ||
+                                        "taslak"
+                                    )}
+                                </span>
+
+                                <span class="etiket">
+                                    ${guvenliHtml(
+                                        haber.kaynak_adi ||
+                                        "Bilinmiyor"
+                                    )}
+                                </span>
+
+                            </div>
+
+                            <div class="haber-ozet">
+                                ${guvenliHtml(
+                                    haber.ozet ||
+                                    "Özet bulunmuyor."
+                                )}
+                            </div>
+
+                            <div class="haber-kaynak">
+                                <strong>Eklenme:</strong>
+                                ${tarih}
+                                <br>
+                                <strong>Kaynak:</strong>
+                                ${kaynak}
+                            </div>
+
+                        </article>
+                    `;
+                }
+            )
+            .join("");
+    }
 
 
-                <div class="article-meta">
+    /*
+     * ==================================================
+     * HTML GÜVENLİĞİ
+     * ==================================================
+     */
 
-                    /dunya/${guvenliMetin(
-                        haber.slug
-                    )}
+    function guvenliHtml(
+        deger
+    ) {
 
-                </div>
+        if (
+            deger === null ||
+            deger === undefined
+        ) {
+            return "";
+        }
 
-
-                <div class="card-buttons">
-
-                    <button
-                        class="card-button"
-                        onclick="haberDuzenle(${haber.id})"
-                    >
-                        DÜZENLE
-                    </button>
-
-
-                    <button
-                        class="card-button delete-button"
-                        onclick="haberSil(${haber.id})"
-                    >
-                        SİL
-                    </button>
-
-                </div>
-
-            `;
+        return String(deger)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
 
 
-            list.appendChild(
-                card
+    /*
+     * ==================================================
+     * DÜNYA HABERLERİNİ TARA
+     * ==================================================
+     */
+
+    async function dunyayiTara() {
+
+        taraBtn.disabled = true;
+
+        taraBtn.textContent =
+            "🌍 Taranıyor...";
+
+        durumGoster(
+            "RSS kaynakları taranıyor. Lütfen bekleyin..."
+        );
+
+        try {
+
+            const {
+                data,
+                error
+            } = await db.functions.invoke(
+                "dunya-haberlerini-tara",
+                {
+                    method: "POST",
+                    body: {}
+                }
             );
+
+            if (error) {
+                throw error;
+            }
+
+            console.log(
+                "RSS tarama sonucu:",
+                data
+            );
+
+            if (
+                !data ||
+                data.success !== true
+            ) {
+                throw new Error(
+                    data?.message ||
+                    "RSS taraması başarısız oldu."
+                );
+            }
+
+            durumGoster(
+                data.message ||
+                "RSS taraması tamamlandı.",
+                "basarili"
+            );
+
+            await haberleriGetir();
+
+        } catch (error) {
+
+            console.error(
+                "Dünya haber tarama hatası:",
+                error
+            );
+
+            durumGoster(
+                "RSS taraması başarısız: " +
+                (
+                    error?.message ||
+                    String(error)
+                ),
+                "hata"
+            );
+
+        } finally {
+
+            taraBtn.disabled = false;
+
+            taraBtn.textContent =
+                "🌍 Dünyayı Tara";
+        }
+    }
+
+
+    /*
+     * ==================================================
+     * BUTONLAR
+     * ==================================================
+     */
+
+    taraBtn.addEventListener(
+        "click",
+        dunyayiTara
+    );
+
+    yenileBtn.addEventListener(
+        "click",
+        haberleriGetir
+    );
+
+    cikisBtn.addEventListener(
+        "click",
+        async () => {
+
+            await window.cikisYap();
 
         }
     );
 
-}
 
+    /*
+     * ==================================================
+     * SAYFA BAŞLANGICI
+     * ==================================================
+     */
 
-/* ==================================================
-   HABER DÜZENLE
-================================================== */
+    async function dunyaPanelBaslat() {
 
-async function haberDuzenle(id) {
+        if (!db) {
 
-    const {
-        data,
-        error
-    } =
-        await supabaseClient
-            .from(
-                "dunya_haberleri"
-            )
-            .select("*")
-            .eq(
-                "id",
-                id
-            )
-            .single();
-
-
-    if (error) {
-
-        mesajGoster(
-            "Haber yüklenemedi: " +
-            error.message,
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    duzenlenenHaberId =
-        data.id;
-
-
-    document
-        .getElementById(
-            "articleTitle"
-        )
-        .value =
-        data.baslik || "";
-
-
-    document
-        .getElementById(
-            "articleSummary"
-        )
-        .value =
-        data.ozet || "";
-
-
-    document
-        .getElementById(
-            "articleContent"
-        )
-        .value =
-        data.icerik || "";
-
-
-    document
-        .getElementById(
-            "articleCategory"
-        )
-        .value =
-        data.kategori ||
-        "Dünya";
-
-
-    document
-        .getElementById(
-            "articleCountry"
-        )
-        .value =
-        data.ulke || "";
-
-
-    document
-        .getElementById(
-            "articleSource"
-        )
-        .value =
-        data.kaynak_adi || "";
-
-
-    document
-        .getElementById(
-            "articleSourceUrl"
-        )
-        .value =
-        data.kaynak_url || "";
-
-
-    document
-        .getElementById(
-            "articleImage"
-        )
-        .value =
-        data.kapak_fotografi_url || "";
-
-
-    document
-        .getElementById(
-            "articleSlug"
-        )
-        .value =
-        data.slug || "";
-
-
-    document
-        .getElementById(
-            "slugPreview"
-        )
-        .textContent =
-        data.slug || "";
-
-
-    document
-        .getElementById(
-            "articleStatus"
-        )
-        .value =
-        data.durum ||
-        "taslak";
-
-
-    document
-        .getElementById(
-            "articleAI"
-        )
-        .value =
-        data.ai_uretti
-            ? "true"
-            : "false";
-
-
-    document
-        .getElementById(
-            "formTitle"
-        )
-        .textContent =
-        "Dünya Haberini Düzenle";
-
-
-    saveButton.textContent =
-        "DEĞİŞİKLİKLERİ KAYDET";
-
-
-    document
-        .getElementById(
-            "cancelButton"
-        )
-        .style.display =
-        "inline-block";
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-}
-
-
-/* ==================================================
-   HABER SİL
-================================================== */
-
-async function haberSil(id) {
-
-    const onay =
-        confirm(
-            "Bu dünya haberini silmek istediğine emin misin?"
-        );
-
-
-    if (!onay) {
-
-        return;
-
-    }
-
-
-    const {
-        error
-    } =
-        await supabaseClient
-            .from(
-                "dunya_haberleri"
-            )
-            .delete()
-            .eq(
-                "id",
-                id
+            durumGoster(
+                "Supabase bağlantısı bulunamadı.",
+                "hata"
             );
-
-
-    if (error) {
-
-        mesajGoster(
-            "Haber silinemedi: " +
-            error.message,
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    mesajGoster(
-        "Haber başarıyla silindi.",
-        "success"
-    );
-
-
-    await haberleriGetir();
-
-}
-
-
-/* ==================================================
-   FORM TEMİZLE
-================================================== */
-
-function formTemizle() {
-
-    duzenlenenHaberId =
-        null;
-
-
-    document
-        .getElementById(
-            "articleTitle"
-        )
-        .value =
-        "";
-
-
-    document
-        .getElementById(
-            "articleSummary"
-        )
-        .value =
-        "";
-
-
-    document
-        .getElementById(
-            "articleContent"
-        )
-        .value =
-        "";
-
-
-    document
-        .getElementById(
-            "articleCategory"
-        )
-        .value =
-        "Dünya";
-
-
-    document
-        .getElementById(
-            "articleCountry"
-        )
-        .value =
-        "";
-
-
-    document
-        .getElementById(
-            "articleSource"
-        )
-        .value =
-        "";
-
-
-    document
-        .getElementById(
-            "articleSourceUrl"
-        )
-        .value =
-        "";
-
-
-    document
-        .getElementById(
-            "articleImage"
-        )
-        .value =
-        "";
-
-
-    document
-        .getElementById(
-            "articleSlug"
-        )
-        .value =
-        "";
-
-
-    document
-        .getElementById(
-            "slugPreview"
-        )
-        .textContent =
-        "";
-
-
-    document
-        .getElementById(
-            "articleStatus"
-        )
-        .value =
-        "taslak";
-
-
-    document
-        .getElementById(
-            "articleAI"
-        )
-        .value =
-        "false";
-
-
-    document
-        .getElementById(
-            "formTitle"
-        )
-        .textContent =
-        "Yeni Dünya Haberi";
-
-
-    saveButton.textContent =
-        "HABERİ KAYDET";
-
-
-    document
-        .getElementById(
-            "cancelButton"
-        )
-        .style.display =
-        "none";
-
-}
-
-
-/* ==================================================
-   GÜVENLİ METİN
-================================================== */
-
-function guvenliMetin(metin) {
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-
-    div.textContent =
-        metin == null
-            ? ""
-            : String(metin);
-
-
-    return div.innerHTML;
-
-}
-
-
-/* ==================================================
-   BAŞLANGIÇ
-================================================== */
-
-async function dunyaPanelBaslat() {
-
-    try {
-
-        const session =
-            await yoneticiOturumuKontrolEt();
-
-
-        if (!session) {
 
             return;
-
         }
 
+        const session =
+            await window.yoneticiOturumuKontrolEt();
+
+        if (!session) {
+            return;
+        }
 
         await haberleriGetir();
-
-
-        console.log(
-            "KARŞI: Dünya yönetim paneli hazır."
-        );
-
     }
 
-    catch (error) {
 
-        console.error(
-            "Dünya paneli başlatma hatası:",
-            error
-        );
-
-        mesajGoster(
-            "Dünya paneli başlatılamadı: " +
-            error.message,
-            "error"
-        );
-
-    }
-
-}
-
-
-dunyaPanelBaslat();
+    dunyaPanelBaslat();
 
 </script>
 
-
 </body>
-
 </html>
