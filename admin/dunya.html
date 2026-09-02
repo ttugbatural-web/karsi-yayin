@@ -82,7 +82,9 @@
             font-size: 14px;
             font-weight: bold;
 
-            transition: opacity .2s, transform .1s;
+            transition:
+                opacity .2s,
+                transform .1s;
         }
 
         button:hover {
@@ -338,6 +340,11 @@
             color: white;
         }
 
+        .duzenle-btn {
+            background: #2563eb;
+            color: white;
+        }
+
         .kaynak-btn {
             background: #e5e5e5;
             color: #222;
@@ -382,6 +389,195 @@
         }
 
         /* ======================================================
+           MODAL
+        ====================================================== */
+
+        .modal {
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            background: rgba(0,0,0,.65);
+
+            padding: 20px;
+
+            overflow-y: auto;
+        }
+
+        .modal.acik {
+            display: flex;
+
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .modal-icerik {
+            width: 100%;
+
+            max-width: 900px;
+
+            background: white;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 10px 40px rgba(0,0,0,.25);
+
+            margin: 20px auto;
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+
+            border-bottom: 1px solid #eee;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+
+            font-size: 21px;
+        }
+
+        .modal-kapat {
+            background: #eee;
+
+            color: #222;
+
+            font-size: 18px;
+
+            width: 40px;
+            height: 40px;
+
+            padding: 0;
+
+            border-radius: 50%;
+        }
+
+        .form {
+            padding: 24px;
+        }
+
+        .form-grup {
+            margin-bottom: 18px;
+        }
+
+        .form-grup label {
+            display: block;
+
+            font-weight: bold;
+
+            font-size: 13px;
+
+            margin-bottom: 7px;
+
+            color: #333;
+        }
+
+        .form-grup input,
+        .form-grup textarea,
+        .form-grup select {
+            width: 100%;
+
+            border: 1px solid #ccc;
+
+            border-radius: 7px;
+
+            padding: 11px 12px;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            background: white;
+
+            color: #222;
+        }
+
+        .form-grup textarea {
+            min-height: 110px;
+
+            resize: vertical;
+
+            line-height: 1.5;
+        }
+
+        .form-grup textarea.icerik-alani {
+            min-height: 300px;
+        }
+
+        .form-grup input:focus,
+        .form-grup textarea:focus,
+        .form-grup select:focus {
+            outline: none;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 2px rgba(37,99,235,.12);
+        }
+
+        .form-iki {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 15px;
+        }
+
+        .modal-footer {
+            padding: 18px 24px;
+
+            border-top: 1px solid #eee;
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+        }
+
+        .iptal-btn {
+            background: #e5e5e5;
+
+            color: #222;
+        }
+
+        .kaydet-btn {
+            background: #16803c;
+
+            color: white;
+        }
+
+        /* ======================================================
+           İÇERİK ÖNİZLEME
+        ====================================================== */
+
+        .icerik-notu {
+            font-size: 12px;
+
+            color: #777;
+
+            margin-top: 6px;
+
+            line-height: 1.4;
+        }
+
+        /* ======================================================
            MOBİL
         ====================================================== */
 
@@ -406,6 +602,34 @@
             }
 
             .haber-btn {
+                width: 100%;
+            }
+
+            .form-iki {
+                grid-template-columns: 1fr;
+            }
+
+            .modal {
+                padding: 10px;
+            }
+
+            .modal-icerik {
+                margin: 5px auto;
+            }
+
+            .modal-header {
+                padding: 16px;
+            }
+
+            .form {
+                padding: 16px;
+            }
+
+            .modal-footer {
+                padding: 16px;
+            }
+
+            .modal-footer button {
                 width: 100%;
             }
         }
@@ -533,6 +757,258 @@
 </div>
 
 
+<!-- ==========================================================
+     HABER DÜZENLEME MODALI
+========================================================== -->
+
+<div
+    id="duzenleModal"
+    class="modal"
+>
+
+    <div class="modal-icerik">
+
+        <div class="modal-header">
+
+            <h2>
+                ✏️ Haberi Düzenle
+            </h2>
+
+            <button
+                type="button"
+                class="modal-kapat"
+                id="modalKapatBtn"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form
+            id="haberForm"
+            class="form"
+        >
+
+            <input
+                type="hidden"
+                id="duzenleId"
+            >
+
+
+            <!-- ==================================================
+                 BAŞLIK
+            ================================================== -->
+
+            <div class="form-grup">
+
+                <label for="duzenleBaslik">
+                    Başlık
+                </label>
+
+                <input
+                    type="text"
+                    id="duzenleBaslik"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ==================================================
+                 ÖZET
+            ================================================== -->
+
+            <div class="form-grup">
+
+                <label for="duzenleOzet">
+                    Özet / Spot
+                </label>
+
+                <textarea
+                    id="duzenleOzet"
+                    rows="4"
+                ></textarea>
+
+            </div>
+
+
+            <!-- ==================================================
+                 İÇERİK
+            ================================================== -->
+
+            <div class="form-grup">
+
+                <label for="duzenleIcerik">
+                    Haber İçeriği
+                </label>
+
+                <textarea
+                    id="duzenleIcerik"
+                    class="icerik-alani"
+                ></textarea>
+
+                <div class="icerik-notu">
+                    Buraya KARŞI'nın kendi haber metnini yazabilir veya
+                    RSS'ten gelen otomatik içeriği düzenleyebilirsin.
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 KATEGORİ / ÜLKE
+            ================================================== -->
+
+            <div class="form-iki">
+
+                <div class="form-grup">
+
+                    <label for="duzenleKategori">
+                        Kategori
+                    </label>
+
+                    <select id="duzenleKategori">
+
+                        <option value="Dünya">
+                            Dünya
+                        </option>
+
+                        <option value="Siyaset">
+                            Siyaset
+                        </option>
+
+                        <option value="Savaş ve Çatışma">
+                            Savaş ve Çatışma
+                        </option>
+
+                        <option value="Ekonomi">
+                            Ekonomi
+                        </option>
+
+                        <option value="Teknoloji">
+                            Teknoloji
+                        </option>
+
+                        <option value="Çevre ve İklim">
+                            Çevre ve İklim
+                        </option>
+
+                        <option value="Sağlık">
+                            Sağlık
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-grup">
+
+                    <label for="duzenleUlke">
+                        Ülke
+                    </label>
+
+                    <input
+                        type="text"
+                        id="duzenleUlke"
+                        placeholder="Örn: ABD"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 KAYNAK
+            ================================================== -->
+
+            <div class="form-iki">
+
+                <div class="form-grup">
+
+                    <label for="duzenleKaynakAdi">
+                        Kaynak Adı
+                    </label>
+
+                    <input
+                        type="text"
+                        id="duzenleKaynakAdi"
+                    >
+
+                </div>
+
+
+                <div class="form-grup">
+
+                    <label for="duzenleKaynakUrl">
+                        Kaynak URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="duzenleKaynakUrl"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 KAPAK FOTOĞRAFI
+            ================================================== -->
+
+            <div class="form-grup">
+
+                <label for="duzenleKapak">
+                    Kapak Fotoğrafı URL
+                </label>
+
+                <input
+                    type="url"
+                    id="duzenleKapak"
+                    placeholder="https://..."
+                >
+
+                <div class="icerik-notu">
+                    Şimdilik doğrudan görsel URL'si kullanıyoruz.
+                    Daha sonra Supabase Storage üzerinden fotoğraf yükleme
+                    sistemi ekleyebiliriz.
+                </div>
+
+            </div>
+
+        </form>
+
+
+        <div class="modal-footer">
+
+            <button
+                type="button"
+                class="iptal-btn"
+                id="modalIptalBtn"
+            >
+                İptal
+            </button>
+
+            <button
+                type="submit"
+                form="haberForm"
+                class="kaydet-btn"
+                id="kaydetBtn"
+            >
+                💾 Değişiklikleri Kaydet
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
 
     // ==========================================================
@@ -541,6 +1017,11 @@
 
     const db =
         window.supabaseClient;
+
+
+    let tumHaberler = [];
+
+    let duzenlenenHaberId = null;
 
 
     if (!db) {
@@ -738,7 +1219,7 @@
         }
 
 
-        const haberler =
+        tumHaberler =
             data || [];
 
 
@@ -747,7 +1228,7 @@
         // ======================================================
 
         istatistikleriGuncelle(
-            haberler
+            tumHaberler
         );
 
 
@@ -756,7 +1237,7 @@
         // ======================================================
 
         if (
-            haberler.length === 0
+            tumHaberler.length === 0
         ) {
 
             document.getElementById(
@@ -790,14 +1271,33 @@
         }
 
 
-        // ======================================================
-        // KARTLARI OLUŞTUR
-        // ======================================================
+        haberleriRenderEt();
 
-        document.getElementById(
-            "haberler"
-        ).innerHTML =
-            haberler
+
+        if (durumMesajiGoster) {
+
+            durumGoster(
+                `${tumHaberler.length} haber bulundu.`,
+                "basarili"
+            );
+        }
+    }
+
+
+    // ==========================================================
+    // HABERLERİ RENDER ET
+    // ==========================================================
+
+    function haberleriRenderEt() {
+
+        const alan =
+            document.getElementById(
+                "haberler"
+            );
+
+
+        alan.innerHTML =
+            tumHaberler
                 .map(
                     haber =>
                         haberKartOlustur(
@@ -805,15 +1305,6 @@
                         )
                 )
                 .join("");
-
-
-        if (durumMesajiGoster) {
-
-            durumGoster(
-                `${haberler.length} haber bulundu.`,
-                "basarili"
-            );
-        }
     }
 
 
@@ -927,10 +1418,10 @@
 
                 <button
                     class="haber-btn taslaga-al-btn"
-                    onclick="durumDegistir(
-                        '${haber.id}',
-                        'taslak'
-                    )"
+                    data-action="taslak"
+                    data-id="${escapeAttribute(
+                        haber.id
+                    )}"
                 >
                     ↩ Taslağa Al
                 </button>
@@ -943,10 +1434,10 @@
 
                 <button
                     class="haber-btn yayina-al-btn"
-                    onclick="durumDegistir(
-                        '${haber.id}',
-                        'yayinda'
-                    )"
+                    data-action="yayinda"
+                    data-id="${escapeAttribute(
+                        haber.id
+                    )}"
                 >
                     ✓ Yayınla
                 </button>
@@ -970,11 +1461,10 @@
 
                 <button
                     class="haber-btn kaynak-btn"
-                    onclick="kaynakAc(
-                        '${escapeAttribute(
-                            haber.kaynak_url
-                        )}'
-                    )"
+                    data-action="kaynak"
+                    data-url="${escapeAttribute(
+                        haber.kaynak_url
+                    )}"
                 >
                     🔗 Kaynağı Aç
                 </button>
@@ -1047,7 +1537,19 @@
 
                     <div class="haber-actions">
 
+                        <button
+                            class="haber-btn duzenle-btn"
+                            data-action="duzenle"
+                            data-id="${escapeAttribute(
+                                haber.id
+                            )}"
+                        >
+                            ✏️ Düzenle
+                        </button>
+
+
                         ${islemButonu}
+
 
                         ${kaynakButonu}
 
@@ -1062,7 +1564,7 @@
 
 
     // ==========================================================
-    // DURUM DEĞİŞTİR
+    // HABER DURUMUNU DEĞİŞTİR
     // ==========================================================
 
     async function durumDegistir(
@@ -1081,6 +1583,25 @@
         }
 
 
+        const haber =
+            tumHaberler.find(
+                item =>
+                    String(item.id) ===
+                    String(haberId)
+            );
+
+
+        if (!haber) {
+
+            durumGoster(
+                "Haber bulunamadı.",
+                "hata"
+            );
+
+            return;
+        }
+
+
         const yayinlanacak =
             yeniDurum ===
             "yayinda";
@@ -1088,8 +1609,8 @@
 
         const soru =
             yayinlanacak
-                ? "Bu haberi yayınlamak istediğine emin misin?"
-                : "Bu haberi tekrar taslağa almak istediğine emin misin?";
+                ? `"${haber.baslik}"\n\nBu haberi yayınlamak istediğine emin misin?`
+                : `"${haber.baslik}"\n\nBu haberi tekrar taslağa almak istediğine emin misin?`;
 
 
         const onay =
@@ -1111,10 +1632,6 @@
         );
 
 
-        // ======================================================
-        // GÜNCELLEME VERİSİ
-        // ======================================================
-
         const guncelleme = {
 
             durum:
@@ -1125,7 +1642,6 @@
         };
 
 
-        // Yayınlanıyorsa yayın tarihini şimdi yap
         if (
             yayinlanacak
         ) {
@@ -1134,10 +1650,6 @@
                 new Date().toISOString();
         }
 
-
-        // ======================================================
-        // SUPABASE UPDATE
-        // ======================================================
 
         const {
             error
@@ -1154,10 +1666,6 @@
                     haberId
                 );
 
-
-        // ======================================================
-        // HATA
-        // ======================================================
 
         if (error) {
 
@@ -1180,10 +1688,6 @@
         }
 
 
-        // ======================================================
-        // BAŞARILI
-        // ======================================================
-
         durumGoster(
             yayinlanacak
                 ? "🟢 Haber başarıyla yayınlandı."
@@ -1192,10 +1696,349 @@
         );
 
 
-        // Listeyi yenile
         await haberleriGetir(
             false
         );
+    }
+
+
+    // ==========================================================
+    // DÜZENLEME MODALINI AÇ
+    // ==========================================================
+
+    function haberDuzenle(
+        haberId
+    ) {
+
+        const haber =
+            tumHaberler.find(
+                item =>
+                    String(item.id) ===
+                    String(haberId)
+            );
+
+
+        if (!haber) {
+
+            durumGoster(
+                "Düzenlenecek haber bulunamadı.",
+                "hata"
+            );
+
+            return;
+        }
+
+
+        duzenlenenHaberId =
+            haber.id;
+
+
+        document.getElementById(
+            "duzenleId"
+        ).value =
+            haber.id || "";
+
+
+        document.getElementById(
+            "duzenleBaslik"
+        ).value =
+            haber.baslik || "";
+
+
+        document.getElementById(
+            "duzenleOzet"
+        ).value =
+            haber.ozet || "";
+
+
+        document.getElementById(
+            "duzenleIcerik"
+        ).value =
+            haber.icerik || "";
+
+
+        document.getElementById(
+            "duzenleKategori"
+        ).value =
+            haber.kategori || "Dünya";
+
+
+        document.getElementById(
+            "duzenleUlke"
+        ).value =
+            haber.ulke || "";
+
+
+        document.getElementById(
+            "duzenleKaynakAdi"
+        ).value =
+            haber.kaynak_adi || "";
+
+
+        document.getElementById(
+            "duzenleKaynakUrl"
+        ).value =
+            haber.kaynak_url || "";
+
+
+        document.getElementById(
+            "duzenleKapak"
+        ).value =
+            haber.kapak_fotografi_url || "";
+
+
+        document.getElementById(
+            "duzenleModal"
+        ).classList.add(
+            "acik"
+        );
+
+
+        document.body.style.overflow =
+            "hidden";
+
+
+        setTimeout(
+            () => {
+
+                document.getElementById(
+                    "duzenleBaslik"
+                ).focus();
+
+            },
+            100
+        );
+    }
+
+
+    // ==========================================================
+    // MODALI KAPAT
+    // ==========================================================
+
+    function modalKapat() {
+
+        document.getElementById(
+            "duzenleModal"
+        ).classList.remove(
+            "acik"
+        );
+
+
+        document.body.style.overflow =
+            "";
+
+
+        duzenlenenHaberId =
+            null;
+    }
+
+
+    // ==========================================================
+    // HABERİ KAYDET
+    // ==========================================================
+
+    async function haberKaydet(
+        event
+    ) {
+
+        event.preventDefault();
+
+
+        if (!db) {
+
+            durumGoster(
+                "Supabase bağlantısı bulunamadı.",
+                "hata"
+            );
+
+            return;
+        }
+
+
+        if (!duzenlenenHaberId) {
+
+            durumGoster(
+                "Düzenlenecek haber seçilmedi.",
+                "hata"
+            );
+
+            return;
+        }
+
+
+        const kaydetBtn =
+            document.getElementById(
+                "kaydetBtn"
+            );
+
+
+        const baslik =
+            document.getElementById(
+                "duzenleBaslik"
+            ).value.trim();
+
+
+        const ozet =
+            document.getElementById(
+                "duzenleOzet"
+            ).value.trim();
+
+
+        const icerik =
+            document.getElementById(
+                "duzenleIcerik"
+            ).value.trim();
+
+
+        const kategori =
+            document.getElementById(
+                "duzenleKategori"
+            ).value;
+
+
+        const ulke =
+            document.getElementById(
+                "duzenleUlke"
+            ).value.trim();
+
+
+        const kaynakAdi =
+            document.getElementById(
+                "duzenleKaynakAdi"
+            ).value.trim();
+
+
+        const kaynakUrl =
+            document.getElementById(
+                "duzenleKaynakUrl"
+            ).value.trim();
+
+
+        const kapak =
+            document.getElementById(
+                "duzenleKapak"
+            ).value.trim();
+
+
+        if (!baslik) {
+
+            durumGoster(
+                "❌ Haber başlığı boş bırakılamaz.",
+                "hata"
+            );
+
+            return;
+        }
+
+
+        kaydetBtn.disabled =
+            true;
+
+
+        kaydetBtn.textContent =
+            "💾 Kaydediliyor...";
+
+
+        durumGoster(
+            "✏️ Haber değişiklikleri kaydediliyor...",
+            "bilgi"
+        );
+
+
+        const guncelleme = {
+
+            baslik:
+                baslik,
+
+            ozet:
+                ozet,
+
+            icerik:
+                icerik,
+
+            kategori:
+                kategori,
+
+            ulke:
+                ulke,
+
+            kaynak_adi:
+                kaynakAdi,
+
+            kaynak_url:
+                kaynakUrl,
+
+            kapak_fotografi_url:
+                kapak,
+
+            updated_at:
+                new Date().toISOString()
+        };
+
+
+        const {
+            error
+        } =
+            await db
+                .from(
+                    "dunya_haberleri"
+                )
+                .update(
+                    guncelleme
+                )
+                .eq(
+                    "id",
+                    duzenlenenHaberId
+                );
+
+
+        if (error) {
+
+            console.error(
+                "Haber düzenleme hatası:",
+                error
+            );
+
+
+            durumGoster(
+                "❌ Haber kaydedilemedi.\n\n" +
+                (
+                    error.message ||
+                    "Bilinmeyen Supabase hatası"
+                ),
+                "hata"
+            );
+
+
+            kaydetBtn.disabled =
+                false;
+
+            kaydetBtn.textContent =
+                "💾 Değişiklikleri Kaydet";
+
+            return;
+        }
+
+
+        modalKapat();
+
+
+        durumGoster(
+            "✅ Haber başarıyla güncellendi.",
+            "basarili"
+        );
+
+
+        await haberleriGetir(
+            false
+        );
+
+
+        kaydetBtn.disabled =
+            false;
+
+        kaydetBtn.textContent =
+            "💾 Değişiklikleri Kaydet";
     }
 
 
@@ -1596,7 +2439,179 @@
 
 
     // ==========================================================
-    // BUTONLAR
+    // HABER BUTONLARI — EVENT DELEGATION
+    // ==========================================================
+
+    document
+        .getElementById(
+            "haberler"
+        )
+        .addEventListener(
+            "click",
+            function(event) {
+
+                const buton =
+                    event.target.closest(
+                        "button[data-action]"
+                    );
+
+
+                if (!buton) {
+                    return;
+                }
+
+
+                const action =
+                    buton.dataset.action;
+
+
+                const id =
+                    buton.dataset.id;
+
+
+                if (
+                    action ===
+                    "duzenle"
+                ) {
+
+                    haberDuzenle(
+                        id
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    action ===
+                    "yayinda"
+                ) {
+
+                    durumDegistir(
+                        id,
+                        "yayinda"
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    action ===
+                    "taslak"
+                ) {
+
+                    durumDegistir(
+                        id,
+                        "taslak"
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    action ===
+                    "kaynak"
+                ) {
+
+                    kaynakAc(
+                        buton.dataset.url
+                    );
+
+                    return;
+                }
+
+            }
+        );
+
+
+    // ==========================================================
+    // MODAL BUTONLARI
+    // ==========================================================
+
+    document
+        .getElementById(
+            "modalKapatBtn"
+        )
+        .addEventListener(
+            "click",
+            modalKapat
+        );
+
+
+    document
+        .getElementById(
+            "modalIptalBtn"
+        )
+        .addEventListener(
+            "click",
+            modalKapat
+        );
+
+
+    document
+        .getElementById(
+            "haberForm"
+        )
+        .addEventListener(
+            "submit",
+            haberKaydet
+        );
+
+
+    // Modal dışına tıklayınca kapat
+    document
+        .getElementById(
+            "duzenleModal"
+        )
+        .addEventListener(
+            "click",
+            function(event) {
+
+                if (
+                    event.target ===
+                    this
+                ) {
+
+                    modalKapat();
+                }
+            }
+        );
+
+
+    // ESC ile kapat
+    document
+        .addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key ===
+                    "Escape"
+                ) {
+
+                    const modal =
+                        document.getElementById(
+                            "duzenleModal"
+                        );
+
+
+                    if (
+                        modal.classList.contains(
+                            "acik"
+                        )
+                    ) {
+
+                        modalKapat();
+                    }
+                }
+            }
+        );
+
+
+    // ==========================================================
+    // ANA BUTONLAR
     // ==========================================================
 
     document
