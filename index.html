@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="tr">
 
 <head>
@@ -6,7 +7,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+   content="width=device-width, initial-scale=1.0">
 
 <title>KARŞI — Bağımsız Yayın</title>
 
@@ -795,9 +796,7 @@ footer strong {
 
 </head>
 
-
 <body>
-
 
 <!-- ==================================================
      HEADER
@@ -805,56 +804,57 @@ footer strong {
 
 <header>
 
-    <div class="top">
+```
+<div class="top">
 
-        <div
-            class="logo"
-            id="siteLogo"
-        >
-            KARŞI
+    <div
+        class="logo"
+        id="siteLogo"
+    >
+        KARŞI
+    </div>
+
+
+    <div class="top-right">
+
+        <div class="languages">
+
+            <a
+                href="index.html"
+                class="active"
+            >
+                TR
+            </a>
+
+            <span>|</span>
+
+            <a href="#">
+                EN
+            </a>
+
+            <span>|</span>
+
+            <a href="#">
+                FR
+            </a>
+
         </div>
 
 
-        <div class="top-right">
-
-            <div class="languages">
-
-                <a
-                    href="index.html"
-                    class="active"
-                >
-                    TR
-                </a>
-
-                <span>|</span>
-
-                <a href="#">
-                    EN
-                </a>
-
-                <span>|</span>
-
-                <a href="#">
-                    FR
-                </a>
-
-            </div>
-
-
-            <div
-                class="tagline"
-                id="siteSlogan"
-            >
-                Gücün karşısında,
-                gerçeğin yanında.
-            </div>
-
+        <div
+            class="tagline"
+            id="siteSlogan"
+        >
+            Gücün karşısında,
+            gerçeğin yanında.
         </div>
 
     </div>
 
-</header>
+</div>
+```
 
+</header>
 
 <!-- ==================================================
      NAV
@@ -862,40 +862,41 @@ footer strong {
 
 <nav>
 
-    <div class="nav-inner">
+```
+<div class="nav-inner">
 
-        <a href="index.html">
-            ANA SAYFA
-        </a>
+    <a href="index.html">
+        ANA SAYFA
+    </a>
 
-        <a href="kose-yazilari.html">
-            KÖŞE YAZILARI
-        </a>
+    <a href="kose-yazilari.html">
+        KÖŞE YAZILARI
+    </a>
 
-        <a href="haberler.html">
-            HABERLER
-        </a>
+    <a href="haberler.html">
+        HABERLER
+    </a>
 
-        <a href="gundem.html">
-            KARŞI GÜNDEM
-        </a>
+    <a href="gundem.html">
+        KARŞI GÜNDEM
+    </a>
 
-        <a href="dunya.html">
-            DÜNYA
-        </a>
+    <a href="dunya.html">
+        DÜNYA
+    </a>
 
-        <a href="dosyalar.html">
-            DOSYALAR
-        </a>
+    <a href="dosyalar.html">
+        DOSYALAR
+    </a>
 
-        <a href="#">
-            HAKKIMIZDA
-        </a>
+    <a href="hakkimizda.html">
+        HAKKIMIZDA
+    </a>
 
-    </div>
+</div>
+```
 
 </nav>
-
 
 <!-- ==================================================
      MAIN
@@ -903,174 +904,174 @@ footer strong {
 
 <main>
 
+```
+<!-- ==================================================
+     ANA SAYFA BAŞLIĞI
+================================================== -->
+
+<section class="home-intro">
+
+    <h1>
+        KARŞI
+    </h1>
+
+    <p id="homeIntroText">
+        Söylenmeyeni söylemek,
+        sorulmayanı sormak için.
+    </p>
+
+</section>
+
+
+<!-- ==================================================
+     ÜÇ SÜTUN
+================================================== -->
+
+<section class="home-columns">
+
 
     <!-- ==================================================
-         ANA SAYFA BAŞLIĞI
+         KÖŞE YAZILARI
     ================================================== -->
 
-    <section class="home-intro">
+    <section
+        class="home-column column-kose"
+    >
 
-        <h1>
-            KARŞI
-        </h1>
+        <div class="column-header">
 
-        <p id="homeIntroText">
-            Söylenmeyeni söylemek,
-            sorulmayanı sormak için.
-        </p>
-
-    </section>
-
-
-    <!-- ==================================================
-         ÜÇ SÜTUN
-    ================================================== -->
-
-    <section class="home-columns">
-
-
-        <!-- ==================================================
-             KÖŞE YAZILARI
-        ================================================== -->
-
-        <section
-            class="home-column column-kose"
-        >
-
-            <div class="column-header">
-
-                <h2>
-                    Köşe Yazıları
-                </h2>
-
-                <a
-                    href="kose-yazilari.html"
-                    class="column-all"
-                >
-                    TÜMÜ
-                </a>
-
-            </div>
-
-
-            <div
-                id="koseList"
-                class="content-list"
-            >
-
-                <div class="loading">
-                    Köşe yazıları yükleniyor...
-                </div>
-
-            </div>
-
+            <h2>
+                Köşe Yazıları
+            </h2>
 
             <a
                 href="kose-yazilari.html"
-                class="more-link"
+                class="column-all"
             >
-                TÜM KÖŞE YAZILARINI GÖR →
+                TÜMÜ
             </a>
 
-        </section>
+        </div>
 
 
-        <!-- ==================================================
-             KARŞI GÜNDEM
-        ================================================== -->
-
-        <section
-            class="home-column column-gundem"
+        <div
+            id="koseList"
+            class="content-list"
         >
 
-            <div class="column-header">
-
-                <h2>
-                    <span>KARŞI</span> Gündem
-                </h2>
-
-                <a
-                    href="gundem.html"
-                    class="column-all"
-                >
-                    TÜMÜ
-                </a>
-
+            <div class="loading">
+                Köşe yazıları yükleniyor...
             </div>
 
-
-            <div
-                id="gundemList"
-                class="content-list"
-            >
-
-                <div class="loading">
-                    KARŞI Gündem yükleniyor...
-                </div>
-
-            </div>
+        </div>
 
 
-            <a
-                href="gundem.html"
-                class="more-link"
-            >
-                TÜM KARŞI GÜNDEMİ GÖR →
-            </a>
-
-        </section>
-
-
-        <!-- ==================================================
-             HABERLER
-        ================================================== -->
-
-        <section
-            class="home-column column-news"
+        <a
+            href="kose-yazilari.html"
+            class="more-link"
         >
-
-            <div class="column-header">
-
-                <h2>
-                    Haberler
-                </h2>
-
-                <a
-                    href="haberler.html"
-                    class="column-all"
-                >
-                    TÜMÜ
-                </a>
-
-            </div>
-
-
-            <div
-                id="newsList"
-                class="content-list"
-            >
-
-                <div class="loading">
-                    Haberler yükleniyor...
-                </div>
-
-            </div>
-
-
-            <a
-                href="haberler.html"
-                class="more-link"
-            >
-                TÜM HABERLERİ GÖR →
-            </a>
-
-        </section>
-
+            TÜM KÖŞE YAZILARINI GÖR →
+        </a>
 
     </section>
 
-</main>
 
+    <!-- ==================================================
+         KARŞI GÜNDEM
+    ================================================== -->
+
+    <section
+        class="home-column column-gundem"
+    >
+
+        <div class="column-header">
+
+            <h2>
+                <span>KARŞI</span> Gündem
+            </h2>
+
+            <a
+                href="gundem.html"
+                class="column-all"
+            >
+                TÜMÜ
+            </a>
+
+        </div>
+
+
+        <div
+            id="gundemList"
+            class="content-list"
+        >
+
+            <div class="loading">
+                KARŞI Gündem yükleniyor...
+            </div>
+
+        </div>
+
+
+        <a
+            href="gundem.html"
+            class="more-link"
+        >
+            TÜM KARŞI GÜNDEMİ GÖR →
+        </a>
+
+    </section>
+
+
+    <!-- ==================================================
+         HABERLER
+    ================================================== -->
+
+    <section
+        class="home-column column-news"
+    >
+
+        <div class="column-header">
+
+            <h2>
+                Haberler
+            </h2>
+
+            <a
+                href="haberler.html"
+                class="column-all"
+            >
+                TÜMÜ
+            </a>
+
+        </div>
+
+
+        <div
+            id="newsList"
+            class="content-list"
+        >
+
+            <div class="loading">
+                Haberler yükleniyor...
+            </div>
+
+        </div>
+
+
+        <a
+            href="haberler.html"
+            class="more-link"
+        >
+            TÜM HABERLERİ GÖR →
+        </a>
+
+    </section>
+
+
+</section>
+```
+
+</main>
 
 <!-- ==================================================
      FOOTER
@@ -1078,32 +1079,32 @@ footer strong {
 
 <footer>
 
-    <strong id="footerSiteAdi">
-        KARŞI
-    </strong>
+```
+<strong id="footerSiteAdi">
+    KARŞI
+</strong>
 
-    <br><br>
+<br><br>
 
-    <span id="footerYazi">
-        Bağımsız düşüncenin tarafı.
-    </span>
+<span id="footerYazi">
+    Bağımsız düşüncenin tarafı.
+</span>
 
-    <br><br>
+<br><br>
 
-    © 2026
-    <span id="footerYilSiteAdi">
-        KARŞI
-    </span>
+© 2026
+<span id="footerYilSiteAdi">
+    KARŞI
+</span>
+```
 
 </footer>
-
 
 <!-- ==================================================
      SUPABASE
 ================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <script>
 
@@ -2369,7 +2370,6 @@ document.addEventListener(
 );
 
 </script>
-
 
 </body>
 
