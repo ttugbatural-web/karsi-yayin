@@ -100,6 +100,11 @@
             cursor: not-allowed;
         }
 
+        #yonetimBtn {
+            background: #2563eb;
+            color: white;
+        }
+
         #taraBtn {
             background: #111;
             color: white;
@@ -667,6 +672,13 @@
     ====================================================== -->
 
     <div class="actions">
+
+        <button
+            id="yonetimBtn"
+            type="button"
+        >
+            ← Yönetim Paneline Dön
+        </button>
 
         <button id="taraBtn">
             🌍 Dünyayı Tara
@@ -2613,6 +2625,21 @@
     // ==========================================================
     // ANA BUTONLAR
     // ==========================================================
+
+    document
+        .getElementById(
+            "yonetimBtn"
+        )
+        .addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "/admin/";
+
+            }
+        );
+
 
     document
         .getElementById(
