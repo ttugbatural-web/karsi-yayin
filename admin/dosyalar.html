@@ -1,0 +1,1618 @@
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dosyalar — KARŞI Yönetim</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f3f3f3;
+            color: #111;
+        }
+
+        header {
+            background: #050505;
+            color: white;
+            border-bottom: 4px solid #e00000;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            position: relative;
+            font-size: 34px;
+            font-weight: 900;
+            letter-spacing: -3px;
+        }
+
+        .logo::after {
+            content: "";
+            position: absolute;
+            left: -3px;
+            right: -3px;
+            top: 50%;
+            height: 4px;
+            background: #e00000;
+            transform: rotate(-8deg);
+        }
+
+        .header-title {
+            text-align: right;
+        }
+
+        .header-title strong {
+            display: block;
+            font-size: 16px;
+        }
+
+        .header-title span {
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 30px 20px 60px;
+        }
+
+        .ust-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .ust-bar h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .butonlar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: 0;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 11px 15px;
+            font-size: 13px;
+        }
+
+        .btn-yeni {
+            background: #e00000;
+            color: white;
+        }
+
+        .btn-yeni:hover {
+            background: #b80000;
+        }
+
+        .btn-geri {
+            background: #222;
+            color: white;
+        }
+
+        .btn-yenile {
+            background: #ddd;
+            color: #111;
+        }
+
+        .mesaj {
+            display: none;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .mesaj.basarili {
+            display: block;
+            background: #e8f7e8;
+            border: 1px solid #a7d5a7;
+            color: #245b24;
+        }
+
+        .mesaj.hata {
+            display: block;
+            background: #fdeaea;
+            border: 1px solid #e0aaaa;
+            color: #8b0000;
+        }
+
+        .liste {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .dosya {
+            background: white;
+            border: 1px solid #ddd;
+            border-left: 4px solid #111;
+            padding: 18px;
+        }
+
+        .dosya.yayinda {
+            border-left-color: #168a16;
+        }
+
+        .dosya.taslak {
+            border-left-color: #e00000;
+        }
+
+        .dosya-ust {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .dosya-baslik {
+            min-width: 0;
+        }
+
+        .dosya-baslik h2 {
+            margin: 0 0 7px;
+            font-size: 20px;
+            line-height: 1.3;
+        }
+
+        .kategori {
+            color: #e00000;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ozet {
+            margin: 10px 0 0;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .durum {
+            flex-shrink: 0;
+            padding: 6px 9px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .durum.yayinda {
+            background: #e3f5e3;
+            color: #187018;
+        }
+
+        .durum.taslak {
+            background: #fde3e3;
+            color: #a00000;
+        }
+
+        .meta {
+            margin-top: 12px;
+            color: #888;
+            font-size: 11px;
+        }
+
+        .islemler {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 15px;
+        }
+
+        .islemler button {
+            padding: 8px 11px;
+            font-size: 11px;
+        }
+
+        .btn-duzenle {
+            background: #222;
+            color: white;
+        }
+
+        .btn-yayinla {
+            background: #168a16;
+            color: white;
+        }
+
+        .btn-taslak {
+            background: #777;
+            color: white;
+        }
+
+        .btn-sil {
+            background: #e00000;
+            color: white;
+        }
+
+        .bos {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 45px 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        .bos strong {
+            display: block;
+            color: #111;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        /* MODAL */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .72);
+            z-index: 9999;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal.acik {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .modal-kutu {
+            width: 100%;
+            max-width: 850px;
+            background: white;
+            margin: 20px auto;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .modal-baslik {
+            background: #050505;
+            color: white;
+            padding: 17px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-baslik h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .modal-kapat {
+            background: transparent;
+            color: white;
+            font-size: 25px;
+            padding: 0 5px;
+        }
+
+        .form {
+            padding: 22px;
+        }
+
+        .alan {
+            margin-bottom: 17px;
+        }
+
+        .alan label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .alan small {
+            display: block;
+            margin-top: 5px;
+            color: #777;
+            font-size: 11px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 11px;
+            font-family: inherit;
+            font-size: 14px;
+            background: white;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        #icerik {
+            min-height: 320px;
+        }
+
+        .form-satir {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .modal-alt {
+            padding: 15px 22px;
+            background: #f5f5f5;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn-iptal {
+            background: #ddd;
+            color: #111;
+        }
+
+        .btn-kaydet {
+            background: #e00000;
+            color: white;
+        }
+
+        .yukleniyor {
+            padding: 30px;
+            text-align: center;
+            color: #777;
+        }
+
+        @media (max-width: 700px) {
+
+            .header-inner {
+                padding: 16px 15px;
+            }
+
+            .logo {
+                font-size: 29px;
+            }
+
+            .header-title {
+                display: none;
+            }
+
+            main {
+                padding: 25px 15px 50px;
+            }
+
+            .ust-bar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .ust-bar h1 {
+                font-size: 24px;
+            }
+
+            .dosya-ust {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .form-satir {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .modal {
+                padding: 8px;
+            }
+
+            .modal-kutu {
+                margin: 5px auto;
+            }
+
+            .form {
+                padding: 17px;
+            }
+
+            .modal-alt {
+                padding: 12px 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+
+        <div class="logo">KARŞI</div>
+
+        <div class="header-title">
+            <strong>KARŞI Yönetim</strong>
+            <span>Dosyalar</span>
+        </div>
+
+    </div>
+</header>
+
+
+<main>
+
+    <div class="ust-bar">
+
+        <h1>📁 Dosyalar</h1>
+
+        <div class="butonlar">
+
+            <button
+                type="button"
+                class="btn-geri"
+                id="yonetimBtn"
+            >
+                ← Yönetim Paneline Dön
+            </button>
+
+            <button
+                type="button"
+                class="btn-yenile"
+                id="yenileBtn"
+            >
+                ↻ Yenile
+            </button>
+
+            <button
+                type="button"
+                class="btn-yeni"
+                id="yeniBtn"
+            >
+                + Yeni Dosya
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div id="mesaj" class="mesaj"></div>
+
+
+    <div id="dosyalarListesi" class="liste">
+        <div class="yukleniyor">
+            Dosyalar yükleniyor...
+        </div>
+    </div>
+
+</main>
+
+
+<!-- ==========================================
+     MODAL
+========================================== -->
+
+<div id="modal" class="modal">
+
+    <div class="modal-kutu">
+
+        <div class="modal-baslik">
+
+            <h2 id="modalBaslik">
+                Yeni Dosya
+            </h2>
+
+            <button
+                type="button"
+                class="modal-kapat"
+                id="modalKapat"
+                aria-label="Kapat"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="dosyaForm" class="form">
+
+            <input
+                type="hidden"
+                id="dosyaId"
+            >
+
+
+            <div class="alan">
+
+                <label for="baslik">
+                    Başlık *
+                </label>
+
+                <input
+                    type="text"
+                    id="baslik"
+                    required
+                    placeholder="Dosya başlığı"
+                >
+
+            </div>
+
+
+            <div class="form-satir">
+
+                <div class="alan">
+
+                    <label for="kategori">
+                        Kategori
+                    </label>
+
+                    <select id="kategori">
+
+                        <option value="Dosya">
+                            Dosya
+                        </option>
+
+                        <option value="Araştırma">
+                            Araştırma
+                        </option>
+
+                        <option value="İnceleme">
+                            İnceleme
+                        </option>
+
+                        <option value="Özel Dosya">
+                            Özel Dosya
+                        </option>
+
+                        <option value="Rapor">
+                            Rapor
+                        </option>
+
+                        <option value="Arşiv">
+                            Arşiv
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="alan">
+
+                    <label for="durum">
+                        Durum
+                    </label>
+
+                    <select id="durum">
+
+                        <option value="taslak">
+                            Taslak
+                        </option>
+
+                        <option value="yayinda">
+                            Yayında
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="alan">
+
+                <label for="ozet">
+                    Özet / Spot
+                </label>
+
+                <textarea
+                    id="ozet"
+                    placeholder="Dosyanın kısa açıklaması..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="alan">
+
+                <label for="icerik">
+                    Dosya İçeriği
+                </label>
+
+                <textarea
+                    id="icerik"
+                    placeholder="Dosyanın tamamını buraya yaz..."
+                ></textarea>
+
+                <small>
+                    Şimdilik düz metin olarak kullanılmaktadır.
+                </small>
+
+            </div>
+
+
+            <div class="alan">
+
+                <label for="slug">
+                    Slug
+                </label>
+
+                <input
+                    type="text"
+                    id="slug"
+                    placeholder="ornek-dosya-basligi"
+                >
+
+                <small>
+                    Boş bırakırsanız başlıktan otomatik oluşturulur.
+                </small>
+
+            </div>
+
+
+            <div class="alan">
+
+                <label for="kapak">
+                    Kapak Fotoğrafı URL
+                </label>
+
+                <input
+                    type="url"
+                    id="kapak"
+                    placeholder="https://..."
+                >
+
+                <small>
+                    İsteğe bağlıdır.
+                </small>
+
+            </div>
+
+
+            <div class="alan">
+
+                <label for="yayinTarihi">
+                    Yayın Tarihi
+                </label>
+
+                <input
+                    type="datetime-local"
+                    id="yayinTarihi"
+                >
+
+                <small>
+                    Boş bırakırsanız yayın sırasında otomatik olarak şu anki tarih kullanılır.
+                </small>
+
+            </div>
+
+        </form>
+
+
+        <div class="modal-alt">
+
+            <button
+                type="button"
+                class="btn-iptal"
+                id="modalIptal"
+            >
+                İptal
+            </button>
+
+            <button
+                type="button"
+                class="btn-kaydet"
+                id="kaydetBtn"
+            >
+                💾 Kaydet
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+
+<script>
+
+    /* ==========================================
+       SUPABASE
+    ========================================== */
+
+    const SUPABASE_URL = "https://rfqiffvudbmphvklxetf.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+
+    const db = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+
+    /* ==========================================
+       ELEMENTLER
+    ========================================== */
+
+    const liste = document.getElementById("dosyalarListesi");
+    const mesaj = document.getElementById("mesaj");
+    const modal = document.getElementById("modal");
+    const dosyaForm = document.getElementById("dosyaForm");
+
+
+    let mevcutDosyalar = [];
+
+
+    /* ==========================================
+       HTML GÜVENLİĞİ
+    ========================================== */
+
+    function escapeHtml(metin) {
+
+        if (
+            metin === null ||
+            metin === undefined
+        ) {
+            return "";
+        }
+
+        return String(metin)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+
+    /* ==========================================
+       SLUG OLUŞTUR
+    ========================================== */
+
+    function slugOlustur(metin) {
+
+        return String(metin || "")
+            .toLowerCase()
+            .trim()
+            .replace(/ğ/g, "g")
+            .replace(/ü/g, "u")
+            .replace(/ş/g, "s")
+            .replace(/ı/g, "i")
+            .replace(/ö/g, "o")
+            .replace(/ç/g, "c")
+            .replace(/[^a-z0-9\s-]/g, "")
+            .replace(/\s+/g, "-")
+            .replace(/-+/g, "-");
+    }
+
+
+    /* ==========================================
+       TARİH
+    ========================================== */
+
+    function tarihFormatla(tarih) {
+
+        if (!tarih) {
+            return "";
+        }
+
+        const d = new Date(tarih);
+
+        if (Number.isNaN(d.getTime())) {
+            return "";
+        }
+
+        return d.toLocaleDateString(
+            "tr-TR",
+            {
+                day: "2-digit",
+                month: "long",
+                year: "numeric"
+            }
+        );
+    }
+
+
+    /* ==========================================
+       MESAJ
+    ========================================== */
+
+    function mesajGoster(metin, tip = "basarili") {
+
+        mesaj.textContent = metin;
+        mesaj.className = "mesaj " + tip;
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+        setTimeout(() => {
+
+            mesaj.className = "mesaj";
+
+        }, 4000);
+    }
+
+
+    /* ==========================================
+       DOSYALARI GETİR
+    ========================================== */
+
+    async function dosyalariGetir() {
+
+        liste.innerHTML = `
+            <div class="yukleniyor">
+                Dosyalar yükleniyor...
+            </div>
+        `;
+
+
+        const {
+            data,
+            error
+        } = await db
+            .from("dosyalar")
+            .select("*")
+            .order("created_at", {
+                ascending: false
+            });
+
+
+        if (error) {
+
+            console.error(
+                "Dosyalar yüklenemedi:",
+                error
+            );
+
+            liste.innerHTML = `
+                <div class="bos">
+                    <strong>Dosyalar yüklenemedi.</strong>
+                    ${escapeHtml(error.message)}
+                </div>
+            `;
+
+            return;
+        }
+
+
+        mevcutDosyalar = data || [];
+
+
+        if (mevcutDosyalar.length === 0) {
+
+            liste.innerHTML = `
+                <div class="bos">
+                    <strong>Henüz dosya oluşturulmamış.</strong>
+                    İlk dosyanı oluşturmak için
+                    "+ Yeni Dosya" butonunu kullan.
+                </div>
+            `;
+
+            return;
+        }
+
+
+        liste.innerHTML = mevcutDosyalar
+            .map(dosya => {
+
+                const yayinda =
+                    dosya.durum === "yayinda";
+
+                return `
+
+                    <article
+                        class="dosya ${yayinda ? "yayinda" : "taslak"}"
+                    >
+
+                        <div class="dosya-ust">
+
+                            <div class="dosya-baslik">
+
+                                <div class="kategori">
+                                    ${escapeHtml(
+                                        dosya.kategori || "Dosya"
+                                    )}
+                                </div>
+
+                                <h2>
+                                    ${escapeHtml(
+                                        dosya.baslik
+                                    )}
+                                </h2>
+
+                                ${
+                                    dosya.ozet
+                                    ? `
+                                        <p class="ozet">
+                                            ${escapeHtml(
+                                                dosya.ozet
+                                            )}
+                                        </p>
+                                    `
+                                    : ""
+                                }
+
+                            </div>
+
+
+                            <div
+                                class="durum ${
+                                    yayinda
+                                    ? "yayinda"
+                                    : "taslak"
+                                }"
+                            >
+                                ${
+                                    yayinda
+                                    ? "YAYINDA"
+                                    : "TASLAK"
+                                }
+                            </div>
+
+                        </div>
+
+
+                        <div class="meta">
+
+                            ${
+                                dosya.yayin_tarihi
+                                ? "Yayın: " +
+                                  tarihFormatla(
+                                      dosya.yayin_tarihi
+                                  )
+                                : "Yayın tarihi yok"
+                            }
+
+                            &nbsp; • &nbsp;
+
+                            Slug:
+                            ${escapeHtml(
+                                dosya.slug || "-"
+                            )}
+
+                        </div>
+
+
+                        <div class="islemler">
+
+                            <button
+                                type="button"
+                                class="btn-duzenle"
+                                onclick="dosyaDuzenle('${dosya.id}')"
+                            >
+                                ✏️ Düzenle
+                            </button>
+
+
+                            ${
+                                yayinda
+                                ? `
+                                    <button
+                                        type="button"
+                                        class="btn-taslak"
+                                        onclick="durumDegistir(
+                                            '${dosya.id}',
+                                            'taslak'
+                                        )"
+                                    >
+                                        ↩ Taslağa Al
+                                    </button>
+                                `
+                                : `
+                                    <button
+                                        type="button"
+                                        class="btn-yayinla"
+                                        onclick="durumDegistir(
+                                            '${dosya.id}',
+                                            'yayinda'
+                                        )"
+                                    >
+                                        ✓ Yayınla
+                                    </button>
+                                `
+                            }
+
+
+                            <button
+                                type="button"
+                                class="btn-sil"
+                                onclick="dosyaSil('${dosya.id}')"
+                            >
+                                🗑️ Sil
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            })
+            .join("");
+    }
+
+
+    /* ==========================================
+       YENİ DOSYA
+    ========================================== */
+
+    function yeniDosya() {
+
+        dosyaForm.reset();
+
+        document.getElementById("dosyaId").value = "";
+
+        document.getElementById("durum").value =
+            "taslak";
+
+        document.getElementById("modalBaslik")
+            .textContent = "Yeni Dosya";
+
+
+        modal.classList.add("acik");
+
+        document.getElementById("baslik").focus();
+    }
+
+
+    /* ==========================================
+       DOSYA DÜZENLE
+    ========================================== */
+
+    function dosyaDuzenle(id) {
+
+        const dosya = mevcutDosyalar.find(
+            item => String(item.id) === String(id)
+        );
+
+
+        if (!dosya) {
+            mesajGoster(
+                "Dosya bulunamadı.",
+                "hata"
+            );
+            return;
+        }
+
+
+        document.getElementById("dosyaId").value =
+            dosya.id;
+
+        document.getElementById("baslik").value =
+            dosya.baslik || "";
+
+        document.getElementById("ozet").value =
+            dosya.ozet || "";
+
+        document.getElementById("icerik").value =
+            dosya.icerik || "";
+
+        document.getElementById("kategori").value =
+            dosya.kategori || "Dosya";
+
+        document.getElementById("durum").value =
+            dosya.durum || "taslak";
+
+        document.getElementById("slug").value =
+            dosya.slug || "";
+
+        document.getElementById("kapak").value =
+            dosya.kapak_fotografi_url || "";
+
+
+        if (dosya.yayin_tarihi) {
+
+            const tarih =
+                new Date(dosya.yayin_tarihi);
+
+            const yerelTarih =
+                new Date(
+                    tarih.getTime() -
+                    tarih.getTimezoneOffset() * 60000
+                )
+                .toISOString()
+                .slice(0, 16);
+
+            document.getElementById(
+                "yayinTarihi"
+            ).value = yerelTarih;
+
+        } else {
+
+            document.getElementById(
+                "yayinTarihi"
+            ).value = "";
+
+        }
+
+
+        document.getElementById("modalBaslik")
+            .textContent = "Dosyayı Düzenle";
+
+
+        modal.classList.add("acik");
+
+        document.getElementById("baslik").focus();
+    }
+
+
+    /* ==========================================
+       DOSYA KAYDET
+    ========================================== */
+
+    async function dosyaKaydet() {
+
+        const id =
+            document.getElementById("dosyaId").value;
+
+        const baslik =
+            document.getElementById("baslik").value.trim();
+
+        const ozet =
+            document.getElementById("ozet").value.trim();
+
+        const icerik =
+            document.getElementById("icerik").value.trim();
+
+        const kategori =
+            document.getElementById("kategori").value;
+
+        const durum =
+            document.getElementById("durum").value;
+
+        let slug =
+            document.getElementById("slug").value.trim();
+
+        const kapak =
+            document.getElementById("kapak").value.trim();
+
+        const yayinTarihi =
+            document.getElementById("yayinTarihi").value;
+
+
+        if (!baslik) {
+
+            alert("Lütfen dosya başlığını gir.");
+
+            return;
+        }
+
+
+        if (!slug) {
+            slug = slugOlustur(baslik);
+        }
+
+
+        if (!slug) {
+
+            alert("Geçerli bir slug oluşturulamadı.");
+
+            return;
+        }
+
+
+        let yayinISO = null;
+
+        if (yayinTarihi) {
+
+            yayinISO =
+                new Date(
+                    yayinTarihi
+                ).toISOString();
+
+        }
+
+
+        const kayit = {
+
+            baslik: baslik,
+
+            ozet: ozet || null,
+
+            icerik: icerik || null,
+
+            kategori: kategori || "Dosya",
+
+            slug: slug,
+
+            durum: durum,
+
+            kapak_fotografi_url:
+                kapak || null,
+
+            yayin_tarihi:
+                yayinISO,
+
+            updated_at:
+                new Date().toISOString()
+
+        };
+
+
+        /*
+         * Yeni kayıt yayınlanıyorsa ve
+         * tarih boşsa şu anı kullan.
+         */
+
+        if (
+            !id &&
+            durum === "yayinda" &&
+            !yayinISO
+        ) {
+
+            kayit.yayin_tarihi =
+                new Date().toISOString();
+
+        }
+
+
+        const kaydetBtn =
+            document.getElementById("kaydetBtn");
+
+        kaydetBtn.disabled = true;
+        kaydetBtn.textContent = "Kaydediliyor...";
+
+
+        let sonuc;
+
+
+        if (id) {
+
+            sonuc = await db
+                .from("dosyalar")
+                .update(kayit)
+                .eq("id", id);
+
+        } else {
+
+            sonuc = await db
+                .from("dosyalar")
+                .insert(kayit);
+
+        }
+
+
+        kaydetBtn.disabled = false;
+        kaydetBtn.textContent = "💾 Kaydet";
+
+
+        if (sonuc.error) {
+
+            console.error(
+                "Dosya kaydedilemedi:",
+                sonuc.error
+            );
+
+            mesajGoster(
+                "Dosya kaydedilemedi: " +
+                sonuc.error.message,
+                "hata"
+            );
+
+            return;
+        }
+
+
+        modalKapat();
+
+        mesajGoster(
+            id
+            ? "Dosya başarıyla güncellendi."
+            : "Dosya başarıyla oluşturuldu."
+        );
+
+        await dosyalariGetir();
+    }
+
+
+    /* ==========================================
+       DURUM DEĞİŞTİR
+    ========================================== */
+
+    async function durumDegistir(
+        id,
+        yeniDurum
+    ) {
+
+        const onay =
+            yeniDurum === "yayinda"
+            ? "Bu dosyayı yayınlamak istediğine emin misin?"
+            : "Bu dosyayı taslağa almak istediğine emin misin?";
+
+
+        if (!confirm(onay)) {
+            return;
+        }
+
+
+        const guncelleme = {
+
+            durum: yeniDurum,
+
+            updated_at:
+                new Date().toISOString()
+
+        };
+
+
+        if (yeniDurum === "yayinda") {
+
+            guncelleme.yayin_tarihi =
+                new Date().toISOString();
+
+        }
+
+
+        const {
+            error
+        } = await db
+            .from("dosyalar")
+            .update(guncelleme)
+            .eq("id", id);
+
+
+        if (error) {
+
+            console.error(
+                "Durum değiştirilemedi:",
+                error
+            );
+
+            mesajGoster(
+                "Durum değiştirilemedi: " +
+                error.message,
+                "hata"
+            );
+
+            return;
+        }
+
+
+        mesajGoster(
+            yeniDurum === "yayinda"
+            ? "Dosya yayınlandı."
+            : "Dosya taslağa alındı."
+        );
+
+
+        await dosyalariGetir();
+    }
+
+
+    /* ==========================================
+       DOSYA SİL
+    ========================================== */
+
+    async function dosyaSil(id) {
+
+        const onay = confirm(
+            "Bu dosyayı kalıcı olarak silmek istediğine emin misin?\n\nBu işlem geri alınamaz."
+        );
+
+
+        if (!onay) {
+            return;
+        }
+
+
+        const {
+            error
+        } = await db
+            .from("dosyalar")
+            .delete()
+            .eq("id", id);
+
+
+        if (error) {
+
+            console.error(
+                "Dosya silinemedi:",
+                error
+            );
+
+            mesajGoster(
+                "Dosya silinemedi: " +
+                error.message,
+                "hata"
+            );
+
+            return;
+        }
+
+
+        mesajGoster(
+            "Dosya başarıyla silindi."
+        );
+
+
+        await dosyalariGetir();
+    }
+
+
+    /* ==========================================
+       MODAL KAPAT
+    ========================================== */
+
+    function modalKapat() {
+
+        modal.classList.remove("acik");
+
+        dosyaForm.reset();
+
+        document.getElementById("dosyaId")
+            .value = "";
+    }
+
+
+    /* ==========================================
+       BUTONLAR
+    ========================================== */
+
+    document
+        .getElementById("yeniBtn")
+        .addEventListener(
+            "click",
+            yeniDosya
+        );
+
+
+    document
+        .getElementById("yenileBtn")
+        .addEventListener(
+            "click",
+            dosyalariGetir
+        );
+
+
+    document
+        .getElementById("kaydetBtn")
+        .addEventListener(
+            "click",
+            dosyaKaydet
+        );
+
+
+    document
+        .getElementById("modalKapat")
+        .addEventListener(
+            "click",
+            modalKapat
+        );
+
+
+    document
+        .getElementById("modalIptal")
+        .addEventListener(
+            "click",
+            modalKapat
+        );
+
+
+    document
+        .getElementById("yonetimBtn")
+        .addEventListener(
+            "click",
+            () => {
+                window.location.href =
+                    "/admin/";
+            }
+        );
+
+
+    /* ==========================================
+       BAŞLIK → OTOMATİK SLUG
+       Sadece yeni dosyada ve slug boşsa
+    ========================================== */
+
+    document
+        .getElementById("baslik")
+        .addEventListener(
+            "input",
+            function () {
+
+                const id =
+                    document.getElementById(
+                        "dosyaId"
+                    ).value;
+
+                const slugInput =
+                    document.getElementById(
+                        "slug"
+                    );
+
+
+                if (
+                    !id &&
+                    !slugInput.value.trim()
+                ) {
+
+                    slugInput.value =
+                        slugOlustur(
+                            this.value
+                        );
+
+                }
+
+            }
+        );
+
+
+    /* ==========================================
+       ESC → MODAL KAPAT
+    ========================================== */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                modal.classList.contains("acik")
+            ) {
+
+                modalKapat();
+
+            }
+
+        }
+    );
+
+
+    /* ==========================================
+       DIŞARI TIKLAYINCA MODAL KAPAT
+    ========================================== */
+
+    modal.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target === modal
+            ) {
+
+                modalKapat();
+
+            }
+
+        }
+    );
+
+
+    /* ==========================================
+       BAŞLAT
+    ========================================== */
+
+    dosyalariGetir();
+
+</script>
+
+</body>
+</html>
+```
