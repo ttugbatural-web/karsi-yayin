@@ -1,242 +1,238 @@
 <!DOCTYPE html>
-
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>Hakkımızda — KARŞI Yönetim</title>
+    <title>Hakkımızda — KARŞI Yönetim</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="auth.js"></script>
 
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-        background: #f4f4f4;
-        color: #111;
-    }
-
-    header {
-        background: #111;
-        color: white;
-        padding: 25px 20px;
-        border-bottom: 4px solid #d71920;
-    }
-
-    .header-inner {
-        max-width: 1000px;
-        margin: auto;
-    }
-
-    .logo {
-        font-size: 34px;
-        font-weight: 900;
-        letter-spacing: -1px;
-    }
-
-    .subtitle {
-        color: #aaa;
-        font-size: 13px;
-        margin-top: 4px;
-    }
-
-    main {
-        max-width: 1000px;
-        margin: 30px auto;
-        padding: 0 20px 60px;
-    }
-
-    .topbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 25px;
-        flex-wrap: wrap;
-    }
-
-    .topbar h1 {
-        font-size: 28px;
-    }
-
-    .actions {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-
-    button {
-        border: none;
-        padding: 11px 17px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: 700;
-        font-size: 14px;
-    }
-
-    .btn-save {
-        background: #d71920;
-        color: white;
-    }
-
-    .btn-save:hover {
-        background: #b9141a;
-    }
-
-    .btn-back {
-        background: #222;
-        color: white;
-    }
-
-    .btn-back:hover {
-        background: #000;
-    }
-
-    .panel {
-        background: white;
-        border: 1px solid #ddd;
-        padding: 25px;
-        margin-bottom: 20px;
-    }
-
-    .panel h2 {
-        font-size: 20px;
-        margin-bottom: 7px;
-    }
-
-    .panel-description {
-        color: #777;
-        font-size: 13px;
-        margin-bottom: 20px;
-    }
-
-    .field {
-        margin-bottom: 22px;
-    }
-
-    .field:last-child {
-        margin-bottom: 0;
-    }
-
-    label {
-        display: block;
-        font-size: 14px;
-        font-weight: 800;
-        margin-bottom: 7px;
-    }
-
-    input[type="text"],
-    textarea {
-        width: 100%;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 12px;
-        font-family: inherit;
-        font-size: 15px;
-        color: #111;
-        background: #fff;
-    }
-
-    input[type="text"]:focus,
-    textarea:focus {
-        outline: none;
-        border-color: #d71920;
-    }
-
-    textarea {
-        min-height: 180px;
-        resize: vertical;
-        line-height: 1.6;
-    }
-
-    .large-textarea {
-        min-height: 240px;
-    }
-
-    .status-box {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: #f8f8f8;
-        border: 1px solid #ddd;
-        padding: 13px;
-    }
-
-    .status-box input {
-        width: 18px;
-        height: 18px;
-    }
-
-    .status-text {
-        font-size: 14px;
-        font-weight: 700;
-    }
-
-    .message {
-        display: none;
-        padding: 13px 15px;
-        border-radius: 5px;
-        margin-bottom: 20px;
-        font-size: 14px;
-        font-weight: 700;
-    }
-
-    .message.success {
-        display: block;
-        background: #e8f7e8;
-        color: #176b17;
-        border: 1px solid #a8dca8;
-    }
-
-    .message.error {
-        display: block;
-        background: #fdeaea;
-        color: #a31313;
-        border: 1px solid #e5aaaa;
-    }
-
-    .save-bottom {
-        text-align: right;
-        margin-top: 10px;
-    }
-
-    @media (max-width: 700px) {
-
-        main {
-            padding: 0 15px 50px;
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        .panel {
-            padding: 18px;
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f4f4;
+            color: #111;
+        }
+
+        header {
+            background: #111;
+            color: white;
+            padding: 25px 20px;
+            border-bottom: 4px solid #d71920;
+        }
+
+        .header-inner {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .logo {
+            font-size: 34px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px 60px;
         }
 
         .topbar {
-            align-items: stretch;
-        }
-
-        .actions {
-            width: 100%;
-        }
-
-        .actions button {
-            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
         }
 
         .topbar h1 {
-            font-size: 24px;
+            font-size: 28px;
         }
-    }
-</style>
-```
 
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            padding: 11px 17px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .btn-save {
+            background: #d71920;
+            color: white;
+        }
+
+        .btn-save:hover {
+            background: #b9141a;
+        }
+
+        .btn-back {
+            background: #222;
+            color: white;
+        }
+
+        .btn-back:hover {
+            background: #000;
+        }
+
+        .panel {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .panel h2 {
+            font-size: 20px;
+            margin-bottom: 7px;
+        }
+
+        .panel-description {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .field {
+            margin-bottom: 22px;
+        }
+
+        .field:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 15px;
+            color: #111;
+            background: #fff;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #d71920;
+        }
+
+        textarea {
+            min-height: 180px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .large-textarea {
+            min-height: 240px;
+        }
+
+        .status-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 13px;
+        }
+
+        .status-box input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .status-text {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .message {
+            display: none;
+            padding: 13px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .message.success {
+            display: block;
+            background: #e8f7e8;
+            color: #176b17;
+            border: 1px solid #a8dca8;
+        }
+
+        .message.error {
+            display: block;
+            background: #fdeaea;
+            color: #a31313;
+            border: 1px solid #e5aaaa;
+        }
+
+        .save-bottom {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 700px) {
+
+            main {
+                padding: 0 15px 50px;
+            }
+
+            .panel {
+                padding: 18px;
+            }
+
+            .topbar {
+                align-items: stretch;
+            }
+
+            .actions {
+                width: 100%;
+            }
+
+            .actions button {
+                flex: 1;
+            }
+
+            .topbar h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -250,231 +246,302 @@
 
 <main>
 
-```
-<div class="topbar">
-    <h1>Hakkımızda</h1>
+    <div class="topbar">
+        <h1>Hakkımızda</h1>
 
-    <div class="actions">
-        <button class="btn-back" type="button" id="geriBtn">
-            ← Yönetim Paneline Dön
-        </button>
+        <div class="actions">
 
-        <button class="btn-save" type="button" id="ustKaydetBtn">
-            💾 Kaydet
-        </button>
-    </div>
-</div>
+            <button
+                class="btn-back"
+                type="button"
+                id="geriBtn">
+                ← Yönetim Paneline Dön
+            </button>
 
-<div id="message" class="message"></div>
+            <button
+                class="btn-save"
+                type="button"
+                id="ustKaydetBtn">
+                💾 Kaydet
+            </button>
 
-<form id="hakkimizdaForm">
-
-    <div class="panel">
-
-        <h2>Temel Bilgiler</h2>
-
-        <div class="panel-description">
-            Sayfanın başlığı ve giriş bölümü.
         </div>
-
-        <div class="field">
-            <label for="baslik">Sayfa Başlığı</label>
-
-            <input
-                type="text"
-                id="baslik"
-                placeholder="Biz Kimiz?"
-            >
-        </div>
-
-        <div class="field">
-            <label for="giris_metni">Giriş Metni</label>
-
-            <textarea
-                id="giris_metni"
-                class="large-textarea"
-                placeholder="KARŞI'nın neden var olduğunu anlatan giriş metni..."
-            ></textarea>
-        </div>
-
     </div>
 
 
-    <div class="panel">
+    <div id="message" class="message"></div>
 
-        <h2>Neden KARŞI?</h2>
 
-        <div class="panel-description">
-            KARŞI'nın kuruluş amacı ve ortaya çıkış nedenleri.
+    <form id="hakkimizdaForm">
+
+        <!-- TEMEL BİLGİLER -->
+
+        <div class="panel">
+
+            <h2>Temel Bilgiler</h2>
+
+            <div class="panel-description">
+                Sayfanın başlığı ve giriş bölümü.
+            </div>
+
+            <div class="field">
+
+                <label for="baslik">
+                    Sayfa Başlığı
+                </label>
+
+                <input
+                    type="text"
+                    id="baslik"
+                    placeholder="Biz Kimiz?"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="giris_metni">
+                    Giriş Metni
+                </label>
+
+                <textarea
+                    id="giris_metni"
+                    class="large-textarea"
+                    placeholder="KARŞI'nın neden var olduğunu anlatan giriş metni..."
+                ></textarea>
+
+            </div>
+
         </div>
 
-        <div class="field">
-            <label for="neden_karsi">Metin</label>
 
-            <textarea
-                id="neden_karsi"
-                class="large-textarea"
-                placeholder="Bu bölümü birlikte yazacağız..."
-            ></textarea>
+        <!-- NEDEN KARŞI -->
+
+        <div class="panel">
+
+            <h2>Neden KARŞI?</h2>
+
+            <div class="panel-description">
+                KARŞI'nın kuruluş amacı ve ortaya çıkış nedenleri.
+            </div>
+
+            <div class="field">
+
+                <label for="neden_karsi">
+                    Metin
+                </label>
+
+                <textarea
+                    id="neden_karsi"
+                    class="large-textarea"
+                    placeholder="KARŞI neden var?"
+                ></textarea>
+
+            </div>
+
         </div>
 
-    </div>
 
+        <!-- YAYIN ANLAYIŞIMIZ -->
 
-    <div class="panel">
+        <div class="panel">
 
-        <h2>Yayın Anlayışımız</h2>
+            <h2>Yayın Anlayışımız</h2>
 
-        <div class="panel-description">
-            Haber, köşe yazıları ve dosyalara yaklaşımımız.
+            <div class="panel-description">
+                Haber, köşe yazıları ve dosyalara yaklaşımımız.
+            </div>
+
+            <div class="field">
+
+                <label for="yayin_anlayisimiz">
+                    Metin
+                </label>
+
+                <textarea
+                    id="yayin_anlayisimiz"
+                    class="large-textarea"
+                    placeholder="KARŞI'nın yayıncılık anlayışı..."
+                ></textarea>
+
+            </div>
+
         </div>
 
-        <div class="field">
-            <label for="yayin_anlayisimiz">Metin</label>
 
-            <textarea
-                id="yayin_anlayisimiz"
-                class="large-textarea"
-                placeholder="KARŞI'nın yayıncılık anlayışı..."
-            ></textarea>
+        <!-- NEYE KARŞIYIZ -->
+
+        <div class="panel">
+
+            <h2>Neye Karşıyız?</h2>
+
+            <div class="panel-description">
+                KARŞI'nın sorguladığı, eleştirdiği ve karşı çıktığı şeyler.
+            </div>
+
+            <div class="field">
+
+                <label for="neye_karsiyiz">
+                    Metin
+                </label>
+
+                <textarea
+                    id="neye_karsiyiz"
+                    class="large-textarea"
+                    placeholder="Neye karşı olduğumuzu anlatan metin..."
+                ></textarea>
+
+            </div>
+
         </div>
 
-    </div>
 
+        <!-- NEYİ SAVUNUYORUZ -->
 
-    <div class="panel">
+        <div class="panel">
 
-        <h2>Neye Karşıyız?</h2>
+            <h2>Neyi Savunuyoruz?</h2>
 
-        <div class="panel-description">
-            KARŞI'nın sorguladığı, eleştirdiği ve karşı çıktığı şeyler.
+            <div class="panel-description">
+                KARŞI'nın savunduğu temel değerler ve ilkeler.
+            </div>
+
+            <div class="field">
+
+                <label for="neyi_savunuyoruz">
+                    Metin
+                </label>
+
+                <textarea
+                    id="neyi_savunuyoruz"
+                    class="large-textarea"
+                    placeholder="Neyi savunduğumuzu anlatan metin..."
+                ></textarea>
+
+            </div>
+
         </div>
 
-        <div class="field">
-            <label for="neye_karsiyiz">Metin</label>
 
-            <textarea
-                id="neye_karsiyiz"
-                class="large-textarea"
-                placeholder="Neye karşı olduğumuzu anlatan metin..."
-            ></textarea>
+        <!-- KAPANIŞ -->
+
+        <div class="panel">
+
+            <h2>Kapanış Sözü</h2>
+
+            <div class="panel-description">
+                Sayfanın sonunda yer alacak kısa ve vurucu metin.
+            </div>
+
+            <div class="field">
+
+                <label for="kapanis_sozu">
+                    Metin
+                </label>
+
+                <textarea
+                    id="kapanis_sozu"
+                    placeholder="KARŞI'nın ruhunu anlatan kapanış..."
+                ></textarea>
+
+            </div>
+
         </div>
 
-    </div>
 
+        <!-- KÜNYE -->
 
-    <div class="panel">
+        <div class="panel">
 
-        <h2>Neyi Savunuyoruz?</h2>
+            <h2>Künye</h2>
 
-        <div class="panel-description">
-            KARŞI'nın savunduğu temel değerler ve ilkeler.
+            <div class="panel-description">
+                KARŞI hakkında resmi bilgiler ve iletişim bilgileri.
+            </div>
+
+            <div class="field">
+
+                <label for="kunye">
+                    Künye Bilgileri
+                </label>
+
+                <textarea
+                    id="kunye"
+                    placeholder="KARŞI hakkında resmi bilgiler..."
+                ></textarea>
+
+            </div>
+
         </div>
 
-        <div class="field">
-            <label for="neyi_savunuyoruz">Metin</label>
 
-            <textarea
-                id="neyi_savunuyoruz"
-                class="large-textarea"
-                placeholder="Neyi savunduğumuzu anlatan metin..."
-            ></textarea>
+        <!-- YAYIN DURUMU -->
+
+        <div class="panel">
+
+            <h2>Yayın Durumu</h2>
+
+            <div class="panel-description">
+                Hakkımızda sayfasının ziyaretçilere gösterilip gösterilmeyeceğini belirler.
+            </div>
+
+            <div class="status-box">
+
+                <input
+                    type="checkbox"
+                    id="aktif"
+                    checked
+                >
+
+                <label
+                    for="aktif"
+                    class="status-text"
+                    style="margin:0;"
+                >
+                    Hakkımızda sayfası aktif
+                </label>
+
+            </div>
+
         </div>
 
-    </div>
 
+        <div class="save-bottom">
 
-    <div class="panel">
+            <button
+                class="btn-save"
+                type="submit">
+                💾 Değişiklikleri Kaydet
+            </button>
 
-        <h2>Kapanış Sözü</h2>
-
-        <div class="panel-description">
-            Sayfanın sonunda yer alacak kısa ve vurucu metin.
         </div>
 
-        <div class="field">
-            <label for="kapanis_sozu">Metin</label>
-
-            <textarea
-                id="kapanis_sozu"
-                placeholder="KARŞI'nın ruhunu anlatan kapanış..."
-            ></textarea>
-        </div>
-
-    </div>
-
-
-    <div class="panel">
-
-        <h2>Künye</h2>
-
-        <div class="panel-description">
-            KARŞI hakkında resmi bilgiler ve iletişim bilgileri.
-        </div>
-
-        <div class="field">
-            <label for="kunye">Künye Bilgileri</label>
-
-            <textarea
-                id="kunye"
-                placeholder="KARŞI hakkında resmi bilgiler..."
-            ></textarea>
-        </div>
-
-    </div>
-
-
-    <div class="panel">
-
-        <h2>Yayın Durumu</h2>
-
-        <div class="panel-description">
-            Hakkımızda sayfasının ziyaretçilere gösterilip gösterilmeyeceğini belirler.
-        </div>
-
-        <div class="status-box">
-            <input type="checkbox" id="aktif" checked>
-
-            <label
-                for="aktif"
-                class="status-text"
-                style="margin:0;"
-            >
-                Hakkımızda sayfası aktif
-            </label>
-        </div>
-
-    </div>
-
-
-    <div class="save-bottom">
-        <button
-            class="btn-save"
-            type="submit"
-        >
-            💾 Değişiklikleri Kaydet
-        </button>
-    </div>
-
-</form>
-```
+    </form>
 
 </main>
 
+
 <script>
+
+    /* SUPABASE */
 
     const db = window.supabaseClient;
 
     let kayitId = null;
 
 
+    /* MESAJ */
+
     function mesajGoster(text, type) {
 
-        const message = document.getElementById("message");
+        const message =
+            document.getElementById("message");
 
         message.textContent = text;
 
-        message.className = "message " + type;
+        message.className =
+            "message " + type;
 
         window.scrollTo({
             top: 0,
@@ -484,55 +551,117 @@
     }
 
 
+    /* ALAN DOLDUR */
+
     function alanDoldur(id, value) {
 
-        document.getElementById(id).value = value || "";
+        const alan =
+            document.getElementById(id);
+
+        if (!alan) return;
+
+        alan.value = value || "";
 
     }
 
+
+    /* HAKKIMIZDA KAYDINI GETİR */
 
     async function hakkimizdaGetir() {
 
         try {
 
-            const { data, error } = await db
-                .from("hakkimizda")
-                .select("*")
-                .order("id", { ascending: true })
-                .limit(1)
-                .maybeSingle();
+            const { data, error } =
+                await db
+                    .from("hakkimizda")
+                    .select("*")
+                    .order("id", {
+                        ascending: true
+                    })
+                    .limit(1)
+                    .maybeSingle();
+
 
             if (error) {
                 throw error;
             }
 
+
             if (!data) {
 
                 mesajGoster(
-                    "Hakkımızda kaydı bulunamadı.",
+                    "Hakkımızda kaydı bulunamadı. Supabase tablosunda kayıt oluşturulması gerekiyor.",
                     "error"
                 );
 
                 return;
+
             }
+
 
             kayitId = data.id;
 
-            alanDoldur("baslik", data.baslik);
-            alanDoldur("giris_metni", data.giris_metni);
-            alanDoldur("neden_karsi", data.neden_karsi);
-            alanDoldur("yayin_anlayisimiz", data.yayin_anlayisimiz);
-            alanDoldur("neye_karsiyiz", data.neye_karsiyiz);
-            alanDoldur("neyi_savunuyoruz", data.neyi_savunuyoruz);
-            alanDoldur("kapanis_sozu", data.kapanis_sozu);
-            alanDoldur("kunye", data.kunye);
 
-            document.getElementById("aktif").checked =
-                data.aktif !== false;
+            alanDoldur(
+                "baslik",
+                data.baslik
+            );
+
+
+            alanDoldur(
+                "giris_metni",
+                data.giris_metni
+            );
+
+
+            alanDoldur(
+                "neden_karsi",
+                data.neden_karsi
+            );
+
+
+            alanDoldur(
+                "yayin_anlayisimiz",
+                data.yayin_anlayisimiz
+            );
+
+
+            alanDoldur(
+                "neye_karsiyiz",
+                data.neye_karsiyiz
+            );
+
+
+            alanDoldur(
+                "neyi_savunuyoruz",
+                data.neyi_savunuyoruz
+            );
+
+
+            alanDoldur(
+                "kapanis_sozu",
+                data.kapanis_sozu
+            );
+
+
+            alanDoldur(
+                "kunye",
+                data.kunye
+            );
+
+
+            document.getElementById(
+                "aktif"
+            ).checked = data.aktif !== false;
+
 
         } catch (error) {
 
-            console.error(error);
+            console.error(
+                "Hakkımızda yükleme hatası:",
+                error
+            );
+
 
             mesajGoster(
                 "Hakkımızda bilgileri yüklenirken hata oluştu: " +
@@ -545,9 +674,12 @@
     }
 
 
+    /* KAYDET */
+
     async function hakkimizdaKaydet(event) {
 
         event.preventDefault();
+
 
         if (!kayitId) {
 
@@ -557,36 +689,73 @@
             );
 
             return;
+
         }
+
 
         const payload = {
 
             baslik:
-                document.getElementById("baslik").value.trim(),
+                document
+                    .getElementById("baslik")
+                    .value
+                    .trim(),
+
 
             giris_metni:
-                document.getElementById("giris_metni").value.trim(),
+                document
+                    .getElementById("giris_metni")
+                    .value
+                    .trim(),
+
 
             neden_karsi:
-                document.getElementById("neden_karsi").value.trim(),
+                document
+                    .getElementById("neden_karsi")
+                    .value
+                    .trim(),
+
 
             yayin_anlayisimiz:
-                document.getElementById("yayin_anlayisimiz").value.trim(),
+                document
+                    .getElementById("yayin_anlayisimiz")
+                    .value
+                    .trim(),
+
 
             neye_karsiyiz:
-                document.getElementById("neye_karsiyiz").value.trim(),
+                document
+                    .getElementById("neye_karsiyiz")
+                    .value
+                    .trim(),
+
 
             neyi_savunuyoruz:
-                document.getElementById("neyi_savunuyoruz").value.trim(),
+                document
+                    .getElementById("neyi_savunuyoruz")
+                    .value
+                    .trim(),
+
 
             kapanis_sozu:
-                document.getElementById("kapanis_sozu").value.trim(),
+                document
+                    .getElementById("kapanis_sozu")
+                    .value
+                    .trim(),
+
 
             kunye:
-                document.getElementById("kunye").value.trim(),
+                document
+                    .getElementById("kunye")
+                    .value
+                    .trim(),
+
 
             aktif:
-                document.getElementById("aktif").checked,
+                document
+                    .getElementById("aktif")
+                    .checked,
+
 
             updated_at:
                 new Date().toISOString()
@@ -596,23 +765,31 @@
 
         try {
 
-            const { error } = await db
-                .from("hakkimizda")
-                .update(payload)
-                .eq("id", kayitId);
+            const { error } =
+                await db
+                    .from("hakkimizda")
+                    .update(payload)
+                    .eq("id", kayitId);
+
 
             if (error) {
                 throw error;
             }
+
 
             mesajGoster(
                 "Hakkımızda bilgileri başarıyla kaydedildi.",
                 "success"
             );
 
+
         } catch (error) {
 
-            console.error(error);
+            console.error(
+                "Kaydetme hatası:",
+                error
+            );
+
 
             mesajGoster(
                 "Kaydetme sırasında hata oluştu: " +
@@ -625,6 +802,8 @@
     }
 
 
+    /* FORM */
+
     document
         .getElementById("hakkimizdaForm")
         .addEventListener(
@@ -633,27 +812,38 @@
         );
 
 
+    /* ÜST KAYDET */
+
     document
         .getElementById("ustKaydetBtn")
         .addEventListener(
             "click",
-            () => {
+            function () {
+
                 document
                     .getElementById("hakkimizdaForm")
                     .requestSubmit();
+
             }
         );
 
+
+    /* GERİ */
 
     document
         .getElementById("geriBtn")
         .addEventListener(
             "click",
-            () => {
-                window.location.href = "index.html";
+            function () {
+
+                window.location.href =
+                    "index.html";
+
             }
         );
 
+
+    /* BAŞLAT */
 
     hakkimizdaGetir();
 
