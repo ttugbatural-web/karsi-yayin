@@ -9,7 +9,7 @@
 <meta name="viewport"
    content="width=device-width, initial-scale=1.0">
 
-<title>KARŞI Gündem — KARŞI</title>
+<title>KARŞIDAN Gündem — KARŞIDAN</title>
 
 <style>
 
@@ -345,7 +345,7 @@ main {
 }
 
 .no-image::after {
-    content: "KARŞI";
+    content: "KARŞIDAN";
 
     position: absolute;
 
@@ -595,14 +595,13 @@ footer strong {
 
 <header>
 
-```
 <div class="top">
 
     <div
         class="logo"
         id="siteLogo"
     >
-        KARŞI
+        KARŞIDAN
     </div>
 
 
@@ -644,9 +643,9 @@ footer strong {
     </div>
 
 </div>
-```
 
 </header>
+
 
 <!-- ==================================================
      NAV
@@ -654,7 +653,6 @@ footer strong {
 
 <nav>
 
-```
 <div class="nav-inner">
 
     <a href="index.html">
@@ -673,7 +671,7 @@ footer strong {
         href="gundem.html"
         class="active"
     >
-        KARŞI GÜNDEM
+        KARŞIDAN GÜNDEM
     </a>
 
     <a href="dunya.html">
@@ -689,9 +687,9 @@ footer strong {
     </a>
 
 </div>
-```
 
 </nav>
+
 
 <!-- ==================================================
      MAIN
@@ -699,15 +697,14 @@ footer strong {
 
 <main>
 
-```
 <section class="page-header">
 
     <h1>
-        KARŞI Gündem
+        KARŞIDAN Gündem
     </h1>
 
     <p>
-        KARŞI'nın kendi haberleri,
+        KARŞIDAN'ın kendi haberleri,
         yorumları ve gündeme dair
         yayınları.
     </p>
@@ -725,13 +722,13 @@ footer strong {
 >
 
     <div class="message">
-        KARŞI Gündem yükleniyor...
+        KARŞIDAN Gündem yükleniyor...
     </div>
 
 </section>
-```
 
 </main>
+
 
 <!-- ==================================================
      FOOTER
@@ -739,9 +736,8 @@ footer strong {
 
 <footer>
 
-```
 <strong id="footerSiteAdi">
-    KARŞI
+    KARŞIDAN
 </strong>
 
 <br><br>
@@ -752,10 +748,10 @@ footer strong {
 
 <br><br>
 
-© 2026 KARŞI
-```
+© 2026 KARŞIDAN
 
 </footer>
+
 
 <!-- ==================================================
      SUPABASE
@@ -773,7 +769,7 @@ const KARSI_SUPABASE_URL =
     "https://rfqiffvudbmphvklxetf.supabase.co";
 
 const KARSI_SUPABASE_ANON_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmcWlmZnZ1ZGJtcGh2a2x4ZXRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgxNDM2MDcsImV4cCI6MjEwMzcxOTYwN30.2L9Yjkc3kK1zfo4muGy18XXX4COaB5RMAxSLt-bDt_c";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmcWlmZnZ1ZGJtcGh2a2x4ZXRmIiwicm9sZSI6MTc4ODE0MzYwNywiZXhwIjoyMTAzNzE5NjAwfQ.2L9Yjkc3kK1zfo4muGy18XXX4COaB5RMAxSLt-bDt_c";
 
 
 const karsiSupabase =
@@ -871,7 +867,7 @@ async function siteAyarlariGetir() {
 
         const siteAdi =
             data.site_adi ||
-            "KARŞI";
+            "KARŞIDAN";
 
 
         const slogan =
@@ -942,7 +938,7 @@ async function siteAyarlariGetir() {
 
         document.title =
             siteAdi +
-            " — KARŞI Gündem";
+            " — Gündem";
 
 
         const logo =
@@ -1011,7 +1007,7 @@ async function siteAyarlariGetir() {
 
 
 /* ==================================================
-   KARŞI GÜNDEM HABERLERİNİ GETİR
+   KARŞIDAN GÜNDEM HABERLERİNİ GETİR
 ================================================== */
 
 async function karsiGundemHaberleriniGetir() {
@@ -1051,7 +1047,7 @@ async function karsiGundemHaberleriniGetir() {
         if (error) {
 
             console.error(
-                "KARŞI Gündem haberleri alınamadı:",
+                "KARŞIDAN Gündem haberleri alınamadı:",
                 error
             );
 
@@ -1060,7 +1056,7 @@ async function karsiGundemHaberleriniGetir() {
 
                 <div class="message error">
 
-                    KARŞI Gündem haberleri yüklenemedi.
+                    KARŞIDAN Gündem haberleri yüklenemedi.
 
                     <br><br>
 
@@ -1087,7 +1083,7 @@ async function karsiGundemHaberleriniGetir() {
                 <div class="message">
 
                     Henüz yayınlanmış
-                    KARŞI Gündem içeriği bulunmuyor.
+                    KARŞIDAN Gündem içeriği bulunmuyor.
 
                 </div>
 
@@ -1113,14 +1109,6 @@ async function karsiGundemHaberleriniGetir() {
                 article.className =
                     "article";
 
-
-                /*
-                 * KARŞI Gündem detay sayfaları
-                 * sonraki aşamada oluşturulacak.
-                 *
-                 * Şimdilik slug üzerinden yönlendirme
-                 * yapıyoruz.
-                 */
 
                 article.href =
                     "gundem-" +
@@ -1164,7 +1152,7 @@ async function karsiGundemHaberleriniGetir() {
 
                 const category =
                     haber.kategori ||
-                    "KARŞI Gündem";
+                    "KARŞIDAN Gündem";
 
 
                 const summary =
@@ -1222,9 +1210,10 @@ async function karsiGundemHaberleriniGetir() {
 
                             <div class="source">
 
-                                KARŞI Gündem
+                                KARŞIDAN Gündem
 
                             </div>
+
 
                         </div>
 
@@ -1246,7 +1235,7 @@ async function karsiGundemHaberleriniGetir() {
     catch (error) {
 
         console.error(
-            "Beklenmeyen KARŞI Gündem hatası:",
+            "Beklenmeyen KARŞIDAN Gündem hatası:",
             error
         );
 
@@ -1255,7 +1244,7 @@ async function karsiGundemHaberleriniGetir() {
 
             <div class="message error">
 
-                KARŞI Gündem yüklenirken
+                KARŞIDAN Gündem yüklenirken
                 beklenmeyen bir hata oluştu.
 
             </div>
