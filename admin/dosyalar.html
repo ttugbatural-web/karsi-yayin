@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -354,8 +353,85 @@
             line-height: 1.6;
         }
 
-        #icerik {
+        /* ZENGİN METİN EDİTÖRÜ */
+
+        .editor-wrapper {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .editor-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            padding: 8px;
+            background: #f5f5f5;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .editor-toolbar button {
+            border: 1px solid #ccc;
+            background: white;
+            color: #111;
+            border-radius: 4px;
+            padding: 7px 10px;
+            cursor: pointer;
+            font-size: 13px;
+            min-width: 34px;
+        }
+
+        .editor-toolbar button:hover {
+            background: #e8e8e8;
+        }
+
+        .editor-toolbar button.aktif {
+            background: #ddd;
+        }
+
+        .editor-content {
             min-height: 320px;
+            padding: 14px;
+            outline: none;
+            line-height: 1.7;
+            font-size: 15px;
+            overflow-y: auto;
+        }
+
+        .editor-content:empty::before {
+            content: "Dosyanın tamamını buraya yaz...";
+            color: #999;
+        }
+
+        .editor-content:focus {
+            box-shadow: inset 0 0 0 2px rgba(224, 0, 0, .12);
+        }
+
+        .metin-kutusu {
+            display: inline-block;
+            background: #fff3a3;
+            border: 1px solid #c9a900;
+            padding: 4px 8px;
+            border-radius: 5px;
+        }
+
+        .editor-content blockquote {
+            margin: 15px 0;
+            padding: 12px 16px;
+            border-left: 4px solid #e00000;
+            background: #f5f5f5;
+            color: #444;
+        }
+
+        .editor-content img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .editor-content a {
+            color: #c00000;
+            text-decoration: underline;
         }
 
         .form-satir {
@@ -440,6 +516,18 @@
 
             .modal-alt {
                 padding: 12px 17px;
+            }
+
+            .editor-toolbar {
+                gap: 4px;
+            }
+
+            .editor-toolbar button {
+                padding: 7px 8px;
+            }
+
+            .editor-content {
+                min-height: 260px;
             }
         }
     </style>
@@ -642,13 +730,144 @@
                     Dosya İçeriği
                 </label>
 
-                <textarea
-                    id="icerik"
-                    placeholder="Dosyanın tamamını buraya yaz..."
-                ></textarea>
+                <div class="editor-wrapper">
+
+                    <div class="editor-toolbar">
+
+                        <button
+                            type="button"
+                            onclick="editorKomut('bold')"
+                            title="Kalın"
+                        >
+                            <b>B</b>
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="editorKomut('italic')"
+                            title="İtalik"
+                        >
+                            <i>I</i>
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="editorKomut('underline')"
+                            title="Altı çizili"
+                        >
+                            <u>U</u>
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="editorKomut('foreColor', '#c40000')"
+                            title="Kırmızı yazı"
+                        >
+                            <span style="color:#c40000;font-weight:bold;">A</span>
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="editorKomut('hiliteColor', '#fff3a3')"
+                            title="Metni vurgula"
+                        >
+                            🖍️
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="secimiKutula()"
+                            title="Metni kutuya al"
+                        >
+                            ▣
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="editorKomut('formatBlock', 'H2')"
+                            title="Başlık"
+                        >
+                            H2
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="editorKomut('formatBlock', 'H3')"
+                            title="Alt başlık"
+                        >
+                            H3
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="editorKomut('justifyLeft')"
+                            title="Sola hizala"
+                        >
+                            ←
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="editorKomut('justifyCenter')"
+                            title="Ortala"
+                        >
+                            ↔
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="editorKomut('justifyRight')"
+                            title="Sağa hizala"
+                        >
+                            →
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="editorKomut('insertUnorderedList')"
+                            title="Madde işaretli liste"
+                        >
+                            • Liste
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="editorKomut('insertOrderedList')"
+                            title="Numaralı liste"
+                        >
+                            1. Liste
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="linkEkle()"
+                            title="Bağlantı ekle"
+                        >
+                            🔗
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="editorKomut('removeFormat')"
+                            title="Biçimlendirmeyi temizle"
+                        >
+                            ✕
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="icerik"
+                        class="editor-content"
+                        contenteditable="true"
+                        spellcheck="true"
+                    ></div>
+
+                </div>
 
                 <small>
-                    Şimdilik düz metin olarak kullanılmaktadır.
+                    Metni seçerek üstteki araçlarla biçimlendirebilirsiniz.
                 </small>
 
             </div>
@@ -769,6 +988,88 @@
 
 
     /* ==========================================
+       ZENGİN METİN EDİTÖRÜ
+    ========================================== */
+
+    function editorKomut(komut, deger = null) {
+
+        const editor = document.getElementById("icerik");
+
+        editor.focus();
+
+        document.execCommand(
+            komut,
+            false,
+            deger
+        );
+    }
+
+
+    function linkEkle() {
+
+        const editor = document.getElementById("icerik");
+
+        editor.focus();
+
+        const url = prompt(
+            "Bağlantı adresini girin:"
+        );
+
+        if (!url) {
+            return;
+        }
+
+        editorKomut(
+            "createLink",
+            url
+        );
+    }
+
+
+    function secimiKutula() {
+
+        const editor = document.getElementById("icerik");
+
+        editor.focus();
+
+        const selection = window.getSelection();
+
+        if (
+            !selection.rangeCount ||
+            selection.isCollapsed
+        ) {
+            alert(
+                "Önce kutuya almak istediğiniz metni seçin."
+            );
+
+            return;
+        }
+
+        const range = selection.getRangeAt(0);
+
+        const span = document.createElement("span");
+
+        span.className = "metin-kutusu";
+
+        try {
+
+            range.surroundContents(span);
+
+            selection.removeAllRanges();
+
+        } catch (error) {
+
+            document.execCommand(
+                "backColor",
+                false,
+                "#fff3a3"
+            );
+
+        }
+    }
+
+
+    /* ==========================================
        HTML GÜVENLİĞİ
     ========================================== */
 
@@ -842,10 +1143,15 @@
        MESAJ
     ========================================== */
 
-    function mesajGoster(metin, tip = "basarili") {
+    function mesajGoster(
+        metin,
+        tip = "basarili"
+    ) {
 
         mesaj.textContent = metin;
-        mesaj.className = "mesaj " + tip;
+
+        mesaj.className =
+            "mesaj " + tip;
 
         window.scrollTo({
             top: 0,
@@ -1069,6 +1375,8 @@
 
         document.getElementById("dosyaId").value = "";
 
+        document.getElementById("icerik").innerHTML = "";
+
         document.getElementById("durum").value =
             "taslak";
 
@@ -1094,10 +1402,12 @@
 
 
         if (!dosya) {
+
             mesajGoster(
                 "Dosya bulunamadı.",
                 "hata"
             );
+
             return;
         }
 
@@ -1111,7 +1421,7 @@
         document.getElementById("ozet").value =
             dosya.ozet || "";
 
-        document.getElementById("icerik").value =
+        document.getElementById("icerik").innerHTML =
             dosya.icerik || "";
 
         document.getElementById("kategori").value =
@@ -1179,7 +1489,7 @@
             document.getElementById("ozet").value.trim();
 
         const icerik =
-            document.getElementById("icerik").value.trim();
+            document.getElementById("icerik").innerHTML.trim();
 
         const kategori =
             document.getElementById("kategori").value;
@@ -1277,7 +1587,9 @@
             document.getElementById("kaydetBtn");
 
         kaydetBtn.disabled = true;
-        kaydetBtn.textContent = "Kaydediliyor...";
+
+        kaydetBtn.textContent =
+            "Kaydediliyor...";
 
 
         let sonuc;
@@ -1300,7 +1612,9 @@
 
 
         kaydetBtn.disabled = false;
-        kaydetBtn.textContent = "💾 Kaydet";
+
+        kaydetBtn.textContent =
+            "💾 Kaydet";
 
 
         if (sonuc.error) {
@@ -1322,11 +1636,13 @@
 
         modalKapat();
 
+
         mesajGoster(
             id
             ? "Dosya başarıyla güncellendi."
             : "Dosya başarıyla oluşturuldu."
         );
+
 
         await dosyalariGetir();
     }
@@ -1468,6 +1784,9 @@
 
         document.getElementById("dosyaId")
             .value = "";
+
+        document.getElementById("icerik")
+            .innerHTML = "";
     }
 
 
@@ -1615,4 +1934,3 @@
 
 </body>
 </html>
-```
