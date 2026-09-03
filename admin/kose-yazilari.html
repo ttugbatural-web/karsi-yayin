@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Köşe Yazıları — KARŞI Yönetim</title>
+  <title>Köşe Yazıları — KARŞIDAN Yönetim</title>
 
   <style>
 
@@ -116,16 +116,158 @@
       resize: vertical;
     }
 
-    .form-group textarea.icerik {
-      min-height: 420px;
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.7;
+    /* ==================================================
+       ZENGİN YAZI EDİTÖRÜ
+    ================================================== */
+
+    .editor {
+      border: 1px solid #ccc;
+      background: white;
     }
 
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      border-color: #111;
+    .editor-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 5px;
+      padding: 8px;
+      background: #f5f5f3;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .editor-toolbar button,
+    .editor-toolbar select {
+      height: 34px;
+      border: 1px solid #ccc;
+      background: white;
+      color: #111;
+      padding: 0 9px;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .editor-toolbar button:hover,
+    .editor-toolbar select:hover {
+      background: #eee;
+    }
+
+    .editor-toolbar button.active {
+      background: #111;
+      color: white;
+    }
+
+    .toolbar-separator {
+      width: 1px;
+      height: 25px;
+      background: #ccc;
+      margin: 0 3px;
+    }
+
+    .color-button {
+      position: relative;
+      min-width: 34px;
+      font-weight: bold;
+    }
+
+    .color-button::after {
+      content: "";
+      display: block;
+      height: 3px;
+      background: #c40000;
+      margin-top: 2px;
+    }
+
+    .highlight-button::after {
+      background: #ffdf00;
+    }
+
+    .editor-content {
+      min-height: 420px;
+      padding: 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      line-height: 1.75;
+      outline: none;
+      overflow-wrap: anywhere;
+    }
+
+    .editor-content:focus {
+      box-shadow: inset 0 0 0 2px #111;
+    }
+
+    .editor-content:empty::before {
+      content: attr(data-placeholder);
+      color: #999;
+      pointer-events: none;
+    }
+
+    .editor-content p {
+      margin: 0 0 1em;
+    }
+
+    .editor-content h2 {
+      font-size: 28px;
+      line-height: 1.25;
+      margin: 1em 0 0.5em;
+    }
+
+    .editor-content h3 {
+      font-size: 23px;
+      line-height: 1.3;
+      margin: 1em 0 0.5em;
+    }
+
+    .editor-content blockquote {
+      border-left: 5px solid #c40000;
+      background: #f5f5f3;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-style: italic;
+    }
+
+    .editor-content .vurgulu-kutu {
+      background: #fff3a6;
+      border: 1px solid #e2c900;
+      padding: 15px 18px;
+      margin: 20px 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .editor-help {
+      padding: 8px 12px;
+      background: #fafafa;
+      border-top: 1px solid #eee;
+      color: #777;
+      font-size: 11px;
+    }
+
+    .editor-content ul,
+    .editor-content ol {
+      margin: 12px 0 12px 28px;
+    }
+
+    .editor-content a {
+      color: #b00000;
+      text-decoration: underline;
+    }
+
+    /* ==================================================
+       ARAÇLAR
+    ================================================== */
+
+    .font-size-select {
+      min-width: 100px;
+    }
+
+    .font-name-select {
+      min-width: 130px;
+    }
+
+    .form-group textarea.summary {
+      min-height: 140px;
     }
 
     .photo-area {
@@ -192,15 +334,6 @@
 
     .save-button:hover {
       background: #c40000;
-    }
-
-    .draft-button {
-      background: #ddd;
-      color: #111;
-    }
-
-    .draft-button:hover {
-      background: #bbb;
     }
 
     .cancel-button {
@@ -354,6 +487,20 @@
         height: 160px;
       }
 
+      .editor-toolbar {
+        gap: 4px;
+      }
+
+      .editor-toolbar button,
+      .editor-toolbar select {
+        height: 38px;
+      }
+
+      .editor-content {
+        min-height: 360px;
+        font-size: 17px;
+      }
+
     }
 
   </style>
@@ -367,7 +514,7 @@
   <div class="header-inner">
 
     <div class="logo">
-      KARŞI
+      KARŞIDAN
     </div>
 
     <a
@@ -388,7 +535,7 @@
   </h1>
 
   <p class="page-description">
-    KARŞI köşe yazılarını buradan oluşturabilir,
+    KARŞIDAN köşe yazılarını buradan oluşturabilir,
     düzenleyebilir ve yayınlayabilirsin.
   </p>
 
@@ -425,6 +572,7 @@
 
       <textarea
         id="articleSummary"
+        class="summary"
         placeholder="Yazının kısa giriş metni..."
       ></textarea>
 
@@ -466,11 +614,174 @@
         YAZI
       </label>
 
-      <textarea
-        id="articleContent"
-        class="icerik"
-        placeholder="Köşe yazısını buraya yaz..."
-      ></textarea>
+      <div class="editor">
+
+        <div class="editor-toolbar">
+
+          <select
+            class="font-name-select"
+            title="Yazı tipi"
+            onchange="editorKomut('fontName', this.value)"
+          >
+            <option value="">Yazı tipi</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Courier New">Courier New</option>
+          </select>
+
+          <select
+            class="font-size-select"
+            title="Yazı boyutu"
+            onchange="editorKomut('fontSize', this.value)"
+          >
+            <option value="">Boyut</option>
+            <option value="2">Küçük</option>
+            <option value="3">Normal</option>
+            <option value="4">Büyük</option>
+            <option value="5">Çok büyük</option>
+            <option value="6">Başlık</option>
+          </select>
+
+          <div class="toolbar-separator"></div>
+
+          <button
+            type="button"
+            onclick="editorKomut('bold')"
+            title="Kalın"
+          >
+            <strong>B</strong>
+          </button>
+
+          <button
+            type="button"
+            onclick="editorKomut('italic')"
+            title="İtalik"
+          >
+            <em>I</em>
+          </button>
+
+          <button
+            type="button"
+            onclick="editorKomut('underline')"
+            title="Altı çizili"
+          >
+            <u>U</u>
+          </button>
+
+          <div class="toolbar-separator"></div>
+
+          <button
+            type="button"
+            class="color-button"
+            onclick="metinRengiSec()"
+            title="Yazı rengini değiştir"
+          >
+            A
+          </button>
+
+          <button
+            type="button"
+            class="color-button highlight-button"
+            onclick="vurguluMetin()"
+            title="Metni vurgula"
+          >
+            H
+          </button>
+
+          <button
+            type="button"
+            onclick="vurguluKutu()"
+            title="Vurgulu kutu ekle"
+          >
+            ▣
+          </button>
+
+          <div class="toolbar-separator"></div>
+
+          <button
+            type="button"
+            onclick="editorKomut('justifyLeft')"
+            title="Sola hizala"
+          >
+            ≡
+          </button>
+
+          <button
+            type="button"
+            onclick="editorKomut('justifyCenter')"
+            title="Ortala"
+          >
+            ≡
+          </button>
+
+          <button
+            type="button"
+            onclick="editorKomut('justifyRight')"
+            title="Sağa hizala"
+          >
+            ≡
+          </button>
+
+          <div class="toolbar-separator"></div>
+
+          <button
+            type="button"
+            onclick="editorKomut('insertUnorderedList')"
+            title="Madde işaretleri"
+          >
+            • Liste
+          </button>
+
+          <button
+            type="button"
+            onclick="editorKomut('insertOrderedList')"
+            title="Numaralı liste"
+          >
+            1. Liste
+          </button>
+
+          <button
+            type="button"
+            onclick="editorKomut('formatBlock', 'blockquote')"
+            title="Alıntı"
+          >
+            “ Alıntı
+          </button>
+
+          <div class="toolbar-separator"></div>
+
+          <button
+            type="button"
+            onclick="linkEkle()"
+            title="Link ekle"
+          >
+            🔗
+          </button>
+
+          <button
+            type="button"
+            onclick="editorKomut('removeFormat')"
+            title="Biçimlendirmeyi temizle"
+          >
+            Tx
+          </button>
+
+        </div>
+
+        <div
+          id="articleContent"
+          class="editor-content"
+          contenteditable="true"
+          data-placeholder="Köşe yazısını buraya yaz..."
+        ></div>
+
+        <div class="editor-help">
+          Metni seçtikten sonra araç çubuğundaki biçimlendirme seçeneklerini kullanabilirsin.
+        </div>
+
+      </div>
 
     </div>
 
@@ -591,7 +902,7 @@
 
 <footer>
 
-  KARŞI — Yönetim Paneli
+  KARŞIDAN — Yönetim Paneli
 
 </footer>
 
@@ -629,6 +940,194 @@ const photoPreview =
 
 const saveButton =
   document.getElementById("saveButton");
+
+const editor =
+  document.getElementById("articleContent");
+
+
+/* ==================================================
+   ZENGİN METİN EDİTÖRÜ
+================================================== */
+
+function editorKomut(
+  komut,
+  deger = null
+) {
+
+  editor.focus();
+
+  document.execCommand(
+    komut,
+    false,
+    deger
+  );
+
+}
+
+
+function metinRengiSec() {
+
+  const renk =
+    prompt(
+      "Yazı rengi için HEX kodu gir:\nÖrneğin: #c40000"
+    );
+
+  if (!renk) {
+    return;
+  }
+
+  if (
+    !/^#[0-9A-Fa-f]{6}$/.test(
+      renk
+    )
+  ) {
+
+    alert(
+      "Geçerli bir HEX renk kodu gir.\nÖrnek: #c40000"
+    );
+
+    return;
+
+  }
+
+  editor.focus();
+
+  document.execCommand(
+    "foreColor",
+    false,
+    renk
+  );
+
+}
+
+
+function vurguluMetin() {
+
+  editor.focus();
+
+  document.execCommand(
+    "hiliteColor",
+    false,
+    "#fff3a6"
+  );
+
+}
+
+
+function vurguluKutu() {
+
+  editor.focus();
+
+  const selection =
+    window.getSelection();
+
+  if (
+    !selection ||
+    selection.rangeCount === 0
+  ) {
+
+    return;
+
+  }
+
+  const range =
+    selection.getRangeAt(0);
+
+  if (
+    range.collapsed
+  ) {
+
+    alert(
+      "Önce kutu içine almak istediğin metni seç."
+    );
+
+    return;
+
+  }
+
+  const div =
+    document.createElement(
+      "div"
+    );
+
+  div.className =
+    "vurgulu-kutu";
+
+  try {
+
+    range.surroundContents(
+      div
+    );
+
+  }
+
+  catch (error) {
+
+    const fragment =
+      range.extractContents();
+
+    div.appendChild(
+      fragment
+    );
+
+    range.insertNode(
+      div
+    );
+
+  }
+
+  selection.removeAllRanges();
+
+}
+
+
+function linkEkle() {
+
+  const url =
+    prompt(
+      "Link adresini gir:"
+    );
+
+  if (!url) {
+    return;
+  }
+
+  let temizUrl =
+    url.trim();
+
+  if (
+    !/^https?:\/\//i.test(
+      temizUrl
+    )
+  ) {
+
+    temizUrl =
+      "https://" +
+      temizUrl;
+
+  }
+
+  editor.focus();
+
+  document.execCommand(
+    "createLink",
+    false,
+    temizUrl
+  );
+
+}
+
+
+/* ==================================================
+   EDİTÖR HTML GÜVENLİĞİ
+================================================== */
+
+function editorIcerigiAl() {
+
+  return editor.innerHTML
+    .trim();
+
+}
 
 
 /* ==================================================
@@ -869,10 +1368,7 @@ async function yaziKaydet() {
 
 
   const content =
-    document
-      .getElementById("articleContent")
-      .value
-      .trim();
+    editorIcerigiAl();
 
 
   const slug =
@@ -1385,10 +1881,8 @@ async function yaziDuzenle(
       "Köşe Yazısı";
 
 
-  document
-    .getElementById("articleContent")
-    .value =
-      data.icerik || "";
+  editor.innerHTML =
+    data.icerik || "";
 
 
   document
@@ -1549,10 +2043,8 @@ function formTemizle() {
       "Köşe Yazısı";
 
 
-  document
-    .getElementById("articleContent")
-    .value =
-      "";
+  editor.innerHTML =
+    "";
 
 
   document
@@ -1640,7 +2132,7 @@ async function sayfayiBaslat() {
 
 
   console.log(
-    "KARŞI: Köşe Yazıları yönetim sayfası açıldı."
+    "KARŞIDAN: Köşe Yazıları yönetim sayfası açıldı."
   );
 
 
