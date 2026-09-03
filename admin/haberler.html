@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
 
@@ -7,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Haberler — KARŞI Yönetim</title>
+  <title>Haberler — KARŞIDAN Yönetim</title>
 
   <style>
 
@@ -117,10 +116,101 @@
       resize: vertical;
     }
 
-    .form-group textarea.icerik {
+    /* ==========================================
+       ZENGİN METİN EDİTÖRÜ
+    ========================================== */
+
+    .editor {
+      border: 1px solid #ccc;
+      background: white;
+    }
+
+    .editor-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      padding: 8px;
+      background: #f4f4f4;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .editor-button {
+      min-width: 34px;
+      height: 32px;
+      padding: 0 9px;
+      border: 1px solid #ccc;
+      background: white;
+      color: #111;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .editor-button:hover {
+      background: #e8e8e8;
+    }
+
+    .editor-button.active {
+      background: #111;
+      color: white;
+    }
+
+    .editor-button.red-text {
+      color: #c40000;
+    }
+
+    .editor-button.highlight-text {
+      background: #fff3a6;
+    }
+
+    .editor-button.box-text {
+      border: 2px solid #111;
+    }
+
+    .editor-separator {
+      width: 1px;
+      height: 32px;
+      background: #ccc;
+      margin: 0 3px;
+    }
+
+    .icerik-editor {
       min-height: 420px;
+      padding: 18px;
       font-family: Georgia, "Times New Roman", serif;
+      font-size: 17px;
       line-height: 1.7;
+      outline: none;
+      overflow-wrap: break-word;
+    }
+
+    .icerik-editor:focus {
+      box-shadow: inset 0 0 0 1px #111;
+    }
+
+    .icerik-editor:empty:before {
+      content: attr(data-placeholder);
+      color: #999;
+      pointer-events: none;
+    }
+
+    .icerik-editor p {
+      margin-bottom: 1em;
+    }
+
+    .icerik-editor blockquote {
+      border-left: 4px solid #c40000;
+      padding-left: 15px;
+      margin: 15px 0;
+      color: #555;
+    }
+
+    .editor-info {
+      padding: 8px 12px;
+      background: #fafafa;
+      border-top: 1px solid #eee;
+      color: #777;
+      font-size: 11px;
     }
 
     .form-group input:focus,
@@ -346,6 +436,15 @@
         height: 180px;
       }
 
+      .editor-toolbar {
+        gap: 4px;
+      }
+
+      .editor-button {
+        min-width: 32px;
+        padding: 0 7px;
+      }
+
     }
 
   </style>
@@ -359,7 +458,7 @@
   <div class="header-inner">
 
     <div class="logo">
-      KARŞI
+      KARŞIDAN
     </div>
 
     <a
@@ -380,7 +479,7 @@
   </h1>
 
   <p class="page-description">
-    KARŞI haberlerini buradan oluşturabilir,
+    KARŞIDAN haberlerini buradan oluşturabilir,
     düzenleyebilir ve yayınlayabilirsin.
   </p>
 
@@ -494,11 +593,100 @@
         HABER METNİ
       </label>
 
-      <textarea
-        id="articleContent"
-        class="icerik"
-        placeholder="Haber metnini buraya yaz..."
-      ></textarea>
+      <div class="editor">
+
+        <div class="editor-toolbar">
+
+          <button
+            type="button"
+            class="editor-button"
+            onclick="editorKomut('bold')"
+            title="Kalın"
+          >
+            B
+          </button>
+
+          <button
+            type="button"
+            class="editor-button"
+            onclick="editorKomut('italic')"
+            title="İtalik"
+          >
+            <i>I</i>
+          </button>
+
+          <button
+            type="button"
+            class="editor-button"
+            onclick="editorKomut('underline')"
+            title="Altı çizili"
+          >
+            <u>U</u>
+          </button>
+
+          <div class="editor-separator"></div>
+
+          <button
+            type="button"
+            class="editor-button red-text"
+            onclick="kirmiziYazi()"
+            title="Kırmızı yazı"
+          >
+            A
+          </button>
+
+          <button
+            type="button"
+            class="editor-button highlight-text"
+            onclick="vurgula()"
+            title="Vurgula"
+          >
+            H
+          </button>
+
+          <button
+            type="button"
+            class="editor-button box-text"
+            onclick="kutula()"
+            title="Kutulu metin"
+          >
+            □
+          </button>
+
+          <div class="editor-separator"></div>
+
+          <button
+            type="button"
+            class="editor-button"
+            onclick="editorKomut('formatBlock', 'blockquote')"
+            title="Alıntı"
+          >
+            ❝
+          </button>
+
+          <button
+            type="button"
+            class="editor-button"
+            onclick="editorKomut('removeFormat')"
+            title="Biçimlendirmeyi temizle"
+          >
+            Tx
+          </button>
+
+        </div>
+
+        <div
+          id="articleContent"
+          class="icerik-editor"
+          contenteditable="true"
+          data-placeholder="Haber metnini buraya yaz..."
+        ></div>
+
+        <div class="editor-info">
+          Metni seç ve araç çubuğundan istediğin biçimlendirmeyi uygula.
+        </div>
+
+      </div>
 
     </div>
 
@@ -512,7 +700,7 @@
       <input
         type="text"
         id="articleSource"
-        placeholder="Örn. Reuters, AP, BBC veya KARŞI"
+        placeholder="Örn. Reuters, AP, BBC veya KARŞIDAN"
       >
 
     </div>
@@ -641,7 +829,7 @@
 
 <footer>
 
-  KARŞI — Yönetim Paneli
+  KARŞIDAN — Yönetim Paneli
 
 </footer>
 
@@ -685,6 +873,133 @@
 
   const saveButton =
     document.getElementById("saveButton");
+
+
+  const articleContent =
+    document.getElementById("articleContent");
+
+
+  /* ==================================================
+     ZENGİN METİN EDİTÖRÜ
+  ================================================== */
+
+  function editorOdakla() {
+
+    articleContent.focus();
+
+  }
+
+
+  function editorKomut(
+    komut,
+    deger = null
+  ) {
+
+    editorOdakla();
+
+    document.execCommand(
+      komut,
+      false,
+      deger
+    );
+
+  }
+
+
+  function kirmiziYazi() {
+
+    editorOdakla();
+
+    document.execCommand(
+      "foreColor",
+      false,
+      "#c40000"
+    );
+
+  }
+
+
+  function vurgula() {
+
+    editorOdakla();
+
+    document.execCommand(
+      "hiliteColor",
+      false,
+      "#fff3a6"
+    );
+
+  }
+
+
+  function kutula() {
+
+    editorOdakla();
+
+    const secim =
+      window.getSelection();
+
+    if (
+      !secim ||
+      secim.rangeCount === 0
+    ) {
+
+      return;
+
+    }
+
+
+    const range =
+      secim.getRangeAt(0);
+
+
+    if (
+      range.collapsed
+    ) {
+
+      return;
+
+    }
+
+
+    const span =
+      document.createElement(
+        "span"
+      );
+
+
+    span.style.border =
+      "2px solid #111";
+
+    span.style.padding =
+      "4px 8px";
+
+    span.style.display =
+      "inline-block";
+
+    span.style.margin =
+      "2px 0";
+
+
+    try {
+
+      range.surroundContents(
+        span
+      );
+
+    }
+
+    catch (error) {
+
+      document.execCommand(
+        "formatBlock",
+        false,
+        "div"
+      );
+
+    }
+
+  }
 
 
   /* ==================================================
@@ -922,9 +1237,8 @@
 
 
     const content =
-      document
-        .getElementById("articleContent")
-        .value
+      articleContent
+        .innerHTML
         .trim();
 
 
@@ -964,7 +1278,10 @@
     }
 
 
-    if (!content) {
+    if (
+      !content ||
+      content === "<br>"
+    ) {
 
       mesajGoster(
         "Lütfen haber metnini yaz.",
@@ -1503,10 +1820,8 @@
         data.kategori || "Gündem";
 
 
-    document
-      .getElementById("articleContent")
-      .value =
-        data.icerik || "";
+    articleContent.innerHTML =
+      data.icerik || "";
 
 
     document
@@ -1753,9 +2068,8 @@
         "Gündem";
 
 
-    document
-      .getElementById("articleContent")
-      .value = "";
+    articleContent.innerHTML =
+      "";
 
 
     document
@@ -1837,4 +2151,3 @@
 
 </body>
 </html>
-```
