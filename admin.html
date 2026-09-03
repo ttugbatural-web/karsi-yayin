@@ -255,6 +255,112 @@ button.danger {
 
 
 /* =========================
+   ANA SAYFA KARTLARI
+========================= */
+
+.dashboard-home {
+  display: block;
+}
+
+.dashboard-home.hidden {
+  display: none;
+}
+
+.dashboard-cards {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+
+  margin-top: 20px;
+}
+
+.dashboard-card {
+
+  display: block;
+
+  background: white;
+
+  border: 1px solid #ddd;
+
+  padding: 25px;
+
+  text-decoration: none;
+
+  color: #111;
+
+  min-height: 175px;
+
+  transition:
+    transform .15s ease,
+    border-color .15s ease,
+    box-shadow .15s ease;
+
+}
+
+.dashboard-card:hover {
+
+  transform: translateY(-3px);
+
+  border-color: #c40000;
+
+  box-shadow:
+    0 5px 18px rgba(0,0,0,.08);
+
+}
+
+.card-icon {
+
+  font-size: 34px;
+
+  margin-bottom: 16px;
+
+}
+
+.dashboard-card h2 {
+
+  font-family: Georgia, serif;
+
+  font-size: 22px;
+
+  margin-bottom: 8px;
+
+}
+
+.dashboard-card p {
+
+  color: #777;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+}
+
+.dashboard-card.red-card {
+
+  border-top: 4px solid #c40000;
+
+}
+
+
+/* =========================
+   PANEL
+========================= */
+
+.content-area {
+  display: none;
+}
+
+.content-area.active {
+  display: block;
+}
+
+
+/* =========================
    TABS
 ========================= */
 
@@ -519,7 +625,19 @@ footer {
    MOBİL
 ========================= */
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
+
+  .dashboard-cards {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+  }
+
+}
+
+
+@media (max-width: 550px) {
 
   .header-inner {
     align-items: flex-start;
@@ -527,6 +645,12 @@ footer {
 
   .logo {
     font-size: 36px;
+  }
+
+  .dashboard-cards {
+
+    grid-template-columns: 1fr;
+
   }
 
   .form-grid {
@@ -565,6 +689,7 @@ footer {
 
 </head>
 
+
 <body>
 
 
@@ -591,6 +716,7 @@ footer {
   </div>
 
 </header>
+
 
 
 <!-- =========================
@@ -670,6 +796,10 @@ footer {
 >
 
 
+  <!-- =========================
+       DASHBOARD BAŞLIK
+  ========================= -->
+
   <div class="page-title">
 
     <h1>
@@ -690,207 +820,159 @@ footer {
 
 
   <!-- =========================
-       TABS
-  ========================= -->
-
-  <div class="tabs">
-
-    <button
-      class="tab active"
-      id="tabYazi"
-      onclick="sekmeAc('yazi')"
-    >
-      YENİ KÖŞE YAZISI
-    </button>
-
-    <button
-      class="tab"
-      id="tabHaber"
-      onclick="sekmeAc('haber')"
-    >
-      YENİ HABER
-    </button>
-
-    <button
-      class="tab"
-      id="tabListe"
-      onclick="sekmeAc('liste')"
-    >
-      İÇERİKLER
-    </button>
-
-  </div>
-
-
-
-  <!-- =========================
-       YAZI FORMU
+       ANA KARTLAR
   ========================= -->
 
   <section
-    id="yaziPanel"
-    class="panel"
+    id="dashboardHome"
+    class="dashboard-home"
   >
 
-    <h2>
-      Yeni Köşe Yazısı
-    </h2>
+    <div class="dashboard-cards">
 
 
-    <input
-      type="hidden"
-      id="yaziId"
-    >
+      <!-- KÖŞE YAZILARI -->
 
+      <a
+        class="dashboard-card red-card"
+        href="admin/kose-yazilari.html"
+      >
 
-    <div class="form-grid">
-
-
-      <div class="form-group full">
-
-        <label>
-          BAŞLIK
-        </label>
-
-        <input
-          type="text"
-          id="yaziBaslik"
-          placeholder="Yazının başlığı"
-        >
-
-      </div>
-
-
-      <div class="form-group full">
-
-        <label>
-          ÖZET
-        </label>
-
-        <input
-          type="text"
-          id="yaziOzet"
-          placeholder="Kısa özet"
-        >
-
-      </div>
-
-
-      <div class="form-group full">
-
-        <label>
-          İÇERİK
-        </label>
-
-        <textarea
-          id="yaziIcerik"
-          placeholder="Yazınızı buraya yazın..."
-        ></textarea>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          KATEGORİ
-        </label>
-
-        <input
-          type="text"
-          id="yaziKategori"
-          value="KARŞIDAN / YORUM"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          YAZAR
-        </label>
-
-        <select id="yaziYazar">
-          <option value="">
-            Yazar seçin
-          </option>
-        </select>
-
-      </div>
-
-
-      <div class="form-group full">
-
-        <label>
-          KAPAK FOTOĞRAFI URL
-        </label>
-
-        <input
-          type="url"
-          id="yaziFoto"
-          placeholder="https://..."
-        >
-
-      </div>
-
-
-      <div class="form-group full">
-
-        <label>
-          DURUM
-        </label>
-
-        <div class="status-options">
-
-          <label>
-
-            <input
-              type="radio"
-              name="yaziDurum"
-              value="taslak"
-            >
-
-            Taslak
-
-          </label>
-
-
-          <label>
-
-            <input
-              type="radio"
-              name="yaziDurum"
-              value="yayinda"
-              checked
-            >
-
-            Yayında
-
-          </label>
-
+        <div class="card-icon">
+          📝
         </div>
 
-      </div>
+        <h2>
+          Köşe Yazıları
+        </h2>
 
-    </div>
+        <p>
+          Köşe yazılarını oluştur,
+          düzenle ve yayınla.
+        </p>
+
+      </a>
 
 
-    <div style="display:flex; gap:10px; margin-top:10px;">
 
-      <button
-        class="red"
-        onclick="yaziKaydet()"
+      <!-- HABERLER -->
+
+      <a
+        class="dashboard-card"
+        href="admin/haberler.html"
       >
-        YAZIYI YAYINLA
-      </button>
 
-      <button
-        class="gray"
-        onclick="yaziFormTemizle()"
+        <div class="card-icon">
+          📰
+        </div>
+
+        <h2>
+          Haberler
+        </h2>
+
+        <p>
+          Gündem haberlerini
+          oluştur ve yönet.
+        </p>
+
+      </a>
+
+
+
+      <!-- DÜNYA HABERLERİ -->
+
+      <a
+        class="dashboard-card"
+        href="admin/dunya.html"
       >
-        TEMİZLE
-      </button>
+
+        <div class="card-icon">
+          🌍
+        </div>
+
+        <h2>
+          Dünya Haberleri
+        </h2>
+
+        <p>
+          Dünya haberlerini,
+          kaynakları ve yayın durumlarını yönet.
+        </p>
+
+      </a>
+
+
+
+      <!-- YAZARLAR -->
+
+      <a
+        class="dashboard-card"
+        href="admin/yazarlar.html"
+      >
+
+        <div class="card-icon">
+          👤
+        </div>
+
+        <h2>
+          Yazarlar
+        </h2>
+
+        <p>
+          Yazar ekle, düzenle,
+          fotoğraf ve biyografi yönet.
+        </p>
+
+      </a>
+
+
+
+      <!-- DOSYALAR -->
+
+      <a
+        class="dashboard-card"
+        href="admin/dosyalar.html"
+      >
+
+        <div class="card-icon">
+          📁
+        </div>
+
+        <h2>
+          Dosyalar
+        </h2>
+
+        <p>
+          Dosya içeriklerini
+          oluştur ve yönet.
+        </p>
+
+      </a>
+
+
+
+      <!-- AYARLAR -->
+
+      <a
+        class="dashboard-card"
+        href="admin/ayarlar.html"
+      >
+
+        <div class="card-icon">
+          ⚙️
+        </div>
+
+        <h2>
+          Ayarlar
+        </h2>
+
+        <p>
+          Site adı, slogan ve
+          yayın sistemi ayarlarını yönet.
+        </p>
+
+      </a>
+
 
     </div>
 
@@ -899,225 +981,462 @@ footer {
 
 
   <!-- =========================
-       HABER FORMU
+       KÖŞE YAZISI / HABER
+       HIZLI YÖNETİM
   ========================= -->
 
   <section
-    id="haberPanel"
-    class="panel hidden"
+    id="editorArea"
+    class="content-area"
   >
-
-    <h2>
-      Yeni Haber
-    </h2>
-
-
-    <input
-      type="hidden"
-      id="haberId"
-    >
-
-
-    <div class="form-grid">
-
-
-      <div class="form-group full">
-
-        <label>
-          BAŞLIK
-        </label>
-
-        <input
-          type="text"
-          id="haberBaslik"
-          placeholder="Haber başlığı"
-        >
-
-      </div>
-
-
-      <div class="form-group full">
-
-        <label>
-          SPOT
-        </label>
-
-        <input
-          type="text"
-          id="haberSpot"
-          placeholder="Haberin kısa spotu"
-        >
-
-      </div>
-
-
-      <div class="form-group full">
-
-        <label>
-          İÇERİK
-        </label>
-
-        <textarea
-          id="haberIcerik"
-          placeholder="Haber metni..."
-        ></textarea>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          KATEGORİ
-        </label>
-
-        <input
-          type="text"
-          id="haberKategori"
-          value="Gündem"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          YAZAR
-        </label>
-
-        <select id="haberYazar">
-
-          <option value="">
-            Yazar seçin
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <div class="form-group full">
-
-        <label>
-          KAPAK FOTOĞRAFI URL
-        </label>
-
-        <input
-          type="url"
-          id="haberFoto"
-          placeholder="https://..."
-        >
-
-      </div>
-
-
-      <div class="form-group full">
-
-        <label>
-          DURUM
-        </label>
-
-        <div class="status-options">
-
-          <label>
-
-            <input
-              type="radio"
-              name="haberDurum"
-              value="taslak"
-            >
-
-            Taslak
-
-          </label>
-
-
-          <label>
-
-            <input
-              type="radio"
-              name="haberDurum"
-              value="yayinda"
-              checked
-            >
-
-            Yayında
-
-          </label>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div style="display:flex; gap:10px; margin-top:10px;">
-
-      <button
-        class="red"
-        onclick="haberKaydet()"
-      >
-        HABERİ YAYINLA
-      </button>
-
-      <button
-        class="gray"
-        onclick="haberFormTemizle()"
-      >
-        TEMİZLE
-      </button>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =========================
-       İÇERİK LİSTESİ
-  ========================= -->
-
-  <section
-    id="listePanel"
-    class="panel hidden"
-  >
-
-    <h2>
-      Mevcut İçerikler
-    </h2>
 
 
     <div class="tabs">
 
       <button
         class="tab active"
-        id="listeYaziTab"
-        onclick="listeYaziAc()"
+        id="tabYazi"
+        onclick="sekmeAc('yazi')"
       >
-        KÖŞE YAZILARI
+        YENİ KÖŞE YAZISI
       </button>
 
       <button
         class="tab"
-        id="listeHaberTab"
-        onclick="listeHaberAc()"
+        id="tabHaber"
+        onclick="sekmeAc('haber')"
       >
-        HABERLER
+        YENİ HABER
+      </button>
+
+      <button
+        class="tab"
+        id="tabListe"
+        onclick="sekmeAc('liste')"
+      >
+        İÇERİKLER
       </button>
 
     </div>
 
 
-    <div
-      id="contentList"
-      class="content-list"
+
+    <!-- =========================
+         YAZI FORMU
+    ========================= -->
+
+    <section
+      id="yaziPanel"
+      class="panel"
     >
 
-      İçerikler yükleniyor...
+      <h2>
+        Yeni Köşe Yazısı
+      </h2>
 
-    </div>
+
+      <input
+        type="hidden"
+        id="yaziId"
+      >
+
+
+      <div class="form-grid">
+
+
+        <div class="form-group full">
+
+          <label>
+            BAŞLIK
+          </label>
+
+          <input
+            type="text"
+            id="yaziBaslik"
+            placeholder="Yazının başlığı"
+          >
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>
+            ÖZET
+          </label>
+
+          <input
+            type="text"
+            id="yaziOzet"
+            placeholder="Kısa özet"
+          >
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>
+            İÇERİK
+          </label>
+
+          <textarea
+            id="yaziIcerik"
+            placeholder="Yazınızı buraya yazın..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            KATEGORİ
+          </label>
+
+          <input
+            type="text"
+            id="yaziKategori"
+            value="KARŞIDAN / YORUM"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            YAZAR
+          </label>
+
+          <select id="yaziYazar">
+
+            <option value="">
+              Yazar seçin
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>
+            KAPAK FOTOĞRAFI URL
+          </label>
+
+          <input
+            type="url"
+            id="yaziFoto"
+            placeholder="https://..."
+          >
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>
+            DURUM
+          </label>
+
+          <div class="status-options">
+
+            <label>
+
+              <input
+                type="radio"
+                name="yaziDurum"
+                value="taslak"
+              >
+
+              Taslak
+
+            </label>
+
+
+            <label>
+
+              <input
+                type="radio"
+                name="yaziDurum"
+                value="yayinda"
+                checked
+              >
+
+              Yayında
+
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div
+        style="display:flex; gap:10px; margin-top:10px;"
+      >
+
+        <button
+          class="red"
+          onclick="yaziKaydet()"
+        >
+          YAZIYI YAYINLA
+        </button>
+
+        <button
+          class="gray"
+          onclick="yaziFormTemizle()"
+        >
+          TEMİZLE
+        </button>
+
+        <button
+          onclick="anaSayfayaDon()"
+        >
+          ANA SAYFA
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         HABER FORMU
+    ========================= -->
+
+    <section
+      id="haberPanel"
+      class="panel hidden"
+    >
+
+      <h2>
+        Yeni Haber
+      </h2>
+
+
+      <input
+        type="hidden"
+        id="haberId"
+      >
+
+
+      <div class="form-grid">
+
+
+        <div class="form-group full">
+
+          <label>
+            BAŞLIK
+          </label>
+
+          <input
+            type="text"
+            id="haberBaslik"
+            placeholder="Haber başlığı"
+          >
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>
+            SPOT
+          </label>
+
+          <input
+            type="text"
+            id="haberSpot"
+            placeholder="Haberin kısa spotu"
+          >
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>
+            İÇERİK
+          </label>
+
+          <textarea
+            id="haberIcerik"
+            placeholder="Haber metni..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            KATEGORİ
+          </label>
+
+          <input
+            type="text"
+            id="haberKategori"
+            value="Gündem"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            YAZAR
+          </label>
+
+          <select id="haberYazar">
+
+            <option value="">
+              Yazar seçin
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>
+            KAPAK FOTOĞRAFI URL
+          </label>
+
+          <input
+            type="url"
+            id="haberFoto"
+            placeholder="https://..."
+          >
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>
+            DURUM
+          </label>
+
+          <div class="status-options">
+
+            <label>
+
+              <input
+                type="radio"
+                name="haberDurum"
+                value="taslak"
+              >
+
+              Taslak
+
+            </label>
+
+
+            <label>
+
+              <input
+                type="radio"
+                name="haberDurum"
+                value="yayinda"
+                checked
+              >
+
+              Yayında
+
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div
+        style="display:flex; gap:10px; margin-top:10px;"
+      >
+
+        <button
+          class="red"
+          onclick="haberKaydet()"
+        >
+          HABERİ YAYINLA
+        </button>
+
+        <button
+          class="gray"
+          onclick="haberFormTemizle()"
+        >
+          TEMİZLE
+        </button>
+
+        <button
+          onclick="anaSayfayaDon()"
+        >
+          ANA SAYFA
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         İÇERİK LİSTESİ
+    ========================= -->
+
+    <section
+      id="listePanel"
+      class="panel hidden"
+    >
+
+      <h2>
+        Mevcut İçerikler
+      </h2>
+
+
+      <div class="tabs">
+
+        <button
+          class="tab active"
+          id="listeYaziTab"
+          onclick="listeYaziAc()"
+        >
+          KÖŞE YAZILARI
+        </button>
+
+        <button
+          class="tab"
+          id="listeHaberTab"
+          onclick="listeHaberAc()"
+        >
+          HABERLER
+        </button>
+
+      </div>
+
+
+      <div
+        id="contentList"
+        class="content-list"
+      >
+
+        İçerikler yükleniyor...
+
+      </div>
+
+    </section>
+
 
   </section>
 
@@ -1127,11 +1446,13 @@ footer {
 </main>
 
 
+
 <footer>
 
   KARŞIDAN Yönetim Paneli · 2026
 
 </footer>
+
 
 
 <!-- =========================
@@ -1181,7 +1502,9 @@ function mesajGoster(text, type = "") {
 
   setTimeout(
     function() {
+
       box.innerHTML = "";
+
     },
     5000
   );
@@ -1215,6 +1538,7 @@ function guvenliMetin(metin) {
 function slugOlustur(metin) {
 
   return String(metin || "")
+
     .toLowerCase()
 
     .replace(/ğ/g, "g")
@@ -1342,7 +1666,6 @@ async function girisYap() {
 
   paneliAc();
 
-
 }
 
 
@@ -1354,13 +1677,25 @@ async function cikisYap() {
 
   await supabaseClient.auth.signOut();
 
+
   document
     .getElementById("dashboard")
     .classList.remove("active");
 
+
   document
     .getElementById("loginSection")
     .style.display = "block";
+
+
+  document
+    .getElementById("dashboardHome")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("editorArea")
+    .classList.remove("active");
 
 }
 
@@ -1406,7 +1741,62 @@ async function paneliAc() {
     .classList.add("active");
 
 
+  document
+    .getElementById("dashboardHome")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("editorArea")
+    .classList.remove("active");
+
+
   await yazarlarıGetir();
+
+}
+
+
+/* ==================================================
+   ANA SAYFAYA DÖN
+================================================== */
+
+function anaSayfayaDon() {
+
+  document
+    .getElementById("dashboardHome")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("editorArea")
+    .classList.remove("active");
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* ==================================================
+   HIZLI YAZI EKRANI
+================================================== */
+
+function editorAc(sekme = "yazi") {
+
+  document
+    .getElementById("dashboardHome")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("editorArea")
+    .classList.add("active");
+
+
+  sekmeAc(sekme);
 
 }
 
@@ -1462,6 +1852,11 @@ async function yazarlarıGetir() {
   selects.forEach(
     function(select) {
 
+      if (!select) {
+        return;
+      }
+
+
       select.innerHTML =
         `
         <option value="">
@@ -1504,55 +1899,39 @@ async function yazarlarıGetir() {
 function sekmeAc(sekme) {
 
   document
-    .getElementById(
-      "yaziPanel"
-    )
+    .getElementById("yaziPanel")
     .classList.add("hidden");
 
   document
-    .getElementById(
-      "haberPanel"
-    )
+    .getElementById("haberPanel")
     .classList.add("hidden");
 
   document
-    .getElementById(
-      "listePanel"
-    )
+    .getElementById("listePanel")
     .classList.add("hidden");
 
 
   document
-    .getElementById(
-      "tabYazi"
-    )
+    .getElementById("tabYazi")
     .classList.remove("active");
 
   document
-    .getElementById(
-      "tabHaber"
-    )
+    .getElementById("tabHaber")
     .classList.remove("active");
 
   document
-    .getElementById(
-      "tabListe"
-    )
+    .getElementById("tabListe")
     .classList.remove("active");
 
 
   if (sekme === "yazi") {
 
     document
-      .getElementById(
-        "yaziPanel"
-      )
+      .getElementById("yaziPanel")
       .classList.remove("hidden");
 
     document
-      .getElementById(
-        "tabYazi"
-      )
+      .getElementById("tabYazi")
       .classList.add("active");
 
   }
@@ -1561,15 +1940,11 @@ function sekmeAc(sekme) {
   if (sekme === "haber") {
 
     document
-      .getElementById(
-        "haberPanel"
-      )
+      .getElementById("haberPanel")
       .classList.remove("hidden");
 
     document
-      .getElementById(
-        "tabHaber"
-      )
+      .getElementById("tabHaber")
       .classList.add("active");
 
   }
@@ -1578,15 +1953,11 @@ function sekmeAc(sekme) {
   if (sekme === "liste") {
 
     document
-      .getElementById(
-        "listePanel"
-      )
+      .getElementById("listePanel")
       .classList.remove("hidden");
 
     document
-      .getElementById(
-        "tabListe"
-      )
+      .getElementById("tabListe")
       .classList.add("active");
 
     listeYaziAc();
@@ -2390,7 +2761,8 @@ async function yaziDuzenle(id) {
   }
 
 
-  sekmeAc("yazi");
+  editorAc("yazi");
+
 
   window.scrollTo({
     top: 0,
@@ -2478,7 +2850,8 @@ async function haberDuzenle(id) {
   }
 
 
-  sekmeAc("haber");
+  editorAc("haber");
+
 
   window.scrollTo({
     top: 0,
@@ -2593,7 +2966,6 @@ async function haberSil(id) {
 ================================================== */
 
 oturumKontrol();
-
 
 </script>
 
