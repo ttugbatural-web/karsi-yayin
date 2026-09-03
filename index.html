@@ -9,7 +9,7 @@
 <meta name="viewport"
    content="width=device-width, initial-scale=1.0">
 
-<title>KARŞI — Bağımsız Yayın</title>
+<title>KARŞIDAN — Bağımsız Yayın</title>
 
 <style>
 
@@ -804,14 +804,13 @@ footer strong {
 
 <header>
 
-```
 <div class="top">
 
     <div
         class="logo"
         id="siteLogo"
     >
-        KARŞI
+        KARŞIDAN
     </div>
 
 
@@ -852,7 +851,6 @@ footer strong {
     </div>
 
 </div>
-```
 
 </header>
 
@@ -862,7 +860,6 @@ footer strong {
 
 <nav>
 
-```
 <div class="nav-inner">
 
     <a href="index.html">
@@ -878,7 +875,7 @@ footer strong {
     </a>
 
     <a href="gundem.html">
-        KARŞI GÜNDEM
+        KARŞIDAN GÜNDEM
     </a>
 
     <a href="dunya.html">
@@ -894,7 +891,6 @@ footer strong {
     </a>
 
 </div>
-```
 
 </nav>
 
@@ -904,7 +900,6 @@ footer strong {
 
 <main>
 
-```
 <!-- ==================================================
      ANA SAYFA BAŞLIĞI
 ================================================== -->
@@ -912,7 +907,7 @@ footer strong {
 <section class="home-intro">
 
     <h1>
-        KARŞI
+        KARŞIDAN
     </h1>
 
     <p id="homeIntroText">
@@ -977,7 +972,7 @@ footer strong {
 
 
     <!-- ==================================================
-         KARŞI GÜNDEM
+         KARŞIDAN GÜNDEM
     ================================================== -->
 
     <section
@@ -987,7 +982,7 @@ footer strong {
         <div class="column-header">
 
             <h2>
-                <span>KARŞI</span> Gündem
+                <span>KARŞIDAN</span> Gündem
             </h2>
 
             <a
@@ -1006,7 +1001,7 @@ footer strong {
         >
 
             <div class="loading">
-                KARŞI Gündem yükleniyor...
+                KARŞIDAN Gündem yükleniyor...
             </div>
 
         </div>
@@ -1016,7 +1011,7 @@ footer strong {
             href="gundem.html"
             class="more-link"
         >
-            TÜM KARŞI GÜNDEMİ GÖR →
+            TÜM KARŞIDAN GÜNDEMİ GÖR →
         </a>
 
     </section>
@@ -1069,7 +1064,6 @@ footer strong {
 
 
 </section>
-```
 
 </main>
 
@@ -1079,9 +1073,8 @@ footer strong {
 
 <footer>
 
-```
 <strong id="footerSiteAdi">
-    KARŞI
+    KARŞIDAN
 </strong>
 
 <br><br>
@@ -1094,9 +1087,8 @@ footer strong {
 
 © 2026
 <span id="footerYilSiteAdi">
-    KARŞI
+    KARŞIDAN
 </span>
-```
 
 </footer>
 
@@ -1348,7 +1340,7 @@ async function siteAyarlariGetir() {
         if (error) {
 
             console.warn(
-                "KARŞI: Site ayarları okunamadı.",
+                "KARŞIDAN: Site ayarları okunamadı.",
                 error
             );
 
@@ -1366,7 +1358,7 @@ async function siteAyarlariGetir() {
 
         const siteAdi =
             data.site_adi ||
-            "KARŞI";
+            "KARŞIDAN";
 
 
         const slogan =
@@ -1540,7 +1532,7 @@ async function siteAyarlariGetir() {
     catch (error) {
 
         console.error(
-            "KARŞI: Site ayarları hatası:",
+            "KARŞIDAN: Site ayarları hatası:",
             error
         );
 
@@ -1678,7 +1670,7 @@ async function koseYazilariniGetir() {
                     yazar &&
                     yazar.ad_soyad
                         ? yazar.ad_soyad
-                        : "KARŞI";
+                        : "KARŞIDAN";
 
 
                 const fotograf =
@@ -1856,7 +1848,7 @@ async function koseYazilariniGetir() {
 
 
 /* ==================================================
-   KARŞI GÜNDEM
+   KARŞIDAN GÜNDEM
 ================================================== */
 
 async function gundemHaberleriniGetir() {
@@ -1906,7 +1898,7 @@ async function gundemHaberleriniGetir() {
         if (error) {
 
             console.error(
-                "KARŞI Gündem hatası:",
+                "KARŞIDAN Gündem hatası:",
                 error
             );
 
@@ -1915,7 +1907,7 @@ async function gundemHaberleriniGetir() {
 
                 <div class="error">
 
-                    KARŞI Gündem yüklenemedi.
+                    KARŞIDAN Gündem yüklenemedi.
 
                 </div>
 
@@ -1936,7 +1928,7 @@ async function gundemHaberleriniGetir() {
                 <div class="empty">
 
                     Henüz yayınlanmış
-                    KARŞI Gündem içeriği bulunmuyor.
+                    KARŞIDAN Gündem içeriği bulunmuyor.
 
                 </div>
 
@@ -1975,7 +1967,7 @@ async function gundemHaberleriniGetir() {
 
                 const kategori =
                     haber.kategori ||
-                    "KARŞI Gündem";
+                    "KARŞIDAN Gündem";
 
 
                 const ozet =
@@ -2059,7 +2051,7 @@ async function gundemHaberleriniGetir() {
     catch (error) {
 
         console.error(
-            "KARŞI Gündem beklenmeyen hata:",
+            "KARŞIDAN Gündem beklenmeyen hata:",
             error
         );
 
@@ -2068,7 +2060,7 @@ async function gundemHaberleriniGetir() {
 
             <div class="error">
 
-                KARŞI Gündem yüklenirken
+                KARŞIDAN Gündem yüklenirken
                 bir hata oluştu.
 
             </div>
