@@ -1652,9 +1652,14 @@ async function koseYazilariniGetir() {
                     "home-item";
 
 
+                /* ==================================================
+                   DÜZELTME:
+                   Köşe yazısı doğrudan tekil yazı sayfasına gider.
+                ================================================== */
+
                 link.href =
                     yazi.slug
-                        ? "kose-yazilari.html?slug=" +
+                        ? "kose-yazisi.html?slug=" +
                           encodeURIComponent(
                               yazi.slug
                           )
