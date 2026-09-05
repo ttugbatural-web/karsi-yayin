@@ -22,6 +22,7 @@
       color: #111;
     }
 
+
     /* =========================
        HEADER
     ========================= */
@@ -185,12 +186,196 @@
       line-height: 1.85;
 
       color: #222;
-
-      white-space: pre-wrap;
     }
 
     .article-content p {
       margin-bottom: 22px;
+    }
+
+    .article-content div {
+      margin-bottom: 22px;
+    }
+
+    .article-content br {
+      line-height: 1.85;
+    }
+
+
+    /* =========================
+       BAŞLIKLAR
+    ========================= */
+
+    .article-content h2 {
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 30px;
+
+      line-height: 1.3;
+
+      margin: 35px 0 18px;
+
+      color: #111;
+    }
+
+    .article-content h3 {
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 24px;
+
+      line-height: 1.35;
+
+      margin: 30px 0 15px;
+
+      color: #111;
+    }
+
+
+    /* =========================
+       KALIN / İTALİK / ALTI ÇİZİLİ
+    ========================= */
+
+    .article-content strong,
+    .article-content b {
+      font-weight: 700;
+    }
+
+    .article-content em,
+    .article-content i {
+      font-style: italic;
+    }
+
+    .article-content u {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    .article-content s {
+      text-decoration: line-through;
+    }
+
+
+    /* =========================
+       LİSTELER
+    ========================= */
+
+    .article-content ul,
+    .article-content ol {
+
+      margin: 20px 0 25px 28px;
+
+      padding-left: 18px;
+    }
+
+    .article-content li {
+
+      margin-bottom: 8px;
+
+      padding-left: 5px;
+    }
+
+
+    /* =========================
+       ALINTI
+    ========================= */
+
+    .article-content blockquote {
+
+      margin: 28px 0;
+
+      padding: 18px 22px;
+
+      border-left: 4px solid #c40000;
+
+      background: #e9e9e7;
+
+      color: #444;
+
+      font-style: italic;
+    }
+
+
+    /* =========================
+       VURGULU METİN
+    ========================= */
+
+    .article-content .vurgulu-metin {
+
+      background: #fff2a8;
+
+      padding: 2px 5px;
+
+      border-radius: 2px;
+    }
+
+
+    /* =========================
+       VURGULU KUTU
+    ========================= */
+
+    .article-content .vurgulu-kutu {
+
+      background: #fff2a8;
+
+      border-left: 5px solid #c40000;
+
+      padding: 18px 20px;
+
+      margin: 25px 0;
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      line-height: 1.65;
+    }
+
+
+    /* =========================
+       BAĞLANTILAR
+    ========================= */
+
+    .article-content a {
+
+      color: #c40000;
+
+      text-decoration: underline;
+
+      text-underline-offset: 2px;
+    }
+
+    .article-content a:hover {
+
+      color: #111;
+    }
+
+
+    /* =========================
+       HİZALAMA
+    ========================= */
+
+    .article-content [style*="text-align: center"] {
+      text-align: center;
+    }
+
+    .article-content [style*="text-align:center"] {
+      text-align: center;
+    }
+
+    .article-content [style*="text-align: right"] {
+      text-align: right;
+    }
+
+    .article-content [style*="text-align:right"] {
+      text-align: right;
+    }
+
+    .article-content [style*="text-align: justify"] {
+      text-align: justify;
+    }
+
+    .article-content [style*="text-align:justify"] {
+      text-align: justify;
     }
 
 
@@ -281,6 +466,10 @@
         padding: 16px;
       }
 
+      .top {
+        align-items: center;
+      }
+
       .logo {
         font-size: 38px;
       }
@@ -296,6 +485,14 @@
       .article-content {
         font-size: 18px;
         line-height: 1.75;
+      }
+
+      .article-content h2 {
+        font-size: 26px;
+      }
+
+      .article-content h3 {
+        font-size: 22px;
       }
 
     }
@@ -411,6 +608,711 @@
 
 
   /* ==================================================
+     GÜVENLİ URL
+  ================================================== */
+
+  function guvenliUrl(url) {
+
+    if (!url) {
+      return "#";
+    }
+
+    try {
+
+      const parsed =
+        new URL(
+          String(url),
+          window.location.origin
+        );
+
+      if (
+        parsed.protocol === "http:" ||
+        parsed.protocol === "https:"
+      ) {
+        return parsed.href;
+      }
+
+    }
+
+    catch (error) {
+
+      console.warn(
+        "Geçersiz URL:",
+        url
+      );
+
+    }
+
+    return "#";
+
+  }
+
+
+  /* ==================================================
+     GÜVENLİ CSS DEĞERİ
+  ================================================== */
+
+  function guvenliStyleDegeri(deger) {
+
+    if (!deger) {
+      return "";
+    }
+
+    const value =
+      String(deger)
+        .trim();
+
+    /*
+     * JavaScript çalıştırabilecek
+     * veya harici kaynak çağırabilecek
+     * tehlikeli CSS ifadelerini engelle.
+     */
+
+    if (
+      /javascript\s*:/i.test(value) ||
+      /expression\s*\(/i.test(value) ||
+      /url\s*\(/i.test(value) ||
+      /@import/i.test(value)
+    ) {
+      return "";
+    }
+
+    /*
+     * HTML / CSS enjeksiyonlarını
+     * engellemek için bazı karakterleri
+     * tamamen reddediyoruz.
+     */
+
+    if (
+      /[<>]/.test(value)
+    ) {
+      return "";
+    }
+
+    return value;
+
+  }
+
+
+  /* ==================================================
+     GÜVENLİ HTML
+  ================================================== */
+
+  function guvenliHTML(html) {
+
+    if (
+      html == null ||
+      String(html).trim() === ""
+    ) {
+      return "";
+    }
+
+
+    /*
+     * HTML'i geçici bir DOM içine alıyoruz.
+     * Böylece metni tekrar escape etmek yerine
+     * güvenli etiketleri koruyabiliyoruz.
+     */
+
+    const container =
+      document.createElement("div");
+
+
+    container.innerHTML =
+      String(html);
+
+
+    /*
+     * İzin verilen HTML etiketleri.
+     */
+
+    const izinVerilenEtiketler =
+      new Set([
+        "P",
+        "BR",
+        "STRONG",
+        "B",
+        "EM",
+        "I",
+        "U",
+        "S",
+        "UL",
+        "OL",
+        "LI",
+        "BLOCKQUOTE",
+        "A",
+        "SPAN",
+        "DIV",
+        "H2",
+        "H3",
+        "FONT"
+      ]);
+
+
+    /*
+     * İzin verilen CSS özellikleri.
+     */
+
+    const izinVerilenStiller =
+      new Set([
+        "color",
+        "background-color",
+        "font-family",
+        "font-size",
+        "font-weight",
+        "font-style",
+        "text-decoration",
+        "text-align"
+      ]);
+
+
+    /*
+     * FONT etiketi legacy execCommand tarafından
+     * üretilebildiği için destekleniyor.
+     */
+
+    function fontEtiketiniSpanYap(font) {
+
+      const span =
+        document.createElement("span");
+
+
+      const color =
+        font.getAttribute("color");
+
+      const face =
+        font.getAttribute("face");
+
+      const size =
+        font.getAttribute("size");
+
+
+      const stiller = [];
+
+
+      if (color) {
+
+        const guvenliColor =
+          guvenliStyleDegeri(color);
+
+        if (guvenliColor) {
+
+          stiller.push(
+            "color:" +
+            guvenliColor
+          );
+
+        }
+
+      }
+
+
+      if (face) {
+
+        const guvenliFace =
+          guvenliStyleDegeri(face);
+
+        if (guvenliFace) {
+
+          stiller.push(
+            "font-family:" +
+            guvenliFace
+          );
+
+        }
+
+      }
+
+
+      /*
+       * execCommand fontSize değerleri:
+       *
+       * 1 = küçük
+       * 2 = küçük/orta
+       * 3 = normal
+       * 4 = büyük
+       * 5 = çok büyük
+       * 6 = başlık
+       * 7 = çok büyük
+       */
+
+      if (size) {
+
+        const boyutlar = {
+
+          "1": "13px",
+          "2": "16px",
+          "3": "19px",
+          "4": "24px",
+          "5": "30px",
+          "6": "36px",
+          "7": "42px"
+
+        };
+
+
+        if (boyutlar[size]) {
+
+          stiller.push(
+            "font-size:" +
+            boyutlar[size]
+          );
+
+        }
+
+      }
+
+
+      if (stiller.length) {
+
+        span.setAttribute(
+          "style",
+          stiller.join(";")
+        );
+
+      }
+
+
+      while (font.firstChild) {
+
+        span.appendChild(
+          font.firstChild
+        );
+
+      }
+
+
+      font.parentNode.replaceChild(
+        span,
+        font
+      );
+
+    }
+
+
+    /*
+     * Önce FONT etiketlerini dönüştürüyoruz.
+     */
+
+    Array.from(
+      container.querySelectorAll("FONT")
+    ).forEach(
+      fontEtiketiniSpanYap
+    );
+
+
+    /*
+     * SCRIPT, STYLE, IFRAME vb.
+     * tehlikeli etiketleri tamamen kaldır.
+     */
+
+    const tehlikeliEtiketler = [
+      "SCRIPT",
+      "STYLE",
+      "IFRAME",
+      "OBJECT",
+      "EMBED",
+      "FORM",
+      "INPUT",
+      "BUTTON",
+      "TEXTAREA",
+      "SELECT",
+      "OPTION",
+      "VIDEO",
+      "AUDIO",
+      "SOURCE",
+      "META",
+      "LINK",
+      "BASE",
+      "SVG",
+      "MATH"
+    ];
+
+
+    tehlikeliEtiketler.forEach(
+      function(tagName) {
+
+        container
+          .querySelectorAll(tagName)
+          .forEach(
+            function(element) {
+
+              element.remove();
+
+            }
+          );
+
+      }
+    );
+
+
+    /*
+     * DOM'u güvenli hale getir.
+     */
+
+    function temizleElement(element) {
+
+      /*
+       * ChildNodes kopyası kullanıyoruz.
+       * Çünkü temizlik sırasında DOM değişebilir.
+       */
+
+      Array.from(
+        element.children
+      ).forEach(
+        function(child) {
+
+          const tagName =
+            child.tagName.toUpperCase();
+
+
+          /*
+           * İzin verilmeyen etiket:
+           * içeriğini kaybetmeden etiketi kaldır.
+           */
+
+          if (
+            !izinVerilenEtiketler.has(
+              tagName
+            )
+          ) {
+
+            while (child.firstChild) {
+
+              element.insertBefore(
+                child.firstChild,
+                child
+              );
+
+            }
+
+            child.remove();
+
+            return;
+
+          }
+
+
+          /*
+           * Tüm attribute'ları kontrol et.
+           */
+
+          Array.from(
+            child.attributes
+          ).forEach(
+            function(attribute) {
+
+              const attributeName =
+                attribute.name.toLowerCase();
+
+
+              /*
+               * onclick, onmouseover,
+               * onerror vb. event'leri kaldır.
+               */
+
+              if (
+                attributeName.startsWith("on") ||
+                attributeName === "srcdoc"
+              ) {
+
+                child.removeAttribute(
+                  attribute.name
+                );
+
+                return;
+
+              }
+
+
+              /*
+               * STYLE özel olarak temizleniyor.
+               */
+
+              if (
+                attributeName === "style"
+              ) {
+
+                const temizStiller = [];
+
+
+                /*
+                 * CSS deklarasyonlarını parse et.
+                 */
+
+                const styleMetni =
+                  attribute.value;
+
+
+                styleMetni
+                  .split(";")
+                  .forEach(
+                    function(deklarasyon) {
+
+                      const ikiNokta =
+                        deklarasyon.indexOf(":");
+
+
+                      if (
+                        ikiNokta === -1
+                      ) {
+                        return;
+                      }
+
+
+                      const property =
+                        deklarasyon
+                          .slice(
+                            0,
+                            ikiNokta
+                          )
+                          .trim()
+                          .toLowerCase();
+
+
+                      const value =
+                        deklarasyon
+                          .slice(
+                            ikiNokta + 1
+                          )
+                          .trim();
+
+
+                      if (
+                        !izinVerilenStiller.has(
+                          property
+                        )
+                      ) {
+                        return;
+                      }
+
+
+                      const guvenliValue =
+                        guvenliStyleDegeri(
+                          value
+                        );
+
+
+                      if (!guvenliValue) {
+                        return;
+                      }
+
+
+                      temizStiller.push(
+                        property +
+                        ":" +
+                        guvenliValue
+                      );
+
+                    }
+                  );
+
+
+                if (
+                  temizStiller.length
+                ) {
+
+                  child.setAttribute(
+                    "style",
+                    temizStiller.join(";")
+                  );
+
+                }
+
+                else {
+
+                  child.removeAttribute(
+                    "style"
+                  );
+
+                }
+
+
+                return;
+
+              }
+
+
+              /*
+               * CLASS sadece özel sınıflar için.
+               */
+
+              if (
+                attributeName === "class"
+              ) {
+
+                const siniflar =
+                  String(
+                    attribute.value
+                  )
+                    .split(/\s+/)
+                    .filter(
+                      function(sinif) {
+
+                        return (
+                          sinif ===
+                            "vurgulu-metin" ||
+                          sinif ===
+                            "vurgulu-kutu"
+                        );
+
+                      }
+                    );
+
+
+                if (
+                  siniflar.length
+                ) {
+
+                  child.setAttribute(
+                    "class",
+                    siniflar.join(" ")
+                  );
+
+                }
+
+                else {
+
+                  child.removeAttribute(
+                    "class"
+                  );
+
+                }
+
+
+                return;
+
+              }
+
+
+              /*
+               * A etiketi özel işlem.
+               */
+
+              if (
+                tagName === "A" &&
+                attributeName === "href"
+              ) {
+
+                const href =
+                  String(
+                    attribute.value
+                  ).trim();
+
+
+                const hrefLower =
+                  href.toLowerCase();
+
+
+                if (
+                  hrefLower.startsWith(
+                    "javascript:"
+                  ) ||
+                  hrefLower.startsWith(
+                    "data:"
+                  ) ||
+                  hrefLower.startsWith(
+                    "vbscript:"
+                  )
+                ) {
+
+                  child.removeAttribute(
+                    "href"
+                  );
+
+                  return;
+
+                }
+
+
+                if (
+                  !(
+                    hrefLower.startsWith(
+                      "http://"
+                    ) ||
+                    hrefLower.startsWith(
+                      "https://"
+                    ) ||
+                    hrefLower.startsWith(
+                      "mailto:"
+                    )
+                  )
+                ) {
+
+                  child.removeAttribute(
+                    "href"
+                  );
+
+                  return;
+
+                }
+
+
+                /*
+                 * Güvenli bağlantı.
+                 */
+
+                child.setAttribute(
+                  "target",
+                  "_blank"
+                );
+
+                child.setAttribute(
+                  "rel",
+                  "noopener noreferrer"
+                );
+
+
+                return;
+
+              }
+
+
+              /*
+               * A dışındaki bütün attribute'lar
+               * kaldırılır.
+               */
+
+              if (
+                !(
+                  attributeName === "href" &&
+                  tagName === "A"
+                )
+              ) {
+
+                child.removeAttribute(
+                  attribute.name
+                );
+
+              }
+
+            }
+          );
+
+
+          /*
+           * Çocukların içini de temizle.
+           */
+
+          temizleElement(child);
+
+        }
+      );
+
+    }
+
+
+    temizleElement(
+      container
+    );
+
+
+    return container.innerHTML;
+
+  }
+
+
+  /* ==================================================
      SLUG'I URL'DEN AL
   ================================================== */
 
@@ -449,171 +1351,229 @@
     }
 
 
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
+    try {
 
-        .from("kose_yazilari")
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
 
-        .select(`
-          *,
-          yazarlar (
-            ad_soyad,
-            biyografi,
-            fotograf_url
+          .from("kose_yazilari")
+
+          .select(`
+            *,
+            yazarlar (
+              ad_soyad,
+              biyografi,
+              fotograf_url
+            )
+          `)
+
+          .eq(
+            "slug",
+            slug
           )
-        `)
 
-        .eq(
-          "slug",
-          slug
-        )
+          .eq(
+            "durum",
+            "yayinda"
+          )
 
-        .eq(
-          "durum",
-          "yayinda"
-        )
-
-        .single();
+          .single();
 
 
-    if (error || !data) {
+      if (error || !data) {
+
+        console.error(
+          "Yazı yükleme hatası:",
+          error
+        );
+
+
+        area.innerHTML = `
+          <div class="error-box">
+            Bu yazı bulunamadı veya henüz yayınlanmadı.
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      /* ==========================================
+         YAZAR
+      ========================================== */
+
+      const authorName =
+        data.yazarlar &&
+        data.yazarlar.ad_soyad
+          ? data.yazarlar.ad_soyad
+          : "KARŞIDAN";
+
+
+      /* ==========================================
+         TARİH
+      ========================================== */
+
+      let tarih = "";
+
+
+      if (data.yayin_tarihi) {
+
+        const date =
+          new Date(
+            data.yayin_tarihi
+          );
+
+
+        if (
+          !Number.isNaN(
+            date.getTime()
+          )
+        ) {
+
+          tarih =
+            date.toLocaleDateString(
+              "tr-TR",
+              {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+              }
+            );
+
+        }
+
+      }
+
+
+      /* ==========================================
+         FOTOĞRAF
+      ========================================== */
+
+      let fotograf = "";
+
+
+      if (
+        data.kapak_fotografi_url
+      ) {
+
+        const guvenliFotograf =
+          guvenliUrl(
+            data.kapak_fotografi_url
+          );
+
+
+        if (
+          guvenliFotograf !== "#"
+        ) {
+
+          fotograf = `
+            <img
+              class="cover-image"
+              src="${guvenliMetin(guvenliFotograf)}"
+              alt="${guvenliMetin(data.baslik)}"
+            >
+          `;
+
+        }
+
+      }
+
+
+      /* ==========================================
+         İÇERİK
+      ========================================== */
+
+      const guvenliIcerik =
+        guvenliHTML(
+          data.icerik
+        );
+
+
+      area.innerHTML = `
+
+        <div class="article-category">
+
+          ${guvenliMetin(
+            data.kategori ||
+            "KARŞIDAN / YORUM"
+          )}
+
+        </div>
+
+
+        <h1 class="article-title">
+
+          ${guvenliMetin(
+            data.baslik
+          )}
+
+        </h1>
+
+
+        <div class="article-meta">
+
+          Yazan:
+
+          <strong>
+            ${guvenliMetin(
+              authorName
+            )}
+          </strong>
+
+          ${
+            tarih
+              ? " · " +
+                guvenliMetin(tarih)
+              : ""
+          }
+
+        </div>
+
+
+        ${fotograf}
+
+
+        <div class="article-content">
+
+          ${guvenliIcerik}
+
+        </div>
+
+      `;
+
+
+      /* ==========================================
+         SAYFA BAŞLIĞI
+      ========================================== */
+
+      document.title =
+        (
+          data.baslik ||
+          "Yazı"
+        ) +
+        " — KARŞIDAN";
+
+    }
+
+    catch (error) {
 
       console.error(
-        "Yazı yükleme hatası:",
+        "Yazı yükleme beklenmeyen hata:",
         error
       );
 
 
       area.innerHTML = `
         <div class="error-box">
-          Bu yazı bulunamadı veya henüz yayınlanmadı.
+          Yazı yüklenirken bir hata oluştu.
         </div>
       `;
 
-      return;
-
     }
-
-
-    /* ==========================================
-       YAZAR
-    ========================================== */
-
-    const authorName =
-      data.yazarlar &&
-      data.yazarlar.ad_soyad
-        ? data.yazarlar.ad_soyad
-        : "KARŞIDAN";
-
-
-    /* ==========================================
-       TARİH
-    ========================================== */
-
-    let tarih = "";
-
-    if (data.yayin_tarihi) {
-
-      const date =
-        new Date(
-          data.yayin_tarihi
-        );
-
-      tarih =
-        date.toLocaleDateString(
-          "tr-TR",
-          {
-            day: "numeric",
-            month: "long",
-            year: "numeric"
-          }
-        );
-
-    }
-
-
-    /* ==========================================
-       FOTOĞRAF
-    ========================================== */
-
-    const fotograf =
-      data.kapak_fotografi_url
-        ? `
-          <img
-            class="cover-image"
-            src="${guvenliMetin(data.kapak_fotografi_url)}"
-            alt="${guvenliMetin(data.baslik)}"
-          >
-        `
-        : "";
-
-
-    /* ==========================================
-       İÇERİK
-    ========================================== */
-
-    area.innerHTML = `
-
-      <div class="article-category">
-
-        ${guvenliMetin(
-          data.kategori || "KARŞIDAN / YORUM"
-        )}
-
-      </div>
-
-
-      <h1 class="article-title">
-
-        ${guvenliMetin(
-          data.baslik
-        )}
-
-      </h1>
-
-
-      <div class="article-meta">
-
-        Yazan:
-        <strong>
-          ${guvenliMetin(
-            authorName
-          )}
-        </strong>
-
-        ${
-          tarih
-            ? " · " + guvenliMetin(tarih)
-            : ""
-        }
-
-      </div>
-
-
-      ${fotograf}
-
-
-      <div class="article-content">
-
-        ${guvenliMetin(
-          data.icerik
-        )}
-
-      </div>
-
-    `;
-
-
-    /* ==========================================
-       SAYFA BAŞLIĞI
-    ========================================== */
-
-    document.title =
-      data.baslik +
-      " — KARŞIDAN";
 
   }
 
