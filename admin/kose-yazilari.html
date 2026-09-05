@@ -123,6 +123,7 @@
     .editor {
       border: 1px solid #ccc;
       background: white;
+      position: relative;
     }
 
     .editor-toolbar {
@@ -164,6 +165,14 @@
       margin: 0 3px;
     }
 
+    /* ==================================================
+       RENK PALETİ
+    ================================================== */
+
+    .color-wrapper {
+      position: relative;
+    }
+
     .color-button {
       position: relative;
       min-width: 34px;
@@ -181,6 +190,50 @@
     .highlight-button::after {
       background: #ffdf00;
     }
+
+    .color-palette {
+      position: absolute;
+      top: 42px;
+      left: 0;
+      z-index: 1000;
+      display: none;
+      width: 190px;
+      padding: 10px;
+      background: white;
+      border: 1px solid #ccc;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+    }
+
+    .color-palette.open {
+      display: grid;
+    }
+
+    .palette-color {
+      width: 28px;
+      height: 28px;
+      border: 2px solid #ddd;
+      cursor: pointer;
+      padding: 0;
+      border-radius: 2px;
+    }
+
+    .palette-color:hover {
+      border-color: #111;
+      transform: scale(1.08);
+    }
+
+    .palette-label {
+      grid-column: 1 / -1;
+      font-size: 10px;
+      color: #777;
+      margin-bottom: 2px;
+    }
+
+    /* ==================================================
+       EDITÖR
+    ================================================== */
 
     .editor-content {
       min-height: 420px;
@@ -234,6 +287,10 @@
       font-family: Arial, Helvetica, sans-serif;
       font-size: 16px;
       line-height: 1.6;
+    }
+
+    .editor-content .vurgulu-metin {
+      background: #fff3a6;
     }
 
     .editor-help {
@@ -552,9 +609,7 @@
 
     <div class="form-group">
 
-      <label>
-        BAŞLIK
-      </label>
+      <label>BAŞLIK</label>
 
       <input
         type="text"
@@ -566,9 +621,7 @@
 
     <div class="form-group">
 
-      <label>
-        ÖZET / GİRİŞ
-      </label>
+      <label>ÖZET / GİRİŞ</label>
 
       <textarea
         id="articleSummary"
@@ -580,9 +633,7 @@
 
     <div class="form-group">
 
-      <label>
-        YAZAR
-      </label>
+      <label>YAZAR</label>
 
       <select id="articleAuthor">
 
@@ -596,9 +647,7 @@
 
     <div class="form-group">
 
-      <label>
-        KATEGORİ
-      </label>
+      <label>KATEGORİ</label>
 
       <input
         type="text"
@@ -610,9 +659,7 @@
 
     <div class="form-group">
 
-      <label>
-        YAZI
-      </label>
+      <label>YAZI</label>
 
       <div class="editor">
 
@@ -620,8 +667,8 @@
 
           <select
             class="font-name-select"
+            id="fontNameSelect"
             title="Yazı tipi"
-            onchange="editorKomut('fontName', this.value)"
           >
             <option value="">Yazı tipi</option>
             <option value="Georgia">Georgia</option>
@@ -633,8 +680,8 @@
 
           <select
             class="font-size-select"
+            id="fontSizeSelect"
             title="Yazı boyutu"
-            onchange="editorKomut('fontSize', this.value)"
           >
             <option value="">Boyut</option>
             <option value="2">Küçük</option>
@@ -648,7 +695,7 @@
 
           <button
             type="button"
-            onclick="editorKomut('bold')"
+            data-command="bold"
             title="Kalın"
           >
             <strong>B</strong>
@@ -656,7 +703,7 @@
 
           <button
             type="button"
-            onclick="editorKomut('italic')"
+            data-command="italic"
             title="İtalik"
           >
             <em>I</em>
@@ -664,7 +711,7 @@
 
           <button
             type="button"
-            onclick="editorKomut('underline')"
+            data-command="underline"
             title="Altı çizili"
           >
             <u>U</u>
@@ -672,27 +719,122 @@
 
           <div class="toolbar-separator"></div>
 
-          <button
-            type="button"
-            class="color-button"
-            onclick="metinRengiSec()"
-            title="Yazı rengini değiştir"
-          >
-            A
-          </button>
+          <div class="color-wrapper">
+
+            <button
+              type="button"
+              class="color-button"
+              id="colorButton"
+              title="Yazı rengini değiştir"
+            >
+              A
+            </button>
+
+            <div
+              class="color-palette"
+              id="colorPalette"
+            >
+
+              <div class="palette-label">
+                Yazı rengi
+              </div>
+
+              <button
+                type="button"
+                class="palette-color"
+                data-color="#111111"
+                style="background:#111111;"
+                title="Siyah"
+              ></button>
+
+              <button
+                type="button"
+                class="palette-color"
+                data-color="#555555"
+                style="background:#555555;"
+                title="Gri"
+              ></button>
+
+              <button
+                type="button"
+                class="palette-color"
+                data-color="#c40000"
+                style="background:#c40000;"
+                title="Kırmızı"
+              ></button>
+
+              <button
+                type="button"
+                class="palette-color"
+                data-color="#0057b8"
+                style="background:#0057b8;"
+                title="Mavi"
+              ></button>
+
+              <button
+                type="button"
+                class="palette-color"
+                data-color="#237a3b"
+                style="background:#237a3b;"
+                title="Yeşil"
+              ></button>
+
+              <button
+                type="button"
+                class="palette-color"
+                data-color="#c46b00"
+                style="background:#c46b00;"
+                title="Turuncu"
+              ></button>
+
+              <button
+                type="button"
+                class="palette-color"
+                data-color="#6a3dad"
+                style="background:#6a3dad;"
+                title="Mor"
+              ></button>
+
+              <button
+                type="button"
+                class="palette-color"
+                data-color="#795548"
+                style="background:#795548;"
+                title="Kahverengi"
+              ></button>
+
+              <button
+                type="button"
+                class="palette-color"
+                data-color="#d81b60"
+                style="background:#d81b60;"
+                title="Pembe"
+              ></button>
+
+              <button
+                type="button"
+                class="palette-color"
+                data-color="#00838f"
+                style="background:#00838f;"
+                title="Turkuaz"
+              ></button>
+
+            </div>
+
+          </div>
 
           <button
             type="button"
             class="color-button highlight-button"
-            onclick="vurguluMetin()"
-            title="Metni vurgula"
+            id="highlightButton"
+            title="Metni vurgula / vurguyu kaldır"
           >
             H
           </button>
 
           <button
             type="button"
-            onclick="vurguluKutu()"
+            id="highlightBoxButton"
             title="Vurgulu kutu ekle"
           >
             ▣
@@ -702,7 +844,7 @@
 
           <button
             type="button"
-            onclick="editorKomut('justifyLeft')"
+            data-command="justifyLeft"
             title="Sola hizala"
           >
             ≡
@@ -710,7 +852,7 @@
 
           <button
             type="button"
-            onclick="editorKomut('justifyCenter')"
+            data-command="justifyCenter"
             title="Ortala"
           >
             ≡
@@ -718,7 +860,7 @@
 
           <button
             type="button"
-            onclick="editorKomut('justifyRight')"
+            data-command="justifyRight"
             title="Sağa hizala"
           >
             ≡
@@ -728,7 +870,7 @@
 
           <button
             type="button"
-            onclick="editorKomut('insertUnorderedList')"
+            data-command="insertUnorderedList"
             title="Madde işaretleri"
           >
             • Liste
@@ -736,7 +878,7 @@
 
           <button
             type="button"
-            onclick="editorKomut('insertOrderedList')"
+            data-command="insertOrderedList"
             title="Numaralı liste"
           >
             1. Liste
@@ -744,7 +886,8 @@
 
           <button
             type="button"
-            onclick="editorKomut('formatBlock', 'blockquote')"
+            data-command="formatBlock"
+            data-value="blockquote"
             title="Alıntı"
           >
             “ Alıntı
@@ -754,7 +897,7 @@
 
           <button
             type="button"
-            onclick="linkEkle()"
+            id="linkButton"
             title="Link ekle"
           >
             🔗
@@ -762,7 +905,7 @@
 
           <button
             type="button"
-            onclick="editorKomut('removeFormat')"
+            data-command="removeFormat"
             title="Biçimlendirmeyi temizle"
           >
             Tx
@@ -787,9 +930,7 @@
 
     <div class="form-group">
 
-      <label>
-        KAPAK FOTOĞRAFI
-      </label>
+      <label>KAPAK FOTOĞRAFI</label>
 
       <div class="photo-area">
 
@@ -824,9 +965,7 @@
 
     <div class="form-group">
 
-      <label>
-        SLUG
-      </label>
+      <label>SLUG</label>
 
       <input
         type="text"
@@ -842,9 +981,7 @@
 
     <div class="form-group">
 
-      <label>
-        DURUM
-      </label>
+      <label>DURUM</label>
 
       <select id="articleStatus">
 
@@ -865,7 +1002,6 @@
       <button
         class="button save-button"
         id="saveButton"
-        onclick="yaziKaydet()"
       >
         YAZIYI KAYDET
       </button>
@@ -873,7 +1009,6 @@
       <button
         class="button cancel-button"
         id="cancelButton"
-        onclick="formTemizle()"
         style="display:none;"
       >
         DÜZENLEMEYİ İPTAL ET
@@ -901,22 +1036,11 @@
 </main>
 
 <footer>
-
   KARŞIDAN — Yönetim Paneli
-
 </footer>
 
 
-<!-- ==================================================
-     SUPABASE
-================================================== -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-<!-- ==================================================
-     ORTAK AUTH
-================================================== -->
 
 <script src="auth.js"></script>
 
@@ -931,6 +1055,8 @@ let duzenlenenYaziId = null;
 
 let mevcutFotografUrl = null;
 
+let kaydedilmisAralik = null;
+
 
 const photoInput =
   document.getElementById("articlePhoto");
@@ -944,9 +1070,102 @@ const saveButton =
 const editor =
   document.getElementById("articleContent");
 
+const colorPalette =
+  document.getElementById("colorPalette");
+
 
 /* ==================================================
-   ZENGİN METİN EDİTÖRÜ
+   SEÇİMİ KAYDET
+================================================== */
+
+function secimiKaydet() {
+
+  const selection =
+    window.getSelection();
+
+  if (
+    !selection ||
+    selection.rangeCount === 0
+  ) {
+    return;
+  }
+
+  const range =
+    selection.getRangeAt(0);
+
+  if (
+    editor.contains(range.commonAncestorContainer)
+  ) {
+
+    kaydedilmisAralik =
+      range.cloneRange();
+
+  }
+
+}
+
+
+/* ==================================================
+   SEÇİMİ GERİ YÜKLE
+================================================== */
+
+function secimiGeriYukle() {
+
+  if (!kaydedilmisAralik) {
+    return false;
+  }
+
+  const selection =
+    window.getSelection();
+
+  selection.removeAllRanges();
+
+  selection.addRange(
+    kaydedilmisAralik
+  );
+
+  return true;
+
+}
+
+
+/* ==================================================
+   SEÇİM KAYBOLMASIN
+================================================== */
+
+document.addEventListener(
+  "selectionchange",
+  function () {
+
+    const activeElement =
+      document.activeElement;
+
+    if (
+      activeElement === editor ||
+      editor.contains(activeElement)
+    ) {
+
+      secimiKaydet();
+
+    }
+
+  }
+);
+
+
+editor.addEventListener(
+  "mouseup",
+  secimiKaydet
+);
+
+editor.addEventListener(
+  "keyup",
+  secimiKaydet
+);
+
+
+/* ==================================================
+   EDİTÖR KOMUTU
 ================================================== */
 
 function editorKomut(
@@ -956,67 +1175,305 @@ function editorKomut(
 
   editor.focus();
 
-  document.execCommand(
-    komut,
-    false,
-    deger
+  secimiGeriYukle();
+
+  try {
+
+    document.execCommand(
+      komut,
+      false,
+      deger
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Editör komutu hatası:",
+      error
+    );
+
+  }
+
+  normalizeEditorHTML();
+
+  secimiKaydet();
+
+}
+
+
+/* ==================================================
+   ESKİ FONT ETİKETLERİNİ MODERN SPAN'A ÇEVİR
+================================================== */
+
+function normalizeEditorHTML() {
+
+  const fonts =
+    editor.querySelectorAll(
+      "font"
+    );
+
+  fonts.forEach(
+    function (font) {
+
+      const span =
+        document.createElement(
+          "span"
+        );
+
+      if (font.getAttribute("color")) {
+
+        span.style.color =
+          font.getAttribute("color");
+
+      }
+
+      if (font.getAttribute("face")) {
+
+        span.style.fontFamily =
+          font.getAttribute("face");
+
+      }
+
+      if (font.getAttribute("size")) {
+
+        const sizeMap = {
+          "1": "12px",
+          "2": "14px",
+          "3": "18px",
+          "4": "22px",
+          "5": "26px",
+          "6": "30px",
+          "7": "34px"
+        };
+
+        const size =
+          font.getAttribute("size");
+
+        if (sizeMap[size]) {
+
+          span.style.fontSize =
+            sizeMap[size];
+
+        }
+
+      }
+
+      while (
+        font.firstChild
+      ) {
+
+        span.appendChild(
+          font.firstChild
+        );
+
+      }
+
+      font.parentNode.replaceChild(
+        span,
+        font
+      );
+
+    }
   );
 
 }
 
 
-function metinRengiSec() {
+/* ==================================================
+   RENK PALETİ
+================================================== */
 
-  const renk =
-    prompt(
-      "Yazı rengi için HEX kodu gir:\nÖrneğin: #c40000"
-    );
+document
+  .getElementById("colorButton")
+  .addEventListener(
+    "mousedown",
+    function (event) {
 
-  if (!renk) {
-    return;
-  }
+      event.preventDefault();
 
-  if (
-    !/^#[0-9A-Fa-f]{6}$/.test(
-      renk
-    )
-  ) {
+      secimiKaydet();
 
-    alert(
-      "Geçerli bir HEX renk kodu gir.\nÖrnek: #c40000"
-    );
+      colorPalette.classList.toggle(
+        "open"
+      );
 
-    return;
-
-  }
-
-  editor.focus();
-
-  document.execCommand(
-    "foreColor",
-    false,
-    renk
+    }
   );
 
-}
 
+document
+  .querySelectorAll(".palette-color")
+  .forEach(
+    function (button) {
+
+      button.addEventListener(
+        "mousedown",
+        function (event) {
+
+          event.preventDefault();
+
+          const renk =
+            button.dataset.color;
+
+          editor.focus();
+
+          secimiGeriYukle();
+
+          document.execCommand(
+            "foreColor",
+            false,
+            renk
+          );
+
+          normalizeEditorHTML();
+
+          secimiKaydet();
+
+          colorPalette.classList.remove(
+            "open"
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+document.addEventListener(
+  "mousedown",
+  function (event) {
+
+    const wrapper =
+      document.querySelector(
+        ".color-wrapper"
+      );
+
+    if (
+      wrapper &&
+      !wrapper.contains(event.target)
+    ) {
+
+      colorPalette.classList.remove(
+        "open"
+      );
+
+    }
+
+  }
+);
+
+
+/* ==================================================
+   VURGULU METİN
+================================================== */
 
 function vurguluMetin() {
 
   editor.focus();
 
-  document.execCommand(
-    "hiliteColor",
-    false,
-    "#fff3a6"
-  );
+  secimiGeriYukle();
+
+  const selection =
+    window.getSelection();
+
+  if (
+    !selection ||
+    selection.rangeCount === 0
+  ) {
+
+    return;
+
+  }
+
+  const range =
+    selection.getRangeAt(0);
+
+  if (
+    range.collapsed
+  ) {
+
+    alert(
+      "Önce vurgulamak istediğin metni seç."
+    );
+
+    return;
+
+  }
+
+  const fragment =
+    range.cloneContents();
+
+  const spans =
+    fragment.querySelectorAll(
+      ".vurgulu-metin"
+    );
+
+  const parentHighlight =
+    range.commonAncestorContainer.nodeType === 1
+      ? range.commonAncestorContainer.closest
+        ? range.commonAncestorContainer.closest(".vurgulu-metin")
+        : null
+      : range.commonAncestorContainer.parentElement
+        ? range.commonAncestorContainer.parentElement.closest(".vurgulu-metin")
+        : null;
+
+  if (
+    parentHighlight ||
+    (
+      spans.length > 0 &&
+      fragment.textContent.trim() !== ""
+    )
+  ) {
+
+    document.execCommand(
+      "hiliteColor",
+      false,
+      "transparent"
+    );
+
+    document.execCommand(
+      "backColor",
+      false,
+      "transparent"
+    );
+
+  }
+
+  else {
+
+    document.execCommand(
+      "hiliteColor",
+      false,
+      "#fff3a6"
+    );
+
+    document.execCommand(
+      "backColor",
+      false,
+      "#fff3a6"
+    );
+
+  }
+
+  normalizeEditorHTML();
+
+  secimiKaydet();
 
 }
 
 
+/* ==================================================
+   VURGULU KUTU
+================================================== */
+
 function vurguluKutu() {
 
   editor.focus();
+
+  secimiGeriYukle();
 
   const selection =
     window.getSelection();
@@ -1078,10 +1535,18 @@ function vurguluKutu() {
 
   selection.removeAllRanges();
 
+  normalizeEditorHTML();
+
 }
 
 
+/* ==================================================
+   LINK
+================================================== */
+
 function linkEkle() {
+
+  secimiKaydet();
 
   const url =
     prompt(
@@ -1098,6 +1563,9 @@ function linkEkle() {
   if (
     !/^https?:\/\//i.test(
       temizUrl
+    ) &&
+    !/^mailto:/i.test(
+      temizUrl
     )
   ) {
 
@@ -1109,23 +1577,193 @@ function linkEkle() {
 
   editor.focus();
 
+  secimiGeriYukle();
+
   document.execCommand(
     "createLink",
     false,
     temizUrl
   );
 
+  normalizeEditorHTML();
+
+  secimiKaydet();
+
 }
 
 
 /* ==================================================
-   EDİTÖR HTML GÜVENLİĞİ
+   ARAÇ ÇUBUĞU BUTONLARI
+================================================== */
+
+document
+  .querySelectorAll(
+    ".editor-toolbar button[data-command]"
+  )
+  .forEach(
+    function (button) {
+
+      button.addEventListener(
+        "mousedown",
+        function (event) {
+
+          event.preventDefault();
+
+          const command =
+            button.dataset.command;
+
+          const value =
+            button.dataset.value || null;
+
+          editorKomut(
+            command,
+            value
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+/* ==================================================
+   YAZI TİPİ
+================================================== */
+
+document
+  .getElementById("fontNameSelect")
+  .addEventListener(
+    "mousedown",
+    function () {
+
+      secimiKaydet();
+
+    }
+  );
+
+
+document
+  .getElementById("fontNameSelect")
+  .addEventListener(
+    "change",
+    function () {
+
+      if (!this.value) {
+        return;
+      }
+
+      editorKomut(
+        "fontName",
+        this.value
+      );
+
+      this.value = "";
+
+    }
+  );
+
+
+/* ==================================================
+   YAZI BOYUTU
+================================================== */
+
+document
+  .getElementById("fontSizeSelect")
+  .addEventListener(
+    "mousedown",
+    function () {
+
+      secimiKaydet();
+
+    }
+  );
+
+
+document
+  .getElementById("fontSizeSelect")
+  .addEventListener(
+    "change",
+    function () {
+
+      if (!this.value) {
+        return;
+      }
+
+      editorKomut(
+        "fontSize",
+        this.value
+      );
+
+      this.value = "";
+
+    }
+  );
+
+
+/* ==================================================
+   LINK BUTONU
+================================================== */
+
+document
+  .getElementById("linkButton")
+  .addEventListener(
+    "mousedown",
+    function (event) {
+
+      event.preventDefault();
+
+      linkEkle();
+
+    }
+  );
+
+
+/* ==================================================
+   VURGULU KUTU BUTONU
+================================================== */
+
+document
+  .getElementById("highlightBoxButton")
+  .addEventListener(
+    "mousedown",
+    function (event) {
+
+      event.preventDefault();
+
+      vurguluKutu();
+
+    }
+  );
+
+
+/* ==================================================
+   VURGULU METİN BUTONU
+================================================== */
+
+document
+  .getElementById("highlightButton")
+  .addEventListener(
+    "mousedown",
+    function (event) {
+
+      event.preventDefault();
+
+      vurguluMetin();
+
+    }
+  );
+
+
+/* ==================================================
+   EDİTÖR HTML
 ================================================== */
 
 function editorIcerigiAl() {
 
-  return editor.innerHTML
-    .trim();
+  normalizeEditorHTML();
+
+  return editor.innerHTML.trim();
 
 }
 
@@ -1171,11 +1809,13 @@ document
 
         document
           .getElementById("articleSlug")
-          .value = slug;
+          .value =
+            slug;
 
         document
           .getElementById("slugPreview")
-          .textContent = slug;
+          .textContent =
+            slug;
 
       }
 
@@ -1192,11 +1832,13 @@ document
       const slug =
         slugOlustur(this.value);
 
-      this.value = slug;
+      this.value =
+        slug;
 
       document
         .getElementById("slugPreview")
-        .textContent = slug;
+        .textContent =
+          slug;
 
     }
   );
@@ -1884,6 +2526,8 @@ async function yaziDuzenle(
   editor.innerHTML =
     data.icerik || "";
 
+  normalizeEditorHTML();
+
 
   document
     .getElementById("articleSlug")
@@ -2018,6 +2662,9 @@ function formTemizle() {
   mevcutFotografUrl =
     null;
 
+  kaydedilmisAralik =
+    null;
+
 
   document
     .getElementById("articleTitle")
@@ -2088,6 +2735,11 @@ function formTemizle() {
     .style.display =
       "none";
 
+
+  colorPalette.classList.remove(
+    "open"
+  );
+
 }
 
 
@@ -2141,6 +2793,24 @@ async function sayfayiBaslat() {
   await yazilariGetir();
 
 }
+
+
+/* ==================================================
+   BUTONLAR
+================================================== */
+
+saveButton.addEventListener(
+  "click",
+  yaziKaydet
+);
+
+
+document
+  .getElementById("cancelButton")
+  .addEventListener(
+    "click",
+    formTemizle
+  );
 
 
 /* ==================================================
