@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://karsidan.com.tr/sitemap.xml
