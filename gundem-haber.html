@@ -1,17 +1,162 @@
-<!DOCTYPE html>
-<html lang="tr">
+<!DOCTYPE html><html lang="tr"><head>  <meta charset="UTF-8"><meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 
-<head>
+«»
 
-  <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+  <!-- ==================================================
+       TEMEL SEO
+  ================================================== -->  <title>Haber — KARŞIDAN</title><meta
+name="description"
+content="KARŞIDAN Gündem — bağımsız haberler, yorumlar ve gündeme dair gelişmeler."
+
+«»
+
+<meta
+name="author"
+content="KARŞIDAN"
+
+«»
+
+<meta
+name="robots"
+content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+
+«»
+
+<meta
+name="googlebot"
+content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+
+«»
+
+<meta
+name="theme-color"
+content="#111111"
+
+«»
+
+  <!--
+    Canonical başlangıçta sayfaya aittir.
+    Haber yüklendiğinde gerçek haber URL'si ile değiştirilir.
+  -->  <link
+    rel="canonical"
+    href="https://karsidan.com.tr/gundem-haber.html"
+    id="canonicalUrl"
+  >  <!-- ==================================================
+       OPEN GRAPH
+  ================================================== --><meta
+property="og:type"
+content="article"
+id="ogType"
+
+«»
+
+<meta
+property="og:site_name"
+content="KARŞIDAN"
+id="ogSiteName"
+
+«»
+
+<meta
+property="og:title"
+content="Haber — KARŞIDAN"
+id="ogTitle"
+
+«»
+
+<meta
+property="og:description"
+content="KARŞIDAN Gündem — bağımsız haberler, yorumlar ve gündeme dair gelişmeler."
+id="ogDescription"
+
+«»
+
+<meta
+property="og:url"
+content="https://karsidan.com.tr/gundem-haber.html"
+id="ogUrl"
+
+«»
+
+<meta
+property="og:locale"
+content="tr_TR"
+
+«»
+
+<meta
+property="og:image"
+content=""
+id="ogImage"
+
+«»
+
+<meta
+property="og:image:alt"
+content="KARŞIDAN haber görseli"
+id="ogImageAlt"
+
+«»
+
+  <!-- ==================================================
+       TWITTER / X
+  ================================================== --><meta
+name="twitter:card"
+content="summary_large_image"
+
+«»
+
+<meta
+name="twitter:title"
+content="Haber — KARŞIDAN"
+id="twitterTitle"
+
+«»
+
+<meta
+name="twitter:description"
+content="KARŞIDAN Gündem — bağımsız haberler, yorumlar ve gündeme dair gelişmeler."
+id="twitterDescription"
+
+«»
+
+<meta
+name="twitter:image"
+content=""
+id="twitterImage"
+
+«»
+
+<meta
+name="twitter:image:alt"
+content="KARŞIDAN haber görseli"
+id="twitterImageAlt"
+
+«»
+
+  <!-- ==================================================
+       STRUCTURED DATA
+  ================================================== -->  <script
+    type="application/ld+json"
+    id="structuredData"
   >
-
-  <title>Haber — KARŞIDAN</title>
-
-  <style>
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": "Haber — KARŞIDAN",
+    "description": "KARŞIDAN Gündem — bağımsız haberler, yorumlar ve gündeme dair gelişmeler.",
+    "url": "https://karsidan.com.tr/gundem-haber.html",
+    "inLanguage": "tr-TR",
+    "isAccessibleForFree": true,
+    "publisher": {
+      "@type": "Organization",
+      "name": "KARŞIDAN",
+      "url": "https://karsidan.com.tr/"
+    }
+  }
+  </script>  <style>
 
     * {
       box-sizing: border-box;
@@ -306,55 +451,28 @@
 
     }
 
-  </style>
+  </style></head><body><header>  <div class="header-inner"><div
+  class="logo"
+  id="siteLogo"
+>
+  KARŞIDAN
+</div>
 
-</head>
+<a
+  class="back"
+  href="gundem.html"
+  aria-label="KARŞIDAN Gündem sayfasına dön"
+>
+  ← Gündem
+</a>
 
-<body>
+  </div></header><main>  <div id="articleContainer"><div class="loading">
+  Haber yükleniyor...
+</div>
 
-<header>
+  </div></main><footer id="siteFooter">KARŞIDAN — Gücün karşısında, gerçeğin yanında.
 
-  <div class="header-inner">
-
-    <div class="logo">
-      KARŞIDAN
-    </div>
-
-    <a
-      class="back"
-      href="gundem.html"
-    >
-      ← Gündem
-    </a>
-
-  </div>
-
-</header>
-
-
-<main>
-
-  <div id="articleContainer">
-
-    <div class="loading">
-      Haber yükleniyor...
-    </div>
-
-  </div>
-
-</main>
-
-
-<footer id="siteFooter">
-
-  KARŞIDAN — Gücün karşısında, gerçeğin yanında.
-
-</footer>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
+</footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
 
   /* ==================================================
      SUPABASE
@@ -394,6 +512,51 @@
 
 
   /* ==================================================
+     SEO METNİ TEMİZLE
+  ================================================== */
+
+  function seoMetniTemizle(metin) {
+
+    if (!metin) {
+      return "";
+    }
+
+    return String(metin)
+      .replace(/<[^>]*>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  }
+
+
+  /* ==================================================
+     SEO DESCRIPTION SINIRLA
+  ================================================== */
+
+  function seoDescriptionOlustur(metin) {
+
+    const temiz =
+      seoMetniTemizle(
+        metin
+      );
+
+    if (!temiz) {
+      return "KARŞIDAN Gündem — bağımsız haberler, yorumlar ve gündeme dair gelişmeler.";
+    }
+
+    if (temiz.length <= 160) {
+      return temiz;
+    }
+
+    return temiz.substring(
+      0,
+      157
+    ).trim() + "...";
+
+  }
+
+
+  /* ==================================================
      TARİH
   ================================================== */
 
@@ -423,6 +586,28 @@
 
 
   /* ==================================================
+     ISO TARİH
+  ================================================== */
+
+  function isoTarih(tarih) {
+
+    if (!tarih) {
+      return "";
+    }
+
+    const date =
+      new Date(tarih);
+
+    if (isNaN(date.getTime())) {
+      return "";
+    }
+
+    return date.toISOString();
+
+  }
+
+
+  /* ==================================================
      SLUG AL
   ================================================== */
 
@@ -434,6 +619,387 @@
       );
 
     return params.get("slug");
+
+  }
+
+
+  /* ==================================================
+     SEO META GÜNCELLE
+  ================================================== */
+
+  function seoMetaGuncelle(haber) {
+
+    const siteAdi =
+      haber.siteAdi ||
+      "KARŞIDAN";
+
+
+    const baslik =
+      haber.baslik ||
+      "Haber";
+
+
+    const description =
+      seoDescriptionOlustur(
+        haber.spot ||
+        haber.icerik ||
+        baslik
+      );
+
+
+    const haberUrl =
+      "https://karsidan.com.tr/gundem-haber.html?slug=" +
+      encodeURIComponent(
+        haber.slug
+      );
+
+
+    /* ==================================================
+       TITLE
+    ================================================== */
+
+    document.title =
+      baslik +
+      " — " +
+      siteAdi;
+
+
+    /* ==================================================
+       DESCRIPTION
+    ================================================== */
+
+    const descriptionMeta =
+      document.querySelector(
+        'meta[name="description"]'
+      );
+
+    if (descriptionMeta) {
+
+      descriptionMeta.setAttribute(
+        "content",
+        description
+      );
+
+    }
+
+
+    /* ==================================================
+       CANONICAL
+    ================================================== */
+
+    const canonical =
+      document.getElementById(
+        "canonicalUrl"
+      );
+
+    if (canonical) {
+
+      canonical.setAttribute(
+        "href",
+        haberUrl
+      );
+
+    }
+
+
+    /* ==================================================
+       OPEN GRAPH
+    ================================================== */
+
+    const ogTitle =
+      document.getElementById(
+        "ogTitle"
+      );
+
+    if (ogTitle) {
+
+      ogTitle.setAttribute(
+        "content",
+        baslik +
+        " — " +
+        siteAdi
+      );
+
+    }
+
+
+    const ogDescription =
+      document.getElementById(
+        "ogDescription"
+      );
+
+    if (ogDescription) {
+
+      ogDescription.setAttribute(
+        "content",
+        description
+      );
+
+    }
+
+
+    const ogUrl =
+      document.getElementById(
+        "ogUrl"
+      );
+
+    if (ogUrl) {
+
+      ogUrl.setAttribute(
+        "content",
+        haberUrl
+      );
+
+    }
+
+
+    const ogSiteName =
+      document.getElementById(
+        "ogSiteName"
+      );
+
+    if (ogSiteName) {
+
+      ogSiteName.setAttribute(
+        "content",
+        siteAdi
+      );
+
+    }
+
+
+    /* ==================================================
+       GÖRSEL
+    ================================================== */
+
+    if (
+      haber.kapak_fotografi_url
+    ) {
+
+      const ogImage =
+        document.getElementById(
+          "ogImage"
+        );
+
+      if (ogImage) {
+
+        ogImage.setAttribute(
+          "content",
+          haber.kapak_fotografi_url
+        );
+
+      }
+
+
+      const twitterImage =
+        document.getElementById(
+          "twitterImage"
+        );
+
+      if (twitterImage) {
+
+        twitterImage.setAttribute(
+          "content",
+          haber.kapak_fotografi_url
+        );
+
+      }
+
+
+      const imageAlt =
+        document.getElementById(
+          "ogImageAlt"
+        );
+
+      if (imageAlt) {
+
+        imageAlt.setAttribute(
+          "content",
+          baslik
+        );
+
+      }
+
+
+      const twitterImageAlt =
+        document.getElementById(
+          "twitterImageAlt"
+        );
+
+      if (twitterImageAlt) {
+
+        twitterImageAlt.setAttribute(
+          "content",
+          baslik
+        );
+
+      }
+
+    }
+
+
+    /* ==================================================
+       TWITTER
+    ================================================== */
+
+    const twitterTitle =
+      document.getElementById(
+        "twitterTitle"
+      );
+
+    if (twitterTitle) {
+
+      twitterTitle.setAttribute(
+        "content",
+        baslik +
+        " — " +
+        siteAdi
+      );
+
+    }
+
+
+    const twitterDescription =
+      document.getElementById(
+        "twitterDescription"
+      );
+
+    if (twitterDescription) {
+
+      twitterDescription.setAttribute(
+        "content",
+        description
+      );
+
+    }
+
+
+    /* ==================================================
+       JSON-LD NEWSARTICLE
+    ================================================== */
+
+    const structuredData =
+      document.getElementById(
+        "structuredData"
+      );
+
+
+    if (!structuredData) {
+      return;
+    }
+
+
+    const yayinTarihi =
+      haber.yayin_tarihi ||
+      haber.created_at;
+
+
+    const articleData = {
+
+      "@context":
+        "https://schema.org",
+
+      "@type":
+        "NewsArticle",
+
+      "headline":
+        baslik,
+
+      "description":
+        description,
+
+      "url":
+        haberUrl,
+
+      "inLanguage":
+        "tr-TR",
+
+      "isAccessibleForFree":
+        true,
+
+      "datePublished":
+        isoTarih(
+          yayinTarihi
+        ),
+
+      "dateModified":
+        isoTarih(
+          haber.updated_at ||
+          yayinTarihi
+        ),
+
+      "author": {
+
+        "@type":
+          "Person",
+
+        "name":
+          haber.authorName ||
+          siteAdi
+
+      },
+
+      "publisher": {
+
+        "@type":
+          "Organization",
+
+        "name":
+          siteAdi,
+
+        "url":
+          "https://karsidan.com.tr/"
+
+      },
+
+      "mainEntityOfPage": {
+
+        "@type":
+          "WebPage",
+
+        "@id":
+          haberUrl
+
+      }
+
+    };
+
+
+    if (
+      haber.kapak_fotografi_url
+    ) {
+
+      articleData.image = [
+        haber.kapak_fotografi_url
+      ];
+
+    }
+
+
+    if (
+      haber.kategori
+    ) {
+
+      articleData.articleSection =
+        haber.kategori;
+
+    }
+
+
+    if (
+      haber.kaynak
+    ) {
+
+      articleData.isBasedOn =
+        haber.kaynak;
+
+    }
+
+
+    structuredData.textContent =
+      JSON.stringify(
+        articleData
+      );
 
   }
 
@@ -453,39 +1019,62 @@
         .select(
           "site_adi, slogan, footer_yazisi, bakim_modu"
         )
-        .eq("id", 1)
+        .eq(
+          "id",
+          1
+        )
         .single();
 
 
     if (error || !data) {
-      return;
+      return null;
     }
 
 
-    if (data.site_adi) {
-
-      document.title =
-        "Haber — " +
-        data.site_adi;
-
-    }
+    const siteAdi =
+      data.site_adi ||
+      "KARŞIDAN";
 
 
-    const footer =
-      document.getElementById(
-        "siteFooter"
-      );
+    const slogan =
+      data.slogan ||
+      "Gücün karşısında, gerçeğin yanında.";
 
 
-    if (
-      footer &&
-      data.footer_yazisi
-    ) {
+    const footerYazisi =
+      data.footer_yazisi ||
+      siteAdi +
+      " — " +
+      slogan;
 
-      footer.textContent =
-        data.footer_yazisi;
 
-    }
+    document.getElementById(
+      "siteLogo"
+    ).textContent =
+      siteAdi;
+
+
+    document.getElementById(
+      "siteFooter"
+    ).textContent =
+      footerYazisi;
+
+
+    return {
+
+      siteAdi:
+        siteAdi,
+
+      slogan:
+        slogan,
+
+      footerYazisi:
+        footerYazisi,
+
+      bakimModu:
+        data.bakim_modu === true
+
+    };
 
   }
 
@@ -494,7 +1083,9 @@
      HABERİ GETİR
   ================================================== */
 
-  async function haberiGetir() {
+  async function haberiGetir(
+    siteAyarlari
+  ) {
 
     const container =
       document.getElementById(
@@ -554,6 +1145,7 @@
           durum,
           yayin_tarihi,
           created_at,
+          updated_at,
           yazar_id,
           yazarlar (
             ad_soyad
@@ -636,6 +1228,30 @@
         : "KARŞIDAN";
 
 
+    /* ==================================================
+       SEO VERİLERİ
+    ================================================== */
+
+    seoMetaGuncelle({
+
+      ...data,
+
+      siteAdi:
+        siteAyarlari &&
+        siteAyarlari.siteAdi
+          ? siteAyarlari.siteAdi
+          : "KARŞIDAN",
+
+      authorName:
+        authorName
+
+    });
+
+
+    /* ==================================================
+       FOTOĞRAF
+    ================================================== */
+
     let photoHtml = "";
 
 
@@ -653,12 +1269,19 @@
           alt="${guvenliMetin(
             data.baslik
           )}"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
         >
 
       `;
 
     }
 
+
+    /* ==================================================
+       KAYNAK
+    ================================================== */
 
     let sourceHtml = "";
 
@@ -681,16 +1304,22 @@
     }
 
 
-    document.title =
-      data.baslik +
-      " — KARŞIDAN";
-
+    /* ==================================================
+       HABER HTML
+    ================================================== */
 
     container.innerHTML = `
 
-      <article class="article">
+      <article
+        class="article"
+        itemscope
+        itemtype="https://schema.org/NewsArticle"
+      >
 
-        <div class="category">
+        <div
+          class="category"
+          itemprop="articleSection"
+        >
 
           ${guvenliMetin(
             data.kategori ||
@@ -700,7 +1329,10 @@
         </div>
 
 
-        <h1 class="article-title">
+        <h1
+          class="article-title"
+          itemprop="headline"
+        >
 
           ${guvenliMetin(
             data.baslik
@@ -712,10 +1344,15 @@
         ${
           data.spot
             ? `
-              <div class="article-spot">
+              <div
+                class="article-spot"
+                itemprop="description"
+              >
+
                 ${guvenliMetin(
                   data.spot
                 )}
+
               </div>
             `
             : ""
@@ -724,22 +1361,42 @@
 
         <div class="article-meta">
 
-          <span>
+          <span
+            itemprop="author"
+            itemscope
+            itemtype="https://schema.org/Person"
+          >
+
             Yazar:
-            ${guvenliMetin(
-              authorName
-            )}
+
+            <span itemprop="name">
+
+              ${guvenliMetin(
+                authorName
+              )}
+
+            </span>
+
           </span>
 
 
           ${
             data.yayin_tarihi
               ? `
-                <span>
+                <time
+                  itemprop="datePublished"
+                  datetime="${guvenliMetin(
+                    isoTarih(
+                      data.yayin_tarihi
+                    )
+                  )}"
+                >
+
                   ${tarihiFormatla(
                     data.yayin_tarihi
                   )}
-                </span>
+
+                </time>
               `
               : ""
           }
@@ -749,9 +1406,11 @@
             data.kategori
               ? `
                 <span>
+
                   ${guvenliMetin(
                     data.kategori
                   )}
+
                 </span>
               `
               : ""
@@ -763,7 +1422,10 @@
         ${photoHtml}
 
 
-        <div class="article-content">
+        <div
+          class="article-content"
+          itemprop="articleBody"
+        >
 
           ${
             data.icerik ||
@@ -788,16 +1450,124 @@
 
   async function baslat() {
 
-    await siteAyarlariGetir();
+    try {
 
-    await haberiGetir();
+      const siteAyarlari =
+        await siteAyarlariGetir();
+
+
+      /*
+       * Bakım modu açık olduğunda
+       * haber göstermiyoruz.
+       */
+
+      if (
+        siteAyarlari &&
+        siteAyarlari.bakimModu
+      ) {
+
+        document.body.innerHTML = `
+
+          <div style="
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#111;
+            color:white;
+            text-align:center;
+            padding:30px;
+            font-family:Arial,Helvetica,sans-serif;
+          ">
+
+            <div>
+
+              <div style="
+                font-family:Georgia,serif;
+                font-size:52px;
+                font-weight:bold;
+                margin-bottom:25px;
+              ">
+
+                ${guvenliMetin(
+                  siteAyarlari.siteAdi
+                )}
+
+              </div>
+
+              <div style="
+                color:#aaa;
+                font-size:15px;
+                line-height:1.6;
+              ">
+
+                Site şu anda bakımda.
+
+                <br>
+
+                Lütfen daha sonra tekrar deneyin.
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      await haberiGetir(
+        siteAyarlari
+      );
+
+    }
+
+    catch (error) {
+
+      console.error(
+        "Beklenmeyen hata:",
+        error
+      );
+
+
+      const container =
+        document.getElementById(
+          "articleContainer"
+        );
+
+
+      if (container) {
+
+        container.innerHTML = `
+
+          <div class="error">
+
+            Haber yüklenirken
+            beklenmeyen bir hata oluştu.
+
+            <br><br>
+
+            ${guvenliMetin(
+              error.message ||
+              "Bilinmeyen hata."
+            )}
+
+          </div>
+
+        `;
+
+      }
+
+    }
 
   }
 
 
   baslat();
 
-</script>
-
-</body>
+</script></body>
 </html>
