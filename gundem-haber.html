@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Haber — KARŞIDAN</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f2f2f0;
+      color: #111;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      border-bottom: 4px solid #c40000;
+      padding: 18px 20px;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 36px;
+      font-weight: bold;
+      letter-spacing: -2px;
+    }
+
+    .back {
+      color: white;
+      text-decoration: none;
+      border: 1px solid #555;
+      padding: 9px 13px;
+      font-size: 12px;
+    }
+
+    .back:hover {
+      background: white;
+      color: #111;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 45px auto;
+      padding: 0 20px;
+    }
+
+    .article {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 40px;
+    }
+
+    .category {
+      display: inline-block;
+      background: #111;
+      color: white;
+      padding: 6px 10px;
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 48px;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .article-spot {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      line-height: 1.5;
+      color: #555;
+      margin-bottom: 22px;
+    }
+
+    .article-meta {
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      padding: 12px 0;
+      margin-bottom: 28px;
+      color: #777;
+      font-size: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .article-photo {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 32px;
+    }
+
+    .article-content {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      line-height: 1.8;
+      overflow-wrap: break-word;
+    }
+
+    .article-content p {
+      margin-bottom: 1em;
+    }
+
+    .article-content h1,
+    .article-content h2,
+    .article-content h3,
+    .article-content h4 {
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.3;
+      margin-top: 1.5em;
+      margin-bottom: 0.7em;
+    }
+
+    .article-content h2 {
+      font-size: 28px;
+    }
+
+    .article-content h3 {
+      font-size: 24px;
+    }
+
+    .article-content strong,
+    .article-content b {
+      font-weight: bold;
+    }
+
+    .article-content em,
+    .article-content i {
+      font-style: italic;
+    }
+
+    .article-content u {
+      text-decoration: underline;
+    }
+
+    .article-content blockquote {
+      border-left: 4px solid #c40000;
+      padding-left: 18px;
+      margin: 25px 0;
+      color: #555;
+      font-style: italic;
+    }
+
+    .article-content a {
+      color: #c40000;
+      text-decoration: underline;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      margin: 20px 0 20px 30px;
+    }
+
+    .article-content li {
+      margin-bottom: 8px;
+    }
+
+    .article-content img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .article-content span {
+      max-width: 100%;
+    }
+
+    .article-source {
+      margin-top: 35px;
+      padding-top: 15px;
+      border-top: 1px solid #ddd;
+      color: #777;
+      font-size: 12px;
+    }
+
+    .loading,
+    .error {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 35px;
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .error {
+      color: #900;
+      border-left: 4px solid #c40000;
+    }
+
+    .not-found {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 45px 30px;
+      text-align: center;
+    }
+
+    .not-found h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .not-found p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .back-button {
+      display: inline-block;
+      background: #111;
+      color: white;
+      text-decoration: none;
+      padding: 12px 18px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .back-button:hover {
+      background: #c40000;
+    }
+
+    footer {
+      margin-top: 60px;
+      background: #111;
+      color: #999;
+      text-align: center;
+      padding: 25px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 700px) {
+
+      header {
+        padding: 15px;
+      }
+
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .logo {
+        font-size: 30px;
+      }
+
+      .back {
+        font-size: 11px;
+        padding: 8px 10px;
+      }
+
+      main {
+        margin: 25px auto;
+        padding: 0 12px;
+      }
+
+      .article {
+        padding: 22px;
+      }
+
+      .article-title {
+        font-size: 34px;
+      }
+
+      .article-spot {
+        font-size: 18px;
+      }
+
+      .article-content {
+        font-size: 17px;
+        line-height: 1.7;
+      }
+
+      .article-photo {
+        max-height: 350px;
+        margin-bottom: 25px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="header-inner">
+
+    <div class="logo">
+      KARŞIDAN
+    </div>
+
+    <a
+      class="back"
+      href="gundem.html"
+    >
+      ← Gündem
+    </a>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <div id="articleContainer">
+
+    <div class="loading">
+      Haber yükleniyor...
+    </div>
+
+  </div>
+
+</main>
+
+
+<footer id="siteFooter">
+
+  KARŞIDAN — Gücün karşısında, gerçeğin yanında.
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+  /* ==================================================
+     SUPABASE
+  ================================================== */
+
+  const SUPABASE_URL =
+    "https://rfqiffvudbmphvklxetf.supabase.co";
+
+  const SUPABASE_ANON_KEY =
+    "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+
+  /* ==================================================
+     GÜVENLİ METİN
+  ================================================== */
+
+  function guvenliMetin(metin) {
+
+    const div =
+      document.createElement("div");
+
+    div.textContent =
+      metin == null
+        ? ""
+        : String(metin);
+
+    return div.innerHTML;
+
+  }
+
+
+  /* ==================================================
+     TARİH
+  ================================================== */
+
+  function tarihiFormatla(tarih) {
+
+    if (!tarih) {
+      return "";
+    }
+
+    const date =
+      new Date(tarih);
+
+    if (isNaN(date.getTime())) {
+      return "";
+    }
+
+    return date.toLocaleDateString(
+      "tr-TR",
+      {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+      }
+    );
+
+  }
+
+
+  /* ==================================================
+     SLUG AL
+  ================================================== */
+
+  function slugGetir() {
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    return params.get("slug");
+
+  }
+
+
+  /* ==================================================
+     SİTE AYARLARI
+  ================================================== */
+
+  async function siteAyarlariGetir() {
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("ayarlar")
+        .select(
+          "site_adi, slogan, footer_yazisi, bakim_modu"
+        )
+        .eq("id", 1)
+        .single();
+
+
+    if (error || !data) {
+      return;
+    }
+
+
+    if (data.site_adi) {
+
+      document.title =
+        "Haber — " +
+        data.site_adi;
+
+    }
+
+
+    const footer =
+      document.getElementById(
+        "siteFooter"
+      );
+
+
+    if (
+      footer &&
+      data.footer_yazisi
+    ) {
+
+      footer.textContent =
+        data.footer_yazisi;
+
+    }
+
+  }
+
+
+  /* ==================================================
+     HABERİ GETİR
+  ================================================== */
+
+  async function haberiGetir() {
+
+    const container =
+      document.getElementById(
+        "articleContainer"
+      );
+
+
+    const slug =
+      slugGetir();
+
+
+    if (!slug) {
+
+      container.innerHTML = `
+
+        <div class="not-found">
+
+          <h1>
+            Haber bulunamadı
+          </h1>
+
+          <p>
+            Haber bağlantısında geçerli bir slug bulunmuyor.
+          </p>
+
+          <a
+            class="back-button"
+            href="gundem.html"
+          >
+            GÜNDEME DÖN
+          </a>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("haberler")
+        .select(`
+          id,
+          baslik,
+          spot,
+          icerik,
+          kategori,
+          kaynak,
+          kapak_fotografi_url,
+          slug,
+          durum,
+          yayin_tarihi,
+          created_at,
+          yazar_id,
+          yazarlar (
+            ad_soyad
+          )
+        `)
+        .eq(
+          "slug",
+          slug
+        )
+        .eq(
+          "durum",
+          "yayinda"
+        )
+        .maybeSingle();
+
+
+    if (error) {
+
+      console.error(
+        "Haber yükleme hatası:",
+        error
+      );
+
+
+      container.innerHTML = `
+
+        <div class="error">
+
+          Haber yüklenirken bir hata oluştu:
+
+          <br><br>
+
+          ${guvenliMetin(
+            error.message
+          )}
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    if (!data) {
+
+      container.innerHTML = `
+
+        <div class="not-found">
+
+          <h1>
+            Haber bulunamadı
+          </h1>
+
+          <p>
+            Aradığın haber yayında değil veya artık mevcut değil.
+          </p>
+
+          <a
+            class="back-button"
+            href="gundem.html"
+          >
+            GÜNDEME DÖN
+          </a>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    const authorName =
+      data.yazarlar &&
+      data.yazarlar.ad_soyad
+        ? data.yazarlar.ad_soyad
+        : "KARŞIDAN";
+
+
+    let photoHtml = "";
+
+
+    if (
+      data.kapak_fotografi_url
+    ) {
+
+      photoHtml = `
+
+        <img
+          class="article-photo"
+          src="${guvenliMetin(
+            data.kapak_fotografi_url
+          )}"
+          alt="${guvenliMetin(
+            data.baslik
+          )}"
+        >
+
+      `;
+
+    }
+
+
+    let sourceHtml = "";
+
+
+    if (data.kaynak) {
+
+      sourceHtml = `
+
+        <div class="article-source">
+
+          Kaynak:
+          ${guvenliMetin(
+            data.kaynak
+          )}
+
+        </div>
+
+      `;
+
+    }
+
+
+    document.title =
+      data.baslik +
+      " — KARŞIDAN";
+
+
+    container.innerHTML = `
+
+      <article class="article">
+
+        <div class="category">
+
+          ${guvenliMetin(
+            data.kategori ||
+            "Gündem"
+          )}
+
+        </div>
+
+
+        <h1 class="article-title">
+
+          ${guvenliMetin(
+            data.baslik
+          )}
+
+        </h1>
+
+
+        ${
+          data.spot
+            ? `
+              <div class="article-spot">
+                ${guvenliMetin(
+                  data.spot
+                )}
+              </div>
+            `
+            : ""
+        }
+
+
+        <div class="article-meta">
+
+          <span>
+            Yazar:
+            ${guvenliMetin(
+              authorName
+            )}
+          </span>
+
+
+          ${
+            data.yayin_tarihi
+              ? `
+                <span>
+                  ${tarihiFormatla(
+                    data.yayin_tarihi
+                  )}
+                </span>
+              `
+              : ""
+          }
+
+
+          ${
+            data.kategori
+              ? `
+                <span>
+                  ${guvenliMetin(
+                    data.kategori
+                  )}
+                </span>
+              `
+              : ""
+          }
+
+        </div>
+
+
+        ${photoHtml}
+
+
+        <div class="article-content">
+
+          ${
+            data.icerik ||
+            "<p>Bu haber için henüz içerik eklenmemiş.</p>"
+          }
+
+        </div>
+
+
+        ${sourceHtml}
+
+      </article>
+
+    `;
+
+  }
+
+
+  /* ==================================================
+     BAŞLAT
+  ================================================== */
+
+  async function baslat() {
+
+    await siteAyarlariGetir();
+
+    await haberiGetir();
+
+  }
+
+
+  baslat();
+
+</script>
+
+</body>
+</html>
