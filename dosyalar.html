@@ -1,11 +1,70 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dosyalar | KARŞIDAN</title>
+    <title>Dosyalar — KARŞIDAN</title>
+
+    <meta
+        name="description"
+        content="KARŞIDAN dosyalar: araştırmalar, incelemeler, özel dosyalar ve gündemin arka planına ışık tutan kapsamlı çalışmalar."
+    >
+
+    <meta name="author" content="KARŞIDAN">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="index, follow, max-image-preview:large">
+
+    <meta name="theme-color" content="#111111">
+
+    <link
+        rel="canonical"
+        href="https://karsidan.com.tr/dosyalar.html"
+    >
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="KARŞIDAN">
+    <meta property="og:title" content="Dosyalar — KARŞIDAN">
+    <meta
+        property="og:description"
+        content="Araştırmalar, incelemeler, özel dosyalar ve gündemin arka planına ışık tutan kapsamlı çalışmalar."
+    >
+    <meta
+        property="og:url"
+        content="https://karsidan.com.tr/dosyalar.html"
+    >
+    <meta property="og:locale" content="tr_TR">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dosyalar — KARŞIDAN">
+    <meta
+        name="twitter:description"
+        content="Araştırmalar, incelemeler, özel dosyalar ve gündemin arka planına ışık tutan kapsamlı çalışmalar."
+    >
+
+    <!-- Yapılandırılmış Veri -->
+    <script type="application/ld+json" id="structuredData">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Dosyalar — KARŞIDAN",
+        "description": "Araştırmalar, incelemeler, özel dosyalar ve gündemin arka planına ışık tutan kapsamlı çalışmalar.",
+        "url": "https://karsidan.com.tr/dosyalar.html",
+        "inLanguage": "tr-TR",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "KARŞIDAN",
+            "url": "https://karsidan.com.tr/"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "KARŞIDAN",
+            "url": "https://karsidan.com.tr/"
+        }
+    }
+    </script>
 
     <style>
         * {
@@ -245,14 +304,26 @@
 <header>
     <div class="container header-inner">
 
-        <a href="index.html" class="logo">
+        <a
+            href="index.html"
+            class="logo"
+            aria-label="KARŞIDAN ana sayfa"
+        >
             KAR<span>Ş</span>IDAN
         </a>
 
-        <nav>
+        <nav aria-label="Ana menü">
             <a href="index.html">Ana Sayfa</a>
+
             <a href="gundem.html">Gündem</a>
-            <a href="dosyalar.html">Dosyalar</a>
+
+            <a
+                href="dosyalar.html"
+                aria-current="page"
+            >
+                Dosyalar
+            </a>
+
             <a href="hakkimizda.html">Hakkımızda</a>
         </nav>
 
@@ -266,6 +337,7 @@
 
         <div class="page-title">
             <h1>Dosyalar</h1>
+
             <p>
                 Araştırmalar, incelemeler, özel dosyalar ve
                 gündemin arka planına ışık tutan çalışmalar.
@@ -273,14 +345,26 @@
         </div>
 
 
-        <div id="loading" class="message">
+        <div
+            id="loading"
+            class="message"
+            role="status"
+            aria-live="polite"
+        >
             <h2>Dosyalar yükleniyor...</h2>
+
             <p>Lütfen bekleyin.</p>
         </div>
 
 
-        <div id="error" class="message" style="display:none;">
+        <div
+            id="error"
+            class="message"
+            style="display:none;"
+            role="alert"
+        >
             <h2>Bir sorun oluştu</h2>
+
             <p>
                 Dosyalar yüklenirken bir hata oluştu.
                 Lütfen daha sonra tekrar deneyin.
@@ -288,8 +372,13 @@
         </div>
 
 
-        <div id="empty" class="message" style="display:none;">
+        <div
+            id="empty"
+            class="message"
+            style="display:none;"
+        >
             <h2>Henüz yayınlanmış dosya yok</h2>
+
             <p>
                 Burada araştırmalarımızı, özel dosyalarımızı
                 ve kapsamlı incelemelerimizi bulabileceksiniz.
@@ -297,7 +386,11 @@
         </div>
 
 
-        <div id="dosyalar" class="dosyalar"></div>
+        <div
+            id="dosyalar"
+            class="dosyalar"
+            aria-label="KARŞIDAN dosyaları"
+        ></div>
 
     </div>
 
@@ -313,8 +406,11 @@
 
 <script>
 
-    const SUPABASE_URL = "https://rfqiffvudbmphvklxetf.supabase.co";
-    const SUPABASE_ANON_KEY = "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+    const SUPABASE_URL =
+        "https://rfqiffvudbmphvklxetf.supabase.co";
+
+    const SUPABASE_ANON_KEY =
+        "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
 
 
     const db = window.supabase.createClient(
@@ -342,6 +438,38 @@
     }
 
 
+    function seoMetniTemizle(value) {
+
+        return String(value ?? "")
+            .replace(/<[^>]*>/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+
+    }
+
+
+    function seoDescriptionOlustur(dosya) {
+
+        const baslik = seoMetniTemizle(
+            dosya?.baslik || ""
+        );
+
+        const ozet = seoMetniTemizle(
+            dosya?.ozet || ""
+        );
+
+        const metin = ozet || baslik ||
+            "KARŞIDAN araştırma ve özel dosyaları.";
+
+        if (metin.length <= 160) {
+            return metin;
+        }
+
+        return metin.substring(0, 157).trim() + "...";
+
+    }
+
+
     function formatDate(value) {
 
         if (!value) {
@@ -363,12 +491,304 @@
     }
 
 
+    function isoTarih(value) {
+
+        if (!value) {
+            return undefined;
+        }
+
+        const date = new Date(value);
+
+        if (Number.isNaN(date.getTime())) {
+            return undefined;
+        }
+
+        return date.toISOString();
+
+    }
+
+
+    function structuredDataGuncelle(
+        dosyalar,
+        siteAdi = "KARŞIDAN"
+    ) {
+
+        const itemList = dosyalar
+            .slice(0, 50)
+            .map((dosya, index) => {
+
+                const slug = dosya?.slug || "";
+
+                const url =
+                    "https://karsidan.com.tr/dosya.html?slug=" +
+                    encodeURIComponent(slug);
+
+                const item = {
+                    "@type": "ListItem",
+                    "position": index + 1,
+                    "url": url,
+                    "name":
+                        dosya?.baslik ||
+                        "KARŞIDAN Dosya"
+                };
+
+                if (dosya?.kapak_fotografi_url) {
+
+                    item.image =
+                        dosya.kapak_fotografi_url;
+
+                }
+
+                return item;
+
+            });
+
+
+        const structuredData = {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": `Dosyalar — ${siteAdi}`,
+            "description":
+                "Araştırmalar, incelemeler, özel dosyalar ve gündemin arka planına ışık tutan kapsamlı çalışmalar.",
+            "url":
+                "https://karsidan.com.tr/dosyalar.html",
+            "inLanguage": "tr-TR",
+
+            "isPartOf": {
+                "@type": "WebSite",
+                "name": siteAdi,
+                "url": "https://karsidan.com.tr/"
+            },
+
+            "publisher": {
+                "@type": "Organization",
+                "name": siteAdi,
+                "url": "https://karsidan.com.tr/"
+            },
+
+            "mainEntity": {
+                "@type": "ItemList",
+                "numberOfItems": itemList.length,
+                "itemListElement": itemList
+            }
+        };
+
+
+        const structuredDataElement =
+            document.getElementById("structuredData");
+
+        if (structuredDataElement) {
+
+            structuredDataElement.textContent =
+                JSON.stringify(
+                    structuredData,
+                    null,
+                    2
+                );
+
+        }
+
+    }
+
+
+    function seoMetaGuncelle(
+        dosyalar,
+        siteAdi = "KARŞIDAN"
+    ) {
+
+        const firstDosya = dosyalar?.[0];
+
+        let description =
+            "KARŞIDAN dosyalar: araştırmalar, incelemeler, özel dosyalar ve gündemin arka planına ışık tutan kapsamlı çalışmalar.";
+
+        if (firstDosya) {
+
+            const firstDescription =
+                seoDescriptionOlustur(firstDosya);
+
+            if (firstDescription) {
+                description =
+                    `${firstDescription} — ${siteAdi}`;
+            }
+
+        }
+
+
+        if (description.length > 160) {
+            description =
+                description.substring(0, 157).trim() + "...";
+        }
+
+
+        document.title =
+            `Dosyalar — ${siteAdi}`;
+
+
+        const metaDescription =
+            document.querySelector(
+                'meta[name="description"]'
+            );
+
+        if (metaDescription) {
+
+            metaDescription.setAttribute(
+                "content",
+                description
+            );
+
+        }
+
+
+        const ogTitle =
+            document.querySelector(
+                'meta[property="og:title"]'
+            );
+
+        if (ogTitle) {
+
+            ogTitle.setAttribute(
+                "content",
+                `Dosyalar — ${siteAdi}`
+            );
+
+        }
+
+
+        const ogDescription =
+            document.querySelector(
+                'meta[property="og:description"]'
+            );
+
+        if (ogDescription) {
+
+            ogDescription.setAttribute(
+                "content",
+                description
+            );
+
+        }
+
+
+        const twitterTitle =
+            document.querySelector(
+                'meta[name="twitter:title"]'
+            );
+
+        if (twitterTitle) {
+
+            twitterTitle.setAttribute(
+                "content",
+                `Dosyalar — ${siteAdi}`
+            );
+
+        }
+
+
+        const twitterDescription =
+            document.querySelector(
+                'meta[name="twitter:description"]'
+            );
+
+        if (twitterDescription) {
+
+            twitterDescription.setAttribute(
+                "content",
+                description
+            );
+
+        }
+
+
+        const ogSiteName =
+            document.querySelector(
+                'meta[property="og:site_name"]'
+            );
+
+        if (ogSiteName) {
+
+            ogSiteName.setAttribute(
+                "content",
+                siteAdi
+            );
+
+        }
+
+
+        structuredDataGuncelle(
+            dosyalar || [],
+            siteAdi
+        );
+
+    }
+
+
+    async function siteAyarlariGetir() {
+
+        try {
+
+            const { data, error } = await db
+                .from("ayarlar")
+                .select(
+                    "site_adi,bakim_modu"
+                )
+                .limit(1)
+                .maybeSingle();
+
+
+            if (error) {
+
+                console.warn(
+                    "Site ayarları alınamadı:",
+                    error
+                );
+
+                return {
+                    siteAdi: "KARŞIDAN",
+                    bakimModu: false
+                };
+
+            }
+
+
+            return {
+                siteAdi:
+                    data?.site_adi ||
+                    "KARŞIDAN",
+
+                bakimModu:
+                    data?.bakim_modu === true
+            };
+
+        } catch (error) {
+
+            console.warn(
+                "Site ayarları okunamadı:",
+                error
+            );
+
+            return {
+                siteAdi: "KARŞIDAN",
+                bakimModu: false
+            };
+
+        }
+
+    }
+
+
     async function dosyalariGetir() {
 
-        const loading = document.getElementById("loading");
-        const error = document.getElementById("error");
-        const empty = document.getElementById("empty");
-        const container = document.getElementById("dosyalar");
+        const loading =
+            document.getElementById("loading");
+
+        const error =
+            document.getElementById("error");
+
+        const empty =
+            document.getElementById("empty");
+
+        const container =
+            document.getElementById("dosyalar");
 
 
         const { data, error: dbError } = await db
@@ -389,7 +809,10 @@
 
         if (dbError) {
 
-            console.error("Dosyalar alınamadı:", dbError);
+            console.error(
+                "Dosyalar alınamadı:",
+                dbError
+            );
 
             error.style.display = "block";
 
@@ -401,6 +824,11 @@
 
             empty.style.display = "block";
 
+            seoMetaGuncelle(
+                [],
+                "KARŞIDAN"
+            );
+
             return;
         }
 
@@ -410,15 +838,23 @@
 
         data.forEach(dosya => {
 
-            const article = document.createElement("article");
+            const article =
+                document.createElement("article");
 
             article.className = "dosya";
 
 
-            const slug = dosya.slug || "";
+            const slug =
+                dosya.slug || "";
 
 
-            const link = `dosya.html?slug=${encodeURIComponent(slug)}`;
+            const link =
+                `dosya.html?slug=${encodeURIComponent(slug)}`;
+
+
+            const baslik =
+                dosya.baslik ||
+                "Başlıksız Dosya";
 
 
             let imageHtml = "";
@@ -430,14 +866,21 @@
                     <div class="dosya-image">
                         <img
                             src="${escapeAttribute(dosya.kapak_fotografi_url)}"
-                            alt="${escapeAttribute(dosya.baslik || "KARŞIDAN Dosya")}"
+                            alt="${escapeAttribute(baslik)}"
                             loading="lazy"
+                            decoding="async"
                             onerror="this.parentElement.style.display='none';"
                         >
                     </div>
                 `;
 
             }
+
+
+            article.setAttribute(
+                "aria-label",
+                baslik
+            );
 
 
             article.innerHTML = `
@@ -447,30 +890,46 @@
                 <div class="dosya-content">
 
                     <div class="category">
-                        ${escapeHtml(dosya.kategori || "Dosya")}
+                        ${escapeHtml(
+                            dosya.kategori ||
+                            "Dosya"
+                        )}
                     </div>
 
                     <h2>
-                        ${escapeHtml(dosya.baslik || "Başlıksız Dosya")}
+                        ${escapeHtml(baslik)}
                     </h2>
 
                     ${
                         dosya.ozet
-                        ? `<p>${escapeHtml(dosya.ozet)}</p>`
+                        ? `
+                            <p>
+                                ${escapeHtml(
+                                    dosya.ozet
+                                )}
+                            </p>
+                        `
                         : ""
                     }
 
                     <div class="date">
                         ${
                             dosya.yayin_tarihi
-                            ? formatDate(dosya.yayin_tarihi)
-                            : formatDate(dosya.created_at)
+                            ? formatDate(
+                                dosya.yayin_tarihi
+                            )
+                            : formatDate(
+                                dosya.created_at
+                            )
                         }
                     </div>
 
                     <a
                         href="${escapeAttribute(link)}"
                         class="read"
+                        aria-label="${escapeAttribute(
+                            baslik
+                        )} dosyasını oku"
                     >
                         DOSYAYI OKU →
                     </a>
@@ -483,6 +942,25 @@
 
         });
 
+
+        const ayarlar =
+            await siteAyarlariGetir();
+
+
+        seoMetaGuncelle(
+            data,
+            ayarlar.siteAdi
+        );
+
+
+        if (ayarlar.bakimModu) {
+
+            console.warn(
+                "Site bakım modunda."
+            );
+
+        }
+
     }
 
 
@@ -492,4 +970,3 @@
 
 </body>
 </html>
-```
