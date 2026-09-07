@@ -8,6 +8,120 @@
 
   <title>Köşe Yazıları — KARŞIDAN</title>
 
+  <meta
+    name="description"
+    content="KARŞIDAN köşe yazıları: gündeme, siyasete, topluma ve dünyaya dair bağımsız düşünceler, farklı bakış açıları ve yorumlar."
+  >
+
+  <meta name="author" content="KARŞIDAN">
+
+  <meta
+    name="robots"
+    content="index, follow, max-image-preview:large"
+  >
+
+  <meta
+    name="googlebot"
+    content="index, follow, max-image-preview:large"
+  >
+
+  <meta name="theme-color" content="#111111">
+
+  <link
+    rel="canonical"
+    href="https://karsidan.com.tr/kose-yazilari.html"
+  >
+
+
+  <!-- =========================
+       OPEN GRAPH
+  ========================= -->
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:site_name"
+    content="KARŞIDAN"
+  >
+
+  <meta
+    property="og:title"
+    content="Köşe Yazıları — KARŞIDAN"
+  >
+
+  <meta
+    property="og:description"
+    content="Gündeme, siyasete, topluma ve dünyaya dair bağımsız düşünceler, farklı bakış açıları ve yorumlar."
+  >
+
+  <meta
+    property="og:url"
+    content="https://karsidan.com.tr/kose-yazilari.html"
+  >
+
+  <meta
+    property="og:locale"
+    content="tr_TR"
+  >
+
+
+  <!-- =========================
+       TWITTER
+  ========================= -->
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Köşe Yazıları — KARŞIDAN"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Gündeme, siyasete, topluma ve dünyaya dair bağımsız düşünceler, farklı bakış açıları ve yorumlar."
+  >
+
+
+  <!-- =========================
+       YAPILANDIRILMIŞ VERİ
+  ========================= -->
+
+  <script
+    type="application/ld+json"
+    id="structuredData"
+  >
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Köşe Yazıları — KARŞIDAN",
+    "description": "Gündeme, siyasete, topluma ve dünyaya dair bağımsız düşünceler, farklı bakış açıları ve yorumlar.",
+    "url": "https://karsidan.com.tr/kose-yazilari.html",
+    "inLanguage": "tr-TR",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "KARŞIDAN",
+      "url": "https://karsidan.com.tr/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "KARŞIDAN",
+      "url": "https://karsidan.com.tr/"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": 0,
+      "itemListElement": []
+    }
+  }
+  </script>
+
+
   <style>
 
     * {
@@ -21,6 +135,7 @@
       background: #f2f2f0;
       color: #111;
     }
+
 
     /* =========================
        ÜST BAR
@@ -127,6 +242,11 @@
 
     nav a:hover {
       background: #111;
+      color: white;
+    }
+
+    nav a.active {
+      background: #c40000;
       color: white;
     }
 
@@ -493,28 +613,47 @@
 
   <div class="top">
 
-    <div class="logo">
+    <div
+      class="logo"
+      aria-label="KARŞIDAN"
+    >
       KARŞIDAN
     </div>
 
 
     <div class="top-right">
 
-      <div class="languages">
+      <div
+        class="languages"
+        aria-label="Dil seçenekleri"
+      >
 
-        <a href="index.html" class="active">
+        <a
+          href="index.html"
+          class="active"
+          lang="tr"
+          aria-label="Türkçe"
+        >
           TR
         </a>
 
         <span>|</span>
 
-        <a href="#">
+        <a
+          href="#"
+          lang="en"
+          aria-label="English"
+        >
           EN
         </a>
 
         <span>|</span>
 
-        <a href="#">
+        <a
+          href="#"
+          lang="fr"
+          aria-label="Français"
+        >
           FR
         </a>
 
@@ -539,7 +678,7 @@
      NAV
 ========================= -->
 
-<nav>
+<nav aria-label="Ana menü">
 
   <div class="nav-inner">
 
@@ -547,7 +686,11 @@
       ANA SAYFA
     </a>
 
-    <a href="kose-yazilari.html">
+    <a
+      href="kose-yazilari.html"
+      class="active"
+      aria-current="page"
+    >
       KÖŞE YAZILARI
     </a>
 
@@ -559,15 +702,15 @@
       KARŞIDAN GÜNDEM
     </a>
 
-    <a href="#">
+    <a href="dunya.html">
       DÜNYA
     </a>
 
-    <a href="#">
+    <a href="dosyalar.html">
       DOSYALAR
     </a>
 
-    <a href="#">
+    <a href="hakkimizda.html">
       HAKKIMIZDA
     </a>
 
@@ -586,7 +729,10 @@
     Köşe Yazıları
   </h1>
 
-  <div class="title-line"></div>
+  <div
+    class="title-line"
+    aria-hidden="true"
+  ></div>
 
 
   <p class="page-intro">
@@ -605,6 +751,7 @@
   <div
     class="author-strip"
     id="authorStrip"
+    aria-label="KARŞIDAN yazar bilgileri"
   >
 
     <div
@@ -647,9 +794,14 @@
   <section
     class="articles"
     id="articlesList"
+    aria-label="KARŞIDAN köşe yazıları"
   >
 
-    <div class="loading">
+    <div
+      class="loading"
+      role="status"
+      aria-live="polite"
+    >
       Yazılar yükleniyor...
     </div>
 
@@ -724,6 +876,372 @@
 
 
   /* ==================================================
+     SEO METİN TEMİZLEME
+  ================================================== */
+
+  function seoMetniTemizle(metin) {
+
+    return String(metin ?? "")
+      .replace(/<[^>]*>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  }
+
+
+  /* ==================================================
+     SEO AÇIKLAMASI
+  ================================================== */
+
+  function seoDescriptionOlustur(yazilar) {
+
+    const ilkYazi =
+      yazilar?.[0];
+
+
+    const intro =
+      "Gündeme, siyasete, topluma ve dünyaya dair bağımsız düşünceler, farklı bakış açıları ve yorumlar.";
+
+
+    if (
+      !ilkYazi
+    ) {
+
+      return intro;
+
+    }
+
+
+    const ozet =
+      seoMetniTemizle(
+        ilkYazi.ozet || ""
+      );
+
+
+    const metin =
+      ozet ||
+      intro;
+
+
+    if (
+      metin.length <= 160
+    ) {
+
+      return metin;
+
+    }
+
+
+    return (
+      metin
+        .substring(0, 157)
+        .trim() +
+      "..."
+    );
+
+  }
+
+
+  /* ==================================================
+     SEO META GÜNCELLE
+  ================================================== */
+
+  function seoMetaGuncelle(yazilar) {
+
+    const description =
+      seoDescriptionOlustur(
+        yazilar
+      );
+
+
+    document.title =
+      "Köşe Yazıları — KARŞIDAN";
+
+
+    const metaDescription =
+      document.querySelector(
+        'meta[name="description"]'
+      );
+
+
+    if (
+      metaDescription
+    ) {
+
+      metaDescription.setAttribute(
+        "content",
+        description
+      );
+
+    }
+
+
+    const ogTitle =
+      document.querySelector(
+        'meta[property="og:title"]'
+      );
+
+
+    if (
+      ogTitle
+    ) {
+
+      ogTitle.setAttribute(
+        "content",
+        "Köşe Yazıları — KARŞIDAN"
+      );
+
+    }
+
+
+    const ogDescription =
+      document.querySelector(
+        'meta[property="og:description"]'
+      );
+
+
+    if (
+      ogDescription
+    ) {
+
+      ogDescription.setAttribute(
+        "content",
+        description
+      );
+
+    }
+
+
+    const twitterTitle =
+      document.querySelector(
+        'meta[name="twitter:title"]'
+      );
+
+
+    if (
+      twitterTitle
+    ) {
+
+      twitterTitle.setAttribute(
+        "content",
+        "Köşe Yazıları — KARŞIDAN"
+      );
+
+    }
+
+
+    const twitterDescription =
+      document.querySelector(
+        'meta[name="twitter:description"]'
+      );
+
+
+    if (
+      twitterDescription
+    ) {
+
+      twitterDescription.setAttribute(
+        "content",
+        description
+      );
+
+    }
+
+
+    structuredDataGuncelle(
+      yazilar
+    );
+
+  }
+
+
+  /* ==================================================
+     STRUCTURED DATA
+  ================================================== */
+
+  function structuredDataGuncelle(
+    yazilar
+  ) {
+
+    const items =
+      (yazilar || [])
+        .slice(0, 50)
+        .map(
+          function(article, index) {
+
+            const slug =
+              article?.slug || "";
+
+
+            const url =
+              "https://karsidan.com.tr/kose-yazisi.html?slug=" +
+              encodeURIComponent(
+                slug
+              );
+
+
+            const item = {
+
+              "@type":
+                "ListItem",
+
+              "position":
+                index + 1,
+
+              "name":
+                article?.baslik ||
+                "KARŞIDAN Köşe Yazısı",
+
+              "url":
+                url
+
+            };
+
+
+            if (
+              article?.kapak_fotografi_url
+            ) {
+
+              item.image =
+                article.kapak_fotografi_url;
+
+            }
+
+
+            if (
+              article?.yazarlar?.ad_soyad
+            ) {
+
+              item.author = {
+
+                "@type":
+                  "Person",
+
+                "name":
+                  article.yazarlar.ad_soyad
+
+              };
+
+            }
+
+
+            if (
+              article?.yayin_tarihi
+            ) {
+
+              const date =
+                new Date(
+                  article.yayin_tarihi
+                );
+
+
+              if (
+                !Number.isNaN(
+                  date.getTime()
+                )
+              ) {
+
+                item.datePublished =
+                  date.toISOString();
+
+              }
+
+            }
+
+
+            return item;
+
+          }
+        );
+
+
+    const structuredData = {
+
+      "@context":
+        "https://schema.org",
+
+      "@type":
+        "CollectionPage",
+
+      "name":
+        "Köşe Yazıları — KARŞIDAN",
+
+      "description":
+        seoDescriptionOlustur(
+          yazilar
+        ),
+
+      "url":
+        "https://karsidan.com.tr/kose-yazilari.html",
+
+      "inLanguage":
+        "tr-TR",
+
+      "isPartOf": {
+
+        "@type":
+          "WebSite",
+
+        "name":
+          "KARŞIDAN",
+
+        "url":
+          "https://karsidan.com.tr/"
+
+      },
+
+      "publisher": {
+
+        "@type":
+          "Organization",
+
+        "name":
+          "KARŞIDAN",
+
+        "url":
+          "https://karsidan.com.tr/"
+
+      },
+
+      "mainEntity": {
+
+        "@type":
+          "ItemList",
+
+        "numberOfItems":
+          items.length,
+
+        "itemListElement":
+          items
+
+      }
+
+    };
+
+
+    const element =
+      document.getElementById(
+        "structuredData"
+      );
+
+
+    if (
+      element
+    ) {
+
+      element.textContent =
+        JSON.stringify(
+          structuredData,
+          null,
+          2
+        );
+
+    }
+
+  }
+
+
+  /* ==================================================
      YAZILARI GETİR
   ================================================== */
 
@@ -782,24 +1300,38 @@
 
       list.innerHTML = `
 
-        <div class="error">
+        <div
+          class="error"
+          role="alert"
+        >
 
           Yazılar yüklenemedi.
 
           <br><br>
 
-          ${guvenliMetin(error.message)}
+          ${guvenliMetin(
+            error.message
+          )}
 
         </div>
 
       `;
+
+
+      seoMetaGuncelle(
+        []
+      );
+
 
       return;
 
     }
 
 
-    if (!data || data.length === 0) {
+    if (
+      !data ||
+      data.length === 0
+    ) {
 
       list.innerHTML = `
 
@@ -811,6 +1343,12 @@
 
       `;
 
+
+      seoMetaGuncelle(
+        []
+      );
+
+
       return;
 
     }
@@ -820,7 +1358,7 @@
 
 
     data.forEach(
-      function (article) {
+      function(article) {
 
         const card =
           document.createElement(
@@ -835,8 +1373,18 @@
         card.href =
           "kose-yazisi.html?slug=" +
           encodeURIComponent(
-            article.slug
+            article.slug || ""
           );
+
+
+        card.setAttribute(
+          "aria-label",
+          (
+            article.baslik ||
+            "KARŞIDAN köşe yazısı"
+          ) +
+          " — yazıyı oku"
+        );
 
 
         /* ==========================================
@@ -844,7 +1392,10 @@
         ========================================== */
 
         let imageHtml =
-          `<div class="article-image">📰</div>`;
+          `<div
+             class="article-image"
+             aria-hidden="true"
+           >📰</div>`;
 
 
         if (
@@ -856,9 +1407,15 @@
             <div class="article-image">
 
               <img
-                src="${guvenliMetin(article.kapak_fotografi_url)}"
-                alt="${guvenliMetin(article.baslik)}"
+                src="${guvenliMetin(
+                  article.kapak_fotografi_url
+                )}"
+                alt="${guvenliMetin(
+                  article.baslik ||
+                  "KARŞIDAN Köşe Yazısı"
+                )}"
                 loading="lazy"
+                decoding="async"
               >
 
             </div>
@@ -905,7 +1462,8 @@
             <h2>
 
               ${guvenliMetin(
-                article.baslik
+                article.baslik ||
+                "Başlıksız Yazı"
               )}
 
             </h2>
@@ -978,8 +1536,8 @@
           "authorName"
         )
         .textContent =
-          author.ad_soyad ||
-          "KARŞIDAN";
+        author.ad_soyad ||
+        "KARŞIDAN";
 
 
       document
@@ -987,8 +1545,8 @@
           "authorDescription"
         )
         .textContent =
-          author.biyografi ||
-          "Bağımsız yazar · KARŞIDAN";
+        author.biyografi ||
+        "Bağımsız yazar · KARŞIDAN";
 
 
       if (
@@ -1002,8 +1560,15 @@
           .innerHTML = `
 
             <img
-              src="${guvenliMetin(author.fotograf_url)}"
-              alt="${guvenliMetin(author.ad_soyad)}"
+              src="${guvenliMetin(
+                author.fotograf_url
+              )}"
+              alt="${guvenliMetin(
+                author.ad_soyad ||
+                "KARŞIDAN yazarı"
+              )}"
+              loading="lazy"
+              decoding="async"
             >
 
         `;
@@ -1017,11 +1582,20 @@
             "authorAvatar"
           )
           .textContent =
-            "KARŞIDAN";
+          "KARŞIDAN";
 
       }
 
     }
+
+
+    /* ==================================================
+       SEO
+    ================================================== */
+
+    seoMetaGuncelle(
+      data
+    );
 
   }
 
