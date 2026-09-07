@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
 
@@ -9,7 +8,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>KARŞI — Yönetim Paneli</title>
+<title>KARŞIDAN — Yönetim Paneli</title>
 
 <style>
 
@@ -306,18 +305,15 @@ footer {
 
 </head>
 
-
 <body>
-
 
 <header>
 
     <div class="header-inner">
 
         <div class="logo">
-            KARŞI
+            KARŞIDAN
         </div>
-
 
         <div class="header-right">
 
@@ -328,11 +324,9 @@ footer {
                 Kontrol ediliyor...
             </div>
 
-
             <div class="panel-name">
                 Yönetim Paneli
             </div>
-
 
             <button
                 class="logout-button"
@@ -350,7 +344,6 @@ footer {
 
 <main>
 
-
 <section class="welcome">
 
     <h1>
@@ -358,7 +351,7 @@ footer {
     </h1>
 
     <p>
-        KARŞI yayın sistemini buradan yöneteceğiz.
+        KARŞIDAN yayın sistemini buradan yöneteceğiz.
     </p>
 
 </section>
@@ -443,11 +436,11 @@ footer {
 
 
     <!-- =========================
-         KARŞI GÜNDEM
+         KARŞIDAN GÜNDEM
     ========================= -->
 
     <a
-        href="haberler.html"
+        href="karsi-gundem.html"
         class="panel-card"
     >
 
@@ -456,12 +449,12 @@ footer {
         </div>
 
         <h2>
-            Karşı Gündem
+            KARŞIDAN Gündem
         </h2>
 
         <p>
             Güncel gelişmeleri yorumla ve
-            KARŞI'nın gündemini oluştur.
+            KARŞIDAN'ın gündemini oluştur.
         </p>
 
     </a>
@@ -517,6 +510,7 @@ footer {
 
     </a>
 
+
     <!-- =========================
          HAKKIMIZDA
     ========================= -->
@@ -535,11 +529,13 @@ footer {
         </h2>
 
         <p>
-            KARŞI'nın kuruluşunu, yayın anlayışını,
+            KARŞIDAN'ın kuruluşunu, yayın anlayışını,
             ilkelerini ve künye bilgilerini yönet.
         </p>
 
     </a>
+
+
     <!-- =========================
          YORUMLAR
     ========================= -->
@@ -615,7 +611,7 @@ footer {
 
 <footer>
 
-    KARŞI — Yönetim Paneli
+    KARŞIDAN — Yönetim Paneli
 
 </footer>
 
@@ -647,9 +643,7 @@ async function panelBaslat() {
 
 
     if (!session) {
-
         return;
-
     }
 
 
@@ -694,7 +688,7 @@ async function panelBaslat() {
 
 
     console.log(
-        "KARŞI: Yönetim paneli açıldı."
+        "KARŞIDAN: Yönetim paneli açıldı."
     );
 
     console.log(
@@ -715,6 +709,4 @@ panelBaslat();
 
 
 </body>
-
 </html>
-```
