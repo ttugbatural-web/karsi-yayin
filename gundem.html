@@ -1132,12 +1132,7 @@ async function karsiGundemHaberleriniGetir() {
 
                 if (haber.slug) {
 
-                    article.href =
-                        "gundem-" +
-                        encodeURIComponent(
-                            haber.slug
-                        ) +
-                        ".html";
+                    article.href = "gundem-haber.html?slug=" + encodeURIComponent(haber.slug);
 
                 }
                 else {
