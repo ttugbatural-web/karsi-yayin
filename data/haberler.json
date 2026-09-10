@@ -1,47 +1,264 @@
 {
-  "guncelleme": "2026-09-10T00:48:05.279539+00:00",
+  "guncelleme": "2026-09-10T05:32:58.093893+00:00",
   "haberler": [
     {
-      "baslik": "Netanyahu Şeyh Dağı’na gitti: Suriye ve Ürdün tepki gösterdi",
-      "aciklama": "Netanyahu Şeyh Dağı’na gitti: Suriye ve Ürdün tepki gösterdi",
+      "baslik": "Belediyeler yollara alkol püskürtmeye başladı",
+      "aciklama": "Belediyeler yollara alkol püskürtmeye başladı",
       "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/netanyahu-seyh-dagi-na-gitti-suriye-ve-urdun-tepki-gosterdi-p356812",
-      "tarih": "Thu, 10 Sep 2026 01:12:10 +0300"
+      "link": "https://www.sozcu.com.tr/belediyeler-yollara-alkol-puskurtmeye-basladi-p356854",
+      "tarih": "Thu, 10 Sep 2026 08:31:38 +0300"
+    },
+    {
+      "baslik": "Erdoğan’la görüşen Yavaş için bomba iddia! Tarih bile verildi",
+      "aciklama": "Erdoğan’la görüşen Yavaş için bomba iddia! Tarih bile verildi",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/erdogan-la-gorusen-yavas-icin-bomba-iddia-tarih-bile-verildi-p356839",
+      "tarih": "Thu, 10 Sep 2026 08:30:45 +0300"
+    },
+    {
+      "baslik": "Kritik iki gün: Elinde altını olanlar nefesini tuttu",
+      "aciklama": "Kritik iki gün: Elinde altını olanlar nefesini tuttu",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/kritik-iki-gun-elinde-altini-olanlar-nefesini-tuttu-p356853",
+      "tarih": "Thu, 10 Sep 2026 08:28:26 +0300"
+    },
+    {
+      "baslik": "Düğün magandalarına kelepçe: 6 şüpheli gözaltında",
+      "aciklama": "Ankara'nın Çankaya ilçesinde bir düğünde havaya rastgele ateş açtıkları belirlenen 6 şüpheli, polisin düzenlediği eş zam...",
+      "kaynak": "Sözcü Gündem",
+      "link": "https://www.sozcu.com.tr/dugun-magandalarina-kelepce-6-supheli-gozaltinda-p356851",
+      "tarih": "Thu, 10 Sep 2026 08:24:34 +0300"
+    },
+    {
+      "baslik": "Gölün içinden kesip tırlarla taşıyorlar: Avrupa'da kapış kapış satılıyor",
+      "aciklama": "Konya'da bulunan Akşehir Gölü’nde 400’e yakın işçinin dondurucu soğukta topladığı binlerce bağ kamış, kıyıda işlendikten...",
+      "kaynak": "Sözcü Gündem",
+      "link": "https://www.sozcu.com.tr/golun-icinden-kesip-tirlarla-tasiyorlar-avrupa-da-kapis-kapis-satiliyor-p356850",
+      "tarih": "Thu, 10 Sep 2026 08:21:33 +0300"
+    },
+    {
+      "baslik": "İki belediye başkanı telefonları kapattı, AKP'ye geçiyor",
+      "aciklama": "İki belediye başkanı telefonları kapattı, AKP'ye geçiyor",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/chp-den-istifa-edip-akp-ye-gececekler-iki-belediye-baskanlari-telefonlari-kapatti-p356847",
+      "tarih": "Thu, 10 Sep 2026 08:19:50 +0300"
+    },
+    {
+      "baslik": "Çöle dönen adadaki fareleri ve keçileri kovdular: 6 yılda mucize gerçekleşti",
+      "aciklama": "Çöle dönen adadaki fareleri ve keçileri kovdular: 6 yılda mucize gerçekleşti",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/cole-donen-adadaki-fareleri-ve-kecileri-kovdular-6-yilda-mucize-gerceklesti-p356848",
+      "tarih": "Thu, 10 Sep 2026 08:17:36 +0300"
+    },
+    {
+      "baslik": "Mehmet Ali Erbil evinde kalp krizi geçirdi",
+      "aciklama": "Mehmet Ali Erbil evinde kalp krizi geçirdi",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/mehmet-ali-erbil-evinde-kalp-krizi-gecirdi-p356846",
+      "tarih": "Thu, 10 Sep 2026 08:15:45 +0300"
+    },
+    {
+      "baslik": "Ev sahibi, kiracı ve maaşlı çalışan herkes için yeni karar",
+      "aciklama": "Ev sahibi, kiracı ve maaşlı çalışan herkes için yeni karar",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/ev-sahibi-kiraci-ve-maasli-calisan-herkes-icin-yeni-karar-p356845",
+      "tarih": "Thu, 10 Sep 2026 08:15:05 +0300"
+    },
+    {
+      "baslik": "Trabzon transfere erken başladı: 2 ön imza",
+      "aciklama": "Trabzon transfere erken başladı: 2 ön imza",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/trabzon-transfere-erken-basladi-2-on-imza-p356841",
+      "tarih": "Thu, 10 Sep 2026 08:10:49 +0300"
+    },
+    {
+      "baslik": "Hayatını kaybeden şarkıcı Güllü'nün oğlu çileden çıktı: 'Kimseye hesap vermem'",
+      "aciklama": "Hayatını kaybeden şarkıcı Güllü'nün oğlu çileden çıktı: 'Kimseye hesap vermem'",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/hayatini-kaybeden-sarkici-gullu-nun-oglu-cileden-cikti-kimseye-hesap-vermem-p356840",
+      "tarih": "Thu, 10 Sep 2026 08:08:23 +0300"
+    },
+    {
+      "baslik": "Trafikte arabanın bagajına asılmış beyaz poşet görürseniz hemen yavaşlayın",
+      "aciklama": "Trafikte arabanın bagajına asılmış beyaz poşet görürseniz hemen yavaşlayın",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/trafikte-arabanin-bagajina-asilmis-beyaz-poset-gorurseniz-hemen-yavaslayin-p356838",
+      "tarih": "Thu, 10 Sep 2026 08:05:36 +0300"
+    },
+    {
+      "baslik": "Özgür Özel açıkladı: Mansur Yavaş Erdoğan ile ne görüştü?",
+      "aciklama": "Özgür Özel açıkladı: Mansur Yavaş Erdoğan ile ne görüştü?",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/ozgur-ozel-acikladi-mansur-yavas-erdogan-ile-ne-gorustu-p356778",
+      "tarih": "Thu, 10 Sep 2026 08:01:05 +0300"
+    },
+    {
+      "baslik": "Tüm araçlar hazır hale getirildi, Avrupa'da savaş çanları artık daha güçlü çalıyor",
+      "aciklama": "Tüm araçlar hazır hale getirildi, Avrupa'da savaş çanları artık daha güçlü çalıyor",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/tum-araclar-hazir-hale-getirildi-avrupa-da-savas-canlari-artik-daha-guclu-caliyor-p356837",
+      "tarih": "Thu, 10 Sep 2026 07:58:56 +0300"
+    },
+    {
+      "baslik": "Trump seçimi kazanmak için kesenin ağzını açtı! Herkese 5 bin dolar verecek",
+      "aciklama": "Trump seçimi kazanmak için kesenin ağzını açtı! Herkese 5 bin dolar verecek",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/trumpdan-secim-temettus-cumhuriyetciler-kazanirsa-herkese-5-bin-dolar-p356829",
+      "tarih": "Thu, 10 Sep 2026 07:56:49 +0300"
+    },
+    {
+      "baslik": "Son yılların en büyük satışı! Türk şirket milyarlarca liraya el değiştiriyor",
+      "aciklama": "Son yılların en büyük satışı! Türk şirket milyarlarca liraya el değiştiriyor",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/son-yillarin-en-buyuk-satisi-turk-sirket-milyarlarca-liraya-el-degistiriyor-p356835",
+      "tarih": "Thu, 10 Sep 2026 07:51:51 +0300"
+    },
+    {
+      "baslik": "Rahmi Koç'un dansı geceye damga vurdu",
+      "aciklama": "Rahmi Koç'un dansı geceye damga vurdu",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/rahmi-koc-un-dansi-geceye-damga-vurdu-p356831",
+      "tarih": "Thu, 10 Sep 2026 07:50:33 +0300"
+    },
+    {
+      "baslik": "'Demokrasi yoksa kalkınma olmaz'",
+      "aciklama": "'Demokrasi yoksa kalkınma olmaz'",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/demokrasi-yoksa-kalkinma-olmaz-p356818",
+      "tarih": "Thu, 10 Sep 2026 07:45:52 +0300"
+    },
+    {
+      "baslik": "Er meydanına indi, pehlivanları tek tek alnından öptü! Başkanvekili Özdemir’in görüntüleri gündem oldu",
+      "aciklama": "Er meydanına indi, pehlivanları tek tek alnından öptü! Başkanvekili Özdemir’in görüntüleri gündem oldu",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/er-meydanina-indi-pehlivanlari-tek-tek-alnindan-optu-baskanvekili-ozdemir-in-goruntuleri-gundem-oldu-p356833",
+      "tarih": "Thu, 10 Sep 2026 07:45:24 +0300"
+    },
+    {
+      "baslik": "93 yıl önce ormana dikilen ağaçlar felaketi yaşattı",
+      "aciklama": "93 yıl önce ormana dikilen ağaçlar felaketi yaşattı",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/93-yil-once-ormana-dikilen-agaclar-felaketi-yasatti-p356834",
+      "tarih": "Thu, 10 Sep 2026 07:44:01 +0300"
+    },
+    {
+      "baslik": "Kritik veri öncesinde gümüş de altınla birlikte şahlandı",
+      "aciklama": "Kritik veri öncesinde gümüş de altınla birlikte şahlandı",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/gumus-ons-fiyati-67-dolari-gordu-grami-105-tlye-tirmandi-p356832",
+      "tarih": "Thu, 10 Sep 2026 07:38:34 +0300"
+    },
+    {
+      "baslik": "Galatasaray kaybetti, Trabzonspor çuvalla para kazandı",
+      "aciklama": "Galatasaray kaybetti, Trabzonspor çuvalla para kazandı",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/galatasaray-kaybetti-trabzonspor-cuvalla-para-kazandi-p356828",
+      "tarih": "Thu, 10 Sep 2026 07:30:36 +0300"
+    },
+    {
+      "baslik": "“Vanlı Kara Haydar’ın eşi Çağla Öz gözaltına alındı",
+      "aciklama": "“Vanlı Kara Haydar’ın eşi Çağla Öz gözaltına alındı",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/vanli-kara-haydar-in-esi-cagla-oz-gozaltina-alindi-p356830",
+      "tarih": "Thu, 10 Sep 2026 07:29:01 +0300"
+    },
+    {
+      "baslik": "İnsanların daha uzun yaşadığı ada: Herkes 100 yaşını deviriyor",
+      "aciklama": "İnsanların daha uzun yaşadığı ada: Herkes 100 yaşını deviriyor",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/insanlarin-daha-uzun-yasadigi-ada-herkes-100-yasini-deviriyor-p356827",
+      "tarih": "Thu, 10 Sep 2026 07:19:49 +0300"
+    },
+    {
+      "baslik": "Nevzat Aydın, iPhone Duo’nun Türkiye fiyatına isyan etti",
+      "aciklama": "Nevzat Aydın, iPhone Duo’nun Türkiye fiyatına isyan etti",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/nevzat-aydin-iphone-duo-nun-turkiye-fiyatina-isyan-etti-p356826",
+      "tarih": "Thu, 10 Sep 2026 07:18:01 +0300"
+    },
+    {
+      "baslik": "Galatasaraylı futbolcu Rafael Leao, oyuna girer girmez hayatının şokunu yaşadı",
+      "aciklama": "Galatasaraylı futbolcu Rafael Leao, oyuna girer girmez hayatının şokunu yaşadı",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/galatasarayli-futbolcu-rafael-leao-oyuna-girer-girmez-hayatinin-sokunu-yasadi-p356825",
+      "tarih": "Thu, 10 Sep 2026 06:51:15 +0300"
+    },
+    {
+      "baslik": "Milyonların beklediği 3 telefon tanıtıldı! Türkiye fiyatları dudak uçuklattı",
+      "aciklama": "Milyonların beklediği 3 telefon tanıtıldı! Türkiye fiyatları dudak uçuklattı",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/milyonlarin-bekledigi-3-telefon-tanitildi-turkiye-fiyatlari-dudak-ucuklatti-p356824",
+      "tarih": "Thu, 10 Sep 2026 06:28:14 +0300"
+    },
+    {
+      "baslik": "Kaşif Kozinoğlu’nun mezara götürmediği sırlar",
+      "aciklama": "Kaşif Kozinoğlu’nun mezara götürmediği sırlar",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/kasif-kozinoglu-nun-mezara-goturmedigi-sirlar-p356815",
+      "tarih": "Thu, 10 Sep 2026 05:30:24 +0300"
+    },
+    {
+      "baslik": "Pınarhisar kelepçesi",
+      "aciklama": "Pınarhisar kelepçesi",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/pinarhisar-kelepcesi-p356813",
+      "tarih": "Thu, 10 Sep 2026 05:30:24 +0300"
+    },
+    {
+      "baslik": "Türkmenistan nikahlı eşini vermiyor",
+      "aciklama": "Türkmenistan’da mahsur kalan eşini Türkiye’ye getirmek için mücadele eden Volkan Özfiliz, aile birleşim vizesi onaylanma...",
+      "kaynak": "Sözcü Gündem",
+      "link": "https://www.sozcu.com.tr/turkmenistan-nikahli-esini-vermiyor-p356820",
+      "tarih": "Thu, 10 Sep 2026 05:30:24 +0300"
+    },
+    {
+      "baslik": "ABD’li elçi 9 Eylül’ü çaldı",
+      "aciklama": "ABD’nin Ankara Büyükelçisi Barrack, 4 Temmuz olan ABD’nin 250. kuruluş yıl dönümü resepsiyonunu dün verdi. Emekli Büyüke...",
+      "kaynak": "Sözcü Gündem",
+      "link": "https://www.sozcu.com.tr/abd-li-elci-9-eylul-u-caldi-p356819",
+      "tarih": "Thu, 10 Sep 2026 05:20:25 +0300"
+    },
+    {
+      "baslik": "Norveç Kasabı Eskas!",
+      "aciklama": "Norveç Kasabı Eskas!",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/norvec-kasabi-eskas-p356809",
+      "tarih": "Thu, 10 Sep 2026 05:00:25 +0300"
+    },
+    {
+      "baslik": "Açılımın somut sonuçları Kürtçe tabelalar",
+      "aciklama": "Açılımın somut sonuçları Kürtçe tabelalar",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/acilimin-somut-sonuclari-kurtce-tabelalar-p356817",
+      "tarih": "Thu, 10 Sep 2026 04:30:24 +0300"
+    },
+    {
+      "baslik": "Son dakika...CHP’li İzmir Foça Belediye Başkanı Saniye Bora Fıçı AKP'ye geçiyor",
+      "aciklama": "Sözcü Gazetesi yazarı İsmail Saymaz, CHP’li İzmir Foça Belediye Başkanı Saniye Bora Fıçı’nın bugün AKP’ye katılacağını a...",
+      "kaynak": "Sözcü Gündem",
+      "link": "https://www.sozcu.com.tr/son-dakika-chp-li-izmir-foca-belediye-baskani-saniye-bora-fici-akp-ye-geciyor-p356766",
+      "tarih": "Thu, 10 Sep 2026 04:04:40 +0300"
+    },
+    {
+      "baslik": "AKP’li başkandan görev isteyen kadına: Beni ikna et, evde yalnız mısın?",
+      "aciklama": "AKP’li başkandan görev isteyen kadına: Beni ikna et, evde yalnız mısın?",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/akp-li-baskandan-gorev-isteyen-kadina-beni-ikna-et-evde-yalniz-misin-p356816",
+      "tarih": "Thu, 10 Sep 2026 04:01:22 +0300"
     },
     {
       "baslik": "Filenin Sultanları sansürlendi: Bakanlığın videosunda dikkat çeken detay",
-      "aciklama": "Filenin Sultanları sansürlendi: Bakanlığın videosunda dikkat çeken detay",
-      "kaynak": "Sözcü",
+      "aciklama": "Gençlik ve Spor Bakanlığı, İletişim Başkanlığı ve Türkiye Voleybol Federasyonu tarafından hazırlanan “Dezenformasyona du...",
+      "kaynak": "Sözcü Gündem",
       "link": "https://www.sozcu.com.tr/filenin-sultanlari-sansurlendi-bakanligin-videosunda-dikkat-ceken-detay-p356786",
       "tarih": "Thu, 10 Sep 2026 01:10:50 +0300"
     },
     {
-      "baslik": "Okan Buruk maç sonunda ateş püskürdü",
-      "aciklama": "Okan Buruk maç sonunda ateş püskürdü",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/okan-buruk-mac-sonunda-ates-puskurdu-p356811",
-      "tarih": "Thu, 10 Sep 2026 01:05:47 +0300"
-    },
-    {
       "baslik": "Tom Barrack öve öve bitiremedi: 'Türkiye-ABD ittifakı hiç bu kadar güçlü olmamıştı'",
-      "aciklama": "Tom Barrack öve öve bitiremedi: 'Türkiye-ABD ittifakı hiç bu kadar güçlü olmamıştı'",
-      "kaynak": "Sözcü",
+      "aciklama": "ABD’nin Ankara Büyükelçisi Tom Barrack, Cumhurbaşkanı Recep Tayyip Erdoğan ile Beştepe’de gerçekleştirdiği görüşmenin ar...",
+      "kaynak": "Sözcü Gündem",
       "link": "https://www.sozcu.com.tr/tom-barrack-ove-ove-bitiremedi-turkiye-abd-ittifaki-hic-bu-kadar-guclu-olmamisti-p356810",
       "tarih": "Thu, 10 Sep 2026 01:04:57 +0300"
-    },
-    {
-      "baslik": "60 kilometrekarelik araziyi sular altında bırakacaklar",
-      "aciklama": "60 kilometrekarelik araziyi sular altında bırakacaklar",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/60-kilometrekarelik-araziyi-sular-altinda-birakacaklar-p356808",
-      "tarih": "Thu, 10 Sep 2026 01:01:33 +0300"
-    },
-    {
-      "baslik": "İran'ın Keşm adasında patlama sesleri",
-      "aciklama": "İran'ın Keşm adasında patlama sesleri",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/iran-in-kesm-adasinda-patlama-sesleri-p356802",
-      "tarih": "Thu, 10 Sep 2026 00:59:59 +0300"
     },
     {
       "baslik": "Rusya’dan NATO’ya sert mesaj: “Tüm askeri teknik araçlarımızı kullanmaya hazırız”",
@@ -51,51 +268,16 @@
       "tarih": "Thu, 10 Sep 2026 00:51:51 +0300"
     },
     {
-      "baslik": "Zelenskiy ölümden döndü: Saldırıdan kıl payı kurtuldu",
-      "aciklama": "Zelenskiy ölümden döndü: Saldırıdan kıl payı kurtuldu",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/zelenskiy-olumden-dondu-saldiridan-kil-payi-kurtuldu-p356803",
-      "tarih": "Thu, 10 Sep 2026 00:39:32 +0300"
-    },
-    {
-      "baslik": "Sporting maçında Okan Buruk'u çileden çıkaran an",
-      "aciklama": "Sporting maçında Okan Buruk'u çileden çıkaran an",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/sporting-macinda-okan-buruk-u-cileden-cikaran-an-p356805",
-      "tarih": "Thu, 10 Sep 2026 00:22:11 +0300"
-    },
-    {
-      "baslik": "Kanalizasyon suyunun üzerine kurulan bahçe imkansızı başardı",
-      "aciklama": "Kanalizasyon suyunun üzerine kurulan bahçe imkansızı başardı",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/kanalizasyon-suyunun-uzerine-kurulan-bahce-imkansizi-basardi-p356804",
-      "tarih": "Thu, 10 Sep 2026 00:20:32 +0300"
-    },
-    {
-      "baslik": "Galatasaraylıları çıldırtan pozisyonlar! Okan Buruk isyan etti",
-      "aciklama": "Galatasaraylıları çıldırtan pozisyonlar! Okan Buruk isyan etti",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/galatasaraylilari-cildirtan-pozisyonlar-okan-buruk-isyan-etti-p356800",
-      "tarih": "Thu, 10 Sep 2026 00:13:57 +0300"
-    },
-    {
       "baslik": "Antalya Büyükşehir Belediyesi Başkanvekili Özdemir'in pehlivanlara desteği gündem oldu",
-      "aciklama": "Antalya Büyükşehir Belediyesi Başkanvekili Özdemir'in pehlivanlara desteği gündem oldu",
-      "kaynak": "Sözcü",
+      "aciklama": "Antalya Büyükşehir Belediye Başkan Vekili Büşra Özdemir, 674. Tarihi Elmalı Yağlı Pehlivan Güreşleri kapsamında er meyda...",
+      "kaynak": "Sözcü Gündem",
       "link": "https://www.sozcu.com.tr/antalya-buyuksehir-belediyesi-baskanvekili-ozdemir-in-pehlivanlara-destegi-gundem-oldu-p356801",
       "tarih": "Thu, 10 Sep 2026 00:07:53 +0300"
     },
     {
-      "baslik": "Galatasaray Devler Ligi'ne yenilgiyle başladı",
-      "aciklama": "Galatasaray Devler Ligi'ne yenilgiyle başladı",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/canli-veya-sporting-galatasaray-maci-canli-yayin-sampiyonlar-ligi-1-hafta-p356760",
-      "tarih": "Thu, 10 Sep 2026 00:03:03 +0300"
-    },
-    {
       "baslik": "Özgür Özel'den iktidara dikkat çeken çağrı: Meydan okuyoruz",
-      "aciklama": "Özgür Özel'den iktidara dikkat çeken çağrı: Meydan okuyoruz",
-      "kaynak": "Sözcü",
+      "aciklama": "Tüm illerde yerel seçimleri yenileme çağrısı yapan Özel, “Yerel seçimleri öne alalım. İstedikleri tarihte bütün illerde ...",
+      "kaynak": "Sözcü Gündem",
       "link": "https://www.sozcu.com.tr/ozgur-ozel-den-iktidara-dikkat-ceken-cagri-meydan-okuyoruz-p356799",
       "tarih": "Wed, 09 Sep 2026 23:49:30 +0300"
     },
@@ -107,53 +289,11 @@
       "tarih": "Wed, 09 Sep 2026 23:49:26 +0300"
     },
     {
-      "baslik": "Mezardan çıkan altın kolyenin üzerinde gizemli figürler bulundu",
-      "aciklama": "Mezardan çıkan altın kolyenin üzerinde gizemli figürler bulundu",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/mezardan-cikan-altin-kolyenin-uzerinde-gizemli-figurler-bulundu-p356798",
-      "tarih": "Wed, 09 Sep 2026 23:30:10 +0300"
-    },
-    {
       "baslik": "Adana'da otoyol kenarında erkek cesedi bulundu",
       "aciklama": "Adana’nın Sarıçam ilçesinde TAG Otoyolu kenarında hareketsiz halde bulunan kişinin yapılan kontrolde erkek olduğu ve ces...",
       "kaynak": "Sözcü Gündem",
       "link": "https://www.sozcu.com.tr/adana-da-otoyol-kenarinda-erkek-cesedi-bulundu-p356796",
       "tarih": "Wed, 09 Sep 2026 23:24:17 +0300"
-    },
-    {
-      "baslik": "Pilav suyuna 1 kaşık eklemek yetiyor: Pilav asla lapa olmuyor, taneler tek tek ayrılıyor",
-      "aciklama": "Pilav suyuna 1 kaşık eklemek yetiyor: Pilav asla lapa olmuyor, taneler tek tek ayrılıyor",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/pilav-suyuna-1-kasik-eklemek-yetiyor-pilav-asla-lapa-olmuyor-taneler-tek-tek-ayriliyor-p356784",
-      "tarih": "Wed, 09 Sep 2026 23:03:06 +0300"
-    },
-    {
-      "baslik": "Trump, İran savaşının biteceği tarihi açıkladı: Hemen sonra sona erecek",
-      "aciklama": "Trump, İran savaşının biteceği tarihi açıkladı: Hemen sonra sona erecek",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/trump-iran-savasinin-bitecegi-tarihi-acikladi-hemen-sonra-sona-erecek-p356789",
-      "tarih": "Wed, 09 Sep 2026 22:47:38 +0300"
-    },
-    {
-      "baslik": "Özgür Özel açıkladı: Mansur Yavaş Erdoğan ile ne görüştü?",
-      "aciklama": "Özgür Özel açıkladı: Mansur Yavaş Erdoğan ile ne görüştü?",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/ozgur-ozel-acikladi-mansur-yavas-erdogan-ile-ne-gorustu-p356778",
-      "tarih": "Wed, 09 Sep 2026 22:41:45 +0300"
-    },
-    {
-      "baslik": "Askere gitmemek için kaçtı! Araya giren kadın kendini yerde buldu",
-      "aciklama": "Askere gitmemek için kaçtı! Araya giren kadın kendini yerde buldu",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/askere-gitmemek-icin-kacti-araya-giren-kadin-kendini-yerde-buldu-p356788",
-      "tarih": "Wed, 09 Sep 2026 22:36:39 +0300"
-    },
-    {
-      "baslik": "6 bin 400 ağacın dibine tonlarca bazalt taşı döktüler",
-      "aciklama": "6 bin 400 ağacın dibine tonlarca bazalt taşı döktüler",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/6-bin-400-agacin-dibine-tonlarca-bazalt-tasi-doktuler-p356787",
-      "tarih": "Wed, 09 Sep 2026 22:23:48 +0300"
     },
     {
       "baslik": "SON DAKİKA: Ayşe Tokyaz cinayeti davasında müebbet hapis kararı",
@@ -164,143 +304,45 @@
     },
     {
       "baslik": "Dikkat çeken  yapay zeka açıklaması: Hepimizi öldürebileceğine inanıyorlar",
-      "aciklama": "Dikkat çeken yapay zeka açıklaması: Hepimizi öldürebileceğine inanıyorlar",
-      "kaynak": "Sözcü",
+      "aciklama": "Yapay zeka modellerinin eğitimi üzerine çalışan Anthropic araştırmacısı Jacob Coxon, teknoloji şirketlerinin kontrol edi...",
+      "kaynak": "Sözcü Gündem",
       "link": "https://www.sozcu.com.tr/dikkat-ceken-yapay-zeka-aciklamasi-hepimizi-oldurebilecegine-inaniyorlar-p356785",
       "tarih": "Wed, 09 Sep 2026 21:49:42 +0300"
     },
     {
-      "baslik": "Erdoğan ile görüşen Mansur Yavaş'tan SÖZCÜ TV'ye açıklama",
-      "aciklama": "Erdoğan ile görüşen Mansur Yavaş'tan SÖZCÜ TV'ye açıklama",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/cumhurbaskani-erdogan-mansur-yavas-ile-gorustu-p356775",
-      "tarih": "Wed, 09 Sep 2026 21:42:14 +0300"
+      "baslik": "Maaşını alamayan işçiler açlık grevinde",
+      "aciklama": "",
+      "kaynak": "Nefes",
+      "link": "https://www.nefes.com.tr/maasini-alamayan-isciler-aclik-grevinde-150271",
+      "tarih": ""
     },
     {
-      "baslik": "Irak Konsolosluğu saldırısından kırmızı bültenle aranıyordu: Gürcistan’dan Türkiye’ye giriş yaparken yakalandı",
-      "aciklama": "İstanbul’da Irak Konsolosluğu ile Bahçelievler’deki bir kafeye yönelik saldırılarda şüpheli olarak aranan ve hakkında kı...",
-      "kaynak": "Sözcü Gündem",
-      "link": "https://www.sozcu.com.tr/irak-konsoloslugu-saldirisindan-kirmizi-bultenle-araniyordu-gurcistan-dan-turkiye-ye-giris-yaparken-p356783",
-      "tarih": "Wed, 09 Sep 2026 21:40:19 +0300"
+      "baslik": "AKP’li başkandan görev isteyen kadına: Beni ikna et, evde yalnız mısın? Kilis AKP İl Başkanı Zihni Serhan Diyarbakırlı’ya ait olduğu öne sürülen ses siyaset gündemine düştü. Görev yeri değiştirilen genç bir kadınla yapılan görüşmede geçtiği iddia edilen “beni nasıl ikna edeceksin?” ve “Bu saatte kiminle konuşuyorsun derler” ifadeleri dikkat çekti.",
+      "aciklama": "",
+      "kaynak": "Nefes",
+      "link": "https://www.nefes.com.tr/kiliste-dikkat-ceken-iddia-akpli-baskandan-gorev-isteyen-kadina-beni-ikna-et-evde-yalniz-misin-150267",
+      "tarih": ""
     },
     {
-      "baslik": "Para tenisçi Ahmet Kaplan ABD Açık'ta çeyrek finalde",
-      "aciklama": "Para tenisçi Ahmet Kaplan ABD Açık'ta çeyrek finalde",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/para-tenisci-ahmet-kaplan-abd-acik-ta-ceyrek-finalde-p356782",
-      "tarih": "Wed, 09 Sep 2026 21:36:01 +0300"
+      "baslik": "MESEM’li Tunç çalışırken öldü Oto tamirhanesindeki patlamada Tunç’un yaşamını yitirmesinin ardından iş yeri kapatıldı, çocuk işçilik bir kez daha gündemde.",
+      "aciklama": "",
+      "kaynak": "Nefes",
+      "link": "https://www.nefes.com.tr/mesemli-tunc-calisirken-oldu-150262",
+      "tarih": ""
     },
     {
-      "baslik": "Son dakika.. Kaşif Kozinoğlu'nun mezarı 11 Eylül'de açılacak",
-      "aciklama": "MİT eski görevlisi Kaşif Kozinoğlu'nun mezarına 11 Eylül Cuma günü fethi kabir işlemi yapılacak.",
-      "kaynak": "Sözcü Gündem",
-      "link": "https://www.sozcu.com.tr/son-dakika-kasif-kozinoglu-nun-mezari-11-eylul-de-acilacak-p356777",
-      "tarih": "Wed, 09 Sep 2026 21:18:13 +0300"
+      "baslik": "Her devrin altın yalanı Son dönemde operasyon yapılan tüm isimler kirli servetlerinin kaynağını ‘düğün takıları’ diye açıkladı. Bu kavram artık kriminal oldu.",
+      "aciklama": "",
+      "kaynak": "Nefes",
+      "link": "https://www.nefes.com.tr/her-devrin-altin-yalani-150264",
+      "tarih": ""
     },
     {
-      "baslik": "Çağla Tuğaltay cinayetinde 26 yıl sonra yeni delil: 2013’teki DNA ile aynı çıktı",
-      "aciklama": "Çağla Tuğaltay cinayetinde 26 yıl sonra yeni delil: 2013’teki DNA ile aynı çıktı",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/cagla-tugaltay-cinayetinde-26-yil-sonra-yeni-delil-2013-teki-dna-ile-ayni-cikti-p356780",
-      "tarih": "Wed, 09 Sep 2026 20:58:45 +0300"
-    },
-    {
-      "baslik": "Senaryo için hazine ararken gerçeğini buldular",
-      "aciklama": "Senaryo için hazine ararken gerçeğini buldular",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/senaryo-icin-hazine-ararken-gercegini-buldular-p356779",
-      "tarih": "Wed, 09 Sep 2026 20:43:48 +0300"
-    },
-    {
-      "baslik": "İzmir'de silahlı banka soygunu girişimi",
-      "aciklama": "İzmir'de silahlı banka soygunu girişimi",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/izmir-de-silahli-banka-soygunu-p356765",
-      "tarih": "Wed, 09 Sep 2026 20:19:29 +0300"
-    },
-    {
-      "baslik": "Son dakika...CHP’li İzmir Foça Belediye Başkanı Saniye Bora Fıçı AKP'ye geçiyor",
-      "aciklama": "Son dakika...CHP’li İzmir Foça Belediye Başkanı Saniye Bora Fıçı AKP'ye geçiyor",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/son-dakika-chp-li-izmir-foca-belediye-baskani-saniye-bora-fici-akp-ye-geciyor-p356766",
-      "tarih": "Wed, 09 Sep 2026 20:03:32 +0300"
-    },
-    {
-      "baslik": "Halil Umut Meler'e Devler Ligi'nde görev",
-      "aciklama": "Halil Umut Meler'e Devler Ligi'nde görev",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/halil-umut-meler-e-devler-ligi-nde-gorev-p356772",
-      "tarih": "Wed, 09 Sep 2026 19:54:42 +0300"
-    },
-    {
-      "baslik": "Kılıçdaroğlu'ndan ‘Mansur Yavaş’a kırgın mısınız?’ sorusuna dikkat çeken yanıt",
-      "aciklama": "Kılıçdaroğlu'ndan ‘Mansur Yavaş’a kırgın mısınız?’ sorusuna dikkat çeken yanıt",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/kilicdaroglu-ndan-mansur-yavas-a-kirgin-misiniz-sorusuna-dikkat-ceken-yanit-p356771",
-      "tarih": "Wed, 09 Sep 2026 19:53:54 +0300"
-    },
-    {
-      "baslik": "Özgür Çelik'ten Üsküdar açıklaması: İsim vererek suç duyurusunu açıkladı",
-      "aciklama": "Özgür Çelik'ten Üsküdar açıklaması: İsim vererek suç duyurusunu açıkladı",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/ozgur-celik-uskudar-aciklamasi-isim-vererek-suc-duyurusunu-acikladi-p356769",
-      "tarih": "Wed, 09 Sep 2026 19:39:58 +0300"
-    },
-    {
-      "baslik": "Arda Güler'in taktığı saatin fiyatı sosyal medyada gündem oldu",
-      "aciklama": "Arda Güler'in taktığı saatin fiyatı sosyal medyada gündem oldu",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/arda-gulerin-taktigi-saatin-fiyati-sosyal-medyada-gundem-oldu-p356764",
-      "tarih": "Wed, 09 Sep 2026 19:10:16 +0300"
-    },
-    {
-      "baslik": "19 öğretmen sırtlayıp yeni okula taşıdı: Yıkılacak okulun kamelyasını geride bırakamadılar",
-      "aciklama": "Tokat’da depreme karşı dayanıksız olduğu gerekçesiyle yıkılacak olan Kaya İsmet Özden Ortaokulu’nda görevli 19 öğretmen ...",
-      "kaynak": "Sözcü Gündem",
-      "link": "https://www.sozcu.com.tr/19-ogretmen-sirtlayip-yeni-okula-tasidi-yikilacak-okulun-kamelyasini-geride-birakamadilar-p356759",
-      "tarih": "Wed, 09 Sep 2026 18:30:34 +0300"
-    },
-    {
-      "baslik": "Okul kantinlerinde yeni dönem: Bu ürünlerin satışı artık yasak",
-      "aciklama": "Milyonlarca öğrenciyi ilgilendiren “Okul Gıdası Logosu” uygulaması 14 Eylül itibarıyla hayata geçiriliyor. Bu kapsamda o...",
-      "kaynak": "Sözcü Gündem",
-      "link": "https://www.sozcu.com.tr/okul-kantinlerinde-yeni-donem-bu-urunlerin-satisi-artik-yasak-p356753",
-      "tarih": "Wed, 09 Sep 2026 18:05:18 +0300"
-    },
-    {
-      "baslik": "Tarım arazisinde çıkan yangın, otoyolun diğer tarafına sıçradı",
-      "aciklama": "Aydın’ın Efeler ilçesinde zeytinlik alanda çıkan yangın, rüzgarın da etkisiyle kısa sürede büyüyerek Aydın-İzmir otoyolu...",
-      "kaynak": "Sözcü Gündem",
-      "link": "https://www.sozcu.com.tr/tarim-arazisinde-cikan-yangin-otoyolun-diger-tarafina-sicradi-p356754",
-      "tarih": "Wed, 09 Sep 2026 18:02:08 +0300"
-    },
-    {
-      "baslik": "Ekrem İmamoğlu'nun \"Tuzla\" davası da Silivri'de görülecek",
-      "aciklama": "Cumhurbaşkanı adayı ve İstanbul Büyükşehir Belediye Başkanı Ekrem İmamoğlu’nun eski Tuzla Belediye Başkanı Şadi Yazıcı’y...",
-      "kaynak": "Sözcü Gündem",
-      "link": "https://www.sozcu.com.tr/ekrem-imamoglu-nun-tuzla-davasi-da-silivri-de-gorulecek-p356752",
-      "tarih": "Wed, 09 Sep 2026 17:53:33 +0300"
-    },
-    {
-      "baslik": "Son dakika: 3 gündür süren yangından ölüm haberi geldi! Vahim durum uzaydan görüntülendi",
-      "aciklama": "Antalya Aksu'da 3 gündür süren orman yangınından acı haber geldi. Dumandan etkilenen bir kişi hayatını kaybetti. Yangın...",
-      "kaynak": "Sözcü Gündem",
-      "link": "https://www.sozcu.com.tr/3-gundur-suren-yangindan-olum-haberi-geldi-p356644",
-      "tarih": "Wed, 09 Sep 2026 17:36:34 +0300"
-    },
-    {
-      "baslik": "Tekirdağ'da CHP, AKP ve MHP ile işbirliği yaptı",
-      "aciklama": "Tekirdağ Büyükşehir Belediye Başkanı Dr. Candan Yüceer’in CHP’den istifa edip YENİ Parti’ye geçmesinin ardından toplanan...",
-      "kaynak": "Sözcü Gündem",
-      "link": "https://www.sozcu.com.tr/tekirdag-da-akp-chp-ve-mhp-bir-oldu-meclis-toplanamadi-p356733",
-      "tarih": "Wed, 09 Sep 2026 17:08:48 +0300"
-    },
-    {
-      "baslik": "Kontrolden çıkan beton pompa aracı ortalığı savaş alanına çevirdi",
-      "aciklama": "İstanbul Sancaktepe sürücüsünün kontrolünü kaybettiği beton pompa aracı önce beton mikserine ardından 3 otomobile çarptı...",
-      "kaynak": "Sözcü Gündem",
-      "link": "https://www.sozcu.com.tr/kontrolden-cikan-beton-pompa-araci-ortaligi-savas-alanina-cevirdi-p356741",
-      "tarih": "Wed, 09 Sep 2026 17:08:36 +0300"
+      "baslik": "Mansur Yavaş Erdoğan ile ne konuştuğunu açıkladı",
+      "aciklama": "",
+      "kaynak": "Nefes",
+      "link": "https://www.nefes.com.tr/mansur-yavas-erdogan-ile-ne-konustugunu-acikladi-150265",
+      "tarih": ""
     },
     {
       "baslik": "'Vanlı Kara Haydar'ın eşi Çağla Öz gözaltına alındı",
@@ -310,21 +352,21 @@
       "tarih": ""
     },
     {
-      "baslik": "Dilek Kaya İmamoğlu'nun kardeşi hakkında tahliye kararı Tutuklu İBB Başkanı Ekrem İmamoğlu'nun eşi Dilek Kaya İmamoğlu'nun kardeşi Ali Kaya, tutukluluğunun 7'nci ayında hakim karşısına çıktı. Bodrum 2. Ağır Ceza Mahkemesi, Kaya’nın yurt dışı çıkış yasağıyla tahliyesine karar verdi.",
+      "baslik": "Dilek Kaya İmamoğlu'nun kardeşi hakkında tahliye kararı",
       "aciklama": "",
       "kaynak": "Nefes",
       "link": "https://www.nefes.com.tr/dilek-kaya-imamoglunun-kardesi-ali-kaya-hakkinda-tahliye-karari-150251",
       "tarih": ""
     },
     {
-      "baslik": "Melih Gökçek'e savcılıkta 1 milyon 265 bin dolar sorusu. İfadenin çarpıcı detayları ortaya çıktı Eski Ankara Büyükşehir Belediyesi Başkanı Melih Gökçek'in, yurt dışındaki şirketlere kayıt dışı para aktarıldığı yönündeki iddialar üzerine başlatılan soruşturmada verdiği ifadede çarpıcı ayrıntılar ortaya çıktı. Gökçek, Ankara’da kendisine ait villanın satışından 1 milyon 265 bin dolar elde ettiğini ve parayı oğluna verdiğini söyledi.",
+      "baslik": "Melih Gökçek'e savcılıkta 1 milyon 265 bin dolar sorusu. İfadenin çarpıcı detayları ortaya çıktı",
       "aciklama": "",
       "kaynak": "Nefes",
       "link": "https://www.nefes.com.tr/melih-gokceke-savcilikta-1-milyon-265-bin-dolar-sorusu-ifadenin-carpici-detaylari-ortaya-cikti-150243",
       "tarih": ""
     },
     {
-      "baslik": "Özgür Özel'den 'Yerel seçimleri öne alalım' çağrısı YENİ Parti Genel Başkanı Özgür Özel, \"Meydan okuyoruz. Yerel seçimleri öne alalım. İstedikleri tarihte bütün illerde yerel seçimleri yenileyelim. Yüzde 38'le seçimleri kazanmıştık, yüzde 45'in altında kazanırsak hiçbir şey bilmiyorum. Her türlü meydan okuyorum. Bu milletin bir sandık sabrı var. Biz o sandığa varırız ve bu seçimi alırız\" ifadelerini kullandı.",
+      "baslik": "Özgür Özel'den 'Yerel seçimleri öne alalım' çağrısı",
       "aciklama": "",
       "kaynak": "Nefes",
       "link": "https://www.nefes.com.tr/ozgur-ozelden-yerel-secimleri-one-alalim-cagrisi-150238",
@@ -412,41 +454,6 @@
       "aciklama": "",
       "kaynak": "Nefes",
       "link": "https://www.nefes.com.tr/yorukeli-hareketi-antalya-hesabina-sorusturma-150209",
-      "tarih": ""
-    },
-    {
-      "baslik": "Okan Karacan hakkında 'bilgisayar çaldı' iddiası: O anlar güvenlik kamerasında",
-      "aciklama": "",
-      "kaynak": "Nefes",
-      "link": "https://www.nefes.com.tr/okan-karacan-hakkinda-bilgisayar-caldi-iddiasi-o-anlar-guvenlik-kamerasinda-150208",
-      "tarih": ""
-    },
-    {
-      "baslik": "Çağla Tuğaltay cinayetinde 26 yıl sonra DNA tespit edildi",
-      "aciklama": "",
-      "kaynak": "Nefes",
-      "link": "https://www.nefes.com.tr/cagla-tugaltay-cinayetinde-26-yil-sonra-sortunda-dna-tespit-edildi-150203",
-      "tarih": ""
-    },
-    {
-      "baslik": "İstanbul'da 22 knotluk rüzgar esmeye başladı. Zaviyesi 44 derece",
-      "aciklama": "",
-      "kaynak": "Nefes",
-      "link": "https://www.nefes.com.tr/istanbulda-22-knotluk-ruzgar-esmeye-basladi-zaviyesi-44-derece-sabaha-kadar-surecek-150198",
-      "tarih": ""
-    },
-    {
-      "baslik": "Eurofighter'da kritik aşama. MSB açıkladı",
-      "aciklama": "",
-      "kaynak": "Nefes",
-      "link": "https://www.nefes.com.tr/eurofighterda-kritik-asama-msb-acikladi-150196",
-      "tarih": ""
-    },
-    {
-      "baslik": "Ekrem İmamoğlu'nun Tuzla davası Silivri'ye alındı",
-      "aciklama": "",
-      "kaynak": "Nefes",
-      "link": "https://www.nefes.com.tr/ekrem-imamoglunun-tuzla-davasi-silivriye-alindi-150192",
       "tarih": ""
     },
     {
