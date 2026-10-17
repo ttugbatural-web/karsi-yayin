@@ -85,3 +85,25 @@ Tarih: 2026-10-17
 ### Sınırlama
 
 Bu, yönetim editöründe kalıcı HTML/DOM XSS riskini azaltmaya yönelik istemci tarafı savunma katmanıdır; tek başına güvenlik garantisi değildir. Supabase RLS ve yetkilendirme politikaları ayrıca doğrulanmalıdır. Gerçek tarayıcıda biçimlendirme, yapıştırma, kaydetme ve yeniden düzenleme regresyon testleri henüz yapılmadı.
+
+
+## Dördüncü tur: bozuk içerik bağlantıları
+
+Tarih: 2026-10-17
+
+### Uygulanan düzeltmeler
+
+- Ana sayfadaki köşe yazısı kartları `kose-yazilari.html?slug=...` adresine gidiyordu; bu sayfa slug parametresiyle yazı detayı açmıyor. Bağlantı `kose-yazisi.html?slug=...` olarak düzeltildi.
+- Dünya haberleri listesi `dunya-{slug}.html` şeklinde dosyalar oluşturulmuş gibi bağlantı kuruyordu, ancak depoda bu dosyalar yoktu. Mevcut `dunya_haberleri` tablosunun alanlarını kullanan `dunya-haber.html?slug=...` detay sayfası eklendi ve liste bu sayfaya bağlandı.
+- Yeni dünya haberi detay rotası sitemap'e eklendi.
+
+### Yeni dünya haber detay sayfası güvenlik davranışı
+
+- İçerik metin olarak kaçırılıp paragraf halinde gösteriliyor; veritabanından gelen içerik HTML olarak çalıştırılmıyor.
+- Kapak ve kaynak bağlantıları yalnızca HTTP/HTTPS URL'leri olarak kabul ediliyor.
+- Yalnızca `durum = yayinda` olan ve slug'ı eşleşen kayıt yükleniyor.
+- Başlık ve açıklama meta alanları içerik yüklenince güncelleniyor.
+
+### Statik doğrulama
+
+Bu değişiklikler dal üzerinde kaynak kodu olarak oluşturuldu. Canlı Supabase kaydıyla uçtan uca doğrulama henüz yapılmadı; tablo alanları mevcut `dunya.html` ve `admin/dunya.html` kaynaklarından eşleştirildi.
