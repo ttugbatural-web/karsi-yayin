@@ -27,7 +27,18 @@
       document.head.appendChild(script);
     });
   }
+  function addSearchLink() {
+    const nav = document.querySelector("nav");
+    if (!nav || nav.querySelector('a[href="arama.html"]')) return;
+    const searchLink = document.createElement("a");
+    searchLink.href = "arama.html";
+    searchLink.textContent = "ARA";
+    searchLink.setAttribute("aria-label", "KARŞIDAN içinde ara");
+    searchLink.title = "Haber, yazı ve dosya ara";
+    (nav.querySelector(".nav-inner") || nav).appendChild(searchLink);
+  }
   async function applyMenu() {
+    addSearchLink();
     try {
       await loadLibrary();
       const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
