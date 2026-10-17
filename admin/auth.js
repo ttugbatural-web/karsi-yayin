@@ -18,6 +18,9 @@
     const SUPABASE_ANON_KEY =
         "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
 
+    // Must match the immutable administrator UUID used by Supabase RLS.
+    const ADMIN_USER_ID = "a0e49ca7-3362-4980-bfa9-1c75431905f3";
+
 
     /* ==================================================
        SUPABASE KÜTÜPHANESİ KONTROLÜ
@@ -124,6 +127,17 @@
             /* =========================
                OTURUM VAR
             ========================= */
+
+            if (
+                !data.session.user ||
+                data.session.user.id !== ADMIN_USER_ID
+            ) {
+                console.warn("KARŞI AUTH: Oturum var ancak yönetici yetkisi yok.");
+                await client.auth.signOut();
+                window.location.href = "giris.html";
+                return null;
+            }
+
 
             console.log(
                 "KARŞI AUTH: Yönetici oturumu aktif:",
