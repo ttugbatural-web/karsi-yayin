@@ -1803,13 +1803,13 @@ function editorHTMLGuvende(html) {
   const izinVerilenEtiketler = new Set([
     "P", "BR", "STRONG", "B", "EM", "I", "U", "S",
     "UL", "OL", "LI", "BLOCKQUOTE", "A", "SPAN",
-    "DIV", "H2", "H3", "FONT"
+    "DIV", "H2", "H3", "FONT", "IMG"
   ]);
 
   const tehlikeliEtiketler = new Set([
     "SCRIPT", "STYLE", "IFRAME", "OBJECT", "EMBED",
     "FORM", "INPUT", "BUTTON", "TEXTAREA", "SELECT",
-    "OPTION", "VIDEO", "AUDIO", "SOURCE", "IMG",
+    "OPTION", "VIDEO", "AUDIO", "SOURCE",
     "META", "LINK", "BASE", "SVG", "MATH", "TEMPLATE"
   ]);
 
@@ -1857,6 +1857,25 @@ function editorHTMLGuvende(html) {
 
       if (tehlikeliEtiketler.has(tagName)) {
         child.remove();
+        return;
+      }
+
+      if (tagName === "IMG") {
+        const rawSrc = child.getAttribute("src") || "";
+        let safeUrl = null;
+        try {
+          const parsed = new URL(rawSrc, window.location.href);
+          const allowedPath = parsed.pathname.startsWith("/storage/v1/object/public/kose-yazilari/") || parsed.pathname.startsWith("/storage/v1/object/public/haber-fotograflari/");
+          if (parsed.protocol === "https:" && parsed.origin === "https://rfqiffvudbmphvklxetf.supabase.co" && allowedPath) safeUrl = parsed.href;
+        } catch (_) {}
+        if (!safeUrl) { child.remove(); return; }
+        const alt = (child.getAttribute("alt") || "").slice(0, 180);
+        Array.from(child.attributes).forEach(function (attribute) { child.removeAttribute(attribute.name); });
+        child.setAttribute("src", safeUrl);
+        child.setAttribute("alt", alt);
+        child.setAttribute("loading", "lazy");
+        child.setAttribute("decoding", "async");
+        child.setAttribute("style", "display:block;max-width:100%;height:auto;margin:18px auto");
         return;
       }
 
