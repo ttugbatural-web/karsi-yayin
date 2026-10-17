@@ -6,12 +6,12 @@
   const allowedTags = new Set([
     "P", "BR", "STRONG", "B", "EM", "I", "U", "S",
     "UL", "OL", "LI", "BLOCKQUOTE", "A", "SPAN",
-    "DIV", "H2", "H3", "FONT"
+    "DIV", "H2", "H3", "FONT", "IMG"
   ]);
   const blockedTags = new Set([
     "SCRIPT", "STYLE", "IFRAME", "OBJECT", "EMBED", "FORM",
     "INPUT", "BUTTON", "TEXTAREA", "SELECT", "OPTION",
-    "VIDEO", "AUDIO", "SOURCE", "IMG", "META", "LINK",
+    "VIDEO", "AUDIO", "SOURCE", "META", "LINK",
     "BASE", "SVG", "MATH", "TEMPLATE"
   ]);
   const allowedStyles = new Set([
@@ -42,6 +42,25 @@
 
         if (blockedTags.has(tag)) {
           element.remove();
+          return;
+        }
+
+        if (tag === "IMG") {
+          const rawSrc = element.getAttribute("src") || "";
+          let safeUrl = null;
+          try {
+            const parsed = new URL(rawSrc, window.location.href);
+            const allowedPath = parsed.pathname.startsWith("/storage/v1/object/public/kose-yazilari/") || parsed.pathname.startsWith("/storage/v1/object/public/haber-fotograflari/");
+            if (parsed.protocol === "https:" && parsed.origin === "https://rfqiffvudbmphvklxetf.supabase.co" && allowedPath) safeUrl = parsed.href;
+          } catch (_) {}
+          if (!safeUrl) { element.remove(); return; }
+          const alt = (element.getAttribute("alt") || "").slice(0, 180);
+          Array.from(element.attributes).forEach(function (attribute) { element.removeAttribute(attribute.name); });
+          element.setAttribute("src", safeUrl);
+          element.setAttribute("alt", alt);
+          element.setAttribute("loading", "lazy");
+          element.setAttribute("decoding", "async");
+          element.setAttribute("style", "display:block;max-width:100%;height:auto;margin:18px auto");
           return;
         }
 
