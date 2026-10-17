@@ -1,6 +1,14 @@
 (function () {
   "use strict";
 
+  if (!document.querySelector('link[rel="icon"][href="/favicon.svg"]')) {
+    const icon = document.createElement("link");
+    icon.rel = "icon";
+    icon.type = "image/svg+xml";
+    icon.href = "/favicon.svg";
+    document.head.appendChild(icon);
+  }
+
   const style = document.createElement("style");
   style.textContent = `
     .kar-reading-tools{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 22px;padding:12px 14px;background:#fff;border:1px solid #ddd;border-left:4px solid #c40000;font:13px/1.4 Arial,Helvetica,sans-serif}

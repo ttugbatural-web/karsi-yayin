@@ -27,6 +27,14 @@
       document.head.appendChild(script);
     });
   }
+  function addFavicon() {
+    if (document.querySelector('link[rel="icon"][href="/favicon.svg"]')) return;
+    const icon = document.createElement("link");
+    icon.rel = "icon";
+    icon.type = "image/svg+xml";
+    icon.href = "/favicon.svg";
+    document.head.appendChild(icon);
+  }
   function addSearchLink() {
     const nav = document.querySelector("nav");
     if (!nav || nav.querySelector('a[href="arama.html"]')) return;
@@ -38,6 +46,7 @@
     (nav.querySelector(".nav-inner") || nav).appendChild(searchLink);
   }
   async function applyMenu() {
+    addFavicon();
     addSearchLink();
     try {
       await loadLibrary();

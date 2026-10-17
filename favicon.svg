@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="KARŞIDAN">
+  <rect width="64" height="64" fill="#111111"/>
+  <text x="31" y="48" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="46" font-weight="900" fill="#ffffff">K</text>
+  <path d="M7 43 L57 20" stroke="#c40000" stroke-width="5" stroke-linecap="square"/>
+</svg>
