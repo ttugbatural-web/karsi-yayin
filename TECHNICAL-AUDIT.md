@@ -184,3 +184,17 @@ Tarih: 2026-10-17
 - Beş yeni indeksin varlığı doğrulandı.
 - Supabase Security Advisor'da sızdırılmış parola korumasının kapalı olduğu uyarısı devam ediyor; mevcut bağlantı aracı Auth ayarını değiştirmediğinden bu ayar elle etkinleştirilmeli.
 - Bu değişiklikler ayrı GitHub dalında hazırlanıyor; canlı siteye alınmadan önce PR diff'i ve dağıtım kontrolleri incelenmeli. Gerçek tarayıcıyla yönetici giriş/çıkış, medya yükleme ve içerik CRUD uçtan uca testleri henüz yapılmadı.
+
+
+## Beşinci tur: görsel editörü, okuyucu yorumları ve menü görünürlüğü
+
+Tarih: 2026-10-17
+
+- `admin/kose-yazilari.html` ve `admin/haberler.html` zengin metin editörlerine metnin içine görsel ekleme aracı eklendi. Yüklenen görseller yalnızca JPEG, PNG veya WebP olabilir ve 5 MB ile sınırlandırılır.
+- Editör temizleyicileri, yalnızca bu Supabase projesinin `haber-fotograflari` ve `kose-yazilari` public Storage bucket'larındaki HTTPS görsellerini koruyacak şekilde güncellendi. Önceki izin listeleri `IMG` etiketini kaldırdığı için metin içi görseller kaydetme veya görüntüleme sırasında siliniyordu.
+- Haber ve köşe yazısı detay sayfalarına `comments.js` ile okuyucu yorum formu eklendi. Yorumlar yönetici onayından sonra görünür; otomatik onay ayarı açıksa anında yayımlanır.
+- Yorum ekleme RLS politikası güçlendirildi: yorum özelliği açık olmalı, ad ve yorum uzunluğu sınırlandırılır, hedef haber/yazı yayımlanmış olmalı ve tek bir hedef kimliği verilmelidir. Anonim kullanıcı yorumları bekleyen durumda gönderemezse veya hedef içerik yayında değilse veritabanı reddeder.
+- `ayarlar.menu_gorunurlugu` JSONB ayarı eklendi; yönetim panelindeki yeni **Site Bölümleri** ekranı üst menü sekmelerini açıp kapatabilir. Ayar `site-menu.js` aracılığıyla desteklenen herkese açık sayfalara uygulanır. İçerikler silinmez; yalnızca üst menü bağlantısı gizlenir.
+- Üç görsel bucket'ında dosya boyutu 5 MB ve MIME türleri JPEG/PNG/WebP olarak sınırlandırıldı.
+- Statik JavaScript sözdizimi kontrolü ilgili dosyalarda hata göstermedi; SQL doğrulamasında `menu_gorunurlugu` kolonu, yorum politikası, 3 görsel bucket ayarı ve RLS kontrolleri doğrulandı.
+- Sınırlama: gerçek yönetici oturumuyla tarayıcı üzerinden dosya yükleme ve yorum gönderme işlemleri bu denetim ortamından çalıştırılamadı. Bu nedenle gerçek kullanıcı akışı için başarılı uçtan uca test iddiasında bulunulmuyor.

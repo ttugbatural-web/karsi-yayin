@@ -665,6 +665,8 @@
       <div class="editor">
 
         <div class="editor-toolbar">
+<button type="button" class="" title="Metnin içine fotoğraf ekle" onclick="inlineFotografSec()">🖼 Fotoğraf ekle</button>
+<input type="file" id="inlinePhotoInput" accept="image/jpeg,image/png,image/webp" hidden>
 
           <select
             class="font-name-select"
@@ -948,14 +950,14 @@
 
           <br>
 
-          JPG veya PNG kullanabilirsin.
+          JPG, PNG veya WebP kullanabilirsin. En fazla 5 MB.
 
           <br>
 
           <input
             type="file"
             id="articlePhoto"
-            accept="image/jpeg,image/png"
+            accept="image/jpeg,image/png,image/webp"
           >
 
         </div>
@@ -1062,6 +1064,8 @@ let kaydedilmisAralik = null;
 const photoInput =
   document.getElementById("articlePhoto");
 
+  const inlinePhotoInput = document.getElementById("inlinePhotoInput");
+
 const photoPreview =
   document.getElementById("photoPreview");
 
@@ -1163,6 +1167,30 @@ editor.addEventListener(
   "keyup",
   secimiKaydet
 );
+
+
+function inlineFotografSec() {
+  secimiKaydet();
+  inlinePhotoInput.click();
+}
+inlinePhotoInput.addEventListener("change", async function () {
+  const file = this.files && this.files[0]; this.value = "";
+  if (!file) return;
+  if (!["image/jpeg","image/png","image/webp"].includes(file.type) || file.size > 5*1024*1024) { mesajGoster("Metin içi fotoğraf JPG, PNG veya WebP olmalı ve 5 MB'ı aşmamalı.","error"); return; }
+  try {
+    const ext=({"image/jpeg":"jpg","image/png":"png","image/webp":"webp"})[file.type];
+    const path="inline-"+Date.now()+"-"+Math.random().toString(36).slice(2,8)+"."+ext;
+    const {error}=await supabaseClient.storage.from("kose-yazilari").upload(path,file,{cacheControl:"3600",upsert:false,contentType:file.type});
+    if(error)throw error;
+    const {data}=supabaseClient.storage.from("kose-yazilari").getPublicUrl(path);
+    if(!data||!data.publicUrl)throw new Error("Fotoğraf bağlantısı oluşturulamadı.");
+    const img=document.createElement("img");img.src=data.publicUrl;img.alt=file.name.replace(/\.[^.]+$/,"").slice(0,180);img.style.cssText="display:block;max-width:100%;height:auto;margin:18px auto";
+    editor.focus();const selection=window.getSelection();
+    if(kaydedilmisAralik&&editor.contains(kaydedilmisAralik.commonAncestorContainer)){selection.removeAllRanges();selection.addRange(kaydedilmisAralik);kaydedilmisAralik.deleteContents();kaydedilmisAralik.insertNode(img);img.parentNode.insertBefore(document.createElement("br"),img.nextSibling);}
+    else{editor.appendChild(img);editor.appendChild(document.createElement("br"));}
+    normalizeEditorHTML();secimiKaydet();mesajGoster("Fotoğraf metne eklendi. Yazıyı kaydetmeyi unutma.","success");
+  }catch(error){console.error("Metin içi fotoğraf yükleme hatası:",error);mesajGoster("Fotoğraf yüklenemedi: "+(error.message||"Bilinmeyen hata"),"error");}
+});
 
 
 /* ==================================================
@@ -1775,13 +1803,13 @@ function editorHTMLGuvende(html) {
   const izinVerilenEtiketler = new Set([
     "P", "BR", "STRONG", "B", "EM", "I", "U", "S",
     "UL", "OL", "LI", "BLOCKQUOTE", "A", "SPAN",
-    "DIV", "H2", "H3", "FONT"
+    "DIV", "H2", "H3", "FONT", "IMG"
   ]);
 
   const tehlikeliEtiketler = new Set([
     "SCRIPT", "STYLE", "IFRAME", "OBJECT", "EMBED",
     "FORM", "INPUT", "BUTTON", "TEXTAREA", "SELECT",
-    "OPTION", "VIDEO", "AUDIO", "SOURCE", "IMG",
+    "OPTION", "VIDEO", "AUDIO", "SOURCE",
     "META", "LINK", "BASE", "SVG", "MATH", "TEMPLATE"
   ]);
 
@@ -1829,6 +1857,25 @@ function editorHTMLGuvende(html) {
 
       if (tehlikeliEtiketler.has(tagName)) {
         child.remove();
+        return;
+      }
+
+      if (tagName === "IMG") {
+        const rawSrc = child.getAttribute("src") || "";
+        let safeUrl = null;
+        try {
+          const parsed = new URL(rawSrc, window.location.href);
+          const allowedPath = parsed.pathname.startsWith("/storage/v1/object/public/kose-yazilari/") || parsed.pathname.startsWith("/storage/v1/object/public/haber-fotograflari/");
+          if (parsed.protocol === "https:" && parsed.origin === "https://rfqiffvudbmphvklxetf.supabase.co" && allowedPath) safeUrl = parsed.href;
+        } catch (_) {}
+        if (!safeUrl) { child.remove(); return; }
+        const alt = (child.getAttribute("alt") || "").slice(0, 180);
+        Array.from(child.attributes).forEach(function (attribute) { child.removeAttribute(attribute.name); });
+        child.setAttribute("src", safeUrl);
+        child.setAttribute("alt", alt);
+        child.setAttribute("loading", "lazy");
+        child.setAttribute("decoding", "async");
+        child.setAttribute("style", "display:block;max-width:100%;height:auto;margin:18px auto");
         return;
       }
 
@@ -2210,6 +2257,11 @@ async function yaziKaydet() {
   const photoFile =
     photoInput.files[0];
 
+  if (photoFile && (!["image/jpeg", "image/png", "image/webp"].includes(photoFile.type) || photoFile.size > 5 * 1024 * 1024)) {
+    mesajGoster("Kapak fotoğrafı JPG, PNG veya WebP olmalı ve 5 MB'ı aşmamalı.", "error");
+    return;
+  }
+
 
   if (!title) {
 
@@ -2268,11 +2320,8 @@ async function yaziKaydet() {
 
     if (photoFile) {
 
-      const uzanti =
-        photoFile.name
-          .split(".")
-          .pop()
-          .toLowerCase();
+      const uzanti = ({ "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" })[photoFile.type];
+      if (!uzanti) throw new Error("Desteklenmeyen fotoğraf türü.");
 
 
       const dosyaAdi =
@@ -2294,7 +2343,8 @@ async function yaziKaydet() {
             photoFile,
             {
               cacheControl: "3600",
-              upsert: false
+              upsert: false,
+              contentType: photoFile.type
             }
           );
 

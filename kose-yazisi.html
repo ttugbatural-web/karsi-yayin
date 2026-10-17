@@ -652,7 +652,8 @@ Bağımsız düşüncenin tarafı.
 
 © 2026 KARŞIDAN
 
-</footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+</footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="comments.js"></script><script>
 
   /* ==================================================
      SUPABASE
@@ -867,7 +868,8 @@ Bağımsız düşüncenin tarafı.
         "DIV",
         "H2",
         "H3",
-        "FONT"
+        "FONT",
+        "IMG"
       ]);
 
 
@@ -1070,6 +1072,21 @@ Bağımsız düşüncenin tarafı.
 
           }
 
+
+          if (tagName === "IMG") {
+            const rawSrc = child.getAttribute("src") || "";
+            let safeUrl = null;
+            try {
+              const parsed = new URL(rawSrc, window.location.href);
+              const allowedPath = parsed.pathname.startsWith("/storage/v1/object/public/kose-yazilari/") || parsed.pathname.startsWith("/storage/v1/object/public/haber-fotograflari/");
+              if (parsed.protocol === "https:" && parsed.origin === "https://rfqiffvudbmphvklxetf.supabase.co" && allowedPath) safeUrl = parsed.href;
+            } catch (_) {}
+            if (!safeUrl) { child.remove(); return; }
+            const alt = (child.getAttribute("alt") || "").slice(0, 180);
+            Array.from(child.attributes).forEach(function(attribute){child.removeAttribute(attribute.name);});
+            child.setAttribute("src",safeUrl);child.setAttribute("alt",alt);child.setAttribute("loading","lazy");child.setAttribute("decoding","async");child.setAttribute("style","display:block;max-width:100%;height:auto;margin:18px auto");
+            return;
+          }
 
           Array.from(
             child.attributes
@@ -2261,6 +2278,8 @@ Bağımsız düşüncenin tarafı.
 
       `;
 
+
+      await window.renderArticleComments(area, "kose_yazisi_id", data.id);
 
       /* ==========================================
          SEO META

@@ -472,7 +472,8 @@ id="twitterImageAlt"
 
   </div></main><footer id="siteFooter">KARŞIDAN — Gücün karşısında, gerçeğin yanında.
 
-</footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+</footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="comments.js"></script><script>
 
   /* ==================================================
      SUPABASE
@@ -1079,6 +1080,34 @@ id="twitterImageAlt"
   }
 
 
+  function guvenliIcerikHTML(html) {
+    const root=document.createElement("div");root.innerHTML=String(html||"");
+    const allowed=new Set(["P","BR","STRONG","B","EM","I","U","S","UL","OL","LI","BLOCKQUOTE","A","SPAN","DIV","H2","H3","FONT","IMG"]);
+    const blocked=new Set(["SCRIPT","STYLE","IFRAME","OBJECT","EMBED","FORM","INPUT","BUTTON","TEXTAREA","SELECT","OPTION","VIDEO","AUDIO","SOURCE","SVG","MATH","META","LINK","BASE"]);
+    function clean(parent){Array.from(parent.children).forEach(function(node){
+      const tag=node.tagName;
+      if(blocked.has(tag)){node.remove();return;}
+      if(tag==="IMG"){
+        const raw=node.getAttribute("src")||"";let url=null;
+        try{const parsed=new URL(raw,window.location.href);if(parsed.protocol==="https:"&&parsed.origin==="https://rfqiffvudbmphvklxetf.supabase.co"&&(parsed.pathname.startsWith("/storage/v1/object/public/haber-fotograflari/")||parsed.pathname.startsWith("/storage/v1/object/public/kose-yazilari/")))url=parsed.href;}catch(_){}
+        if(!url){node.remove();return;}
+        const alt=(node.getAttribute("alt")||"").slice(0,180);
+        Array.from(node.attributes).forEach(function(a){node.removeAttribute(a.name);});
+        node.setAttribute("src",url);node.setAttribute("alt",alt);node.setAttribute("loading","lazy");node.setAttribute("decoding","async");node.setAttribute("style","display:block;max-width:100%;height:auto;margin:18px auto");return;
+      }
+      if(!allowed.has(tag)){clean(node);while(node.firstChild)parent.insertBefore(node.firstChild,node);node.remove();return;}
+      const rawStyle=node.getAttribute("style")||"";
+      const safeStyle=rawStyle.split(";").filter(function(part){const i=part.indexOf(":");if(i<1)return false;const prop=part.slice(0,i).trim().toLowerCase(),val=part.slice(i+1).trim();return ["color","background-color","font-family","font-size","font-weight","font-style","text-decoration","text-align"].includes(prop)&&val.length<120&&!/url\s*\(|expression\s*\(|javascript\s*:|[<>]/i.test(val);}).join(";");
+      const href=tag==="A"?node.getAttribute("href"):null;
+      const classes=(node.getAttribute("class")||"").split(/\s+/).filter(x=>["vurgulu-metin","vurgulu-kutu"].includes(x));
+      Array.from(node.attributes).forEach(function(a){node.removeAttribute(a.name);});
+      if(safeStyle)node.setAttribute("style",safeStyle);if(classes.length)node.setAttribute("class",classes.join(" "));
+      if(tag==="A"&&href){try{const u=new URL(href,window.location.href);if(["http:","https:","mailto:"].includes(u.protocol)){node.setAttribute("href",u.href);if((u.protocol==="http:"||u.protocol==="https:")&&u.origin!==window.location.origin){node.setAttribute("target","_blank");node.setAttribute("rel","noopener noreferrer");}}}catch(_){}}
+      clean(node);
+    });}
+    clean(root);return root.innerHTML;
+  }
+
   /* ==================================================
      HABERİ GETİR
   ================================================== */
@@ -1427,10 +1456,7 @@ id="twitterImageAlt"
           itemprop="articleBody"
         >
 
-          ${
-            data.icerik ||
-            "<p>Bu haber için henüz içerik eklenmemiş.</p>"
-          }
+          ${ guvenliIcerikHTML(data.icerik || "<p>Bu haber için henüz içerik eklenmemiş.</p>") }
 
         </div>
 
@@ -1440,6 +1466,9 @@ id="twitterImageAlt"
       </article>
 
     `;
+
+
+    await window.renderArticleComments(container, "haber_id", data.id);
 
   }
 
