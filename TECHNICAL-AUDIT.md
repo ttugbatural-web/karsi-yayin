@@ -66,3 +66,22 @@ Tarih: 2026-10-17
 ### Kapsam sınırlaması
 
 Bu kontroller kaynak kodu üzerinde statik kontrollerdir. Tarayıcıda gerçek render, cihaz emülasyonu, bağlantıların canlı HTTP yanıtları ve Supabase yetkilendirme/RLS testleri yerine geçmez.
+
+
+## Üçüncü tur: köşe yazısı editöründe HTML temizleme
+
+Tarih: 2026-10-17
+
+### Uygulanan düzeltme
+
+`admin/kose-yazilari.html` içine izin listesi tabanlı `editorHTMLGuvende()` eklendi. Veritabanından editöre içerik yüklenirken ve kaydetmeden önce editör HTML'si temizleniyor. Script/iframe/form/aktif medya ve resim etiketleri kaldırılıyor; olay işleyici gibi HTML nitelikleri temizleniyor; biçimlendirme için izin verilen etiketler, stiller ve güvenli bağlantı protokolleri korunuyor.
+
+### Statik doğrulama
+
+- Temizleyici fonksiyonun bulunduğu doğrulandı.
+- Yazı yükleme ve kaydetme yollarının ikisinin de temizleyiciyi çağırdığı doğrulandı.
+- Script ve IMG etiketlerinin engellendiği, bağlantı protokollerinin sınırlandığı doğrulandı.
+
+### Sınırlama
+
+Bu, yönetim editöründe kalıcı HTML/DOM XSS riskini azaltmaya yönelik istemci tarafı savunma katmanıdır; tek başına güvenlik garantisi değildir. Supabase RLS ve yetkilendirme politikaları ayrıca doğrulanmalıdır. Gerçek tarayıcıda biçimlendirme, yapıştırma, kaydetme ve yeniden düzenleme regresyon testleri henüz yapılmadı.
