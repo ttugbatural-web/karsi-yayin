@@ -107,3 +107,16 @@ Tarih: 2026-10-17
 ### Statik doğrulama
 
 Bu değişiklikler dal üzerinde kaynak kodu olarak oluşturuldu. Canlı Supabase kaydıyla uçtan uca doğrulama henüz yapılmadı; tablo alanları mevcut `dunya.html` ve `admin/dunya.html` kaynaklarından eşleştirildi.
+
+
+## Beşinci tur: ana sayfa HTML temizliği
+
+Tarih: 2026-10-17
+
+### Uygulanan düzeltme
+
+`index.html` içinde başlık, navigasyon ve ana içerik bölümlerini çevreleyen tek başına duran sekiz Markdown kod çiti satırı bulundu ve kaldırıldı. Bunlar HTML kaynağına ait değildi ve tarayıcıda görünür metin/işaret olarak çıkabiliyordu. Sayfanın `<!DOCTYPE html>` ile başladığı ve `</html>` ile bittiği doğrulandı.
+
+### Genel statik bağlantı kontrolü
+
+Önceki turda depodaki kök dizin HTML sayfaları tarandı; kontrol edilen yerel HTML bağlantılarında eksik hedef bulunmadı. Ana sayfa ve dünya haberleri detay bağlantıları düzeltilerek yeni hedefler eklendi.
