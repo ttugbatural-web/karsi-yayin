@@ -15,10 +15,8 @@ SUPABASE_URL = os.environ.get("KARSI_SUPABASE_URL", "https://rfqiffvudbmphvklxet
 SUPABASE_KEY = os.environ.get("KARSI_SUPABASE_ANON_KEY", "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65")
 
 STATIC_PATHS = [
-    "/", "/gundem.html", "/gundem-haber.html", "/haberler.html",
-    "/dunya.html", "/kose-yazilari.html", "/kose-yazisi.html",
-    "/dosyalar.html", "/dosya.html", "/hakkimizda.html",
-    "/dunya-haber.html",
+    "/", "/gundem.html", "/haberler.html", "/dunya.html",
+    "/kose-yazilari.html", "/dosyalar.html", "/hakkimizda.html",
 ]
 TABLES = [
     ("kose_yazilari", "kose-yazisi.html"),
