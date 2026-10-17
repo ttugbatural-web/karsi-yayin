@@ -98,6 +98,6 @@
     findArticleContent();
     if (document.querySelector(".kar-reading-tools")) observer.disconnect();
   });
-  observer.observe(document.documentElement, { childList: true, subtree: true });
+  observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ["hidden", "style", "class"] });
   window.addEventListener("load", findArticleContent, { once: true });
 })();
