@@ -743,7 +743,7 @@ KARŞI — Yönetim Paneli
 ================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
+<script src="auth.js"></script>
 
 <script>
 
@@ -759,11 +759,7 @@ const SUPABASE_ANON_KEY =
     "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
 
 
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-    );
+const supabaseClient = window.supabaseClient;
 
 
 /* ==================================================
@@ -803,62 +799,8 @@ function mesajGoster(mesaj, tip) {
 
 async function oturumKontrolEt() {
 
-    const {
-        data,
-        error
-    } = await supabaseClient.auth.getSession();
-
-
-    if (error) {
-
-        console.error(
-            "Oturum kontrol hatası:",
-            error
-        );
-
-        mesajGoster(
-            "Supabase oturumu kontrol edilemedi.",
-            "error"
-        );
-
-        return false;
-
-    }
-
-
-    if (!data.session) {
-
-        console.warn(
-            "Aktif Supabase oturumu bulunamadı."
-        );
-
-        mesajGoster(
-            "Yönetici oturumu bulunamadı. Lütfen yönetim paneline tekrar giriş yap.",
-            "error"
-        );
-
-        return false;
-
-    }
-
-
-    console.log(
-        "Aktif kullanıcı:",
-        data.session.user.email
-    );
-
-    console.log(
-        "Kullanıcı ID:",
-        data.session.user.id
-    );
-
-    console.log(
-        "Auth rolü:",
-        data.session.user.role
-    );
-
-
-    return true;
+    const session = await window.yoneticiOturumuKontrolEt();
+    return Boolean(session);
 
 }
 
