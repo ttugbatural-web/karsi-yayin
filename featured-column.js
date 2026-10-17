@@ -90,7 +90,7 @@
       image.alt = data.baslik;
       image.loading = "lazy";
       image.decoding = "async";
-      image.addEventListener("error", function () { image.remove(); }, { once: true });
+      image.addEventListener("error", function () { image.remove(); section.classList.add("featured-column--text-only"); }, { once: true });
       section.appendChild(image);
     } else {
       section.classList.add("featured-column--text-only");
