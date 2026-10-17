@@ -9,6 +9,9 @@
     .kar-reading-tools button{border:1px solid #bbb;background:#fff;color:#111;padding:8px 10px;font:700 12px Arial,Helvetica,sans-serif;cursor:pointer}
     .kar-reading-tools button:hover{border-color:#c40000;color:#c40000}
     .kar-reading-tools button:focus-visible{outline:3px solid #c40000;outline-offset:2px}
+    .kar-reading-tools a{display:inline-block;border:1px solid #bbb;background:#fff;color:#111;padding:8px 10px;font:700 12px Arial,Helvetica,sans-serif;text-decoration:none}
+    .kar-reading-tools a:hover{border-color:#c40000;color:#c40000}
+    .kar-reading-tools a:focus-visible{outline:3px solid #c40000;outline-offset:2px}
     .kar-reading-tools__status{width:100%;color:#246024;font-size:12px}
     @media(max-width:520px){.kar-reading-tools{align-items:flex-start}.kar-reading-tools__actions{width:100%}.kar-reading-tools button{flex:1}}
     @media(prefers-reduced-motion:reduce){.kar-reading-tools *{scroll-behavior:auto!important}}
@@ -78,6 +81,12 @@
         if (error && error.name !== "AbortError") status.textContent = "Paylaşım açılamadı. Bağlantıyı adres çubuğundan kopyalayabilirsiniz.";
       }
     }));
+
+    const searchLink = document.createElement("a");
+    searchLink.href = "arama.html";
+    searchLink.textContent = "Ara";
+    searchLink.setAttribute("aria-label", "KARŞIDAN arşivinde ara");
+    actions.appendChild(searchLink);
 
     toolbar.appendChild(meta);
     toolbar.appendChild(actions);
