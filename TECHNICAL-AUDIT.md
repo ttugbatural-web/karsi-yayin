@@ -1,0 +1,47 @@
+# KARŞIDAN Teknik Denetim — İlk Tur
+
+Tarih: 2026-10-17
+Kapsam: GitHub kaynak kodu incelemesi. Supabase veri tabanı/politikaları ve canlı tarayıcı testleri bu turda kapsam dışıdır.
+
+## Uygulanan değişiklik
+
+Yönetim arayüzü HTML dosyalarına `<meta name="robots" content="noindex, nofollow">` eklendi. Bu değişiklik arama motorlarına yönetim ekranlarını indekslememeleri gerektiğini bildirir. **Bu bir erişim kontrolü değildir**; yönetim sayfalarının güvenliği oturum denetimi ve Supabase RLS/politikalarıyla ayrıca doğrulanmalıdır.
+
+Değiştirilen dosyalar:
+- `admin.html`
+- `admin/ayarlar.html`
+- `admin/dosyalar.html`
+- `admin/dunya.html`
+- `admin/giris.html`
+- `admin/haberler.html`
+- `admin/hakkimizda.html`
+- `admin/index.html`
+- `admin/kose-yazilari.html`
+- `admin/yazarlar.html`
+- `admin/yorumlar.html`
+
+Değişiklikler `audit/karshidan-quality-fixes` dalında tutuluyor; ana dala doğrudan yazılmadı.
+
+## İlk kod incelemesi bulguları
+
+1. **Köşe yazısı editörü:** `admin/kose-yazilari.html` içinde `contenteditable` ve `document.execCommand` kullanılıyor. `execCommand` eski/deprecated bir API olmakla birlikte hâlâ birçok tarayıcıda çalışır; editörü değiştirmek kaydetme ve biçimlendirme davranışını bozabileceği için bu turda değiştirilmedi. Gerçek tarayıcı testleriyle ayrı ele alınmalı.
+2. **HTML güvenliği:** `kose-yazisi.html` tarafında yazı içeriği için izin listeli bir HTML temizleme işlevi mevcut. Yönetim editöründe veritabanından gelen HTML'nin editöre yüklenmesi ve kaydetme akışı ayrıca test edilmeli.
+3. **SEO altyapısı:** Ana sayfada meta açıklaması, canonical, Open Graph/Twitter alanları ve JSON-LD bulunuyor. `robots.txt` sitemap'e işaret ediyor. `sitemap.xml` şu an sabit sayfaları listeliyor; veritabanından gelen her bir yazı/haberin sitemap'e dahil edilip edilmediği dinamik URL stratejisine göre ayrıca değerlendirilmelidir.
+4. **Mobil görünüm:** İncelenen ana sayfa, yönetim ekranı ve yazı sayfalarında viewport tanımı ve responsive CSS media query'leri mevcut. Bu, telefon/tablet üzerinde hatasız çalıştıklarını tek başına kanıtlamaz; gerçek cihaz/emülasyon testi yapılmadı.
+5. **Supabase:** Tarayıcı tarafında publishable/anon anahtar kullanımı görülüyor. Bu tür anahtarların istemci kodunda bulunması tek başına güvenlik açığı kanıtı değildir; asıl belirleyici tablo bazlı Row Level Security (RLS), politikalar, Storage izinleri ve yönetici rolü denetimleridir. Kullanıcı talimatıyla bunlar henüz incelenmedi.
+6. **Haber otomasyonu:** `.github/workflows/haberler.yml` saatlik zamanlanmış RSS/web haber toplama ve `data/haberler.json` dosyasını commit etme iş akışı içeriyor. Kaynakların erişilebilirliği, içerik lisansları/atıfları, ayrıştırma kalitesi ve workflow güvenliği ayrıca doğrulanmalı.
+
+## Bu turda yapılmayanlar
+
+- Supabase tablo/RLS/Storage politikalarını incelemek
+- Canlı siteye telefon/tablet emülasyonu veya gerçek tarayıcı testleri uygulamak
+- Editörün kaydetme/yükleme döngüsünü gerçek Supabase verisiyle test etmek
+- Değişiklikleri ana dala birleştirmek veya canlı yayına almak
+
+## Sonraki önerilen sıra
+
+1. Yönetim sayfalarında noindex değişikliklerini doğrulamak.
+2. Editörün HTML sanitizasyonunu, kaydetme/yükleme ve bağlantı/biçimlendirme davranışını test etmek.
+3. Mobil telefon ve tablet görünümlerini test etmek.
+4. Kullanıcı onayladığı zaman Supabase RLS, Storage ve yönetici yetkilerini incelemek.
+5. SEO sitemap'ini dinamik içerik stratejisiyle eşleştirmek ve otomatik kontroller eklemek.
