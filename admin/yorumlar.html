@@ -612,6 +612,14 @@ KARŞI — Yönetim Paneli
 <!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script>
+  document.documentElement.style.visibility = "hidden";
+  window.__adminSessionPromise = window.yoneticiOturumuKontrolEt().then(function (session) {
+    if (session) document.documentElement.style.visibility = "";
+    return session;
+  });
+</script>
 
 
 <script>
@@ -628,11 +636,7 @@ const SUPABASE_ANON_KEY =
     "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
 
 
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-    );
+const supabaseClient = window.supabaseClient;
 
 
 /* ==================================================
@@ -1261,11 +1265,10 @@ async function yorumSil(id) {
 ================================================== */
 
 async function baslat() {
-
+    const session = await window.__adminSessionPromise;
+    if (!session) return;
     await istatistikleriGetir();
-
     await yorumlariGetir();
-
 }
 
 
