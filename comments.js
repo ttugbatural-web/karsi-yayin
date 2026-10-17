@@ -35,11 +35,15 @@
   }
 
   window.renderArticleComments = async function (container, targetColumn, targetId) {
-    if (!container || !["haber_id", "kose_yazisi_id"].includes(targetColumn) || !targetId || !window.supabaseClient) return;
+    if (!container || !["haber_id", "kose_yazisi_id"].includes(targetColumn) || !targetId || !window.supabase) return;
+    const client = window.supabaseClient || window.supabase.createClient(
+      "https://rfqiffvudbmphvklxetf.supabase.co",
+      "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65"
+    );
 
     let settings;
     try {
-      const result = await window.supabaseClient.from("ayarlar")
+      const result = await client.from("ayarlar")
         .select("yorumlar_acik, yorumlar_otomatik_onay").eq("id", 1).maybeSingle();
       if (result.error || !result.data || result.data.yorumlar_acik !== true) return;
       settings = result.data;
@@ -82,7 +86,7 @@
     }
 
     async function loadApproved() {
-      const result = await window.supabaseClient.from("yorumlar")
+      const result = await client.from("yorumlar")
         .select("id, ad_soyad, icerik, created_at")
         .eq(targetColumn, targetId).eq("durum", "onaylandi")
         .order("created_at", { ascending: true });
@@ -132,7 +136,7 @@
           durum: settings.yorumlar_otomatik_onay === true ? "onaylandi" : "bekliyor"
         };
         insertData[targetColumn] = targetId;
-        const result = await window.supabaseClient.from("yorumlar").insert(insertData);
+        const result = await client.from("yorumlar").insert(insertData);
         if (result.error) throw result.error;
         form.reset();
         if (settings.yorumlar_otomatik_onay === true) {
