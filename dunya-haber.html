@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="KARŞIDAN Dünya haberleri: uluslararası gelişmeler ve küresel gündem.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#111111">
+  <link rel="canonical" href="https://karsidan.com.tr/dunya-haber.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KARŞIDAN">
+  <meta property="og:title" content="Dünya Haberi — KARŞIDAN">
+  <meta property="og:description" content="KARŞIDAN Dünya haberleri: uluslararası gelişmeler ve küresel gündem.">
+  <meta property="og:url" content="https://karsidan.com.tr/dunya-haber.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Dünya Haberi — KARŞIDAN</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root { color-scheme: light; }
+    body {
+      margin: 0;
+      background: #f2f2f0;
+      color: #171717;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+    a { color: inherit; }
+    .site-header {
+      background: #111;
+      color: #fff;
+      border-bottom: 4px solid #c40000;
+      padding: 18px 20px;
+    }
+    .header-inner {
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .logo {
+      position: relative;
+      display: inline-block;
+      color: #fff;
+      font: 900 36px/1 Georgia, "Times New Roman", serif;
+      letter-spacing: -2px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .logo::after {
+      content: "";
+      position: absolute;
+      height: 4px;
+      width: 115%;
+      background: #c40000;
+      left: -7%;
+      top: 53%;
+      transform: rotate(-4deg);
+    }
+    .back-link {
+      color: #fff;
+      border: 1px solid #555;
+      padding: 8px 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .back-link:hover, .back-link:focus-visible {
+      background: #fff;
+      color: #111;
+    }
+    main {
+      width: min(900px, calc(100% - 32px));
+      margin: 34px auto 64px;
+    }
+    .article {
+      background: #fff;
+      border: 1px solid #e2e2e2;
+      padding: clamp(20px, 4vw, 44px);
+    }
+    .eyebrow {
+      color: #b00000;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font: 700 clamp(30px, 5vw, 46px)/1.18 Georgia, "Times New Roman", serif;
+      margin: 0 0 16px;
+      overflow-wrap: anywhere;
+    }
+    .summary {
+      font: 700 18px/1.6 Georgia, "Times New Roman", serif;
+      color: #454545;
+      margin: 0 0 20px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      color: #666;
+      font-size: 13px;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      padding: 12px 0;
+      margin-bottom: 22px;
+    }
+    .cover {
+      display: block;
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      margin: 0 0 26px;
+      background: #eee;
+    }
+    .content {
+      font: 18px/1.9 Georgia, "Times New Roman", serif;
+      overflow-wrap: anywhere;
+    }
+    .content p { margin: 0 0 1.35em; }
+    .source {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .source:hover, .source:focus-visible { background: #c40000; }
+    .state {
+      padding: 22px;
+      background: #fff;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    footer {
+      padding: 24px 16px;
+      background: #111;
+      color: #ccc;
+      text-align: center;
+      font-size: 13px;
+    }
+    footer a { color: #fff; }
+    @media (max-width: 600px) {
+      .site-header { padding: 16px; }
+      .header-inner { align-items: flex-start; }
+      .logo { font-size: 30px; }
+      .back-link { font-size: 11px; padding: 7px 9px; }
+      main { width: calc(100% - 20px); margin: 20px auto 40px; }
+      .content { font-size: 17px; }
+      .summary { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="index.html" aria-label="KARŞIDAN ana sayfa">KARŞIDAN</a>
+      <a class="back-link" href="dunya.html">← DÜNYA HABERLERİ</a>
+    </div>
+  </header>
+
+  <main>
+    <div id="articleState" class="state" role="status" aria-live="polite">Dünya haberi yükleniyor…</div>
+    <article id="article" class="article" hidden>
+      <div id="articleCategory" class="eyebrow"></div>
+      <h1 id="articleTitle"></h1>
+      <p id="articleSummary" class="summary" hidden></p>
+      <div id="articleMeta" class="meta"></div>
+      <img id="articleCover" class="cover" alt="" hidden>
+      <div id="articleContent" class="content"></div>
+      <a id="articleSource" class="source" hidden target="_blank" rel="noopener noreferrer">Kaynağı aç ↗</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>Bağımsız düşüncenin tarafı.</p>
+    <a href="hakkimizda.html">Hakkımızda</a> · <a href="kose-yazilari.html">Köşe yazıları</a>
+    <p>© 2026 KARŞIDAN</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    "use strict";
+
+    const SUPABASE_URL = "https://rfqiffvudbmphvklxetf.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
+    const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const state = document.getElementById("articleState");
+    const article = document.getElementById("article");
+
+    function escapeHtml(value) {
+      return String(value == null ? "" : value).replace(/[&<>"']/g, function (char) {
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        }[char];
+      });
+    }
+
+    function safeHttpUrl(value) {
+      if (!value) return "";
+      try {
+        const url = new URL(String(value).trim(), window.location.href);
+        if (url.protocol === "https:" || url.protocol === "http:") return url.href;
+      } catch (error) {
+        console.warn("Geçersiz bağlantı.", error);
+      }
+      return "";
+    }
+
+    function formatDate(value) {
+      if (!value) return "";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return "";
+      return date.toLocaleDateString("tr-TR", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      });
+    }
+
+    function setMeta(selector, value) {
+      const element = document.querySelector(selector);
+      if (element && value) element.setAttribute("content", value);
+    }
+
+    function showError(message) {
+      state.textContent = message;
+      state.hidden = false;
+      article.hidden = true;
+    }
+
+    async function loadArticle() {
+      const slug = new URLSearchParams(window.location.search).get("slug");
+
+      if (!slug || slug.length > 200) {
+        showError("Bu haber bağlantısı geçerli değil.");
+        return;
+      }
+
+      try {
+        const result = await db
+          .from("dunya_haberleri")
+          .select("baslik, ozet, icerik, slug, kategori, ulke, kaynak_adi, kaynak_url, kapak_fotografi_url, yayin_tarihi")
+          .eq("slug", slug)
+          .eq("durum", "yayinda")
+          .maybeSingle();
+
+        if (result.error) {
+          console.error("Dünya haberi yüklenemedi:", result.error);
+          showError("Dünya haberi şu anda yüklenemiyor. Lütfen daha sonra tekrar dene.");
+          return;
+        }
+
+        const data = result.data;
+        if (!data) {
+          showError("Bu haber bulunamadı veya artık yayında değil.");
+          return;
+        }
+
+        const title = String(data.baslik || "Dünya haberi").trim();
+        const description = String(data.ozet || data.icerik || "KARŞIDAN Dünya haberleri").replace(/\s+/g, " ").trim().slice(0, 180);
+        const canonical = window.location.origin + window.location.pathname + "?slug=" + encodeURIComponent(data.slug || slug);
+
+        document.title = title + " — KARŞIDAN";
+        setMeta('meta[name="description"]', description);
+        setMeta('meta[property="og:title"]', document.title);
+        setMeta('meta[property="og:description"]', description);
+        setMeta('meta[property="og:url"]', canonical);
+        const canonicalElement = document.querySelector('link[rel="canonical"]');
+        if (canonicalElement) canonicalElement.setAttribute("href", canonical);
+
+        document.getElementById("articleCategory").textContent = [data.kategori || "Dünya", data.ulke || ""].filter(Boolean).join(" · ");
+        document.getElementById("articleTitle").textContent = title;
+
+        const summary = document.getElementById("articleSummary");
+        if (data.ozet) {
+          summary.textContent = data.ozet;
+          summary.hidden = false;
+        }
+
+        const metaItems = [];
+        const date = formatDate(data.yayin_tarihi);
+        if (date) metaItems.push(date);
+        if (data.kaynak_adi) metaItems.push(String(data.kaynak_adi));
+        document.getElementById("articleMeta").textContent = metaItems.join(" · ");
+
+        const coverUrl = safeHttpUrl(data.kapak_fotografi_url);
+        const cover = document.getElementById("articleCover");
+        if (coverUrl) {
+          cover.src = coverUrl;
+          cover.alt = title;
+          cover.hidden = false;
+          cover.addEventListener("error", function () { cover.hidden = true; }, { once: true });
+        }
+
+        const content = document.getElementById("articleContent");
+        const text = String(data.icerik || "").trim();
+        if (text) {
+          content.innerHTML = text.split(/\n{2,}/).map(function (paragraph) {
+            return "<p>" + escapeHtml(paragraph).replace(/\n/g, "<br>") + "</p>";
+          }).join("");
+        } else if (data.ozet) {
+          content.innerHTML = "<p>" + escapeHtml(data.ozet) + "</p>";
+        } else {
+          content.textContent = "Bu haber için henüz ayrıntılı içerik eklenmemiş.";
+        }
+
+        const sourceUrl = safeHttpUrl(data.kaynak_url);
+        const source = document.getElementById("articleSource");
+        if (sourceUrl) {
+          source.href = sourceUrl;
+          source.hidden = false;
+        }
+
+        state.hidden = true;
+        article.hidden = false;
+      } catch (error) {
+        console.error("Dünya haberi yükleme hatası:", error);
+        showError("Dünya haberi yüklenirken beklenmeyen bir hata oluştu.");
+      }
+    }
+
+    loadArticle();
+  </script>
+</body>
+</html>
