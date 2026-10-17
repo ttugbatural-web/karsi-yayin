@@ -34,6 +34,17 @@
       const {data, error} = await client.from("ayarlar").select("menu_gorunurlugu").eq("id",1).maybeSingle();
       if (error || !data) return;
       const visibility = Object.assign({}, menuDefaults, data.menu_gorunurlugu || {});
+      // Site içi aramayı tüm sayfalardaki mevcut menüye ekle.
+      const nav = document.querySelector("nav");
+      if (nav && !nav.querySelector('a[href="arama.html"]')) {
+        const searchLink = document.createElement("a");
+        searchLink.href = "arama.html";
+        searchLink.textContent = "ARA";
+        searchLink.setAttribute("aria-label", "KARŞIDAN içinde ara");
+        searchLink.title = "Haber, yazı ve dosya ara";
+        const navInner = nav.querySelector(".nav-inner");
+        (navInner || nav).appendChild(searchLink);
+      }
       document.querySelectorAll("nav a[href]").forEach(function (link) {
         const file = (new URL(link.getAttribute("href"), window.location.href)).pathname.split("/").pop();
         const key = map[file];
