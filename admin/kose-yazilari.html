@@ -1757,10 +1757,190 @@ document
 
 
 /* ==================================================
+   EDİTÖR HTML GÜVENLİĞİ
+   Veritabanından veya editörden gelen HTML'yi izin listesiyle temizle.
+================================================== */
+
+function editorHTMLGuvende(html) {
+
+  const parser = new DOMParser();
+
+  const parsed = parser.parseFromString(
+    String(html == null ? "" : html),
+    "text/html"
+  );
+
+  const root = parsed.body;
+
+  const izinVerilenEtiketler = new Set([
+    "P", "BR", "STRONG", "B", "EM", "I", "U", "S",
+    "UL", "OL", "LI", "BLOCKQUOTE", "A", "SPAN",
+    "DIV", "H2", "H3", "FONT"
+  ]);
+
+  const tehlikeliEtiketler = new Set([
+    "SCRIPT", "STYLE", "IFRAME", "OBJECT", "EMBED",
+    "FORM", "INPUT", "BUTTON", "TEXTAREA", "SELECT",
+    "OPTION", "VIDEO", "AUDIO", "SOURCE", "IMG",
+    "META", "LINK", "BASE", "SVG", "MATH", "TEMPLATE"
+  ]);
+
+  const izinVerilenStiller = new Set([
+    "color", "background-color", "font-family", "font-size",
+    "font-weight", "font-style", "text-decoration", "text-align"
+  ]);
+
+  function guvenliStil(styleText) {
+
+    const temizStiller = [];
+
+    String(styleText || "").split(";").forEach(function (declaration) {
+
+      const colon = declaration.indexOf(":");
+
+      if (colon < 1) {
+        return;
+      }
+
+      const property = declaration.slice(0, colon).trim().toLowerCase();
+      const value = declaration.slice(colon + 1).trim();
+
+      if (!izinVerilenStiller.has(property) || !value || value.length > 120) {
+        return;
+      }
+
+      if (/url\s*\(|expression\s*\(|javascript\s*:|@import|[<>]/i.test(value)) {
+        return;
+      }
+
+      temizStiller.push(property + ":" + value);
+
+    });
+
+    return temizStiller.join(";");
+
+  }
+
+  function temizle(parent) {
+
+    Array.from(parent.children).forEach(function (child) {
+
+      const tagName = child.tagName.toUpperCase();
+
+      if (tehlikeliEtiketler.has(tagName)) {
+        child.remove();
+        return;
+      }
+
+      if (!izinVerilenEtiketler.has(tagName)) {
+
+        temizle(child);
+
+        while (child.firstChild) {
+          parent.insertBefore(child.firstChild, child);
+        }
+
+        child.remove();
+        return;
+
+      }
+
+      if (tagName === "FONT") {
+
+        const color = child.getAttribute("color");
+        const face = child.getAttribute("face");
+        const size = child.getAttribute("size");
+
+        Array.from(child.attributes).forEach(function (attribute) {
+          child.removeAttribute(attribute.name);
+        });
+
+        if (color && /^(#[0-9a-f]{3,8}|[a-z]{1,24}|rgba?\([0-9.,%\s]+\)|hsla?\([0-9.,%\s]+\))$/i.test(color.trim())) {
+          child.setAttribute("color", color.trim());
+        }
+
+        if (face && /^[\w\s,'"-]{1,100}$/.test(face.trim()) && !/url\s*\(/i.test(face)) {
+          child.setAttribute("face", face.trim());
+        }
+
+        if (size && /^[1-7]$/.test(size.trim())) {
+          child.setAttribute("size", size.trim());
+        }
+
+      } else {
+
+        const originalClass = child.getAttribute("class") || "";
+        const safeClasses = originalClass.split(/\s+/).filter(function (name) {
+          return name === "vurgulu-metin" || name === "vurgulu-kutu";
+        });
+
+        const safeStyle = guvenliStil(child.getAttribute("style"));
+        const originalHref = tagName === "A" ? child.getAttribute("href") : null;
+
+        Array.from(child.attributes).forEach(function (attribute) {
+          child.removeAttribute(attribute.name);
+        });
+
+        if (safeClasses.length) {
+          child.setAttribute("class", Array.from(new Set(safeClasses)).join(" "));
+        }
+
+        if (safeStyle) {
+          child.setAttribute("style", safeStyle);
+        }
+
+        if (tagName === "A" && originalHref) {
+
+          try {
+
+            const safeUrl = new URL(originalHref.trim(), window.location.href);
+
+            if (
+              safeUrl.protocol === "http:" ||
+              safeUrl.protocol === "https:" ||
+              safeUrl.protocol === "mailto:"
+            ) {
+
+              child.setAttribute("href", safeUrl.href);
+
+              if (
+                (safeUrl.protocol === "http:" || safeUrl.protocol === "https:") &&
+                safeUrl.origin !== window.location.origin
+              ) {
+                child.setAttribute("target", "_blank");
+                child.setAttribute("rel", "noopener noreferrer");
+              }
+
+            }
+
+          } catch (error) {
+            // Geçersiz bağlantı temizlenmiş olarak bırakılır.
+          }
+
+        }
+
+      }
+
+      temizle(child);
+
+    });
+
+  }
+
+  temizle(root);
+
+  return root.innerHTML;
+
+}
+
+
+/* ==================================================
    EDİTÖR HTML
 ================================================== */
 
 function editorIcerigiAl() {
+
+  editor.innerHTML = editorHTMLGuvende(editor.innerHTML);
 
   normalizeEditorHTML();
 
@@ -2525,7 +2705,7 @@ async function yaziDuzenle(
 
 
   editor.innerHTML =
-    data.icerik || "";
+    editorHTMLGuvende(data.icerik || "");
 
   normalizeEditorHTML();
 
