@@ -157,3 +157,30 @@ Supabase yönetim/politika erişimi bu çalışma ortamında bulunmadığından:
 - yetkisiz kullanıcıyla negatif erişim testi yapamadım.
 
 Canlıya çıkış öncesi kritik iş: Supabase tarafında yazma/silme işlemlerinin yalnızca açıkça yetkilendirilmiş yöneticilere izin verdiği doğrulanmalı. Kullanıcı tablosu veya istemci tarafından değiştirilebilir `user_metadata` tek başına güvenilir rol kaynağı olarak kullanılmamalı. Yönetici rolü için Supabase tarafından güvenilen `app_metadata` veya sunucu tarafında doğrulanan bir allowlist kullanılmalı.
+
+
+## Dördüncü tur: Supabase RLS ve yönetici yetkisi
+
+Tarih: 2026-10-17
+
+### Veritabanı denetimi ve düzeltmeleri
+
+- `public` şemasındaki tüm tablolar için RLS etkinliği kontrol edildi; kontrol sonucunda RLS kapalı tablo sayısı 0.
+- Anonim `INSERT`/`UPDATE`/`DELETE` politikaları kaldırıldı; ziyaretçilerin yalnızca yayımlanmış/aktif içerikleri okuması ve yorumları bekleyen durumda göndermesi için politikalar oluşturuldu.
+- Storage'daki üç site görseli bucket'ında herkese açık yükleme/değiştirme/silme politikaları kaldırıldı; okuma açık, yazma yönetici kimliğine sınırlandırıldı.
+- Beş yabancı anahtar indeksi eklendi; iki tetikleyici fonksiyonunun `search_path` ayarı sabitlendi.
+- `dunya-haberlerini-tara` Edge Function sürüm 7'ye dağıtıldı; JWT doğrulamasına ek olarak yönetici kullanıcı UUID'si kontrolü eklendi.
+
+### Ek kod düzeltmeleri
+
+- `admin/auth.js` içine Supabase veritabanı politikalarıyla eşleşen yönetici UUID kontrolü eklendi.
+- `admin/giris.html` mevcut oturumu yalnızca yönetici kullanıcı için kabul edecek şekilde güncellendi.
+- `admin/ayarlar.html` ortak yönetici oturum kontrolünü kullanacak şekilde düzeltildi. Önceki sürümde sadece oturum varlığı kontrol ediliyor ve ortak rol denetimi kullanılmıyordu.
+- Kök dizindeki eski `admin.html` yönetim uygulaması, rol kontrolünü atlayabilen eski giriş akışını kaldırmak için `admin/giris.html` adresine yönlendiren uyumluluk sayfasına dönüştürüldü.
+
+### Doğrulama ve sınırlamalar
+
+- Son SQL kontrolünde `public` şemasında RLS kapalı tablo: 0; anonim değişiklik politikası: 0; anonim Storage değişiklik politikası: 0.
+- Beş yeni indeksin varlığı doğrulandı.
+- Supabase Security Advisor'da sızdırılmış parola korumasının kapalı olduğu uyarısı devam ediyor; mevcut bağlantı aracı Auth ayarını değiştirmediğinden bu ayar elle etkinleştirilmeli.
+- Bu değişiklikler ayrı GitHub dalında hazırlanıyor; canlı siteye alınmadan önce PR diff'i ve dağıtım kontrolleri incelenmeli. Gerçek tarayıcıyla yönetici giriş/çıkış, medya yükleme ve içerik CRUD uçtan uca testleri henüz yapılmadı.
