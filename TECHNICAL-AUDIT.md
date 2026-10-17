@@ -45,3 +45,24 @@ Değişiklikler `audit/karshidan-quality-fixes` dalında tutuluyor; ana dala do�
 3. Mobil telefon ve tablet görünümlerini test etmek.
 4. Kullanıcı onayladığı zaman Supabase RLS, Storage ve yönetici yetkilerini incelemek.
 5. SEO sitemap'ini dinamik içerik stratejisiyle eşleştirmek ve otomatik kontroller eklemek.
+
+
+## İkinci tur: SEO ve HTML kaynak doğrulaması
+
+Tarih: 2026-10-17
+
+### Uygulanan düzeltmeler
+
+- `dosya.html` dosyasının başındaki ve sonundaki Markdown kod çiti işaretleri kaldırıldı. Dosya artık doğrudan `<!DOCTYPE html>` ile başlıyor ve `</html>` ile bitiyor. Bu işaretler sayfa kaynağına karıştığında tarayıcının belgeyi yorumlamasını olumsuz etkileyebilirdi.
+- `dosya.html`, `diktator-olmadan-once-herkes-halkcidir.html`, `dunya.html` ve `haberler.html` sayfalarına açıklayıcı meta description eklendi.
+- `karsi-gundem.html` sayfasının başlığında yönetim paneli olduğu açıkça belirtildiğinden, ona da `noindex, nofollow` eklendi.
+
+### Doğrulama
+
+- Beş dosyanın tamamı GitHub dalından tekrar okundu.
+- `dosya.html` için başlangıçta doctype, sonda kapanış `</html>`, meta description varlığı doğrulandı.
+- Dört içerik sayfasındaki açıklamalar ve yönetim sayfasındaki noindex direktifi doğrulandı.
+
+### Kapsam sınırlaması
+
+Bu kontroller kaynak kodu üzerinde statik kontrollerdir. Tarayıcıda gerçek render, cihaz emülasyonu, bağlantıların canlı HTTP yanıtları ve Supabase yetkilendirme/RLS testleri yerine geçmez.
