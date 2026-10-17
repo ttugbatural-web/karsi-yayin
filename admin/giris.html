@@ -689,6 +689,18 @@
 
                     }
 
+                    const ADMIN_USER_ID =
+                        "a0e49ca7-3362-4980-bfa9-1c75431905f3";
+
+                    if (!data.user || data.user.id !== ADMIN_USER_ID) {
+                        await supabaseClient.auth.signOut();
+                        mesajGoster(
+                            "Bu hesap yönetici yetkisine sahip değil. Yönetici hesabınla giriş yap.",
+                            "error"
+                        );
+                        return;
+                    }
+
 
                     console.log(
                         "KARŞIDAN AUTH: Giriş başarılı."
