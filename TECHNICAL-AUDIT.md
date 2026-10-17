@@ -145,3 +145,15 @@ Tarih: 2026-10-17
 - Tarayıcı tarafındaki oturum kontrolü tek başına güvenlik sınırı değildir. Supabase tarafında her tablo ve Storage bucket için RLS/izin politikaları doğrulanmalı; bu oturumda Supabase yönetim API'sine veya proje paneline erişim yoktu, dolayısıyla politika değişikliği yapılmadı ve yetkisiz REST istekleriyle doğrulama gerçekleştirilmedi.
 - Canlı siteye web tarayıcı aracıyla erişim denemeleri başarısız oldu; gerçek cihaz/telefon/tablet render ve etkileşim testleri yapılamadı.
 - Bu turdaki doğrulama kaynak kodu taramasıyla sınırlıdır. Canlı ortamda giriş/çıkış, içerik kaydetme, resim yükleme, editör yapıştırma ve mobil regresyon testleri ayrıca çalıştırılmalıdır.
+
+
+## Yedinci tur: yönetici rolü doğrulaması — açık kritik konu
+
+Ortak `admin/auth.js` dosyasındaki kontrol, geçerli bir Supabase oturumu olup olmadığını doğruluyor; kullanıcının ayrıca yönetici rolüne sahip olduğunu bağımsız olarak doğrulamıyor. Bu nedenle oturum kontrolü eklenmiş olsa da yönetim ekranlarının güvenliği yalnızca bu istemci tarafı kontrole dayandırılamaz.
+
+Supabase yönetim/politika erişimi bu çalışma ortamında bulunmadığından:
+- `app_metadata` / yönetici rolü atamalarını doğrulayamadım;
+- RLS ve Storage politikalarını okuyup değiştiremedim;
+- yetkisiz kullanıcıyla negatif erişim testi yapamadım.
+
+Canlıya çıkış öncesi kritik iş: Supabase tarafında yazma/silme işlemlerinin yalnızca açıkça yetkilendirilmiş yöneticilere izin verdiği doğrulanmalı. Kullanıcı tablosu veya istemci tarafından değiştirilebilir `user_metadata` tek başına güvenilir rol kaynağı olarak kullanılmamalı. Yönetici rolü için Supabase tarafından güvenilen `app_metadata` veya sunucu tarafında doğrulanan bir allowlist kullanılmalı.
