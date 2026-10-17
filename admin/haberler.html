@@ -1265,9 +1265,9 @@
 
 
     const content =
-      articleContent
-        .innerHTML
-        .trim();
+      window.editorHTMLGuvende
+        ? window.editorHTMLGuvende(articleContent.innerHTML).trim()
+        : articleContent.innerHTML.trim();
 
 
     const source =
