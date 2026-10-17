@@ -77,6 +77,29 @@
     if(error){console.warn("Arama kaynağı okunamadı:",table,error.message);return [];}
     return (data||[]).map(item=>({id:table+":"+item.id,type,title:item.baslik||"Başlıksız içerik",summary:item[summaryField]||"",date:item.yayin_tarihi||item.created_at||"",url:urlFor(item),author:item.yazarlar&&item.yazarlar.ad_soyad||"",category:item.kategori||""})).filter(item=>item.url);
   }
+  async function rssResultsGetir(term){
+    try{
+      const response=await fetch("data/haberler.json",{cache:"no-store"});
+      if(!response.ok)throw new Error("Haber akışı okunamadı.");
+      const data=await response.json();
+      const wanted=normalized(term);
+      return (Array.isArray(data.haberler)?data.haberler:[]).filter(item=>{
+        const searchable=normalized((item.baslik||"")+" "+(item.aciklama||""));
+        return searchable.includes(wanted);
+      }).map((item,index)=>{
+        let url="";
+        try{
+          const parsed=new URL(String(item.link||""));
+          if(parsed.protocol!=="https:"||!["www.sozcu.com.tr","sozcu.com.tr","www.nefes.com.tr"].includes(parsed.hostname))return null;
+          url=parsed.href;
+        }catch(_){return null;}
+        return {id:"rss:"+url+":"+index,type:"Haber akışı",title:item.baslik||"Başlıksız haber",summary:item.aciklama||"",date:item.tarih||"",url,author:item.kaynak||"",category:item.kaynak||"",external:true};
+      }).filter(Boolean);
+    }catch(error){
+      console.warn("RSS başlıkları aranamadı:",error);
+      return [];
+    }
+  }
   async function search(term){
     status.textContent="Arşiv taranıyor…";results.replaceChildren();pager.hidden=true;
     if(term.length<2){status.textContent="Arama için en az 2 karakter yaz.";return;}
@@ -91,9 +114,9 @@
       queryTable("dosyalar","id,baslik,ozet,slug,kategori,yayin_tarihi,created_at","baslik",term,"Dosya",x=>"dosya.html?slug="+encoded(x.slug||""),"ozet"),
       queryTable("dosyalar","id,baslik,ozet,slug,kategori,yayin_tarihi,created_at","ozet",term,"Dosya",x=>"dosya.html?slug="+encoded(x.slug||""),"ozet")
     ];
-    const batches=await Promise.all(jobs);
+    const [batches,rssResults]=await Promise.all([Promise.all(jobs),rssResultsGetir(term)]);
     const unique=new Map();
-    batches.flat().forEach(item=>{if(item.url&&!unique.has(item.url))unique.set(item.url,item);});
+    batches.flat().concat(rssResults).forEach(item=>{if(item.url&&!unique.has(item.url))unique.set(item.url,item);});
     allResults=Array.from(unique.values()).sort((a,b)=>{const da=Date.parse(a.date)||0,db=Date.parse(b.date)||0;return db-da;});
     page=0;render();
   }
@@ -105,6 +128,7 @@
     status.textContent=total+" sonuç bulundu. "+(page+1)+"/"+pages+". sayfa";
     allResults.slice(page*pageSize,(page+1)*pageSize).forEach(item=>{
       const link=node("a","result");link.href=item.url;
+      if(item.external){link.target="_blank";link.rel="noopener noreferrer";}
       link.appendChild(node("div","result-type",item.type+(item.category?" · "+item.category:"")));
       link.appendChild(node("h2","",item.title));
       if(item.summary)link.appendChild(node("p","",item.summary));
