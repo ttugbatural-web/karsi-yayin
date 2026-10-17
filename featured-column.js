@@ -8,6 +8,7 @@
   style.textContent = `
     .featured-column{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:0;margin:0 0 30px;background:#111;color:#fff;border-bottom:4px solid #c40000;min-width:0}
     .featured-column[hidden]{display:none}
+    .featured-column--text-only{grid-template-columns:1fr}
     .featured-column__image{width:100%;height:100%;min-height:240px;object-fit:cover;display:block;background:#292929}
     .featured-column__body{padding:clamp(22px,4vw,38px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
     .featured-column__eyebrow{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#ff6565;margin-bottom:12px}
@@ -89,8 +90,10 @@
       image.alt = data.baslik;
       image.loading = "lazy";
       image.decoding = "async";
-      image.addEventListener("error", function () { image.remove(); }, { once: true });
+      image.addEventListener("error", function () { image.remove(); section.classList.add("featured-column--text-only"); }, { once: true });
       section.appendChild(image);
+    } else {
+      section.classList.add("featured-column--text-only");
     }
 
     const body = element("div", "featured-column__body");
@@ -118,9 +121,22 @@
     removeDuplicateFromColumn(data.slug);
     const list = document.getElementById("koseList");
     if (list) {
-      const observer = new MutationObserver(function () { removeDuplicateFromColumn(data.slug); });
+      const observer = new MutationObserver(function () {
+        removeDuplicateFromColumn(data.slug);
+        const links = Array.from(list.querySelectorAll('a[href*="kose-yazisi.html"]'));
+        const duplicateRemains = links.some(function (link) {
+          try { return new URL(link.href, window.location.href).searchParams.get("slug") === data.slug; }
+          catch (_) { return false; }
+        });
+        if (list.querySelectorAll("a.home-item").length > 0 && !duplicateRemains) observer.disconnect();
+      });
       observer.observe(list, { childList: true, subtree: true });
-      if (list.querySelectorAll("a.home-item").length > 0) observer.disconnect();
+      const existingLinks = Array.from(list.querySelectorAll('a[href*="kose-yazisi.html"]'));
+      const duplicateAlreadyRemoved = !existingLinks.some(function (link) {
+        try { return new URL(link.href, window.location.href).searchParams.get("slug") === data.slug; }
+        catch (_) { return false; }
+      });
+      if (list.querySelectorAll("a.home-item").length > 0 && duplicateAlreadyRemoved) observer.disconnect();
     }
   }
 
