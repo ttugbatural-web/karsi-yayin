@@ -76,9 +76,8 @@ def valid_lastmod(value):
 
 def main():
     urls = {}
-    today = datetime.now(timezone.utc).date().isoformat()
     for path in STATIC_PATHS:
-        urls[BASE_URL + path] = today
+        urls[BASE_URL + path] = None
 
     for table, detail_page in TABLES:
         for row in fetch_published_slugs(table):
@@ -88,13 +87,14 @@ def main():
             query = urllib.parse.urlencode({"slug": slug})
             loc = f"{BASE_URL}/{detail_page}?{query}"
             lastmod = valid_lastmod(row.get("yayin_tarihi"))
-            urls[loc] = lastmod or today
+            urls[loc] = lastmod
 
     root = ET.Element(f"{{{NS}}}urlset")
     for loc in sorted(urls):
         entry = ET.SubElement(root, f"{{{NS}}}url")
         ET.SubElement(entry, f"{{{NS}}}loc").text = loc
-        ET.SubElement(entry, f"{{{NS}}}lastmod").text = urls[loc]
+        if urls[loc]:
+            ET.SubElement(entry, f"{{{NS}}}lastmod").text = urls[loc]
 
     tree = ET.ElementTree(root)
     ET.indent(tree, space="  ")
