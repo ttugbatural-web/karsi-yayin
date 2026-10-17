@@ -1,4 +1,4 @@
-name: KARŞI Haber Motoru
+name: KARŞIDAN Haber Motoru
 
 on:
   workflow_dispatch:
@@ -36,6 +36,7 @@ jobs:
           from urllib.parse import urljoin
 
           haberler = []
+          kaynak_hatalari = []
 
           # ==================================================
           # SÖZCÜ RSS KAYNAKLARI
@@ -75,8 +76,11 @@ jobs:
                       data = response.read()
 
                   root = ET.fromstring(data)
+                  items = root.findall(".//item")
+                  if not items:
+                      raise ValueError("RSS akışında haber bulunamadı; olası biçim değişikliği.")
 
-                  for item in root.findall(".//item"):
+                  for item in items:
 
                       title = item.findtext("title", "")
                       link = item.findtext("link", "")
@@ -137,6 +141,7 @@ jobs:
 
               except Exception as e:
 
+                  kaynak_hatalari.append(f"{kaynak['ad']}: {e}")
                   print(
                       f"{kaynak['ad']} okunamadı: {e}"
                   )
@@ -247,6 +252,8 @@ jobs:
               parser = NefesParser()
 
               parser.feed(nefes_html)
+              if not parser.links:
+                  raise ValueError("Sayfada haber bağlantısı bulunamadı; olası biçim değişikliği.")
 
               gorulen_linkler = set()
 
@@ -275,6 +282,7 @@ jobs:
 
           except Exception as e:
 
+              kaynak_hatalari.append(f"Nefes: {e}")
               print(
                   f"Nefes okunamadı: {e}"
               )
@@ -335,6 +343,13 @@ jobs:
 
           haberler = haberler[:75]
 
+
+          # Herhangi bir kaynak hata verirse eksik listeyi yayımlama;
+          # mevcut data/haberler.json dosyası korunur.
+          if kaynak_hatalari:
+              raise SystemExit("Haber akışı eksik; mevcut veri korunuyor. " + " | ".join(kaynak_hatalari))
+          if not haberler:
+              raise SystemExit("Hiç haber alınamadı; mevcut veri korunuyor.")
 
           # ==================================================
           # JSON DOSYASI
@@ -401,7 +416,7 @@ jobs:
 
       - name: Haberleri GitHub'a kaydet
         run: |
-          git config user.name "KARŞI Haber Botu"
+          git config user.name "KARŞIDAN Haber Botu"
           git config user.email "actions@users.noreply.github.com"
 
           git add data/haberler.json
@@ -409,6 +424,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Yeni haber yok."
           else
-            git commit -m "KARŞI haber akışını güncelle"
+            git commit -m "KARŞIDAN haber akışını güncelle"
             git push
           fi
