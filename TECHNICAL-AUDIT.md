@@ -120,3 +120,28 @@ Tarih: 2026-10-17
 ### Genel statik bağlantı kontrolü
 
 Önceki turda depodaki kök dizin HTML sayfaları tarandı; kontrol edilen yerel HTML bağlantılarında eksik hedef bulunmadı. Ana sayfa ve dünya haberleri detay bağlantıları düzeltilerek yeni hedefler eklendi.
+
+
+## Altıncı tur: yönetim paneli erişim kontrolü ve editör güvenliği
+
+Tarih: 2026-10-17
+
+### Bulgu ve düzeltmeler
+
+- `admin/haberler.html`, `admin/yorumlar.html`, `admin/dosyalar.html` ve `admin/hakkimizda.html` sayfalarında ortak yönetici oturumu doğrulaması eksikti veya çağrılmıyordu. Ortak `admin/auth.js` kontrolü eklendi; veri yükleme başlangıcı doğrulanmış oturumdan sonra çalışacak şekilde düzenlendi. Oturum doğrulanırken arayüz gizleniyor.
+- Haberler ve dosyalar zengin metin editörlerinde, veritabanından yüklenen HTML kaydedilmiş/tekrar düzenlenmiş içerik olarak doğrudan DOM'a basılabiliyordu. Paylaşılan `admin/editor-sanitize.js` temizleyicisi eklendi; editöre yükleme ve kaydetme sırasında izin listesi tabanlı HTML temizliği yapılıyor.
+- `admin/ayarlar.html` dışındaki başlangıç/bitiş Markdown kod çitleri ve `admin/yazarlar.html` içindeki tek başına duran kod çitleri kaldırıldı.
+- Yönetim sayfalarının noindex direktifleri ve HTML sınırları tekrar kontrol edildi.
+
+### Statik doğrulama
+
+- 24 HTML dosyasında yerel `href` hedefleri tarandı; göreli `../` ve yönetim klasörüne göre yollar normalleştirildikten sonra eksik yerel hedef bulunmadı.
+- Yönetim HTML sayfalarında Markdown kod çiti kalmadığı ve yönetim sayfalarının noindex direktifleri taşıdığı kontrol edildi.
+- Haberler, yorumlar, dosyalar ve hakkımızda sayfalarının veri yükleme başlangıçları ortak oturum doğrulamasına bağlandı.
+- Haberler ve dosyalar editöründe ham `data.icerik` / `dosya.icerik` atamalarının temizleyiciyle değiştirildiği doğrulandı.
+
+### Güvenlik sınırları ve açık işler
+
+- Tarayıcı tarafındaki oturum kontrolü tek başına güvenlik sınırı değildir. Supabase tarafında her tablo ve Storage bucket için RLS/izin politikaları doğrulanmalı; bu oturumda Supabase yönetim API'sine veya proje paneline erişim yoktu, dolayısıyla politika değişikliği yapılmadı ve yetkisiz REST istekleriyle doğrulama gerçekleştirilmedi.
+- Canlı siteye web tarayıcı aracıyla erişim denemeleri başarısız oldu; gerçek cihaz/telefon/tablet render ve etkileşim testleri yapılamadı.
+- Bu turdaki doğrulama kaynak kodu taramasıyla sınırlıdır. Canlı ortamda giriş/çıkış, içerik kaydetme, resim yükleme, editör yapıştırma ve mobil regresyon testleri ayrıca çalıştırılmalıdır.

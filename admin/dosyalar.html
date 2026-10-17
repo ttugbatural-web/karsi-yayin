@@ -959,6 +959,14 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="auth.js"></script>
+<script>
+    document.documentElement.style.visibility = "hidden";
+    window.__adminSessionPromise = window.yoneticiOturumuKontrolEt().then(function (session) {
+        if (session) document.documentElement.style.visibility = "";
+        return session;
+    });
+</script>
+<script src="editor-sanitize.js"></script>
 
 <script>
 
@@ -969,10 +977,7 @@
     const SUPABASE_URL = "https://rfqiffvudbmphvklxetf.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
 
-    const db = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-    );
+    const db = window.supabaseClient;
 
 
     /* ==========================================
@@ -1422,8 +1427,7 @@
         document.getElementById("ozet").value =
             dosya.ozet || "";
 
-        document.getElementById("icerik").innerHTML =
-            dosya.icerik || "";
+        document.getElementById("icerik").innerHTML = window.editorHTMLGuvende(dosya.icerik || "");
 
         document.getElementById("kategori").value =
             dosya.kategori || "Dosya";
@@ -1489,8 +1493,7 @@
         const ozet =
             document.getElementById("ozet").value.trim();
 
-        const icerik =
-            document.getElementById("icerik").innerHTML.trim();
+        const icerik = window.editorHTMLGuvende(document.getElementById("icerik").innerHTML).trim();
 
         const kategori =
             document.getElementById("kategori").value;
@@ -1929,7 +1932,12 @@
        BAŞLAT
     ========================================== */
 
-    dosyalariGetir();
+    async function sayfaBaslat() {
+        const session = await window.__adminSessionPromise;
+        if (!session) return;
+        await dosyalariGetir();
+    }
+    sayfaBaslat();
 
 </script>
 

@@ -836,6 +836,15 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script>
+  document.documentElement.style.visibility = "hidden";
+  window.__adminSessionPromise = window.yoneticiOturumuKontrolEt().then(function (session) {
+    if (session) document.documentElement.style.visibility = "";
+    return session;
+  });
+</script>
+<script src="editor-sanitize.js"></script>
 
 <script>
 
@@ -850,11 +859,7 @@
     "sb_publishable_FZQzfS0NBm0wZCSzV6dyvg_7mNUW-65";
 
 
-  const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_ANON_KEY
-    );
+  const supabaseClient = window.supabaseClient;
 
 
   /* ==================================================
@@ -1821,8 +1826,7 @@
         data.kategori || "Gündem";
 
 
-    articleContent.innerHTML =
-      data.icerik || "";
+    articleContent.innerHTML = window.editorHTMLGuvende(data.icerik || "");
 
 
     document
@@ -2144,9 +2148,14 @@
      BAŞLANGIÇ
   ================================================== */
 
-  yazarlariGetir();
+  async function sayfaBaslat() {
+    const session = await window.__adminSessionPromise;
+    if (!session) return;
+    await yazarlariGetir();
+    await haberleriGetir();
+  }
 
-  haberleriGetir();
+  sayfaBaslat();
 
 </script>
 
