@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Site Bölümleri — KARŞI Yönetim</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:#f2f2f0;color:#111}header{background:#111;color:#fff;border-bottom:4px solid #c40000;padding:18px 20px}.header-inner{max-width:1000px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:15px}.logo{font:700 34px Georgia,"Times New Roman",serif;letter-spacing:-2px}.back{color:#fff;text-decoration:none;border:1px solid #555;padding:9px 12px;font-size:12px}main{max-width:1000px;margin:34px auto;padding:0 18px}.title{font:700 38px Georgia,"Times New Roman",serif;margin-bottom:8px}.intro{color:#666;line-height:1.6;margin-bottom:24px}.panel{background:#fff;border:1px solid #ddd;padding:24px;margin-bottom:20px}.panel h2{font:700 25px Georgia,"Times New Roman",serif;margin-bottom:8px}.panel>p{color:#666;font-size:13px;line-height:1.6;margin-bottom:18px}.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 0;border-bottom:1px solid #eee}.toggle-row:last-child{border-bottom:0}.toggle-row strong{display:block;font-size:15px;margin-bottom:4px}.toggle-row small{display:block;color:#777;line-height:1.5}.switch{position:relative;flex-shrink:0;width:50px;height:28px}.switch input{opacity:0;width:0;height:0}.slider{position:absolute;inset:0;background:#bbb;border-radius:30px;cursor:pointer;transition:.2s}.slider:before{content:"";position:absolute;width:20px;height:20px;left:4px;top:4px;background:#fff;border-radius:50%;transition:.2s}.switch input:checked+.slider{background:#c40000}.switch input:checked+.slider:before{transform:translateX(22px)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.actions button{border:0;padding:13px 18px;font-weight:700;cursor:pointer}.save{background:#111;color:#fff}.reset{background:#e8e8e5;color:#111}.message{display:none;padding:13px 15px;margin-bottom:20px;font-size:13px}.message.show{display:block}.message.ok{background:#e7f4e7;color:#246024}.message.err{background:#f7e4e4;color:#8b0000}footer{text-align:center;padding:25px;color:#777;font-size:12px}@media(max-width:600px){.panel{padding:18px}.title{font-size:32px}}
+</style>
+</head>
+<body>
+<header><div class="header-inner"><div class="logo">KARŞI</div><a class="back" href="index.html">← Yönetim Paneli</a></div></header>
+<main>
+<h1 class="title">Site Bölümleri</h1>
+<p class="intro">Ziyaretçilerin üst menüde görebileceği sekmeleri buradan açıp kapatabilirsin. Gizlenen bölümlerin içerikleri silinmez; yalnızca menü bağlantısı gizlenir.</p>
+<div id="message" class="message" role="status" aria-live="polite"></div>
+<section class="panel">
+<h2>Üst Menü Görünürlüğü</h2>
+<p>Değişiklikleri kaydettiğinde ayar tüm desteklenen sayfalardaki üst menüye uygulanır.</p>
+<div class="toggle-row"><div><strong>Ana Sayfa</strong><small>Ana sayfaya giden menü bağlantısı</small></div><label class="switch"><input type="checkbox" id="home" checked><span class="slider"></span></label></div>
+<div class="toggle-row"><div><strong>Köşe Yazıları</strong><small>Yayımlanan köşe yazıları listesi</small></div><label class="switch"><input type="checkbox" id="columns" checked><span class="slider"></span></label></div>
+<div class="toggle-row"><div><strong>Haberler</strong><small>Haber listesi</small></div><label class="switch"><input type="checkbox" id="news" checked><span class="slider"></span></label></div>
+<div class="toggle-row"><div><strong>KARŞI Gündem</strong><small>Gündem bölümü</small></div><label class="switch"><input type="checkbox" id="gundem" checked><span class="slider"></span></label></div>
+<div class="toggle-row"><div><strong>Dünya</strong><small>Dünya haberleri</small></div><label class="switch"><input type="checkbox" id="dunya" checked><span class="slider"></span></label></div>
+<div class="toggle-row"><div><strong>Dosyalar</strong><small>Araştırma ve inceleme dosyaları</small></div><label class="switch"><input type="checkbox" id="files" checked><span class="slider"></span></label></div>
+<div class="toggle-row"><div><strong>Hakkımızda</strong><small>Yayın ilkeleri ve künye</small></div><label class="switch"><input type="checkbox" id="about" checked><span class="slider"></span></label></div>
+<div class="actions"><button type="button" class="save" id="saveButton">GÖRÜNÜRLÜĞÜ KAYDET</button><button type="button" class="reset" id="resetButton">TÜMÜNÜ GÖSTER</button></div>
+</section>
+</main>
+<footer>KARŞI — Yönetim Paneli</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script>
+(function(){
+"use strict";
+const client=window.supabaseClient;
+const keys=["home","columns","news","gundem","dunya","files","about"];
+const message=document.getElementById("message");
+const saveButton=document.getElementById("saveButton");
+function say(text,ok){message.textContent=text;message.className="message show "+(ok?"ok":"err");}
+function values(){const out={};keys.forEach(k=>out[k]=document.getElementById(k).checked);return out;}
+function fill(data){keys.forEach(k=>document.getElementById(k).checked=data[k]!==false);}
+async function start(){
+ const session=await window.yoneticiOturumuKontrolEt();
+ if(!session)return;
+ const {data,error}=await client.from("ayarlar").select("menu_gorunurlugu").eq("id",1).maybeSingle();
+ if(error||!data){say("Ayarlar yüklenemedi. "+(error?error.message:"Kayıt bulunamadı."),false);return;}
+ fill(data.menu_gorunurlugu||{});
+}
+saveButton.addEventListener("click",async function(){
+ const session=await window.yoneticiOturumuKontrolEt();
+ if(!session)return;
+ saveButton.disabled=true;saveButton.textContent="KAYDEDİLİYOR…";
+ try{
+  const next=values();
+  const {error}=await client.from("ayarlar").update({menu_gorunurlugu:next,updated_at:new Date().toISOString()}).eq("id",1);
+  if(error)throw error;
+  const {data,error:verifyError}=await client.from("ayarlar").select("menu_gorunurlugu").eq("id",1).maybeSingle();
+  if(verifyError)throw verifyError;
+  if(!data||JSON.stringify(keys.map(k=>data.menu_gorunurlugu[k]!==false))!==JSON.stringify(keys.map(k=>next[k])))throw new Error("Kaydedilen değerler doğrulanamadı.");
+  fill(data.menu_gorunurlugu);
+  say("Menü görünürlüğü kaydedildi. Değişiklikler ziyaretçilerin sayfalarında ayar yenilendiğinde görünür.",true);
+ }catch(error){console.error(error);say("Kaydedilemedi: "+(error.message||"Bilinmeyen hata"),false);}
+ finally{saveButton.disabled=false;saveButton.textContent="GÖRÜNÜRLÜĞÜ KAYDET";}
+});
+document.getElementById("resetButton").addEventListener("click",function(){fill({});});
+start();
+})();
+</script>
+</body>
+</html>
