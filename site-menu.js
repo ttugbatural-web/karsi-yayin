@@ -13,6 +13,10 @@
     "dosyalar.html":"files",
     "hakkimizda.html":"about"
   };
+  // Ana sayfadaki içerik sütunları da aynı görünürlük ayarını izler.
+  const sectionSelectors = {
+    news: [".column-news", '[data-menu-section="news"]']
+  };
   function loadLibrary() {
     return new Promise(function (resolve, reject) {
       if (window.supabase && window.supabase.createClient) return resolve();
@@ -36,6 +40,15 @@
         if (!key) return;
         link.hidden = visibility[key] === false;
         link.setAttribute("aria-hidden", visibility[key] === false ? "true" : "false");
+      });
+      Object.keys(sectionSelectors).forEach(function (key) {
+        const hidden = visibility[key] === false;
+        sectionSelectors[key].forEach(function (selector) {
+          document.querySelectorAll(selector).forEach(function (section) {
+            section.hidden = hidden;
+            section.setAttribute("aria-hidden", hidden ? "true" : "false");
+          });
+        });
       });
     } catch (error) {
       console.warn("Site menüsü ayarları yüklenemedi; varsayılan menü korunuyor.", error);
