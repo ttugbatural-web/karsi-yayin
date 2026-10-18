@@ -1,22 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://karsidan.com.tr/</loc></url>
-  <url><loc>https://karsidan.com.tr/gundem.html</loc></url>
-  <url><loc>https://karsidan.com.tr/haberler.html</loc></url>
-  <url><loc>https://karsidan.com.tr/dunya.html</loc></url>
-  <url><loc>https://karsidan.com.tr/kose-yazilari.html</loc></url>
-  <url><loc>https://karsidan.com.tr/dosyalar.html</loc></url>
-  <url><loc>https://karsidan.com.tr/hakkimizda.html</loc></url>
+  <url>
+    <loc>https://karsidan.com.tr/</loc>
+  </url>
+  <url>
+    <loc>https://karsidan.com.tr/dosyalar.html</loc>
+  </url>
+  <url>
+    <loc>https://karsidan.com.tr/dunya.html</loc>
+  </url>
+  <url>
+    <loc>https://karsidan.com.tr/gundem.html</loc>
+  </url>
+  <url>
+    <loc>https://karsidan.com.tr/haberler.html</loc>
+  </url>
+  <url>
+    <loc>https://karsidan.com.tr/hakkimizda.html</loc>
+  </url>
+  <url>
+    <loc>https://karsidan.com.tr/kose-yazilari.html</loc>
+  </url>
   <url>
     <loc>https://karsidan.com.tr/kose-yazisi.html?slug=bireysel-hirs-kolay-para-caginda-kaybettigimiz-sey</loc>
     <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://karsidan.com.tr/kose-yazisi.html?slug=vnin-maskesinden-cyranonun-burnuna</loc>
-    <lastmod>2026-09-15</lastmod>
-  </url>
-  <url>
     <loc>https://karsidan.com.tr/kose-yazisi.html?slug=diktator-olmadan-once-herkes-halkcidir</loc>
     <lastmod>2026-09-07</lastmod>
+  </url>
+  <url>
+    <loc>https://karsidan.com.tr/kose-yazisi.html?slug=vnin-maskesinden-cyranonun-burnuna</loc>
+    <lastmod>2026-09-15</lastmod>
   </url>
 </urlset>
