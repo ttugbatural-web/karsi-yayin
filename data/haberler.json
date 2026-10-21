@@ -1,6 +1,13 @@
 {
-  "guncelleme": "2026-10-20T22:03:18.687845+00:00",
+  "guncelleme": "2026-10-21T01:14:34.636000+00:00",
   "haberler": [
+    {
+      "baslik": "Elon Musk servetine servet kattı",
+      "aciklama": "Elon Musk servetine servet kattı",
+      "kaynak": "Sözcü",
+      "link": "https://www.sozcu.com.tr/elon-musk-servetine-servet-katti-p371154",
+      "tarih": "Wed, 21 Oct 2026 01:01:26 +0300"
+    },
     {
       "baslik": "SPK'dan 3 aracı kurum için faaliyet durdurma kararı",
       "aciklama": "SPK'dan 3 aracı kurum için faaliyet durdurma kararı",
@@ -289,13 +296,6 @@
       "tarih": "Tue, 20 Oct 2026 18:30:44 +0300"
     },
     {
-      "baslik": "Ece İrtem'in cenazesine Kızılcık Şerbeti'nden kimse katılmamıştı! Sebebini yapımcısı açıkladı",
-      "aciklama": "Ece İrtem'in cenazesine Kızılcık Şerbeti'nden kimse katılmamıştı! Sebebini yapımcısı açıkladı",
-      "kaynak": "Sözcü",
-      "link": "https://www.sozcu.com.tr/ece-irtem-in-cenazesine-kizilcik-serbeti-nden-kimse-katilmamisti-sebebini-yapimcisi-acikladi-p371071",
-      "tarih": "Tue, 20 Oct 2026 18:24:31 +0300"
-    },
-    {
       "baslik": "Gazeteci İsmail Arı gözaltına alındı",
       "aciklama": "Gazeteci İsmail Arı, eski RTÜK Başkanı Ebubekir Şahin'in şikayeti üzerine \"kamu görevlisine görevinden dolayı hakaret\" v...",
       "kaynak": "Sözcü Gündem",
@@ -331,28 +331,49 @@
       "tarih": "Tue, 20 Oct 2026 17:36:49 +0300"
     },
     {
-      "baslik": "7.1 milyarlık yasa dışı bahis operasyonunda 78 kişi tutuklandı",
+      "baslik": "İzmir'de maganda dehşeti. Kulağını ısırarak kopardı!",
+      "aciklama": "",
+      "kaynak": "Nefes",
+      "link": "https://www.nefes.com.tr/izmirde-maganda-dehseti-kulagini-isirarak-kopardi-159464",
+      "tarih": ""
+    },
+    {
+      "baslik": "Şanlıurfa'da feci kaza. Alev alan tankerin şoförü yanarak öldü Şanlıurfa’nın Viranşehir ve Derik ilçesi sınırında devrildikten sonra alev alan akaryakıt tankerinin sürücüsü feci şekilde can verdi.",
+      "aciklama": "",
+      "kaynak": "Nefes",
+      "link": "https://www.nefes.com.tr/sanliurfada-feci-kaza-alev-alan-tankerin-soforu-yanarak-oldu-159457",
+      "tarih": ""
+    },
+    {
+      "baslik": "10 gün önce kazadan kurtulmuştu. İş yerinde can verdi Bursa'da bir boyahanede forkliftle malzeme taşıyan Eray Altıntaş, üzerine demir blokların devrilmesi sonucu hayatını kaybetti. Altıntaş’ın yaklaşık 10 gün önce arkadaşının hayatını kaybettiği trafik kazasından yaralı kurtulduğu öğrenildi.",
+      "aciklama": "",
+      "kaynak": "Nefes",
+      "link": "https://www.nefes.com.tr/10-gun-once-kazadan-yarali-kurtulmustu-is-yerinde-can-verdi-159456",
+      "tarih": ""
+    },
+    {
+      "baslik": "7.1 milyarlık yasa dışı bahis operasyonunda 78 kişi tutuklandı Eskişehir merkezli 7.1 milyarlık yasa dışı bahis operasyonunda gözaltına alınan 101 kişiden 78'i tutuklandı.",
       "aciklama": "",
       "kaynak": "Nefes",
       "link": "https://www.nefes.com.tr/71-milyarlik-yasa-disi-bahis-operasyonunda-78-kisi-tutuklandi-159452",
       "tarih": ""
     },
     {
-      "baslik": "SPK üç yatırım kuruluşunun faaliyetlerini durdurdu Sermaye Piyasası Kurulu Alnus Yatırım, Bulls Yatırım ve Pusula Yatırım şirketlerinin faaliyetlerini geçici olarak durdurdu.",
+      "baslik": "SPK üç yatırım kuruluşunun faaliyetlerini durdurdu",
       "aciklama": "",
       "kaynak": "Nefes",
       "link": "https://www.nefes.com.tr/spk-fon-sorusturmasindaki-uc-yatirim-kurulusunun-faaliyetlerini-durdurdu-159450",
       "tarih": ""
     },
     {
-      "baslik": "Bodrum'da motosikletin çarptığı 79 yaşındaki kadın hayatını kaybetti Muğla'nın Bodrum ilçesinde, yolun karşısına geçmeye çalışırken motosikletin çarptığı 79 yaşındaki kadın, ağır yaralı olarak kaldırıldığı hastanede hayatını kaybetti.",
+      "baslik": "Bodrum'da motosikletin çarptığı 79 yaşındaki kadın hayatını kaybetti",
       "aciklama": "",
       "kaynak": "Nefes",
       "link": "https://www.nefes.com.tr/bodrumda-motosikletin-carptigi-79-yasindaki-kadin-hayatini-kaybetti-159446",
       "tarih": ""
     },
     {
-      "baslik": "Sarıyer'de sürüklenen tanker kurtarıldı Ulaştırma ve Altyapı Bakanlığı, Sarıyer'de sürüklenen sürüklenen Liberya bayraklı 'BANDA' isimli ham petrol tankerinin kurtarılarak yüzdürüldüğünü açıkladı.",
+      "baslik": "Sarıyer'de sürüklenen tanker kurtarıldı",
       "aciklama": "",
       "kaynak": "Nefes",
       "link": "https://www.nefes.com.tr/banda-gemisi-kurtarildi-159443",
@@ -461,27 +482,6 @@
       "aciklama": "",
       "kaynak": "Nefes",
       "link": "https://www.nefes.com.tr/bir-belediye-baskani-daha-chpden-istifa-etti-159383",
-      "tarih": ""
-    },
-    {
-      "baslik": "Adıyaman’da feci kaza. Bisiklet otomobile çarptı",
-      "aciklama": "",
-      "kaynak": "Nefes",
-      "link": "https://www.nefes.com.tr/adiyamanda-feci-kaza-bisiklet-otomobile-carpti-159382",
-      "tarih": ""
-    },
-    {
-      "baslik": "Zonguldak'ta yük asansörü düştü. 1’i ağır 3 yaralı",
-      "aciklama": "",
-      "kaynak": "Nefes",
-      "link": "https://www.nefes.com.tr/zonguldakta-yuk-asansoru-dustu-1i-agir-3-yarali-159380",
-      "tarih": ""
-    },
-    {
-      "baslik": "Ev kiralayacaklar dikkat! İmza atmadan önce bu detayları kontrol edin",
-      "aciklama": "",
-      "kaynak": "Nefes",
-      "link": "https://www.nefes.com.tr/ev-kiralayacaklar-dikkat-imza-atmadan-once-bu-detaylari-kontrol-edin-159377",
       "tarih": ""
     },
     {
